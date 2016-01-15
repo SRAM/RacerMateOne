@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="RM1_Settings.xsl"?>
+<!-- Golden Settings File Must be available in Program Files directory on Install-->
+<Settings VersionMajor="1" VersionMinor="0">
+
+  <Trainers>
+    <Trainer Index="1" PreviouslyDiscovered ="0" DeviceType="Unknown">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey>
+    </Trainer>
+    <Trainer Index="2" PreviouslyDiscovered ="0" DeviceType="Unknown">
+      <VelotronChainring>62</VelotronChainring >
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey >
+    </Trainer>
+    <Trainer Index="3" PreviouslyDiscovered ="0" DeviceType="Unknown">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey>
+    </Trainer >
+    <Trainer Index="4" PreviouslyDiscovered ="0" DeviceType="Unknown">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey >
+    </Trainer >
+    <Trainer Index="5" PreviouslyDiscovered ="0" DeviceType="Unknown">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey >
+    </Trainer >
+    <Trainer Index="6" PreviouslyDiscovered ="0" DeviceType="Unknown">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey>
+    </Trainer >
+    <Trainer Index="7" PreviouslyDiscovered ="0" DeviceType="Unknown">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey >
+    </Trainer >
+    <Trainer Index="8" PreviouslyDiscovered ="0" DeviceType="Unknown">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey >
+    </Trainer >
+  </Trainers>
+
+  <Pacers>
+
+    <PacerHeartRate UserSetting="0" Default="0" FeatureEnabled="1" DisplayString="Maintain Heartrate">
+      <Selections>
+        <Selection Index="0" DisplayString="Set pace to maintain Aerobic Threshold" />
+        <Selection Index="1" DisplayString="Set pace to maintain 50% of HRmax" />
+        <Selection Index="2" DisplayString="Set pace to maintain 55% of HRmax" />
+        <Selection Index="3" DisplayString="Set pace to maintain 60% of HRmax" />
+        <Selection Index="4" DisplayString="Set pace to maintain 65% of HRmax" />
+        <Selection Index="5" DisplayString="Set pace to maintain 70% of HRmax" />
+        <Selection Index="6" DisplayString="Set pace to maintain 75% of HRmax" />
+        <Selection Index="7" DisplayString="Set pace to maintain 80% of HRmax" />
+        <Selection Index="8" DisplayString="Set pace to maintain 85% of HRmax" />
+        <Selection Index="9" DisplayString="Set pace to maintain 90% of HRmax" />
+      </Selections>
+    </PacerHeartRate>
+
+    <PacerPower UserSetting="0" Default="0" FeatureEnabled="1" DisplayString="Maintain Power">
+      <Selections>
+        <Selection Index="0" DisplayString="Set pace to maintain Lactate Threshold" />
+        <Selection Index="1" DisplayString="Set pace to maintain 50% of FTP" />
+        <Selection Index="2" DisplayString="Set pace to maintain 55% of FTP" />
+        <Selection Index="3" DisplayString="Set pace to maintain 60% of FTP" />
+        <Selection Index="4" DisplayString="Set pace to maintain 65% of FTP" />
+        <Selection Index="5" DisplayString="Set pace to maintain 67% of FTP" />
+        <Selection Index="6" DisplayString="Set pace to maintain 70% of FTP" />
+        <Selection Index="7" DisplayString="Set pace to maintain 73% of FTP" />
+        <Selection Index="8" DisplayString="Set pace to maintain 75% of FTP" />
+        <Selection Index="9" DisplayString="Set pace to maintain 80% of FTP" />
+        <Selection Index="10" DisplayString="Set pace to maintain 85% of FTP" />
+        <Selection Index="11" DisplayString="Set pace to maintain 90% of FTP" />
+        <Selection Index="12" DisplayString="Set pace to maintain 95% of FTP" />
+        <Selection Index="13" DisplayString="Set pace to maintain 100% of FTP" />
+      </Selections>
+    </PacerPower>
+
+    <PacerRoadRacer UserSetting="0" Default="0" FeatureEnabled="1" DisplayString="Roadie">
+      <Selections>
+        <Selection Index="0" DisplayString="Pacer attacks are infrequent/aggressive"/>
+        <Selection Index="1" DisplayString="Pacer attacks are infrequent/gentle"/>
+        <Selection Index="2" DisplayString="Pacer attacks are frequent/aggressive"/>
+        <Selection Index="3" DisplayString="Pacer attacks are frequent/gentle"/>
+      </Selections>
+    </PacerRoadRacer>
+
+    <PacerTimeDelay UserSetting="3" Default="3" FeatureEnabled="1" DisplayString="Time Delay" >
+      <LabelToShow>Seconds delayed</LabelToShow>
+    </PacerTimeDelay >
+
+    <PacerFixedSpeed UserSetting="18.0" Default="18.0" FeatureEnabled="1" DisplayString="Fixed Speed">
+      <LabelToShow>mph or kph</LabelToShow>
+    </PacerFixedSpeed >
+
+    <PacerFixedPower UserSetting="180" Default="180" FeatureEnabled="1" DisplayString="Fixed Power">
+      <LabelToShow>Watts</LabelToShow>
+    </PacerFixedPower >
+
+    <PacerSavedPerformance UserSetting="0" Default="0" FeatureEnabled="1" DisplayString="Previous Performance">
+      <Selections>
+        <Selection Index="0" DisplayString="Previous Performance (as ridden)"/>
+        <Selection Index="1" DisplayString="Previous Performance +  2%"/>
+        <Selection Index="2" DisplayString="Previous Performance +  5%"/>
+        <Selection Index="3" DisplayString="Previous Performance + 10%"/>
+        <Selection Index="4" DisplayString="Previous Performance + 15%"/>
+        <Selection Index="5" DisplayString="Previous Performance + 20%"/>
+        <Selection Index="6" DisplayString="Previous Performance + 25%"/>
+        <Selection Index="7" DisplayString="Previous Performance + 30%"/>
+        <Selection Index="8" DisplayString="Previous Performance -  2%"/>
+        <Selection Index="9" DisplayString="Previous Performance -  5%"/>
+        <Selection Index="10" DisplayString="Previous Performance - 10%"/>
+        <Selection Index="11" DisplayString="Previous Performance - 15%"/>
+        <Selection Index="12" DisplayString="Previous Performance - 20%"/>
+        <Selection Index="13" DisplayString="Previous Performance - 25%"/>
+        <Selection Index="14" DisplayString="Previous Performance - 30%"/>
+      </Selections>
+    </PacerSavedPerformance>
+
+  </Pacers>
+
+   <System>
+
+    <Global>
+      <OPMode UserSetting="0" Default="0" DisplayString="OPMode">
+        <Selections />
+      </OPMode>
+      <Course></Course>
+      
+      <DisplayConfiguration UserSetting="1" Default="0" DisplayString="Multimon Setup">
+        <Selections>
+          <Selection Index="0" DisplayString="Use primary monitor only" />
+          <Selection Index="1" DisplayString="Favor primary, use secondary when available" />
+          <Selection Index="2" DisplayString="Use secondary monitor only" />
+          <Selection Index="3" DisplayString="Favor secondary, use primary when available" />
+          <Selection Index="4" DisplayString="Duplicate monitors" />
+        </Selections>
+      </DisplayConfiguration>
+
+      <UnitsForPower UserSetting="0" Default="0" DisplayString="Power">
+        <Selections>
+          <Selection Index="0" DisplayString="Always Watts" />
+          <Selection Index="1" DisplayString="Favor 'Watts/Kg' when multiple riders present" />
+        </Selections>
+      </UnitsForPower>
+
+      <UnitsForDistance UserSetting="0" Default="0" DisplayString="Units (US/Metric)">
+        <Selections>
+          <Selection Index="0" DisplayString="US units: miles, feet, pounds" />
+          <Selection Index="1" DisplayString="Metric units: kilometers, meters, and kg" />
+        </Selections>
+      </UnitsForDistance>
+
+      <Drafting UserSetting="0" Default="0" DisplayString="Drafting">
+        <Selections>
+          <Selection Index="0" DisplayString="No drafting benefit" />
+          <Selection Index="1" DisplayString="Drafting ON" />
+        </Selections>
+      </Drafting>
+
+      <Wind UserSetting="0" Default="0" DisplayString="Wind">
+        <Selections>
+          <Selection Index="0" DisplayString="Always disable wind resistance" />
+          <Selection Index="1" DisplayString="Enable when present in course file" />
+        </Selections>
+      </Wind>
+  
+      <RideStudioLogoPath></RideStudioLogoPath>
+
+      <TrainingLogAppPath></TrainingLogAppPath>
+
+      <ExportAutomation UserSetting="0" Default="0" DisplayString="File Actions">
+        <Selections>
+          <Selection Index="0" DisplayString="Export to TXT and launch training Log"/>
+          <Selection Index="1" DisplayString="Export to TXT (automatically)"/>
+          <Selection Index="2" DisplayString="Export to TXT (always prompt)"/>
+          <Selection Index="3" DisplayString="Do nothing"/>
+        </Selections>
+      </ExportAutomation>
+
+      <ExportDelimiter UserSetting="0" Default="0" DisplayString="Delimiter">
+        <Selections>
+          <Selection Index="0" DisplayString="Comma delimited"/>
+          <Selection Index="1" DisplayString="Tab delimited"/>
+          <Selection Index="2" DisplayString="Semicolon delimited"/>
+          <Selection Index="4" DisplayString="Period delimited"/>
+        </Selections >
+      </ExportDelimiter >
+     <ExportTossRate UserSetting="0" Default="0" DisplayString="Toss Rate">
+        <Selections>
+          <Selection Index="0" DisplayString="Keep All Samples; 33ms sampling"/>
+          <Selection Index="1" DisplayString="Toss every 15 samples; 0.5s sampling"/>
+          <Selection Index="2" DisplayString="Toss every 30 samples; 1 second sampling"/>
+          <Selection Index="3" DisplayString="Toss every 150 samples; 5 second sampling"/>
+        </Selections >
+      </ExportTossRate >
+       <ExportLogDetail UserSetting="0" Default="0" DisplayString="Log Output">
+        <Selections>
+          <Selection Index="0" DisplayString="Basics"/>
+          <Selection Index="1" DisplayString="Complete"/>
+          <Selection Index="2" DisplayString="Complete with SpinScan data"/>
+        </Selections>
+        </ExportLogDetail>
+      <PrivacySettings UserSetting="0" Default="0" DisplayString="Privacy">
+        <Selections>
+          <Selection Index="0" DisplayString="Restart application with previous ride settings" />
+          <Selection Index="1" DisplayString="Restart application without last riders" />
+        </Selections>
+      </PrivacySettings>
+
+      <Reporting UserSetting="0" Default="0" DisplayString="Reporting">
+        <Selections>
+          <Selection Index="0" DisplayString="Always generate reports"/>
+          <Selection Index="1" DisplayString="Never generate reports"/>
+        </Selections>
+      </Reporting>
+
+      <ReportingTemplate UserSetting="0" Default="0" DisplayString="Template">
+        <Selections>
+          <Selection Index="0" DisplayString="Racermate Simple"/>
+          <Selection Index="1" DisplayString="Racermate Elegant"/>
+          <Selection Index="2" DisplayString="Racermate Black and White"/>
+          <Selection Index="3" DisplayString="Ride Studio Custom"/>
+        </Selections>
+      </ReportingTemplate>
+      
+      <CourseLapMode UserSetting="0" Default="0" DisplayString="Lap Mode">
+        <Selections>
+          <Selection Index="0" DisplayString="Halt ride when course is complete" />
+          <Selection Index="1" DisplayString="Automatically replay course as a new lap" />
+        </Selections>
+      </CourseLapMode>
+      <CourseZoomMode UserSetting="0" Default="0" DisplayString="Profile Zoom">
+        <Selections>
+          <Selection Index="0" DisplayString="Rotate between full and zoomed-in views" />
+          <Selection Index="1" DisplayString="Display full profile at all times" />
+          <Selection Index="2" DisplayString="Display zoomed-in profile at all times" />
+        </Selections>
+      </CourseZoomMode>
+      <CourseProfileLocation UserSetting="0" Default="0" DisplayString="Profile Location">
+        <Selections>
+          <Selection Index="0" DisplayString="Profile at bottom of screen" />
+          <Selection Index="1" DisplayString="Profile at top of screen" />
+        </Selections>
+      </CourseProfileLocation>
+      <DataDisplayMode UserSetting="0" Default="0" DisplayString="Data Displays">
+        <Selections>
+          <Selection Index="0" DisplayString="Simplest"/>
+          <Selection Index="1" DisplayString="Focus on power"/>
+          <Selection Index="2" DisplayString="Complete"/>
+        </Selections>
+      </DataDisplayMode>
+      
+      <ChartingDisplay UserSetting="0" Default="0" DisplayString="Charts">
+        <Selections>
+          <Selection Index="0" DisplayString="Clean views" />
+          <Selection Index="1" DisplayString="Vertical grids" />
+        </Selections>
+      </ChartingDisplay>
+     
+      <HRAlarm UserSetting="0" Default="0" DisplayString="Heartrate Alarm">
+        <Selections>
+          <Selection Index="0" DisplayString="Disable alarm" />
+          <Selection Index="1" DisplayString="Notify at 65% of HRmax"/>
+          <Selection Index="2" DisplayString="Notify at 70% of HRmax"/>
+          <Selection Index="3" DisplayString="Notify at 75% of HRmax"/>
+          <Selection Index="4" DisplayString="Notify at 80% of HRmax"/>
+          <Selection Index="5" DisplayString="Notify at 85% of HRmax"/>
+          <Selection Index="6" DisplayString="Notify at 90% of HRmax"/>
+          <Selection Index="7" DisplayString="Notify at 95% of HRmax"/>
+          <Selection Index="8" DisplayString="Notify at 100% of HRmax"/>
+          <Selection Index="9" DisplayString="Notify at 105% of HRmax"/>
+          <Selection Index="10" DisplayString="Notify at 110% of HRmax"/>
+        </Selections>
+      </HRAlarm>
+    
+      <RCVCoursePathRoot></RCVCoursePathRoot>
+      <ErgVideoCoursePathRoot></ErgVideoCoursePathRoot>
+      <Crs3dCoursePathRoot></Crs3dCoursePathRoot>
+      <ErgMrcCoursePathRoot></ErgMrcCoursePathRoot>
+
+
+    </Global>
+
+
+     <!-- RaceMate RCV Settings -->
+
+     <ModeRCV DisplayString="Real Course Video Ride">
+     </ModeRCV>
+
+     <!-- ErgVideo Settings -->
+     <ModeErgVideo DisplayString="ErgVideo Ride">
+     </ModeErgVideo>
+  
+     <ModeErgVideoTest DisplayString="ErgVideo Performance Test">
+       <FTPTestDuration UserSetting="0" Default="0" DisplayString="Test Duration">
+         <Selections>
+           <Selection Index="0" DisplayString="20 Minutes + warmup"/>
+           <Selection Index="1" DisplayString="60 Minutes + warmup"/>
+           <Selection Index="2" DisplayString="Trial mode (2 minutes)"/>
+         </Selections>
+       </FTPTestDuration>
+     </ModeErgVideoTest>
+
+     <!-- 3D Road Racing Settings -->
+     <Mode3DRoadRacing DisplayString="3D Road Racing">
+       <!-- Pick one of the 3D courses from this FIXED list -->
+       <Scenery UserSetting="0" Default="0" DisplayString="Course">
+         <Selections>
+           <Selection Index="0" DisplayString="Randomly select different '3D Scenes'"/>
+           <Selection Index="1" DisplayString="Atlanta, GA"/>
+           <Selection Index="2" DisplayString="Atlanta, GA (on bike path)"/>
+           <Selection Index="3" DisplayString="Atlanta, GA (on dirt road)"/>
+           <Selection Index="4" DisplayString="Grand Tetons, WY"/>
+           <Selection Index="5" DisplayString="Grand Tetons, WY (on bike path)"/>
+           <Selection Index="6" DisplayString="Grand Tetons, WY (on dirt road)"/>
+           <Selection Index="7" DisplayString="Okanogan Falls, BC"/>
+           <Selection Index="8" DisplayString="Okanogan Falls, BC (on bike path)"/>
+           <Selection Index="9" DisplayString="Okanogan Falls, BC (on dirt road)"/>
+           <Selection Index="10" DisplayString="Painted Desert , NM"/>
+           <Selection Index="11" DisplayString="Painted Desert , NM (on bike path)"/>
+           <Selection Index="12" DisplayString="Painted Desert , NM (on dirt road)"/>
+           <Selection Index="13" DisplayString="Penticton, BC"/>
+           <Selection Index="14" DisplayString="Penticton, BC (on bike path)"/>
+           <Selection Index="15" DisplayString="Penticton, BC  (on dirt road)"/>
+           <Selection Index="16" DisplayString="Rolling Green Hills, CA"/>
+           <Selection Index="17" DisplayString="Rolling Green Hills, CA (on bike path)"/>
+           <Selection Index="18" DisplayString="Rolling Green Hills, CA  (on dirt road)"/>
+           <Selection Index="19" DisplayString="Seattle, WA"/>
+           <Selection Index="20" DisplayString="Seattle, WA (on bike path)"/>
+           <Selection Index="21" DisplayString="Seattle, WA (on dirt road)"/>
+         </Selections>
+       </Scenery>
+
+     </Mode3DRoadRacing>
+
+     <ModeGroupRacing DisplayString="Group Racing">
+     </ModeGroupRacing>
+
+     <ModeTeamTT DisplayString="Team Time Trial">
+       <TeamTTScoring UserSetting="0" Default="0" DisplayString="Score Team's time on its first rider">
+         <Selections>
+           <Selection Index="0" DisplayString="Score Team's time on its first rider"/>
+           <Selection Index="1" DisplayString="Score Team's time on its second rider"/>
+           <Selection Index="2" DisplayString="Score Team's time on its third rider"/>
+           <Selection Index="3" DisplayString="Score Team's time on its fourth rider"/>
+         </Selections>
+       </TeamTTScoring >
+     </ModeTeamTT>
+
+     <ModeWattTesting DisplayString="Watt Testing">
+       <!-- Manual Ergo Options-->
+       <ManualErgoInitialWatts UserSetting="145" Default="150" DisplayString="Initial Watts">
+         <LabelToShow>Watts</LabelToShow>
+       </ManualErgoInitialWatts>
+       <ManualErgoIncrement UserSetting="10" Default="10" DisplayString="Increments">
+         <LabelToShow>Watts</LabelToShow>
+       </ManualErgoIncrement>
+
+       <!-- Display Options -->
+       <RPMPointer Default="90" UserSetting="85" DisplayString="RPM Pointer">
+         <LabelToShow>RPM</LabelToShow>
+       </RPMPointer>
+
+       <!-- Chart Scaling is defined by a minimum and a maximum -->
+       <Scaling>
+         <Speed UserSettingMin="0" DefaultMin="0" UserSettingMax="40" DefaultMax="40"></Speed>
+         <Power UserSettingMin="0" DefaultMin="0" UserSettingMax="500" DefaultMax="500"></Power>
+         <RPM UserSettingMin="0" DefaultMin="0" UserSettingMax="200" DefaultMax="200"></RPM>
+         <HeartRate UserSettingMin="0" DefaultMin="0" UserSettingMax="220" DefaultMax="220"></HeartRate>
+         <SpinScanRatio UserSettingMin="0" DefaultMin="0" UserSettingMax="100" DefaultMax="100"></SpinScanRatio>
+         <SpinScanPower UserSettingMin="0" DefaultMin="0" UserSettingMax="1000" DefaultMax="1000"></SpinScanPower>
+         <SpinScanATA UserSettingMin="0" DefaultMin="0" UserSettingMax="180" DefaultMax="180"></SpinScanATA>
+         <PulsePower UserSettingMin="0" DefaultMin="0" UserSettingMax="2000" DefaultMax="2000"></PulsePower>
+       </Scaling>
+     </ModeWattTesting>
+
+     <!-- Spinscan Settings -->
+     <ModeSpinScanTraining DisplayString="SpinScan Training">
+     </ModeSpinScanTraining>
+
+     <!-- Performance Playback Settings-->
+     <ModePreviousPerformance DisplayString="Previous Performance">
+     </ModePreviousPerformance>
+
+   </System>
+  
+</Settings>

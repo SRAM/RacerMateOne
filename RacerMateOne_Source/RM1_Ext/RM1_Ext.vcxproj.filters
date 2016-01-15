@@ -1,0 +1,968 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="dll">
+      <UniqueIdentifier>{c1190c3d-0ee3-42aa-a947-3913495de8b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{c52db9cf-4722-4069-8181-bd523bd1e43d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\Win32-visualstudio">
+      <UniqueIdentifier>{dab89ff9-a5f4-4d4a-b7ac-22695f1dbf49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{81ab4afb-cf40-4675-8c05-26f029c01f72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\trainer">
+      <UniqueIdentifier>{399ff13b-437f-4397-93c7-bbdc3d0390e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\gen">
+      <UniqueIdentifier>{723993b5-39d8-43e8-93fd-e489fe729605}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="3DCData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_kill_RM1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CCourse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ccourse_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CCustomSceneNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CCustomTriangleSelector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CDecalSceneNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CShadowSceneNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CSkywallTiledSceneNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CSpriteSceneNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RCVData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RM1_Ext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SecFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UpgradeCheck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="version_RM1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RM1_Ext.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="lib\Win32-visualstudio\Irrlichtf.exp">
+      <Filter>lib\Win32-visualstudio</Filter>
+    </None>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CCourse.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ccourse_utils.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CCustomSceneNode.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CCustomTriangleSelector.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CDecalSceneNode.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="coursefile.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CShadowSceneNode.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CSkywallTiledSceneNode.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CSpriteSceneNode.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DBase.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="globals.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Keycode.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rider.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SecFile.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="terrain.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tlist.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tools.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vdefines.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\aabbox3d.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CDynamicMeshBuffer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CIndexBuffer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CMeshBuffer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coreutil.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CVertexBuffer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\dimension2d.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\driverChoice.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EAttributes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECullingTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EDebugSceneTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EDeviceTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EDriverFeatures.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EDriverTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EGUIAlignment.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EGUIElementTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EHardwareBufferFlags.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EMaterialFlags.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EMaterialTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EMeshWriterEnums.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EMessageBoxFlags.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EPrimitiveTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ESceneNodeAnimatorTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ESceneNodeTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EShaderTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ETerrainElements.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\fast_atof.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\heapsort.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IAnimatedMesh.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IAnimatedMeshMD2.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IAnimatedMeshMD3.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IAnimatedMeshSceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IAttributeExchangingObject.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IAttributes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IBillboardSceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IBillboardTextSceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IBoneSceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ICameraSceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ICursorControl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IDummyTransformationSceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IDynamicMeshBuffer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IEventReceiver.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IFileArchive.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IFileList.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IFileSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGeometryCreator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGPUProgrammingServices.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIButton.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUICheckBox.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIColorSelectDialog.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIComboBox.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIContextMenu.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIEditBox.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIElement.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIElementFactory.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIEnvironment.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIFileOpenDialog.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIFont.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIFontBitmap.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIImage.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIImageList.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIInOutFader.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIListBox.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIMeshViewer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIScrollBar.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUISkin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUISpinBox.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUISpriteBank.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIStaticText.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUITabControl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUITable.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIToolbar.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUITreeView.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGUIWindow.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IImage.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IImageLoader.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IImageWriter.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IIndexBuffer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ILightManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ILightSceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ILogger.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMaterialRenderer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMaterialRendererServices.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMesh.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMeshBuffer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMeshCache.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMeshLoader.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMeshManipulator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMeshSceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMeshWriter.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IMetaTriangleSelector.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IOSOperator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParticleAffector.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParticleAnimatedMeshSceneNodeEmitter.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParticleAttractionAffector.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParticleBoxEmitter.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParticleCylinderEmitter.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParticleEmitter.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParticleFadeOutAffector.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParticleGravityAffector.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParticleMeshEmitter.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParticleRingEmitter.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParticleRotationAffector.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParticleSphereEmitter.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IParticleSystemSceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IQ3LevelMesh.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IQ3Shader.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IReadFile.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IReferenceCounted.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrAllocator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrArray.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IrrCompileConfig.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrlicht.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IrrlichtDevice.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrList.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrMap.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrMath.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrString.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrTypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\irrXML.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISceneCollisionManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISceneManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISceneNodeAnimator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISceneNodeAnimatorCameraFPS.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISceneNodeAnimatorCameraMaya.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISceneNodeAnimatorCollisionResponse.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISceneNodeAnimatorFactory.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISceneNodeFactory.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISceneUserDataSerializer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IShaderConstantSetCallBack.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IShadowVolumeSceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ISkinnedMesh.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ITerrainSceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ITextSceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ITexture.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ITimer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ITriangleSelector.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IVertexBuffer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IVideoDriver.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IVideoModeList.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IVolumeLightSceneNode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IWriteFile.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IXMLReader.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IXMLWriter.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Keycodes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\line2d.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\line3d.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\matrix4.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\path.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\plane3d.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\position2d.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\quaternion.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rect.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\S3DVertex.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SAnimatedMesh.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneParameters.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SColor.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SExposedVideoData.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SIrrCreationParameters.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SKeyMap.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SLight.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SMaterial.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SMaterialLayer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SMesh.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SMeshBuffer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SMeshBufferLightMap.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SMeshBufferTangents.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SParticle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SSharedMeshBuffer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SSkinMeshBuffer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SVertexIndex.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SVertexManipulator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SViewFrustum.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\triangle3d.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vector2d.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vector3d.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\beep2.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\bike.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\commtest.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\config.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\course.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\dataSource.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\Decoder.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\demodecoder.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\demosource.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\dx7.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\ergocourse.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\formula.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\handlebardecoder.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\handlebarRTD.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\heartrate.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\hue.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\jimData.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\jimdecoder.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\mbox.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\mfd.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\oldss.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\perfdecoder.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\perfsource.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\physics.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\preveldata.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\regularCourse.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\resources.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\rtd.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\ss.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\types.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\user.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\vdefines.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\velotrondecoder.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\velotronrtd.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\vutils.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trainer\willcourse.h">
+      <Filter>include\trainer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\amplifier.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\axis.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\beepsound.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\button.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\colorselector.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\crc.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\crf.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\defines.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\fatalerror.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\fileselector.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\float2d.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\gentypes.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\genutils.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ini.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\logger.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\lpfilter.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\md5.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\modaldialog.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\modallistbox.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\progressbar.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\repeater.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\round.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\scaler.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\seh.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\serial.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\signalstrengthmeter.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\smav.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\statictext.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\statusdlg.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\twopolefilter.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\utils.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\utilsclass.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\warnings.h">
+      <Filter>include\gen</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\Win32-visualstudio\Irrlichtf.lib">
+      <Filter>lib\Win32-visualstudio</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="dll\irrKlang.dll">
+      <Filter>dll</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="dll\Irrlicht.dll">
+      <Filter>dll</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="dll\Irrlichtd.dll">
+      <Filter>dll</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\gen.lib">
+      <Filter>lib</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\gen_d.lib">
+      <Filter>lib</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\trainer.lib">
+      <Filter>lib</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\trainer_d.lib">
+      <Filter>lib</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlicht.exp">
+      <Filter>lib\Win32-visualstudio</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlicht.lib">
+      <Filter>lib\Win32-visualstudio</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlichtd.exp">
+      <Filter>lib\Win32-visualstudio</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlichtd.lib">
+      <Filter>lib\Win32-visualstudio</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlichts.lib">
+      <Filter>lib\Win32-visualstudio</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlichtsd.lib">
+      <Filter>lib\Win32-visualstudio</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlichtsf.lib">
+      <Filter>lib\Win32-visualstudio</Filter>
+    </CustomBuildStep>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="_kill_RM1.txt">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dll\Irrlichtf.dll">
+      <Filter>dll</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

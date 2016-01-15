@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RacerMateOneSetup_2008", "RacerMateOneSetup_2010.vdproj", "{8F6F1EB4-2140-45B0-9904-6B61EA7A2471}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F6F1EB4-2140-45B0-9904-6B61EA7A2471}.Debug|Default.ActiveCfg = Debug
+		{8F6F1EB4-2140-45B0-9904-6B61EA7A2471}.Debug|Default.Build.0 = Debug
+		{8F6F1EB4-2140-45B0-9904-6B61EA7A2471}.Release|Default.ActiveCfg = Release
+		{8F6F1EB4-2140-45B0-9904-6B61EA7A2471}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

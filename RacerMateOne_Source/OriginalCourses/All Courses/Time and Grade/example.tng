@@ -1,0 +1,21 @@
+[COURSE HEADER]
+VERSION = 2
+UNITS = ENGLISH
+DESCRIPTION = example of new time and grade course
+FILE NAME = example.tng
+MINUTES  GRADE WIND
+[END COURSE HEADER]
+
+[COURSE DATA]
+0.0	0.0	10
+2.0	1.2	0
+5.0	-5.2	20
+7.0	2.1	0
+10.5	1.9	0
+12.0	-10.1	5
+15.0	-1.9	0
+17.0	7.2	0
+20.5	3.4	0
+22.0	2.1	0
+25.0	0.0	10
+[END COURSE DATA]

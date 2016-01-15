@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Zip2SecureExe>
+    <PublisherName>Qtask.com, Inc.</PublisherName>
+    <PublisherUrl>http://www.Qtask.com/</PublisherUrl>
+    <ExeFile />
+    <ZipFile />
+    <Password />
+    <SfxConfig>
+        <AutoTemp>1</AutoTemp>
+        <DeleteAfterSetup>0</DeleteAfterSetup>
+        <ShowFin>0</ShowFin>
+        <ShowMain>0</ShowMain>
+        <ShowProgress>1</ShowProgress>
+        <WaitForSetup>1</WaitForSetup>
+        <Encryption>0</Encryption>
+        <KeyLength>128</KeyLength>
+        <SetupExe>install.exe</SetupExe>
+        <MainTitle>Decompressing Installer</MainTitle>
+        <MainCaption>Installer decompress</MainCaption>
+        <FinTitle>All done</FinTitle>
+        <FinCaption>Done</FinTitle>
+        <ProgressTitle>RacerMate One: Installer decompressing</ProgressTitle>
+        <ProgressCaption>Wait...</ProgressCaption>
+        <UnzipDir />
+        <DefaultDir />
+        <IconFile>RM1.ico</IconFile>
+        <Url />
+    </SfxConfig>
+</Zip2SecureExe>

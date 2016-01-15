@@ -1,0 +1,140 @@
+﻿<Page x:Class="RacerMateOne.Pages.Splash"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:c="clr-namespace:RacerMateOne.Controls"
+	Name="pageSplash" Background="#76a7ca"
+	Style="{DynamicResource FullScreenPage}"
+	ShowsNavigationUI="False" HorizontalAlignment="Center" VerticalAlignment="Center" Loaded="pageSplash_Loaded" Unloaded="pageSplash_Unloaded">
+	<Page.Resources>
+
+	</Page.Resources>
+	<Page.Triggers>
+		<EventTrigger RoutedEvent="Page.Loaded">
+			<BeginStoryboard>
+				<Storyboard Name="FormFade">
+					<DoubleAnimation  Name="FormFadeAnimation" Completed="FormFadeIn_Completed"
+											Storyboard.TargetName="pageSplash"
+											Storyboard.TargetProperty="(Window.Opacity)"
+											From="0.0" To="1.0" Duration="0:0:1"
+											AutoReverse="False" RepeatBehavior="1x"
+										 />
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Page.Unloaded">
+			<BeginStoryboard>
+				<Storyboard Name="FadeInRetry">
+					<DoubleAnimation 
+											Storyboard.TargetName="ErrorB"
+											Storyboard.TargetProperty="(Window.Opacity)"
+											To="1.0" Duration="0:0:0.5"
+											AutoReverse="False" RepeatBehavior="1x" />
+				</Storyboard>
+			</BeginStoryboard>
+			<BeginStoryboard>
+				<Storyboard Name="FadeOutRetry">
+					<DoubleAnimation 
+											Storyboard.TargetName="ErrorB"
+											Storyboard.TargetProperty="(Window.Opacity)"
+											To="0.0" Duration="0:0:0.5"
+											AutoReverse="False" RepeatBehavior="1x"
+										 />
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+	</Page.Triggers>
+	<Grid Width="910" Height="640">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="231*" />
+			<RowDefinition Height="409*" />
+		</Grid.RowDefinitions>
+		<!--HEADER -->
+		<Grid>
+			<c:LogoAbout/>
+			<Label Name="TopLine" Style="{DynamicResource TopLine}"></Label>
+			<Image Style="{DynamicResource Branding}"/>
+		</Grid>
+		<!--End of HEADER -->
+
+		<!--
+		<Ellipse HorizontalAlignment="Right" Margin="0,31,-59,-112" Name="ellipse1" Width="441" StrokeThickness="0" Grid.Row="1">
+			<Ellipse.Fill>
+				<RadialGradientBrush GradientOrigin="0.50,0.50">
+					<GradientStop Color="White" Offset="0.0" />
+					<GradientStop Color="#F0FFFFFF" Offset="0.50" />
+					<GradientStop Color="#10FFFFFF" Offset="0.90" />
+					<GradientStop Color="#00FFFFFF" Offset="1.0" />
+				</RadialGradientBrush>
+			</Ellipse.Fill>
+		</Ellipse>
+		<Image Name="image1" Stretch="Uniform" Source="/RacerMateOne;component/Resources/BikeRider.png" Margin="0,124,12,12" Grid.Row="1" HorizontalAlignment="Right" Width="442" />
+		-->
+		<!-- Loading -->
+		<Border Name="LoadingBox" Height="55" Margin="188,192,188,0" VerticalAlignment="Top" Background="#FF8FB7D3" CornerRadius="27.5,27.5,27.5,27.5" Grid.RowSpan="2">
+			<Grid>
+				<TextBlock Foreground="White" FontFamily="Arial" FontSize="30" Margin="0,10,90,6" HorizontalAlignment="Right" Width="421">
+					Looking for RacerMate devices
+				</TextBlock>
+				<c:Busy x:Name="busy" Width="39" HorizontalAlignment="Right" Margin="0,6.5,29,6.5" Active="True" />
+			</Grid>
+		</Border>
+		<Grid Name="ErrorB" Visibility="Hidden" Grid.RowSpan="2">
+			<!-- Error message -->
+			<Border x:Name="CannotFind" Opacity="1" Visibility="Hidden"  Background="#FF8FB7D3"  Margin="188,140,188,0"  Height="140"  CornerRadius="27.5,27.5,27.5,27.5" VerticalAlignment="Top">
+				<Grid>
+					<TextBlock Foreground="White" FontFamily="Arial" FontSize="26" Margin="33,4,37.613,12">
+					Can't find a Computrainer or Velotron
+					</TextBlock>
+					<TextBlock Foreground="White" FontFamily="Arial" FontSize="18" Margin="33,51,102,36" TextWrapping="Wrap">
+					Please check power is on to the devices, and that they are plugged into the computer.
+					</TextBlock>
+					<c:Pillbox Text="Retry" x:Name="Retry" HorizontalAlignment="Right" Width="127" Height="36" VerticalAlignment="Bottom" Margin="0,0,29,11" Click="Retry_Click"></c:Pillbox>
+					<c:Pillbox x:Name="Continue" Text="Continue without hardware" Height="35" VerticalAlignment="Bottom" Margin="33,0,212,12" Click="Continue_Click"></c:Pillbox>
+				</Grid>
+			</Border>
+			<!-- Other Error message -->
+			<Border x:Name="NoneFound" Opacity="1" Visibility="Hidden" Margin="188,140,188,0" Background="#FF8FB7D3" CornerRadius="27.5,27.5,27.5,27.5" Grid.RowSpan="2" Height="160" VerticalAlignment="Top">
+				<Grid>
+					<TextBlock Foreground="White" FontFamily="Arial" FontSize="26" Margin="33,8,37.613,12">
+					Cannot find any trainers
+					</TextBlock>
+					<TextBlock Foreground="White" FontFamily="Arial" FontSize="18" Margin="33,51,102,36" TextWrapping="Wrap">
+					Please check power is on to the devices, and that they are plugged into the computer.
+					</TextBlock>
+					<StackPanel Margin="0,0,20,10" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+						<c:PlainButton x:Name="NoHardware" Margin="0,0,15,0" Text="Continue without hardware" Click="NoHardware_Click" />
+						<c:PlainButton x:Name="HardwareRescan" Margin="0,0,15,0" Text="Rescan all hardware" Click="HardwareRescan_Click" />
+						<c:PlainButton x:Name="HardwareRefresh" Text="Retry" Click="HardwareRefresh_Click" />
+					</StackPanel>
+				</Grid>
+			</Border>
+
+		</Grid>
+
+
+		<c:RandomImage Grid.RowSpan="2" Stretch="Uniform" Pattern="Setup-Bike*.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="370" Height="288"/>
+		<!-- Footer -->
+		<Grid Grid.Row="1" Margin="12,0,12,18" VerticalAlignment="Bottom">
+			<StackPanel  Orientation="Horizontal" >
+				<!--
+				<c:TextButton HorizontalAlignment="Left" VerticalAlignment="Center" Click="Options_Click" Text="Options" />
+				<Line Style="{DynamicResource DivLine}" Panel.ZIndex="-2"/>
+				-->
+				<c:TextButton VerticalAlignment="Center" Text="Help" x:Name="Help" Grid.ColumnSpan="3" Click="Help_Click" />
+				<Line Style="{DynamicResource DivLine}" Panel.ZIndex="-2" />
+				<c:TextButton VerticalAlignment="Center" Text="Exit" x:Name="Exit" Click="Exit_Click" />
+			</StackPanel>
+			<!--
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  >
+				<c:Pillbox x:Name="Start" Text="Start" Width="105" VerticalAlignment="Center" IsEnabled="True" Click="Start_Click" />
+			</StackPanel>
+			-->
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+				<TextBlock FontFamily="Arial" Foreground="White" FontSize="15" HorizontalAlignment="Left" >© RacerMate, Inc.</TextBlock>
+				<TextBlock FontFamily="Arial" Foreground="White" FontSize="15" Name="Version" Padding="10,0,0,0"></TextBlock>
+			</StackPanel>
+		</Grid>
+		<!--End of Footer -->
+
+	</Grid>
+</Page>

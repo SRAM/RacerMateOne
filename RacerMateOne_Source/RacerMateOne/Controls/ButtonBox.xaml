@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.ButtonBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Width="171"
+	Visibility="Collapsed"
+	Opacity="1.0"
+	Name="pad" Unloaded="pad_Unloaded" ClipToBounds="True">
+	<Viewbox>
+		<Grid Opacity="0.6" Margin="0,-143,0,0" VerticalAlignment="Top" Height="204">
+			<Image VerticalAlignment="Top" HorizontalAlignment="Left" Source="/RacerMateOne;component/Resources/Pad.png" Stretch="None" />
+			<Image x:Name="ComputrainerOverlay" VerticalAlignment="Top" HorizontalAlignment="Left" Source="/RacerMateOne;component/Resources/ComputrainerOverlay.png" Height="26.669" Margin="9,9,6,0" Stretch="None" />
+			<Border x:Name="F1" Visibility="Hidden" BorderThickness="4" BorderBrush="#FFFFE888" Background="#33FFFFFF" Height="19" HorizontalAlignment="Left" Margin="14,154.155,0,0" VerticalAlignment="Top" Width="42"/>
+			<Border x:Name="F2" Visibility="Hidden" BorderThickness="4" BorderBrush="#FFFFE888" Background="#33FFFFFF" Height="19" Margin="64,154.155,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="41.747" />
+			<Border x:Name="Up" Visibility="Hidden" BorderThickness="4" BorderBrush="#FFFFE888" Background="#33FFFFFF" Height="19" Margin="114,154.155,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="41.747" />
+			<Border x:Name="Fn" Visibility="Hidden" BorderThickness="4" BorderBrush="#FFFFE888" Background="#33FFFFFF" Height="19" HorizontalAlignment="Left" Margin="14,175.155,0,0" VerticalAlignment="Top" Width="42"/>
+			<Border x:Name="F3" Visibility="Hidden" BorderThickness="4" BorderBrush="#FFFFE888" Background="#33FFFFFF" Height="19" Margin="64,175.155,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="41.747" />
+			<Border x:Name="Down" Visibility="Hidden" BorderThickness="4" BorderBrush="#FFFFE888" Background="#33FFFFFF" Height="19" Margin="114,175.155,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="41.747" />
+		</Grid>
+	</Viewbox>
+</UserControl>

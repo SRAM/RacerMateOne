@@ -1,0 +1,3992 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>6/28/2011 6:25:34 PM</Date>
+		<Version>1.02</Version>
+		<Copyright>(c) 2011, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from 2008 Delaware Diamondman Tri.3dc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="2008 Delaware Diamondman Tri_3dc" Description="" FileName="2008 Delaware Diamondman Tri_3dc.rmc" Type="ThreeD" Looped="False" Length="54.7" Laps="1" StartAt="0" EndAt="88022.7360065281" Mirror="False" Reverse="False" Modified="False" XUnits="Distance" YUnits="Grade" OriginalHash="C977A03BE36FD4F5263836C44EF608B9" CourseHash="2440C1A423EDE3C8417CEAF6EE291148" HeaderHash="C977A03BE36FD4F5263836C44EF608B9"/>
+		<ThreeDType Count="569">
+			<Val Smooth="true">
+				<Divisions>22</Divisions>
+				<Length>66.0728378295898</Length>
+				<Grade>-0.0006204292</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8388061523438</Length>
+				<Grade>-0.0006164114</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3107411</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>110</Divisions>
+				<Length>331.579650878906</Length>
+				<Grade>0.002569358</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9695892333984</Length>
+				<Grade>0.00286666</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1350088</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>41</Divisions>
+				<Length>125.033477783203</Length>
+				<Grade>0.002824279</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9413928985596</Length>
+				<Grade>0.003585391</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1874857</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>62</Divisions>
+				<Length>186.128204345703</Length>
+				<Grade>0.003940083</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.81467628479</Length>
+				<Grade>0.005123849</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3331657</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>41</Divisions>
+				<Length>125.992729187012</Length>
+				<Grade>0.003687815</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>32</Divisions>
+				<Length>17.7326946258545</Length>
+				<Grade>0.004136714</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.153228</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>23</Divisions>
+				<Length>69.5511169433594</Length>
+				<Grade>0.002966432</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.8205318450928</Length>
+				<Grade>0.003694866</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3278224</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>195</Divisions>
+				<Length>585.545166015625</Length>
+				<Grade>0.003722346</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9965953826904</Length>
+				<Grade>0.003574911</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.04467441</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>186</Divisions>
+				<Length>560.156677246094</Length>
+				<Grade>-0.0004713877</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9408187866211</Length>
+				<Grade>-0.0001941849</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1883137</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>124</Divisions>
+				<Length>372.31982421875</Length>
+				<Grade>-0.001560531</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9997520446777</Length>
+				<Grade>-0.001368018</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.01460748</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>151</Divisions>
+				<Length>454.987854003906</Length>
+				<Grade>-0.003271014</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>42</Divisions>
+				<Length>15.7524642944336</Length>
+				<Grade>-0.004822111</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.562999</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>186</Divisions>
+				<Length>560.656677246094</Length>
+				<Grade>-0.002310099</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9915828704834</Length>
+				<Grade>-0.002262118</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.07111466</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>108</Divisions>
+				<Length>325.262939453125</Length>
+				<Grade>-0.002693908</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9976768493652</Length>
+				<Grade>-0.002154432</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.03781995</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>60</Divisions>
+				<Length>180.74446105957</Length>
+				<Grade>-0.0009933871</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9993305206299</Length>
+				<Grade>-0.0009669998</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.02037505</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>205</Divisions>
+				<Length>616.663269042969</Length>
+				<Grade>0.002146852</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9999732971191</Length>
+				<Grade>0.001384963</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.0036215</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>3</Divisions>
+				<Length>9.80286026000977</Length>
+				<Grade>0.0007429469</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>42</Divisions>
+				<Length>15.9737234115601</Length>
+				<Grade>0.0007398587</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.523399</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>82</Divisions>
+				<Length>247.951385498047</Length>
+				<Grade>-0.002172915</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.8210220336914</Length>
+				<Grade>-0.00287347</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.32725</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>79</Divisions>
+				<Length>237.910064697266</Length>
+				<Grade>-0.003301609</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.8210353851318</Length>
+				<Grade>-0.003666309</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3272501</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>82</Divisions>
+				<Length>247.951141357422</Length>
+				<Grade>-0.003221762</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.8189735412598</Length>
+				<Grade>-0.003350258</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3290944</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>117</Divisions>
+				<Length>353.409240722656</Length>
+				<Grade>-0.006346481</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>30</Divisions>
+				<Length>17.9629726409912</Length>
+				<Grade>-0.007257398</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.094358</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>61</Divisions>
+				<Length>185.282653808594</Length>
+				<Grade>-0.002772013</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>28</Divisions>
+				<Length>18.3594131469727</Length>
+				<Grade>-0.003354539</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.9841146</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>64</Divisions>
+				<Length>192.178497314453</Length>
+				<Grade>-0.004736464</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>22</Divisions>
+				<Length>19.007719039917</Length>
+				<Grade>-0.004399254</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.767969</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>82</Divisions>
+				<Length>248.17985534668</Length>
+				<Grade>-0.001520818</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.4500198364258</Length>
+				<Grade>-0.001222065</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.03565042</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>30</Divisions>
+				<Length>17.4659843444824</Length>
+				<Grade>-0.001164402</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.095829</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>4</Divisions>
+				<Length>12.477276802063</Length>
+				<Grade>-0.001118579</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>32</Divisions>
+				<Length>17.8171463012695</Length>
+				<Grade>-0.0001190475</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.132017</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>21</Divisions>
+				<Length>64.3947830200195</Length>
+				<Grade>0.0008646409</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.982536315918</Length>
+				<Grade>0.00164739</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.10213</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>98</Divisions>
+				<Length>295.405487060547</Length>
+				<Grade>0.002098347</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9995498657227</Length>
+				<Grade>0.002319469</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.01642358</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>117</Divisions>
+				<Length>353.576171875</Length>
+				<Grade>0.0004353823</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7329654693604</Length>
+				<Grade>0.0004454121</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3997064</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>24</Divisions>
+				<Length>72.1631164550781</Length>
+				<Grade>0.0003441574</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9981670379639</Length>
+				<Grade>0.0004010485</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.03310842</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>177</Divisions>
+				<Length>532.717346191406</Length>
+				<Grade>0.003428043</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>6.27836751937866</Length>
+				<Grade>0.003597726</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1079749</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>42</Divisions>
+				<Length>4.9733510017395</Length>
+				<Grade>0.003622154</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.549699</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>77</Divisions>
+				<Length>232.480499267578</Length>
+				<Grade>0.00279251</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.998649597168</Length>
+				<Grade>0.003688756</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.03035578</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>333</Divisions>
+				<Length>999.999877929688</Length>
+				<Grade>-0.0007917979</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>204</Divisions>
+				<Length>612.083862304688</Length>
+				<Grade>0.007692641</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>204</Divisions>
+				<Length>612.083862304688</Length>
+				<Grade>0.0030853</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9359378814697</Length>
+				<Grade>0.002883456</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1958478</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>20</Divisions>
+				<Length>61.544319152832</Length>
+				<Grade>0.00330155</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9999885559082</Length>
+				<Grade>0.003412963</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.002547047</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>163</Divisions>
+				<Length>490.200103759766</Length>
+				<Grade>0.003712885</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9952144622803</Length>
+				<Grade>0.003535966</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.05309038</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>179</Divisions>
+				<Length>537.901245117188</Length>
+				<Grade>-0.0003032085</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7966136932373</Length>
+				<Grade>-0.0003288279</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3489497</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>18</Divisions>
+				<Length>56.6743927001953</Length>
+				<Grade>-0.0003044653</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>34</Divisions>
+				<Length>17.4644603729248</Length>
+				<Grade>-0.0004029874</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.217911</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>38</Divisions>
+				<Length>115.099967956543</Length>
+				<Grade>-0.0003300521</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7798805236816</Length>
+				<Grade>-0.0003119762</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3630221</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>59</Divisions>
+				<Length>177.048645019531</Length>
+				<Grade>-0.002311753</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9504318237305</Length>
+				<Grade>-0.002672797</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1724048</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>49</Divisions>
+				<Length>149.748626708984</Length>
+				<Grade>-0.003320091</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9582023620605</Length>
+				<Grade>-0.003258246</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.158322</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>111</Divisions>
+				<Length>335.161773681641</Length>
+				<Grade>-0.004244967</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>14.8772649765015</Length>
+				<Grade>-0.00517602</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3088817</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>4.99889373779297</Length>
+				<Grade>-0.005145413</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>4.99822473526001</Length>
+				<Grade>-0.005115748</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>4.99822473526001</Length>
+				<Grade>-0.005108211</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>4</Divisions>
+				<Length>14.994686126709</Length>
+				<Grade>-0.005070789</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>4</Divisions>
+				<Length>14.9946823120117</Length>
+				<Grade>-0.004983753</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>4.99889755249023</Length>
+				<Grade>-0.004864854</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>4.99822568893433</Length>
+				<Grade>-0.004738198</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>4.9988956451416</Length>
+				<Grade>-0.004715397</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>54</Divisions>
+				<Length>164.264511108398</Length>
+				<Grade>-0.0002988763</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.877103805542</Length>
+				<Grade>0.0002950469</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2713804</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>220</Divisions>
+				<Length>662.874328613281</Length>
+				<Grade>-0.002761955</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>220</Divisions>
+				<Length>662.874389648438</Length>
+				<Grade>-0.003072069</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.8025970458984</Length>
+				<Grade>-0.002384712</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3438317</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>76</Divisions>
+				<Length>229.879760742188</Length>
+				<Grade>0.001187836</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.7285118103027</Length>
+				<Grade>0.001717711</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.4030692</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>296</Divisions>
+				<Length>890.971496582031</Length>
+				<Grade>0.002887995</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>296</Divisions>
+				<Length>890.971496582031</Length>
+				<Grade>-0.0006963416</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>3</Divisions>
+				<Length>11.5269937515259</Length>
+				<Grade>-0.0005926596</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.09397177</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>11.4904165267944</Length>
+				<Grade>-0.0005918548</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.2172988</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>15</Divisions>
+				<Length>46.8076019287109</Length>
+				<Grade>-0.0006057425</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>72</Divisions>
+				<Length>6.94981813430786</Length>
+				<Grade>-0.0005717175</Grade>
+				<Wind>0</Wind>
+				<Rotation>2.6237</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>36</Divisions>
+				<Length>110.614593505859</Length>
+				<Grade>-0.002002805</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>16</Divisions>
+				<Length>19.441385269165</Length>
+				<Grade>-0.002159186</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.5773501</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>9</Divisions>
+				<Length>28.5797863006592</Length>
+				<Grade>-0.002198894</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.6896934509277</Length>
+				<Grade>-0.003565787</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.43082</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>322</Divisions>
+				<Length>968.085083007813</Length>
+				<Grade>-0.006365168</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>5</Divisions>
+				<Length>16.9060306549072</Length>
+				<Grade>-0.007383147</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1428008</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>5</Divisions>
+				<Length>16.8940925598145</Length>
+				<Grade>-0.007096501</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1696942</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>209</Divisions>
+				<Length>629.923767089844</Length>
+				<Grade>-0.0005783578</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9538879394531</Length>
+				<Grade>-0.0003774381</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1662699</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>128</Divisions>
+				<Length>384.563568115234</Length>
+				<Grade>0.001327602</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9984855651855</Length>
+				<Grade>0.001440898</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.02979758</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>40</Divisions>
+				<Length>120.222793579102</Length>
+				<Grade>-8.120268E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9591827392578</Length>
+				<Grade>-0.0002334595</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1566266</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>2.65928745269775</Length>
+				<Grade>-0.0002335629</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.8916530609131</Length>
+				<Grade>-0.0003300376</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2544943</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>186</Divisions>
+				<Length>560.25</Length>
+				<Grade>-0.00298857</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>186</Divisions>
+				<Length>560.25</Length>
+				<Grade>-0.001311435</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.7004375457764</Length>
+				<Grade>-0.001115276</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.4231843</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>186</Divisions>
+				<Length>559.693115234375</Length>
+				<Grade>-0.008524043</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>4</Divisions>
+				<Length>13.5045766830444</Length>
+				<Grade>-0.007603832</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.07178098</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>13.3818044662476</Length>
+				<Grade>-0.007650978</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3372148</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>28</Divisions>
+				<Length>86.257438659668</Length>
+				<Grade>-0.007545278</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9881649017334</Length>
+				<Grade>-0.007600369</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.08571278</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>29</Divisions>
+				<Length>87.7505569458008</Length>
+				<Grade>-0.004586035</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8413276672363</Length>
+				<Grade>-0.004495316</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3086827</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>5.33132410049438</Length>
+				<Grade>-0.004179162</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>24</Divisions>
+				<Length>18.7917327880859</Length>
+				<Grade>-0.003754758</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.8464093</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>38</Divisions>
+				<Length>116.324516296387</Length>
+				<Grade>-0.003671437</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.8919696807861</Length>
+				<Grade>-0.004584542</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.2545138</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>40</Divisions>
+				<Length>121.382217407227</Length>
+				<Grade>-0.006591723</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>48</Divisions>
+				<Length>14.493800163269</Length>
+				<Grade>-0.007776438</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.768498</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>211</Divisions>
+				<Length>634.572631835938</Length>
+				<Grade>0.005041779</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>211</Divisions>
+				<Length>634.572631835938</Length>
+				<Grade>0.003509169</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>30</Divisions>
+				<Length>18.0292263031006</Length>
+				<Grade>0.003770885</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.076804</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>217</Divisions>
+				<Length>653.722717285156</Length>
+				<Grade>-0.0007024213</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9201698303223</Length>
+				<Grade>-0.0009367557</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.219069</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>16</Divisions>
+				<Length>49.1059417724609</Length>
+				<Grade>-0.0005721542</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9745597839355</Length>
+				<Grade>-0.0005955828</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1241302</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>87</Divisions>
+				<Length>263.778350830078</Length>
+				<Grade>-0.001232931</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9957180023193</Length>
+				<Grade>-0.00200637</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.05052602</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>120</Divisions>
+				<Length>360.93115234375</Length>
+				<Grade>-0.003318642</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9987983703613</Length>
+				<Grade>-0.003164029</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.02682469</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>240</Divisions>
+				<Length>722.45947265625</Length>
+				<Grade>-0.002909777</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8528861999512</Length>
+				<Grade>-0.003635478</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2965153</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>19</Divisions>
+				<Length>58.8390655517578</Length>
+				<Grade>-0.004206013</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7975406646729</Length>
+				<Grade>-0.005697521</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3485737</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>20.603271484375</Length>
+				<Grade>-0.006370132</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.7136497497559</Length>
+				<Grade>-0.006967238</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.4145253</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>279</Divisions>
+				<Length>838.485229492188</Length>
+				<Grade>-0.001042128</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9092884063721</Length>
+				<Grade>-0.001428809</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.2341132</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>42</Divisions>
+				<Length>127.927192687988</Length>
+				<Grade>-0.001895392</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.937105178833</Length>
+				<Grade>-0.001651668</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1946153</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>21</Divisions>
+				<Length>64.7001342773438</Length>
+				<Grade>-0.0007039713</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.6470890045166</Length>
+				<Grade>-0.0008459345</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.4594195</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>205</Divisions>
+				<Length>617.662353515625</Length>
+				<Grade>-0.001060634</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9967079162598</Length>
+				<Grade>-0.001005459</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.04618001</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>110</Divisions>
+				<Length>331.369903564453</Length>
+				<Grade>-0.002708644</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>46</Divisions>
+				<Length>15.2815704345703</Length>
+				<Grade>-0.002928015</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.64354</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>117</Divisions>
+				<Length>352.226379394531</Length>
+				<Grade>-0.00266544</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9811210632324</Length>
+				<Grade>-0.002999241</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1060844</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>9</Divisions>
+				<Length>27.7709083557129</Length>
+				<Grade>-0.002602946</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9844188690186</Length>
+				<Grade>-0.002776246</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.09593332</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>28</Divisions>
+				<Length>84.7272262573242</Length>
+				<Grade>-0.003527258</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9535789489746</Length>
+				<Grade>-0.003710584</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1666612</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>3</Divisions>
+				<Length>11.5109033584595</Length>
+				<Grade>-0.003527444</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8653926849365</Length>
+				<Grade>-0.003627584</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2836739</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>57</Divisions>
+				<Length>172.92594909668</Length>
+				<Grade>-0.001661265</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8564758300781</Length>
+				<Grade>-0.001379797</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.2936456</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>93</Divisions>
+				<Length>279.342498779297</Length>
+				<Grade>-0.0009639113</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9153842926025</Length>
+				<Grade>-0.001142443</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.2253468</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>145</Divisions>
+				<Length>437.907196044922</Length>
+				<Grade>-0.001073676</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9654197692871</Length>
+				<Grade>-0.001074524</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1440407</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>245</Divisions>
+				<Length>736.652954101563</Length>
+				<Grade>-8.078313E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9995727539063</Length>
+				<Grade>-7.868206E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.01661546</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>120</Divisions>
+				<Length>362.813568115234</Length>
+				<Grade>-4.325078E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9410572052002</Length>
+				<Grade>-4.772085E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.188262</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>333</Divisions>
+				<Length>999.999877929688</Length>
+				<Grade>0.0001716793</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>252</Divisions>
+				<Length>758.827758789063</Length>
+				<Grade>0.0001564826</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>252</Divisions>
+				<Length>758.827819824219</Length>
+				<Grade>0.0006061256</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>44</Divisions>
+				<Length>15.3308973312378</Length>
+				<Grade>0.0003301052</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.635268</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>142</Divisions>
+				<Length>427.548156738281</Length>
+				<Grade>-0.0005089245</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.7223663330078</Length>
+				<Grade>-0.0005368924</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.4069062</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>59</Divisions>
+				<Length>177.772720336914</Length>
+				<Grade>0.001561497</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7631950378418</Length>
+				<Grade>0.001868294</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3758538</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>5.31277179718018</Length>
+				<Grade>0.001917724</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.820125579834</Length>
+				<Grade>0.001994201</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3284332</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>149</Divisions>
+				<Length>448.747894287109</Length>
+				<Grade>0.0032161</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9693870544434</Length>
+				<Grade>0.004039288</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1340139</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>28</Divisions>
+				<Length>84.2246170043945</Length>
+				<Grade>0.002813335</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>19.6056995391846</Length>
+				<Grade>0.003545159</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.4851849</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>313</Divisions>
+				<Length>939.241271972656</Length>
+				<Grade>0.0002741859</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>6.09390068054199</Length>
+				<Grade>0.0003312316</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.04524797</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>54</Divisions>
+				<Length>3.97718858718872</Length>
+				<Grade>0.0003467116</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.972595</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>4</Divisions>
+				<Length>12.0379323959351</Length>
+				<Grade>0.000380496</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9503803253174</Length>
+				<Grade>-0.000199348</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1737452</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>38</Divisions>
+				<Length>115.052543640137</Length>
+				<Grade>-0.001681898</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.999906539917</Length>
+				<Grade>-0.001133097</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.0226659</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>42.4014472961426</Length>
+				<Grade>0.0001871902</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9918594360352</Length>
+				<Grade>0.0009876852</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.0692033</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>78</Divisions>
+				<Length>234.963470458984</Length>
+				<Grade>-0.001122124</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8373317718506</Length>
+				<Grade>-0.002074542</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3115853</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>250</Divisions>
+				<Length>752.067016601563</Length>
+				<Grade>-0.002163924</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9990215301514</Length>
+				<Grade>-0.002186018</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.02372291</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>5</Divisions>
+				<Length>16.3334827423096</Length>
+				<Grade>-0.002241434</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9998512268066</Length>
+				<Grade>-0.002189717</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>74</Divisions>
+				<Length>223.95166015625</Length>
+				<Grade>-0.002921189</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>19.5530757904053</Length>
+				<Grade>-0.002856178</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.5167885</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>16</Divisions>
+				<Length>49.1721115112305</Length>
+				<Grade>-0.002013382</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>18</Divisions>
+				<Length>19.2597751617432</Length>
+				<Grade>-0.002153861</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.6640667</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>54</Divisions>
+				<Length>162.851455688477</Length>
+				<Grade>-0.0003767339</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>36</Divisions>
+				<Length>17.2124500274658</Length>
+				<Grade>-0.0005390719</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.275393</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>26</Divisions>
+				<Length>80.8119888305664</Length>
+				<Grade>-0.003345346</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9921092987061</Length>
+				<Grade>-0.003909152</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.06952514</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>271</Divisions>
+				<Length>815.015563964844</Length>
+				<Grade>-0.0004762232</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>5</Divisions>
+				<Length>15.6691312789917</Length>
+				<Grade>-0.0004430622</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.0159265</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>15.6098709106445</Length>
+				<Grade>-0.000429519</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.2124497</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>139</Divisions>
+				<Length>418.36669921875</Length>
+				<Grade>-0.0001680964</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.859525680542</Length>
+				<Grade>-0.0001384742</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.2902429</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>115</Divisions>
+				<Length>345.127593994141</Length>
+				<Grade>-0.0001740165</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>19.5860271453857</Length>
+				<Grade>-0.0001717166</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.4973611</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>70</Divisions>
+				<Length>210.642456054688</Length>
+				<Grade>-0.0001094401</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9973659515381</Length>
+				<Grade>-0.0001276016</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.04003033</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>17</Divisions>
+				<Length>52.2511596679688</Length>
+				<Grade>-0.0001106699</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8412532806396</Length>
+				<Grade>-0.0001161145</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.308466</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>17</Divisions>
+				<Length>51.8255920410156</Length>
+				<Grade>-9.912601E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9334926605225</Length>
+				<Grade>-2.784729E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2004555</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>11</Divisions>
+				<Length>33.6963958740234</Length>
+				<Grade>-0.0001083814</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>19.5162181854248</Length>
+				<Grade>-0.0004856107</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.5378466</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>140</Divisions>
+				<Length>420.496887207031</Length>
+				<Grade>0.0001318889</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9753227233887</Length>
+				<Grade>0.0001511369</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1201884</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>142</Divisions>
+				<Length>428.010375976563</Length>
+				<Grade>8.548475E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.6657085418701</Length>
+				<Grade>8.392558E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.4466133</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>23</Divisions>
+				<Length>69.9957046508789</Length>
+				<Grade>7.6481E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8809852600098</Length>
+				<Grade>7.44168E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.2662515</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>96</Divisions>
+				<Length>289.001190185547</Length>
+				<Grade>4.735163E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>19.5962352752686</Length>
+				<Grade>4.974294E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.4909452</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>83</Divisions>
+				<Length>250.048461914063</Length>
+				<Grade>0.002655443</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>34</Divisions>
+				<Length>17.3471527099609</Length>
+				<Grade>0.002591604</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.245041</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>94</Divisions>
+				<Length>284.010192871094</Length>
+				<Grade>0.0006595342</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7437438964844</Length>
+				<Grade>0.0008788723</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3917257</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>104</Divisions>
+				<Length>314.051086425781</Length>
+				<Grade>-0.0008014187</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9967613220215</Length>
+				<Grade>-0.0006923538</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.04618419</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>74</Divisions>
+				<Length>223.49870300293</Length>
+				<Grade>0.000875543</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>19.6182060241699</Length>
+				<Grade>0.001193316</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.4778524</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>131</Divisions>
+				<Length>394.501251220703</Length>
+				<Grade>-0.001308093</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>19.5181503295898</Length>
+				<Grade>-0.001200343</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.5362292</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>25</Divisions>
+				<Length>76.5316772460938</Length>
+				<Grade>-0.0004491354</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9409446716309</Length>
+				<Grade>-0.0001513626</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1881261</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>141</Divisions>
+				<Length>425.137268066406</Length>
+				<Grade>0.001443238</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9504642486572</Length>
+				<Grade>0.001253831</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1730447</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>43</Divisions>
+				<Length>131.37467956543</Length>
+				<Grade>0.0004409557</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.912805557251</Length>
+				<Grade>0.001332936</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2284181</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>5.60473918914795</Length>
+				<Grade>0.001428771</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9226512908936</Length>
+				<Grade>0.001367723</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2153834</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>72</Divisions>
+				<Length>217.595687866211</Length>
+				<Grade>0.002083955</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9668712615967</Length>
+				<Grade>0.00319891</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1418738</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>196</Divisions>
+				<Length>589.705383300781</Length>
+				<Grade>0.005124926</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9200477600098</Length>
+				<Grade>0.00520742</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2195695</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>151</Divisions>
+				<Length>454.763641357422</Length>
+				<Grade>0.005112762</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>20.0000247955322</Length>
+				<Grade>0.005006068</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.01267348</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>137</Divisions>
+				<Length>413.574829101563</Length>
+				<Grade>0.003219311</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>20.0002155303955</Length>
+				<Grade>0.003319504</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.004637911</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>152</Divisions>
+				<Length>456.570098876953</Length>
+				<Grade>-0.002449187</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9968395233154</Length>
+				<Grade>-0.002165557</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.04501665</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>5</Divisions>
+				<Length>17.8808574676514</Length>
+				<Grade>-0.00123146</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9915008544922</Length>
+				<Grade>-0.0008636115</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.07212634</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>135</Divisions>
+				<Length>405.756958007813</Length>
+				<Grade>0.004447183</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9911632537842</Length>
+				<Grade>0.005392647</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.0729356</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>53</Divisions>
+				<Length>159.149642944336</Length>
+				<Grade>0.005990701</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>3</Divisions>
+				<Length>9.98144149780273</Length>
+				<Grade>0.007146887</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.0996372</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>3</Divisions>
+				<Length>9.98979949951172</Length>
+				<Grade>0.007167424</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>46</Divisions>
+				<Length>13.7736911773682</Length>
+				<Grade>0.005629157</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.638172</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>205</Divisions>
+				<Length>617.9013671875</Length>
+				<Grade>0.002806191</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>205</Divisions>
+				<Length>617.90185546875</Length>
+				<Grade>-0.00298509</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>42</Divisions>
+				<Length>15.9917659759521</Length>
+				<Grade>-0.002911373</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.520081</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>7</Divisions>
+				<Length>23.1654224395752</Length>
+				<Grade>-0.002469026</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9994926452637</Length>
+				<Grade>-0.002711681</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.01708871</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>179</Divisions>
+				<Length>537.747741699219</Length>
+				<Grade>-0.0005673278</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>20.0000190734863</Length>
+				<Grade>-0.0008009911</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.004946555</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>21</Divisions>
+				<Length>65.3386001586914</Length>
+				<Grade>-0.001915959</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9998931884766</Length>
+				<Grade>-0.001785391</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.008051535</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>164</Divisions>
+				<Length>494.623657226563</Length>
+				<Grade>-0.0006267934</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9802570343018</Length>
+				<Grade>-0.0003069369</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1095292</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>83</Divisions>
+				<Length>249.264633178711</Length>
+				<Grade>-9.275501E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9823036193848</Length>
+				<Grade>4.537706E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1047914</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>3</Divisions>
+				<Length>10.082371711731</Length>
+				<Grade>9.633299E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9894943237305</Length>
+				<Grade>-9.583087E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.07971933</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>107</Divisions>
+				<Length>323.080596923828</Length>
+				<Grade>-0.003419306</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9298820495605</Length>
+				<Grade>-0.003357048</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.204734</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>67</Divisions>
+				<Length>201.904434204102</Length>
+				<Grade>-0.002047806</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9924850463867</Length>
+				<Grade>-0.002367858</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.0675865</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>98</Divisions>
+				<Length>296.243255615234</Length>
+				<Grade>-0.001435132</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7880268096924</Length>
+				<Grade>-0.001745485</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.356177</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>204</Divisions>
+				<Length>612.989196777344</Length>
+				<Grade>-0.004832486</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9896640777588</Length>
+				<Grade>-0.005715345</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.07934915</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>201</Divisions>
+				<Length>604.732055664063</Length>
+				<Grade>-0.001445207</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9771690368652</Length>
+				<Grade>-0.002192616</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1176065</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>94</Divisions>
+				<Length>284.281158447266</Length>
+				<Grade>-0.00145995</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9845485687256</Length>
+				<Grade>-0.001014534</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.0970842</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>309</Divisions>
+				<Length>928.663208007813</Length>
+				<Grade>-0.001329161</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>44</Divisions>
+				<Length>15.4412412643433</Length>
+				<Grade>-0.001299164</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.616876</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>1.6092381477356</Length>
+				<Grade>-0.001246568</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>42</Divisions>
+				<Length>15.9347133636475</Length>
+				<Grade>-0.001266857</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.530562</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>315</Divisions>
+				<Length>946.622863769531</Length>
+				<Grade>0.001631391</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9859466552734</Length>
+				<Grade>0.0006494061</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.09138644</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>83</Divisions>
+				<Length>250.377334594727</Length>
+				<Grade>0.002662932</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.971471786499</Length>
+				<Grade>0.003431435</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1314281</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>212</Divisions>
+				<Length>637.023803710938</Length>
+				<Grade>-0.001688372</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9921970367432</Length>
+				<Grade>-0.001328826</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.06940491</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>121</Divisions>
+				<Length>363.187438964844</Length>
+				<Grade>0.004620478</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9991054534912</Length>
+				<Grade>0.004454029</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.01728285</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>69</Divisions>
+				<Length>209.451751708984</Length>
+				<Grade>0.004011582</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7758331298828</Length>
+				<Grade>0.004569741</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3656957</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>94</Divisions>
+				<Length>283.271942138672</Length>
+				<Grade>0.003036541</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9947357177734</Length>
+				<Grade>0.002948997</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.05408764</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>71</Divisions>
+				<Length>215.834487915039</Length>
+				<Grade>0.001882566</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9406642913818</Length>
+				<Grade>0.002133532</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1886555</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>108</Divisions>
+				<Length>325.449737548828</Length>
+				<Grade>0.004622269</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.0105133056641</Length>
+				<Grade>0.003572124</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1785121</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>18.9984188079834</Length>
+				<Grade>0.003446057</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2004465</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>86</Divisions>
+				<Length>258.884216308594</Length>
+				<Grade>0.002388096</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9794006347656</Length>
+				<Grade>0.001869958</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1122741</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>218</Divisions>
+				<Length>655.171020507813</Length>
+				<Grade>0.004644566</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9999618530273</Length>
+				<Grade>0.005320803</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.00766541</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>7.57465028762817</Length>
+				<Grade>0.005081754</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9998340606689</Length>
+				<Grade>0.005650855</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.00264382</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>62</Divisions>
+				<Length>187.405822753906</Length>
+				<Grade>0.003210841</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9996852874756</Length>
+				<Grade>0.003059387</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.007686981</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>77</Divisions>
+				<Length>231.641571044922</Length>
+				<Grade>0.001093514</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>44</Divisions>
+				<Length>15.6475324630737</Length>
+				<Grade>0.001283626</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.581274</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>76</Divisions>
+				<Length>229.945098876953</Length>
+				<Grade>0.002643019</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9813899993896</Length>
+				<Grade>0.003427696</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1040064</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>319</Divisions>
+				<Length>959.015991210938</Length>
+				<Grade>0.00161049</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>42</Divisions>
+				<Length>15.925274848938</Length>
+				<Grade>0.001345642</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.532205</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>52</Divisions>
+				<Length>157.694427490234</Length>
+				<Grade>-0.001931751</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9968090057373</Length>
+				<Grade>-0.002109023</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.04611849</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>60</Divisions>
+				<Length>180.180236816406</Length>
+				<Grade>-0.003551567</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>20.0000171661377</Length>
+				<Grade>-0.003474944</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.005444833</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>18.7407073974609</Length>
+				<Grade>-0.003308047</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>20.0001964569092</Length>
+				<Grade>-0.003791136</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.002125202</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>45</Divisions>
+				<Length>137.400482177734</Length>
+				<Grade>-0.005188139</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.992992401123</Length>
+				<Grade>-0.00698971</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.06484957</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>13</Divisions>
+				<Length>41.9572639465332</Length>
+				<Grade>-0.007003408</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9963493347168</Length>
+				<Grade>-0.007687776</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.04634832</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>125</Divisions>
+				<Length>375.081237792969</Length>
+				<Grade>-0.001832701</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>20.0001621246338</Length>
+				<Grade>-0.001725292</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.007615043</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>29</Divisions>
+				<Length>87.9289855957031</Length>
+				<Grade>0.000622022</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9995155334473</Length>
+				<Grade>0.001166153</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.02094336</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>144</Divisions>
+				<Length>434.751770019531</Length>
+				<Grade>-0.001628795</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9992694854736</Length>
+				<Grade>-0.001499176</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.02233034</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>130</Divisions>
+				<Length>391.139312744141</Length>
+				<Grade>-0.002529042</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.921875</Length>
+				<Grade>-0.002496433</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.2161698</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>195</Divisions>
+				<Length>586.28369140625</Length>
+				<Grade>-0.003572923</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9675025939941</Length>
+				<Grade>-0.004119654</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1398474</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>75</Divisions>
+				<Length>227.02946472168</Length>
+				<Grade>-0.003446376</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.6468563079834</Length>
+				<Grade>-0.004702057</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.4596198</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>45</Divisions>
+				<Length>137.823760986328</Length>
+				<Grade>-0.003049757</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.958869934082</Length>
+				<Grade>-0.003107001</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1572727</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>142</Divisions>
+				<Length>428.083251953125</Length>
+				<Grade>-0.003395833</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9355773925781</Length>
+				<Grade>-0.00434932</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1954632</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>26</Divisions>
+				<Length>80.0096969604492</Length>
+				<Grade>-0.003779224</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>19.5255756378174</Length>
+				<Grade>-0.00464764</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.5319009</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>135</Divisions>
+				<Length>405.023193359375</Length>
+				<Grade>-0.0007952395</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.6309623718262</Length>
+				<Grade>-0.0007889396</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.4696527</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>79</Divisions>
+				<Length>237.699295043945</Length>
+				<Grade>-0.002323118</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9972286224365</Length>
+				<Grade>-0.002422905</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.04081428</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>96</Divisions>
+				<Length>290.990539550781</Length>
+				<Grade>-0.00196686</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7414817810059</Length>
+				<Grade>-0.001863778</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3938016</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>97</Divisions>
+				<Length>291.628173828125</Length>
+				<Grade>-0.0002305768</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>34</Divisions>
+				<Length>17.3233108520508</Length>
+				<Grade>-0.0002112328</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.25044</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>84</Divisions>
+				<Length>254.748794555664</Length>
+				<Grade>-0.00191588</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>19.5803642272949</Length>
+				<Grade>-0.001941851</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.5006493</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>96</Divisions>
+				<Length>289.164001464844</Length>
+				<Grade>-0.00124111</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8629322052002</Length>
+				<Grade>-0.001297932</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2867961</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>25</Divisions>
+				<Length>76.4508361816406</Length>
+				<Grade>-0.001138882</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.6915340423584</Length>
+				<Grade>-0.001145646</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.4296434</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>123</Divisions>
+				<Length>371.942138671875</Length>
+				<Grade>-0.0006158661</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.966854095459</Length>
+				<Grade>-0.0006881178</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1407201</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>0.463969975709915</Length>
+				<Grade>-0.0006850843</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9778079986572</Length>
+				<Grade>-0.000670691</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1164433</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>3</Divisions>
+				<Length>9.57010841369629</Length>
+				<Grade>-0.0005177035</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.962345123291</Length>
+				<Grade>-0.0006488081</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1514079</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>140</Divisions>
+				<Length>421.345550537109</Length>
+				<Grade>-0.0003061369</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>16</Divisions>
+				<Length>19.4807243347168</Length>
+				<Grade>2.566284E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.5567601</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>9</Divisions>
+				<Length>28.2254791259766</Length>
+				<Grade>-9.614578E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9860076904297</Length>
+				<Grade>-0.0001267915</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.08976477</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>15</Divisions>
+				<Length>45.0420761108398</Length>
+				<Grade>-0.0001193852</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7543792724609</Length>
+				<Grade>-0.0001163475</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3834795</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>23</Divisions>
+				<Length>69.5515899658203</Length>
+				<Grade>-8.316929E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9881191253662</Length>
+				<Grade>-0.00010384</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.08578894</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>66</Divisions>
+				<Length>199.873687744141</Length>
+				<Grade>-2.050601E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>19.5328197479248</Length>
+				<Grade>-3.487723E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.5281642</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>93</Divisions>
+				<Length>279.1806640625</Length>
+				<Grade>2.889752E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9993267059326</Length>
+				<Grade>-9.238735E-06</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.003023753</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>17</Divisions>
+				<Length>51.6921081542969</Length>
+				<Grade>-4.943736E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8775024414063</Length>
+				<Grade>-0.0001215577</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2706707</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>88</Divisions>
+				<Length>266.672515869141</Length>
+				<Grade>-4.937272E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9984874725342</Length>
+				<Grade>-4.764738E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.02918026</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>16</Divisions>
+				<Length>49.7755470275879</Length>
+				<Grade>-3.444688E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9887847900391</Length>
+				<Grade>-4.385205E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.08133055</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>20</Divisions>
+				<Length>61.8542251586914</Length>
+				<Grade>-3.79719E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9379501342773</Length>
+				<Grade>-3.741326E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1926057</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>274</Divisions>
+				<Length>823.483276367188</Length>
+				<Grade>-0.001621066</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9947090148926</Length>
+				<Grade>-0.001389459</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.05738327</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>34</Divisions>
+				<Length>104.972633361816</Length>
+				<Grade>0.002932162</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>34</Divisions>
+				<Length>17.3324661254883</Length>
+				<Grade>0.002708283</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.2484</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>23</Divisions>
+				<Length>69.5514144897461</Length>
+				<Grade>0.001141274</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9932651519775</Length>
+				<Grade>0.001422501</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.06097707</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>27</Divisions>
+				<Length>83.0649795532227</Length>
+				<Grade>0.000524673</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>18</Divisions>
+				<Length>19.3267669677734</Length>
+				<Grade>-1.633436E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.6332299</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>18</Divisions>
+				<Length>56.0732727050781</Length>
+				<Grade>-0.0005777232</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>19.5695514678955</Length>
+				<Grade>-0.0007685298</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.5068725</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>110</Divisions>
+				<Length>332.318298339844</Length>
+				<Grade>0.001672039</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9986381530762</Length>
+				<Grade>0.001625801</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.01939277</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>78</Divisions>
+				<Length>234.449920654297</Length>
+				<Grade>0.004553285</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9995765686035</Length>
+				<Grade>0.003757668</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.005612678</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>142</Divisions>
+				<Length>426.528167724609</Length>
+				<Grade>-8.668748E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8407726287842</Length>
+				<Grade>0.000591181</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.30874</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>77</Divisions>
+				<Length>233.728805541992</Length>
+				<Grade>0.0006901534</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.995626449585</Length>
+				<Grade>0.000241785</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.05275838</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>61</Divisions>
+				<Length>185.472412109375</Length>
+				<Grade>0.001229761</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>60</Divisions>
+				<Length>11.2115774154663</Length>
+				<Grade>0.001022396</Grade>
+				<Wind>0</Wind>
+				<Rotation>2.198373</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>215</Divisions>
+				<Length>647.514038085938</Length>
+				<Grade>0.003010605</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9993152618408</Length>
+				<Grade>0.00228408</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.005242432</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>85</Divisions>
+				<Length>256.706848144531</Length>
+				<Grade>0.0008806618</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>19.5884761810303</Length>
+				<Grade>0.0006385696</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.4961962</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>22</Divisions>
+				<Length>67.7543334960938</Length>
+				<Grade>0.0007342704</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.976692199707</Length>
+				<Grade>0.0002693929</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1180915</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>151</Divisions>
+				<Length>455.943878173828</Length>
+				<Grade>-0.0004663103</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9765625</Length>
+				<Grade>-0.0007487084</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1180712</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>5</Divisions>
+				<Length>15.1023607254028</Length>
+				<Grade>-0.00107226</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9545841217041</Length>
+				<Grade>-0.0011452</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1652023</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>11</Divisions>
+				<Length>33.134391784668</Length>
+				<Grade>-0.001357092</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9997520446777</Length>
+				<Grade>-0.001505186</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.01923708</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>37</Divisions>
+				<Length>112.661071777344</Length>
+				<Grade>-0.00212838</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.6928539276123</Length>
+				<Grade>-0.0024957</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.4291162</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>145</Divisions>
+				<Length>436.554382324219</Length>
+				<Grade>-0.001479214</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>44</Divisions>
+				<Length>15.3635206222534</Length>
+				<Grade>-0.001041355</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.629957</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>302</Divisions>
+				<Length>908.427673339844</Length>
+				<Grade>-0.0008109369</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>302</Divisions>
+				<Length>908.427185058594</Length>
+				<Grade>-0.0001345794</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9986896514893</Length>
+				<Grade>-0.0001365412</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.0287945</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>180</Divisions>
+				<Length>541.781921386719</Length>
+				<Grade>-7.911146E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9997978210449</Length>
+				<Grade>-7.705778E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.01482369</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>9</Divisions>
+				<Length>27.0085983276367</Length>
+				<Grade>-7.457852E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9999523162842</Length>
+				<Grade>-7.247925E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>29</Divisions>
+				<Length>89.0138320922852</Length>
+				<Grade>-6.090791E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9403209686279</Length>
+				<Grade>-6.303981E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1891167</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>179</Divisions>
+				<Length>538.08544921875</Length>
+				<Grade>-0.001122652</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>3</Divisions>
+				<Length>10.4492902755737</Length>
+				<Grade>-0.001274329</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1057567</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>4</Divisions>
+				<Length>10.4475440979004</Length>
+				<Grade>-0.001299119</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1147552</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>37</Divisions>
+				<Length>113.047348022461</Length>
+				<Grade>-0.000865033</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9992370605469</Length>
+				<Grade>-0.001136168</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.02181089</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>39</Divisions>
+				<Length>119.120399475098</Length>
+				<Grade>0.0003040327</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>20.0000076293945</Length>
+				<Grade>0.0002824244</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.00381125</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>95</Divisions>
+				<Length>287.506805419922</Length>
+				<Grade>7.038305E-05</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.970100402832</Length>
+				<Grade>0.0001116738</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1340751</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>146</Divisions>
+				<Length>438.608001708984</Length>
+				<Grade>-0.0001735489</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9154872894287</Length>
+				<Grade>-0.0001773834</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2251091</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>96</Divisions>
+				<Length>289.024047851563</Length>
+				<Grade>-0.0001193996</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8547039031982</Length>
+				<Grade>-0.0001178807</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2950416</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>57</Divisions>
+				<Length>172.448959350586</Length>
+				<Grade>-0.001389994</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8730049133301</Length>
+				<Grade>-0.001322795</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.2761773</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>5</Divisions>
+				<Length>16.1686725616455</Length>
+				<Grade>-0.001278325</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.952075958252</Length>
+				<Grade>-0.001310738</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1690021</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>18</Divisions>
+				<Length>55.2542037963867</Length>
+				<Grade>0.0002416505</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9978694915771</Length>
+				<Grade>0.0002095107</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.03217205</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>4.19366931915283</Length>
+				<Grade>0.0001430328</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.968692779541</Length>
+				<Grade>0.0001096725</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1374656</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>5</Divisions>
+				<Length>15.1013269424438</Length>
+				<Grade>0.0001075296</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.8965015411377</Length>
+				<Grade>0.0001020432</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.2488417</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>15</Divisions>
+				<Length>45.043025970459</Length>
+				<Grade>0.0001091317</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9912662506104</Length>
+				<Grade>0.0002700636</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.07251621</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>67</Divisions>
+				<Length>203.188705444336</Length>
+				<Grade>0.001156914</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>20.0004234313965</Length>
+				<Grade>0.001125591</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.004179498</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>8.63868618011475</Length>
+				<Grade>0.0009442419</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9986057281494</Length>
+				<Grade>0.0010878</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.02407464</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>20</Divisions>
+				<Length>62.1661643981934</Length>
+				<Grade>0.000939397</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>46</Divisions>
+				<Length>15.0351209640503</Length>
+				<Grade>0.0009780669</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.683685</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>43</Divisions>
+				<Length>129.679046630859</Length>
+				<Grade>0.001948745</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9969806671143</Length>
+				<Grade>0.00237639</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.04194931</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>84</Divisions>
+				<Length>254.473678588867</Length>
+				<Grade>0.002165575</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9968128204346</Length>
+				<Grade>0.002330875</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.04443085</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>43</Divisions>
+				<Length>130.097503662109</Length>
+				<Grade>0.0005957611</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.99951171875</Length>
+				<Grade>0.0006843463</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.01002008</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>135</Divisions>
+				<Length>405.303985595703</Length>
+				<Grade>0.0023736</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.6380271911621</Length>
+				<Grade>0.002322133</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.4650748</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>19</Divisions>
+				<Length>59.0102195739746</Length>
+				<Grade>0.001504168</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9414672851563</Length>
+				<Grade>0.001598361</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.1877901</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>45</Divisions>
+				<Length>137.269622802734</Length>
+				<Grade>0.001461588</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.910572052002</Length>
+				<Grade>0.001665871</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.231619</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>277</Divisions>
+				<Length>832.868835449219</Length>
+				<Grade>0.0008003795</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.7127246856689</Length>
+				<Grade>0.001867002</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.4147494</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>5</Divisions>
+				<Length>16.8181095123291</Length>
+				<Grade>0.00241464</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7706298828125</Length>
+				<Grade>0.003225731</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3709236</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>19</Divisions>
+				<Length>59.0102462768555</Length>
+				<Grade>0.003845604</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8295860290527</Length>
+				<Grade>0.004843872</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3195693</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>240</Divisions>
+				<Length>721.639526367188</Length>
+				<Grade>0.002868179</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>8.72356986999512</Length>
+				<Grade>0.002353603</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.004239736</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>8.72104835510254</Length>
+				<Grade>0.00234519</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.04710543</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>37.1841583251953</Length>
+				<Grade>0.00281093</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9984855651855</Length>
+				<Grade>0.002749615</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.03078338</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>110</Divisions>
+				<Length>331.501617431641</Length>
+				<Grade>0.005469451</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9983386993408</Length>
+				<Grade>0.005998266</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.0340204</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>85</Divisions>
+				<Length>255.165283203125</Length>
+				<Grade>0.002905295</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9930038452148</Length>
+				<Grade>0.003307724</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.06480358</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>31.5471515655518</Length>
+				<Grade>0.003054697</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8783512115479</Length>
+				<Grade>0.003155071</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.2699989</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>220</Divisions>
+				<Length>660.013305664063</Length>
+				<Grade>0.002385941</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>30</Divisions>
+				<Length>18.0062351226807</Length>
+				<Grade>0.002519983</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.082967</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>240</Divisions>
+				<Length>720.251403808594</Length>
+				<Grade>-0.002232476</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>20.0002098083496</Length>
+				<Grade>-0.002171758</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.006189452</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>154</Divisions>
+				<Length>462.615295410156</Length>
+				<Grade>-0.00643212</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9981307983398</Length>
+				<Grade>-0.005745895</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.03521931</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>37.1418685913086</Length>
+				<Grade>-0.00619408</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>48</Divisions>
+				<Length>14.7386989593506</Length>
+				<Grade>-0.006144784</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.73079</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>36</Divisions>
+				<Length>108.255661010742</Length>
+				<Grade>-0.001452006</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.8985061645508</Length>
+				<Grade>-0.001246795</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2464968</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>43</Divisions>
+				<Length>129.578002929688</Length>
+				<Grade>-2.062423E-07</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.8018913269043</Length>
+				<Grade>-0.0004301947</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3443875</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>4</Divisions>
+				<Length>13.2500905990601</Length>
+				<Grade>-0.0006964149</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>58</Divisions>
+				<Length>11.9107313156128</Length>
+				<Grade>-0.001223982</Grade>
+				<Wind>0</Wind>
+				<Rotation>-2.116387</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>4.24546432495117</Length>
+				<Grade>-0.00108376</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>54</Divisions>
+				<Length>13.3600807189941</Length>
+				<Grade>-0.001816509</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.931163</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>28</Divisions>
+				<Length>84.8462829589844</Length>
+				<Grade>-0.00218831</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9841747283936</Length>
+				<Grade>-0.002106291</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.09691077</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>30</Divisions>
+				<Length>90.8691177368164</Length>
+				<Grade>-0.002704496</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.7236423492432</Length>
+				<Grade>-0.002310966</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.4066523</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>188</Divisions>
+				<Length>565.103454589844</Length>
+				<Grade>0.00663859</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.6945419311523</Length>
+				<Grade>0.006288634</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.4274279</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>248</Divisions>
+				<Length>746.667541503906</Length>
+				<Grade>0.006512284</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9996528625488</Length>
+				<Grade>0.006712341</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.004169045</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>119</Divisions>
+				<Length>357.275665283203</Length>
+				<Grade>0.004361862</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7342987060547</Length>
+				<Grade>0.004776813</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3986324</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>44</Divisions>
+				<Length>133.441513061523</Length>
+				<Grade>0.004105252</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9977874755859</Length>
+				<Grade>0.005122177</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.03689124</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>130</Divisions>
+				<Length>392.705230712891</Length>
+				<Grade>0.0004162823</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9550895690918</Length>
+				<Grade>0.0002435684</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.1640364</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>210</Divisions>
+				<Length>631.36962890625</Length>
+				<Grade>-0.005140081</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.8368816375732</Length>
+				<Grade>-0.005780343</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3124444</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>254</Divisions>
+				<Length>764.666687011719</Length>
+				<Grade>0.001310344</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9995155334473</Length>
+				<Grade>0.000749059</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.01448247</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>60</Divisions>
+				<Length>180.732879638672</Length>
+				<Grade>-0.001539489</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7608413696289</Length>
+				<Grade>-0.0009326488</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.378289</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>24.1147804260254</Length>
+				<Grade>-0.0003982727</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>16</Divisions>
+				<Length>19.3656463623047</Length>
+				<Grade>-0.0001844829</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.6149909</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>47</Divisions>
+				<Length>142.953857421875</Length>
+				<Grade>0.001392529</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>70</Divisions>
+				<Length>7.49579524993896</Length>
+				<Grade>0.001423103</Grade>
+				<Wind>0</Wind>
+				<Rotation>-2.575051</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>25</Divisions>
+				<Length>76.4512634277344</Length>
+				<Grade>0.001255048</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>19.860631942749</Length>
+				<Grade>0.001257856</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2889349</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>13</Divisions>
+				<Length>41.3901443481445</Length>
+				<Grade>0.001205524</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9908847808838</Length>
+				<Grade>0.001213419</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.07381357</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>229</Divisions>
+				<Length>688.041320800781</Length>
+				<Grade>0.002152082</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9998397827148</Length>
+				<Grade>0.002408757</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.01212078</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>80</Divisions>
+				<Length>240.634994506836</Length>
+				<Grade>0.002998765</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.99977684021</Length>
+				<Grade>0.002841568</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.01403053</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>252</Divisions>
+				<Length>757.501586914063</Length>
+				<Grade>-0.002794501</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>19.7173633575439</Length>
+				<Grade>-0.002998239</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.4112471</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>76</Divisions>
+				<Length>230.395095825195</Length>
+				<Grade>-0.004704221</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>10</Divisions>
+				<Length>19.7776374816895</Length>
+				<Grade>-0.005608913</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.364906</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>49</Divisions>
+				<Length>149.38134765625</Length>
+				<Grade>-0.0036072</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>2</Divisions>
+				<Length>19.8120002746582</Length>
+				<Grade>-0.004299618</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.01745329</Rotation>
+			</Val>
+			<Val>
+				<Length>149.38134765625</Length>
+				<Grade>-0.004299618</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val>
+				<Length>149.38134765625</Length>
+				<Grade>-0.004299618</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val>
+				<Length>149.38134765625</Length>
+				<Grade>-0.004299618</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val>
+				<Length>149.38134765625</Length>
+				<Grade>-0.004299618</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val>
+				<Length>149.38134765625</Length>
+				<Grade>-0.004299618</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val>
+				<Length>152.095199584961</Length>
+				<Grade>-0.004299618</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val>
+				<Length>4</Length>
+				<Grade>-0.004299618</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+		</ThreeDType>
+	</Course>
+</RMX>

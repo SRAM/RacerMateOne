@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.RTab"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Name="btn" MouseDown="btn_MouseDown" MouseLeave="btn_MouseLeave" MouseEnter="btn_MouseEnter" MouseUp="btn_MouseUp" Loaded="btn_Loaded">
+    <UserControl.Resources>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Page.Unloaded">
+            <BeginStoryboard>
+                <Storyboard Name="OffEnter">
+                    <ColorAnimation Storyboard.TargetName="TextColor" Storyboard.TargetProperty="Color" To="{Binding SelectedTextColor,ElementName=btn}" Duration="0:0:0.3" />
+					<ColorAnimation Storyboard.TargetName="TabBorderColor" Storyboard.TargetProperty="Color" To="{Binding SelectedTextColor,ElementName=btn}" Duration="0:0:0.3" />
+				</Storyboard>
+			</BeginStoryboard>
+            <BeginStoryboard>
+                <Storyboard Name="OffLeave">
+                    <ColorAnimation Storyboard.TargetName="TextColor" Storyboard.TargetProperty="Color" To="{Binding NotSelectedTextColor,ElementName=btn}" Duration="0:0:0.3" />
+					<ColorAnimation Storyboard.TargetName="TabBorderColor" Storyboard.TargetProperty="Color" To="{Binding NotSelectedTextColor,ElementName=btn}" Duration="0:0:0.3" />
+				</Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid>
+        <Border Name="TabBorder" BorderThickness="1,1,1,0" Background="#FF6C9ABA" CornerRadius="10,10,0,0" Margin="0,0,0,0" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top">
+			<Border.BorderBrush>
+				<SolidColorBrush x:Name="TabBorderColor" Color="#FF266388"/>
+			</Border.BorderBrush>
+            <Grid>
+                <Label Content="{Binding Text,ElementName=btn}" Padding="18,4,18,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,-2,0,0" Height="28" VerticalAlignment="Top">
+                    <Label.Foreground>
+                        <SolidColorBrush x:Name="TextColor" Color="#FF266388"/>
+                    </Label.Foreground>
+                </Label>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,1 @@
+This file is new in dir2.

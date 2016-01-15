@@ -1,0 +1,493 @@
+﻿<Window x:Class="RacerMateOne.CourseEditorDev.Dialogs.SegmentEditDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Converter="clr-namespace:RacerMateOne.CourseEditorDev.Converters"
+        xmlns:Attach="clr-namespace:RacerMateOne.CourseEditorDev.AttachedProperties"
+        WindowStyle="None" Background="Transparent" AllowsTransparency="True"
+        HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial"
+        WindowStartupLocation="CenterOwner" 
+        Title="SegmentEditDialog" Height="500" Width="540">
+    <Window.Resources>
+        <Converter:VisibilityMode x:Key="VisibilityMode" />
+        <Converter:CombindConverter x:Key="CombindConverter" />
+        <Converter:DoubleToStringConverter x:Key="DoubleToStringConverter" />
+        <Converter:DecimalPlacesConverter x:Key="DecimalPlacesConverter" />
+        <Converter:RoundConverter x:Key="RoundConverter" />
+    </Window.Resources>
+
+    <Border Margin="10,10,6,14" BorderThickness="2" BorderBrush="#FF266388"  CornerRadius="28"  Background="#FF8FB7D3">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" Direction="315" Opacity=".45"/>
+            </Border.Effect>
+        <Canvas>
+            <Image Style="{DynamicResource LogoImage}"/>
+            <TextBox x:Name="TextIDLebel" Canvas.Top="30" Canvas.Left="230" FontSize="22" Text="Leg:" Background="Transparent" BorderThickness="0" />
+            <TextBox x:Name="TextID" Canvas.Top="30" Canvas.Left="285" FontSize="22" Background="Transparent" Width="80" Text="{Binding Segment}" BorderThickness="0" />
+            
+            <Canvas x:Name="CAN_DISTGRADE" Visibility="{Binding CourseMode, Converter={StaticResource VisibilityMode}, ConverterParameter='0'}" Canvas.Left="10" Canvas.Top="100">
+                
+                <Canvas x:Name="DistanceDISTGRADE" Canvas.Top="0" Height="100" Width="500">
+                    <TextBlock x:Name="MinimumDistanceDISTGRADE" Canvas.Top="30" Canvas.Left="15" Width="80" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinLength" />
+                                <Binding Path="MinMaxLengthUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="MaximumDistanceDISTGRADE" Canvas.Top="30" Canvas.Left="410" Width="80"  TextAlignment="Right" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxLength" />
+                                <Binding Path="MinMaxLengthUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock Text="Dist:" Canvas.Top="33" Canvas.Left="173" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Decimal" Text="{Binding ElementName=LengthSliderDISTGRADE, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='2'}" />
+                    <Slider x:Name="LengthSliderDISTGRADE" TickFrequency=".1" Canvas.Left="20" Canvas.Top="52" Width="440" Maximum="{Binding MaxLength}" Minimum="{Binding MinLength}" Value="{Binding DisplayLength, Mode=TwoWay}"  />
+                </Canvas>
+
+                <Canvas x:Name="GradeDISTGRADE" Canvas.Top="80" Height="80" Width="500">
+                    <TextBlock x:Name="MinimumGradeDISTGRADE" Canvas.Top="30" Canvas.Left="15" Width="80" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinGrade" />
+                                <Binding Path="GradeUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="MaximumGradeDISTGRADE" Canvas.Top="30" Canvas.Left="410" Width="80"  TextAlignment="Right" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxGrade" />
+                                <Binding Path="GradeUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock Text="Grade:" Canvas.Top="33" Canvas.Left="170" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Decimal" Text="{Binding ElementName=GradeSliderDISTGRADE, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='1'}" />
+                    <Slider x:Name="GradeSliderDISTGRADE" TickFrequency=".1" Canvas.Left="20" Canvas.Top="52" Width="446" Maximum="{Binding MaxGrade}" Minimum="{Binding MinGrade}" Value="{Binding DisplayGrade, Mode=TwoWay}" />
+                </Canvas>
+
+                <Canvas x:Name="WindDISTGRADE" Canvas.Top="160" Height="80" Width="500">
+                    <TextBlock x:Name="WindStartLabelDISTGRADE" Canvas.Top="30" Canvas.Left="15" Width="80"  >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinWind" />
+                                <Binding Path="WindUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="WindEndLabelDISTGRADE" Canvas.Top="30" Canvas.Left="410" Width="80" TextAlignment="Right"  >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxWind" />
+                                <Binding Path="WindUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="WindLabelDISTGRADE" Text="Wind:" Canvas.Top="33" Canvas.Left="170" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Decimal" Text="{Binding ElementName=WindSliderDISTGRADE, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='1'}" />
+                    <Slider x:Name="WindSliderDISTGRADE" Canvas.Left="20"  Canvas.Top="52" Width="455" TickFrequency="1" Maximum="{Binding MaxWind}" Minimum="{Binding MinWind}" Value="{Binding Wind, Mode=TwoWay}" IsSnapToTickEnabled="True" />
+                </Canvas>
+                
+            </Canvas>
+            
+            <Canvas x:Name="CAN_TIMEGRADE" Visibility="{Binding CourseMode, Converter={StaticResource VisibilityMode}, ConverterParameter='1'}" Canvas.Left="10" Canvas.Top="100"  >
+                
+                <Canvas x:Name="MinimumTimeTIMEGRADE" Canvas.Top="0" Height="100" Width="500">
+                    <TextBlock x:Name="TBMinimumTimeTIMEGRADE" Canvas.Top="30" Canvas.Left="15" Width="80" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinTime" />
+                                <Binding Path="TimeUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="MaximumTimeTIMEGRADE" Canvas.Top="30" Canvas.Left="410" Width="80"  TextAlignment="Right" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxTime" />
+                                <Binding Path="TimeUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock Text="Time:" Canvas.Top="33" Canvas.Left="173" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Decimal" Text="{Binding ElementName=TimeSliderTIMEGRADE, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='1'}" />
+                    <Slider x:Name="TimeSliderTIMEGRADE" TickFrequency=".01" Canvas.Left="20" Canvas.Top="52" Width="440" Maximum="{Binding MaxTime}" Minimum="{Binding MinTime}" Value="{Binding Time, Mode=TwoWay}"  />
+                </Canvas>
+                <Canvas x:Name="GradeTIMEGRADE" Canvas.Top="80" Height="80" Width="500">
+                    <TextBlock x:Name="MinimumGradeTIMEGRADE" Canvas.Top="30" Canvas.Left="15" Width="80" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinGrade" />
+                                <Binding Path="GradeUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="MaximumGradeTIMEGRADE" Canvas.Top="30" Canvas.Left="410" Width="80"  TextAlignment="Right" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxGrade" />
+                                <Binding Path="GradeUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock Text="Grade:" Canvas.Top="33" Canvas.Left="170" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Decimal" Text="{Binding ElementName=GradeSliderDISTGRADE, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='1'}" />
+                    <Slider x:Name="GradeSliderTIMEGRADE" TickFrequency=".1" Canvas.Left="20" Canvas.Top="52" Width="446" Maximum="{Binding MaxGrade}" Minimum="{Binding MinGrade}" Value="{Binding DisplayGrade, Mode=TwoWay}" />
+                </Canvas>
+
+                
+
+                <Canvas x:Name="WindTIMEGRADE" Canvas.Top="160" Height="80" Width="500">
+                    <TextBlock x:Name="WindStartLabelTIMEGRADE" Canvas.Top="30" Canvas.Left="15" Width="80"  >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="0">
+                                <Binding Path="MinWind" />
+                                <Binding Path="WindUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="WindEndLabelTIMEGRADE" Canvas.Top="30" Canvas.Left="410" Width="80" TextAlignment="Right"  >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="0">
+                                <Binding Path="MaxWind" />
+                                <Binding Path="WindUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="WindLabelTIMEGRADE" Text="Wind:" Canvas.Top="33" Canvas.Left="170" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Decimal" Text="{Binding ElementName=WindSliderDISTGRADE, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='1'}" />
+                    <Slider x:Name="WindSliderTIMEGRADE" TickFrequency="1" Canvas.Left="20"  Canvas.Top="52" Width="455" Maximum="{Binding MaxWind}" Minimum="{Binding MinWind}" Value="{Binding Wind, Mode=TwoWay}" IsSnapToTickEnabled="True" />
+                </Canvas>
+                
+            </Canvas>
+
+            <Canvas x:Name="CAN_TIMEWATT" Visibility="{Binding CourseMode, Converter={StaticResource VisibilityMode}, ConverterParameter='2'}" Canvas.Left="10" Canvas.Top="100"  >
+
+                <Canvas x:Name="TimeDISTWATT" Canvas.Top="0" Height="80" Width="500">
+                    <TextBlock x:Name="TimeStartLabelTIMEWATT" Canvas.Top="30" Canvas.Left="15" Width="80"  >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinTime" />
+                                <Binding Path="TimeUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="TimeEndLabelTIMEWATT" Canvas.Top="30" Canvas.Left="410" Width="80" TextAlignment="Right"  >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxTime" />
+                                <Binding Path="TimeUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="TimeLabelTIMEWATT" Text="Time:" Canvas.Top="33" Canvas.Left="180" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Decimal" Text="{Binding ElementName=TimeSliderTIMEWATT, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='2'}" />
+                    <Slider x:Name="TimeSliderTIMEWATT" TickFrequency=".01" Canvas.Left="20"  Canvas.Top="52" Width="455" Maximum="{Binding MaxTime}" Minimum="{Binding MinTime}" Value="{Binding Time, Mode=TwoWay}" IsSnapToTickEnabled="True" />
+                </Canvas>
+                <Canvas x:Name="EndWattTIMEWATT" Canvas.Top="160" Height="80" Width="500">
+                    <TextBlock x:Name="MinimumEndWattTIMEWATT" Canvas.Top="30" Canvas.Left="15" Width="80" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinWatt" />
+                                <Binding Path="WattUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="MaximumEndWattTIMEWATT" Canvas.Top="30" Canvas.Left="410" Width="80"  TextAlignment="Right" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxWatt" />
+                                <Binding Path="WattUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock Text="End Watt:" Canvas.Top="33" Canvas.Left="160" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Integer" Text="{Binding ElementName=EndWattSliderTIMEWATT, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='0'}" />
+                    <Slider x:Name="EndWattSliderTIMEWATT" TickFrequency="1" Canvas.Left="20" Canvas.Top="52" Width="446" Maximum="{Binding MaxWatt}" Minimum="{Binding MinWatt}" Value="{Binding EndWatt, Mode=TwoWay}" />
+                </Canvas>
+
+                <Canvas x:Name="StartWattTIMEWATT" Canvas.Top="80" Height="100" Width="500">
+                    <TextBlock x:Name="MinimumStartWattTIMEWATT" Canvas.Top="30" Canvas.Left="15" Width="80" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinWatt" />
+                                <Binding Path="WattUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="MaximumStartWattTIMEWATT" Canvas.Top="30" Canvas.Left="410" Width="80"  TextAlignment="Right" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxWatt" />
+                                <Binding Path="WattUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock Text="Start Watt:" Canvas.Top="33" Canvas.Left="160" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Integer" Text="{Binding ElementName=StartWattSliderTIMEWATT, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='0'}" />
+                    <Slider x:Name="StartWattSliderTIMEWATT" TickFrequency="1" Canvas.Left="20" Canvas.Top="52" Width="440" Maximum="{Binding MaxWatt}" Minimum="{Binding MinWatt}" Value="{Binding StartWatt, Mode=TwoWay}"  />
+                </Canvas>
+
+               
+                
+                
+            </Canvas>
+
+            <Canvas x:Name="CAN_DISTANCEWATT" Visibility="{Binding CourseMode, Converter={StaticResource VisibilityMode}, ConverterParameter='3'}" Canvas.Left="10" Canvas.Top="100"  >
+                
+                <Canvas x:Name="TimeDISTANCEWATT" Canvas.Top="0" Height="80" Width="500">
+                    <TextBlock x:Name="TimeStartLabelDISTANCEWATT" Canvas.Top="30" Canvas.Left="15" Width="80"  >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinLength" />
+                                <Binding Path="MinMaxLengthUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="TimeEndLabelDISTANCEWATT" Canvas.Top="30" Canvas.Left="410" Width="80" TextAlignment="Right"  >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxLength" />
+                                <Binding Path="MinMaxLengthUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="TimeLabelDISTANCEWATT" Text="Distance:" Canvas.Top="33" Canvas.Left="160" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Decimal" Text="{Binding ElementName=TimeSliderDISTANCEWATT, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='2'}" />
+                    <Slider x:Name="TimeSliderDISTANCEWATT" Canvas.Left="20"  Canvas.Top="52" Width="455" TickFrequency=".1" Maximum="{Binding MaxLength}" Minimum="{Binding MinLength}" Value="{Binding DisplayLength, Mode=TwoWay}" IsSnapToTickEnabled="True" />
+                </Canvas>
+
+                <Canvas x:Name="StartWattDISTANCEWATT" Canvas.Top="80" Height="100" Width="500">
+                    <TextBlock x:Name="MinimumStartWattDISTANCEWATT" Canvas.Top="30" Canvas.Left="15" Width="80" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinWatt" />
+                                <Binding Path="WattUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="MaximumStartWattDISTANCEWATT" Canvas.Top="30" Canvas.Left="410" Width="80"  TextAlignment="Right" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxWatt" />
+                                <Binding Path="WattUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock Text="Start Watt:" Canvas.Top="33" Canvas.Left="160" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Integer" Text="{Binding ElementName=StartWattSliderDISTANCEWATT, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='0'}" />
+                    <Slider x:Name="StartWattSliderDISTANCEWATT" TickFrequency="1" Canvas.Left="20" Canvas.Top="52" Width="440" Maximum="{Binding MaxWatt}" Minimum="{Binding MinWatt}" Value="{Binding StartWatt, Mode=TwoWay}"  />
+                </Canvas>
+                
+                <Canvas x:Name="EndWattDISTANCEWATT" Canvas.Top="160" Height="80" Width="500">
+                    <TextBlock x:Name="MinimumEndWattDISTANCEWATT" Canvas.Top="30" Canvas.Left="15" Width="80" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinWatt" />
+                                <Binding Path="WattUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="MaximumEndWattDISTANCEWATT" Canvas.Top="30" Canvas.Left="410" Width="80"  TextAlignment="Right" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxWatt" />
+                                <Binding Path="WattUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock Text="End Watt:" Canvas.Top="33" Canvas.Left="160" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Integer" Text="{Binding ElementName=EndWattSliderDISTANCEWATT, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='0'}" />
+                    <Slider x:Name="EndWattSliderDISTANCEWATT" TickFrequency="1" Canvas.Left="20" Canvas.Top="52" Width="446" Maximum="{Binding MaxWatt}" Minimum="{Binding MinWatt}" Value="{Binding EndWatt, Mode=TwoWay}" />
+                </Canvas>
+                
+            </Canvas>
+
+            <Canvas x:Name="CAN_TIMEPERAT" Visibility="{Binding CourseMode, Converter={StaticResource VisibilityMode}, ConverterParameter='4'}" Canvas.Left="10" Canvas.Top="100"  >
+
+                <Canvas x:Name="TimeTIMEPERAT" Canvas.Top="0" Height="100" Width="500">
+                    <TextBlock x:Name="MinimumTimeTIMEPERAT" Canvas.Top="30" Canvas.Left="15" Width="80" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinTime" />
+                                <Binding Path="TimeUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="MaximumTimeTIMEPERAT" Canvas.Top="30" Canvas.Left="410" Width="80"  TextAlignment="Right" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxTime" />
+                                <Binding Path="TimeUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock Text="Time:" Canvas.Top="33" Canvas.Left="173" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Decimal" Text="{Binding ElementName=TimeSliderTIMEPERAT, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='2'}" />
+                    <Slider x:Name="TimeSliderTIMEPERAT" Canvas.Left="20" Canvas.Top="52" Width="440" Maximum="{Binding MaxTime}" Minimum="{Binding MinTime}" Value="{Binding Time, Mode=TwoWay}"  />
+                </Canvas>
+                <Canvas x:Name="StartAtTIMEPERAT" Canvas.Top="80" Height="80" Width="500">
+                    <TextBlock x:Name="MinimumStartAtTIMEPERAT" Canvas.Top="30" Canvas.Left="15" Width="80" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinAT" />
+                                <Binding Path="ATUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="MaximumStartAtTIMEPERAT" Canvas.Top="30" Canvas.Left="410" Width="80"  TextAlignment="Right" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxAT" />
+                                <Binding Path="ATUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock Text="Start %AT:" Canvas.Top="33" Canvas.Left="160" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Decimal" Text="{Binding ElementName=StartAtSliderTIMEPERAT, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='1'}" />
+                    <Slider x:Name="StartAtSliderTIMEPERAT" TickFrequency=".1" Canvas.Left="20" Canvas.Top="52" Width="446" Maximum="{Binding MaxAT}" Minimum="{Binding MinAT}" Value="{Binding StartAT, Mode=TwoWay}" />
+                </Canvas>
+                <Canvas x:Name="EndAtTIMEPERAT" Canvas.Top="160" Height="80" Width="500">
+                    <TextBlock x:Name="EndAtStartLabelTIMEPERAT" Canvas.Top="30" Canvas.Left="15" Width="80"  >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinAT" />
+                                <Binding Path="ATUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="EndAtEndLabelTIMEPERAT" Canvas.Top="30" Canvas.Left="410" Width="80" TextAlignment="Right"  >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxAT" />
+                                <Binding Path="ATUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="EndAtLabelTIMEPERAT" Text="End %AT:" Canvas.Top="33" Canvas.Left="160" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Decimal" Text="{Binding ElementName=EndAtSliderTIMEPERAT, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='1'}" />
+                    <Slider x:Name="EndAtSliderTIMEPERAT" TickFrequency=".1" Canvas.Left="20"  Canvas.Top="52" Width="455" Maximum="{Binding MaxAT}" Minimum="{Binding MinAT}" Value="{Binding EndAT, Mode=TwoWay}" IsSnapToTickEnabled="True" />
+                </Canvas>
+
+            </Canvas>
+
+            <Canvas x:Name="CAN_DISTANCEPERAT" Visibility="{Binding CourseMode, Converter={StaticResource VisibilityMode}, ConverterParameter='5'}" Canvas.Left="10" Canvas.Top="100"  >
+
+                <Canvas x:Name="DistanceDISTANCEPERAT" Canvas.Top="0" Height="100" Width="500">
+                    <TextBlock x:Name="MinimumDistanceDISTANCEPERAT" Canvas.Top="30" Canvas.Left="15" Width="80" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinLength" />
+                                <Binding Path="LengthUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="MaximumDistanceDISTANCEPERAT" Canvas.Top="30" Canvas.Left="410" Width="80"  TextAlignment="Right" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxLength" />
+                                <Binding Path="LengthUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock Text="Distance:" Canvas.Top="33" Canvas.Left="165" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Decimal" Text="{Binding ElementName=DistanceSliderDISTANCEPERAT, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='2'}" />
+                    <Slider x:Name="DistanceSliderDISTANCEPERAT" Canvas.Left="20" Canvas.Top="52" Width="440" Maximum="{Binding MaxLength}" Minimum="{Binding MinLength}" Value="{Binding DisplayLength, Mode=TwoWay}"  />
+
+                </Canvas>
+                <Canvas x:Name="StartAtDISTANCEPERAT" Canvas.Top="80" Height="80" Width="500">
+                   
+                     <TextBlock x:Name="MinimumStartAtDISTANCEPERAT" Canvas.Top="30" Canvas.Left="15" Width="80" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinAT" />
+                                <Binding Path="ATUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="MaximumStartAtDISTANCEPERAT" Canvas.Top="30" Canvas.Left="410" Width="80"  TextAlignment="Right" >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxAT" />
+                                    <Binding Path="ATUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock Text="Start %AT:" Canvas.Top="33" Canvas.Left="160" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Integer" Text="{Binding ElementName=StartAtSliderDISTANCEPERAT, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='0'}" />
+                    <Slider x:Name="StartAtSliderDISTANCEPERAT" TickFrequency="1" Canvas.Left="20" Canvas.Top="52" Width="446" Maximum="{Binding MaxAT}" Minimum="{Binding MinAT}" Value="{Binding StartAT, Mode=TwoWay}" />
+
+               </Canvas>
+
+
+                <Canvas x:Name="EndAtDISTANCEPERAT" Canvas.Top="160" Height="80" Width="500">
+                    <TextBlock x:Name="EndAtStartLabelDISTANCEPERAT" Canvas.Top="30" Canvas.Left="15" Width="80"  >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MinAT" />
+                                <Binding Path="ATUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="EndAtEndLabelDISTANCEPERAT" Canvas.Top="30" Canvas.Left="410" Width="80" TextAlignment="Right"  >
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource CombindConverter}">
+                                <Binding Path="MaxAT" />
+                                <Binding Path="ATUnit" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock x:Name="EndAtLabelDISTANCEPERAT" Text="End %AT:" Canvas.Top="33" Canvas.Left="160" />
+                    <TextBox Canvas.Top="30" Canvas.Left="220" Width="50" Attach:TextBoxMaskBehavior.Mask="Integer" Text="{Binding ElementName=EndAtSliderDISTANCEPERAT, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoundConverter}, ConverterParameter='0'}" />
+                    <Slider x:Name="EndAtSliderDISTANCEPERAT" TickFrequency="1" Canvas.Left="20"  Canvas.Top="52" Width="455" Maximum="{Binding MaxAT}" Minimum="{Binding MinAT}" Value="{Binding EndAT, Mode=TwoWay}" IsSnapToTickEnabled="True" />
+                </Canvas>
+            </Canvas>
+
+            <Button Content="Accept" Width="110" Height="31" Canvas.Top="418" Canvas.Left="225" Click="AcceptButton_Click" IsDefault="True"  Style="{StaticResource PillStyleButton}" />
+            <Button Content="Cancel" Width="110" Height="31" Canvas.Top="418" Canvas.Left="360"  Click="CancelButton_Click" IsCancel="True"  Style="{StaticResource PillStyleButton}" />
+
+        </Canvas>
+
+    </Border>
+    
+</Window>

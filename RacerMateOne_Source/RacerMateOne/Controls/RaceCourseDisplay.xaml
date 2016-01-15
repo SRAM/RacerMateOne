@@ -1,0 +1,299 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.RaceCourseDisplay"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:RacerMateOne.Controls" 
+	MinHeight="80"
+	Loaded="RaceCourseDisplay_Loaded" SizeChanged="UserControl_SizeChanged" IsVisibleChanged="UserControl_IsVisibleChanged" Unloaded="UserControl_Unloaded">
+	<UserControl.Resources>
+		<!-- -->
+		<SolidColorBrush x:Key="Circle_1" Color="#90007A00"/>
+		<LinearGradientBrush x:Key="H_1" StartPoint="0,0.5" EndPoint="1,0.5" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#90007A00" Offset="0.0" />
+			<GradientStop Color="#90007A00" Offset="0.7" />
+			<GradientStop Color="#d08BE98B" Offset="0.98" />
+			<GradientStop Color="#e08BE98B" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Up_1" StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a0007A00" Offset="0.0" />
+			<GradientStop Color="#d0007A00" Offset="0.7" />
+			<GradientStop Color="#d08BE98B" Offset="0.98" />
+			<GradientStop Color="#e08BE98B" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Down_1" StartPoint="0.5,1" EndPoint="0.5,0" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a0007A00" Offset="0.0" />
+			<GradientStop Color="#d0007A00" Offset="0.7" />
+			<GradientStop Color="#d08BE98B" Offset="0.98" />
+			<GradientStop Color="#e08BE98B" Offset="1.0" />
+		</LinearGradientBrush>
+
+		<!-- -->
+		<SolidColorBrush x:Key="Circle_2" Color="#900030FF"/>
+		<LinearGradientBrush x:Key="H_2" StartPoint="0,0.5" EndPoint="1,0.5" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#900030FF" Offset="0.0" />
+			<GradientStop Color="#900030FF" Offset="0.7" />
+			<GradientStop Color="#d087DFFF" Offset="0.98" />
+			<GradientStop Color="#e087DFFF" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Up_2" StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a00030FF" Offset="0.0" />
+			<GradientStop Color="#d00030FF" Offset="0.7" />
+			<GradientStop Color="#d087DFFF" Offset="0.98" />
+			<GradientStop Color="#e087DFFF" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Down_2" StartPoint="0.5,1" EndPoint="0.5,0" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a00030FF" Offset="0.0" />
+			<GradientStop Color="#d00030FF" Offset="0.7" />
+			<GradientStop Color="#d087DFFF" Offset="0.98" />
+			<GradientStop Color="#e087DFFF" Offset="1.0" />
+		</LinearGradientBrush>
+
+		<!-- -->
+		<SolidColorBrush x:Key="Circle_3" Color="#907B00FF"/>
+		<LinearGradientBrush x:Key="H_3" StartPoint="0,0.5" EndPoint="1,0.5" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#907B00FF" Offset="0.0" />
+			<GradientStop Color="#907B00FF" Offset="0.7" />
+			<GradientStop Color="#d0EB84FF" Offset="0.98" />
+			<GradientStop Color="#e0EB84FF" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Up_3" StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a07B00FF" Offset="0.0" />
+			<GradientStop Color="#d07B00FF" Offset="0.7" />
+			<GradientStop Color="#d0EB84FF" Offset="0.98" />
+			<GradientStop Color="#e0EB84FF" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Down_3" StartPoint="0.5,1" EndPoint="0.5,0" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a07B00FF" Offset="0.0" />
+			<GradientStop Color="#d07B00FF" Offset="0.7" />
+			<GradientStop Color="#d0EB84FF" Offset="0.98" />
+			<GradientStop Color="#e0EB84FF" Offset="1.0" />
+		</LinearGradientBrush>
+
+		<!-- -->
+		<SolidColorBrush x:Key="Circle_4" Color="#90810000"/>
+		<LinearGradientBrush x:Key="H_4" StartPoint="0,0.5" EndPoint="1,0.5" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#90810000" Offset="0.0" />
+			<GradientStop Color="#90810000" Offset="0.7" />
+			<GradientStop Color="#d0EF7979" Offset="0.98" />
+			<GradientStop Color="#e0EF7979" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Up_4" StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a0810000" Offset="0.0" />
+			<GradientStop Color="#d0810000" Offset="0.7" />
+			<GradientStop Color="#d0EF7979" Offset="0.98" />
+			<GradientStop Color="#e0EF7979" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Down_4" StartPoint="0.5,1" EndPoint="0.5,0" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a0810000" Offset="0.0" />
+			<GradientStop Color="#d0810000" Offset="0.7" />
+			<GradientStop Color="#d0EF7979" Offset="0.98" />
+			<GradientStop Color="#e0EF7979" Offset="1.0" />
+		</LinearGradientBrush>
+
+		<!-- -->
+		<SolidColorBrush x:Key="Circle_5" Color="#90FF7B00"/>
+		<LinearGradientBrush x:Key="H_5" StartPoint="0,0.5" EndPoint="1,0.5" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#90FF7B00" Offset="0.0" />
+			<GradientStop Color="#90FF7B00" Offset="0.7" />
+			<GradientStop Color="#d0FFDA84" Offset="0.98" />
+			<GradientStop Color="#e0FFDA84" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Up_5" StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a0FF7B00" Offset="0.0" />
+			<GradientStop Color="#d0FF7B00" Offset="0.7" />
+			<GradientStop Color="#d0FFDA84" Offset="0.98" />
+			<GradientStop Color="#e0FFDA84" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Down_5" StartPoint="0.5,1" EndPoint="0.5,0" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a0FF7B00" Offset="0.0" />
+			<GradientStop Color="#d0FF7B00" Offset="0.7" />
+			<GradientStop Color="#d0FFDA84" Offset="0.98" />
+			<GradientStop Color="#e0FFDA84" Offset="1.0" />
+		</LinearGradientBrush>
+
+		<!-- -->
+		<SolidColorBrush x:Key="Circle_6" Color="#90F8CA03"/>
+		<LinearGradientBrush x:Key="H_6" StartPoint="0,0.5" EndPoint="1,0.5" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#90F8CA03" Offset="0.0" />
+			<GradientStop Color="#90F8CA03" Offset="0.7" />
+			<GradientStop Color="#d0FFF98E" Offset="0.98" />
+			<GradientStop Color="#e0FFF98E" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Up_6" StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a0F8CA03" Offset="0.0" />
+			<GradientStop Color="#d0F8CA03" Offset="0.7" />
+			<GradientStop Color="#d0FFF98E" Offset="0.98" />
+			<GradientStop Color="#e0FFF98E" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Down_6" StartPoint="0.5,1" EndPoint="0.5,0" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a0F8CA03" Offset="0.0" />
+			<GradientStop Color="#d0F8CA03" Offset="0.7" />
+			<GradientStop Color="#d0FFF98E" Offset="0.98" />
+			<GradientStop Color="#e0FFF98E" Offset="1.0" />
+		</LinearGradientBrush>
+
+		<!-- -->
+		<SolidColorBrush x:Key="Circle_7" Color="#90805623"/>
+		<LinearGradientBrush x:Key="H_7" StartPoint="0,0.5" EndPoint="1,0.5" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#90805623" Offset="0.0" />
+			<GradientStop Color="#90805623" Offset="0.7" />
+			<GradientStop Color="#d0E5DDC3" Offset="0.98" />
+			<GradientStop Color="#e0E5DDC3" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Up_7" StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a0805623" Offset="0.0" />
+			<GradientStop Color="#d0805623" Offset="0.7" />
+			<GradientStop Color="#d0E5DDC3" Offset="0.98" />
+			<GradientStop Color="#e0E5DDC3" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Down_7" StartPoint="0.5,1" EndPoint="0.5,0" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a0805623" Offset="0.0" />
+			<GradientStop Color="#d0805623" Offset="0.7" />
+			<GradientStop Color="#d0E5DDC3" Offset="0.98" />
+			<GradientStop Color="#e0E5DDC3" Offset="1.0" />
+		</LinearGradientBrush>
+		
+		<SolidColorBrush x:Key="Name_Std" Color="White"/>
+		<SolidColorBrush x:Key="Name_Bot" Color="#FFE0E0E0"/>
+		<SolidColorBrush x:Key="Name_Std_Draft" Color="#FF0080FF"/>
+		<SolidColorBrush x:Key="Name_Bot_Draft" Color="#FF0078E0"/>
+		<SolidColorBrush x:Key="Name_Active" Color="Red"/>
+
+		<!-- -->
+		<SolidColorBrush x:Key="Circle_8" Color="#90262626"/>
+		<LinearGradientBrush x:Key="H_8" StartPoint="0,0.5" EndPoint="1,0.5" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#90262626" Offset="0.0" />
+			<GradientStop Color="#90262626" Offset="0.7" />
+			<GradientStop Color="#d0BBBBBB" Offset="0.98" />
+			<GradientStop Color="#e0BBBBBB" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Up_8" StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a0262626" Offset="0.0" />
+			<GradientStop Color="#d0262626" Offset="0.7" />
+			<GradientStop Color="#d0BBBBBB" Offset="0.98" />
+			<GradientStop Color="#e0BBBBBB" Offset="1.0" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="Down_8" StartPoint="0.5,1" EndPoint="0.5,0" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#a0262626" Offset="0.0" />
+			<GradientStop Color="#d0262626" Offset="0.7" />
+			<GradientStop Color="#d0BBBBBB" Offset="0.98" />
+			<GradientStop Color="#e0BBBBBB" Offset="1.0" />
+		</LinearGradientBrush>
+		<Style x:Key="NameLabel" TargetType="{x:Type Label}">
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Padding" Value="0,0,0,0"/>
+			<Setter Property="Height" Value="19"/>
+			<Setter Property="Margin" Value="0,-1,0,0"/>
+			<Setter Property="MinWidth" Value="50"/>
+			<Setter Property="MaxWidth" Value="100"/>
+			<Setter Property="HorizontalAlignment" Value="Right"/>
+			<Setter Property="VerticalAlignment" Value="Top"/>
+			<Setter Property="HorizontalContentAlignment" Value="Right"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+		<Style x:Key="NameLabelPacer" TargetType="{x:Type Label}">
+			<Setter Property="Foreground" Value="#FFe0e0e0"/>
+			<Setter Property="FontStyle" Value="Italic"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Padding" Value="0,0,0,0"/>
+			<Setter Property="Height" Value="19"/>
+			<Setter Property="Margin" Value="0,-1,0,0"/>
+			<Setter Property="MinWidth" Value="50"/>
+			<Setter Property="MaxWidth" Value="100"/>
+			<Setter Property="HorizontalAlignment" Value="Right"/>
+			<Setter Property="VerticalAlignment" Value="Top"/>
+			<Setter Property="HorizontalContentAlignment" Value="Right"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+		<Style x:Key="NameText" TargetType="{x:Type TextBlock}">
+			<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+		</Style>
+		<Style x:Key="Circle" TargetType="{x:Type Ellipse}">
+			<Setter Property="Width" Value="14"/>
+			<Setter Property="Height" Value="14"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+		</Style>
+		<Style x:Key="CircleText" TargetType="{x:Type Label}">
+			<Setter Property="Height" Value="16"/>
+			<Setter Property="FontSize" Value="12"/>
+			<Setter Property="Padding" Value="0"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+		</Style>
+		<Style x:Key="HLine" TargetType="{x:Type Line}">
+			<Setter Property="StrokeThickness" Value="2"/>
+			<Setter Property="ClipToBounds" Value="True"/>
+		</Style>
+		<Style x:Key="VLine" TargetType="{x:Type Line}">
+			<Setter Property="StrokeThickness" Value="2"/>
+			<Setter Property="ClipToBounds" Value="True"/>
+		</Style>
+		
+		<Style x:Key="BBox" TargetType="{x:Type Border}">
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="CornerRadius" Value="5"/>
+			<Setter Property="BorderBrush" Value="White"/>
+			<Setter Property="Background" Value="#aa000000"/>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+			<Setter Property="VerticalAlignment" Value="Top"/>
+			<Setter Property="Height" Value="16"/>
+			<Setter Property="ClipToBounds" Value="True"/>
+		</Style>
+		<Style x:Key="BBoxLabel" TargetType="{x:Type Label}">
+			<Setter Property="Padding" Value="4,1,4,1"/>
+			<Setter Property="Margin" Value="0,-2,0,0"/>
+			<Setter Property="FontSize" Value="12"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Padding" Value="0"/>
+		</Style>
+	</UserControl.Resources>
+	<Grid>
+		<Grid Name="CourseBox" Margin="0,8,8,2">
+			<StackPanel Name="NameBox" HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal">
+				<StackPanel Name="Names" Margin="0,0,3,0">
+				</StackPanel>
+				<StackPanel Name="Place" Margin="0,0,3,0" Width="9" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+				</StackPanel>
+				<StackPanel Name="Position" Margin="0,0,0,0">
+				</StackPanel>
+			</StackPanel>
+			<Grid Name="PathBox" HorizontalAlignment="Right">
+				<Path Name="CoursePath" Width="1" Height="70" Stroke="#99999999" StrokeThickness="0" VerticalAlignment="Bottom">
+					<Path.Fill>
+						<DrawingBrush x:Name="FillBrush" Viewport="0,0,0.25,0.5" TileMode="Tile">
+							<DrawingBrush.Drawing>
+								<DrawingGroup>
+									<GeometryDrawing Brush="#FF437898">
+										<GeometryDrawing.Geometry>
+											<GeometryGroup>
+												<RectangleGeometry Rect="0,0,1,1.1" />
+											</GeometryGroup>
+										</GeometryDrawing.Geometry>
+									</GeometryDrawing>
+
+									<GeometryDrawing Brush="#FF3A7193">
+										<GeometryDrawing.Geometry>
+											<GeometryGroup>
+												<RectangleGeometry Rect="0,1,1,1" />
+											</GeometryGroup>
+										</GeometryDrawing.Geometry>
+									</GeometryDrawing>
+								</DrawingGroup>
+							</DrawingBrush.Drawing>
+						</DrawingBrush>
+					</Path.Fill>
+				</Path>
+				<Grid Name="Layer_HLine"/>
+				<Grid Name="Layer_Text"/>
+				<Grid Name="Layer_VLine"/>
+			</Grid>
+			<!-- -->
+			<StackPanel Name="LapsColumn" Width="30" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+			</StackPanel>
+		</Grid>
+	</Grid>
+</UserControl>

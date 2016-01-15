@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.LogoAbout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:c="clr-namespace:RacerMateOne.Controls" MouseDown="UserControl_MouseDown">
+	<UserControl.Resources>
+		<Style x:Key="LogoImage" TargetType="{x:Type Image}">
+			<Setter Property="Width" Value="194px"/>
+			<Setter Property="Height" Value="55px"/>
+			<Setter Property="Source" Value="/RacerMateOne;component/Resources/RacerMateOne-Logo.png"/>
+			<Setter Property="Stretch" Value="Fill"/>
+			<Setter Property="VerticalAlignment" Value="Top"/>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+			<Setter Property="Margin" Value="9,12,0,0"/>
+		</Style>
+	</UserControl.Resources>
+	<Grid>
+		<Image Style="{DynamicResource LogoImage}"/>
+    </Grid>
+</UserControl>

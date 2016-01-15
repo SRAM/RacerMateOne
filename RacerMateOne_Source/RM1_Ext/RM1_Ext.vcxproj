@@ -1,0 +1,677 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugDLL|Win32">
+      <Configuration>DebugDLL</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseDLL|Win32">
+      <Configuration>ReleaseDLL</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleasefDLL|Win32">
+      <Configuration>ReleasefDLL</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BA82E328-6B3B-4265-B8B8-BA281B2A9A24}</ProjectGuid>
+    <RootNamespace>RM1_Ext</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\RacerMateOne\bin\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\RacerMateOne\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">..\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">..\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">..\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <CustomBuildStep>
+      <Command>
+      </Command>
+      <Outputs>%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\;.\include\;.\include\gen\;.\include\trainer\;$(SolutionDir)\DirectX\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_RM1_;WIN32;_DEBUG;_WINDOWS;_USRDLL;RM1_EXT_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>irrlichtf.lib;GLU32.LIB;gen_d.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\lib\;.\lib\Win32-visualstudio\;$(SolutionDir)\DirectX\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>libci.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>RM1_Ext.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>.\;.\include\;.\include\gen\;.\include\trainer\;$(SolutionDir)\DirectX\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_RM1_;WIN32;NDEBUG;_WINDOWS;_USRDLL;RM1_EXT_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>irrlichtf.lib;GLU32.LIB;gen.lib;winmm.lib;ddraw.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\lib\;.\lib\Win32-visualstudio\;$(SolutionDir)\DirectX\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>libci.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>RM1_Ext.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>.\;.\include\;.\include\gen\;.\include\trainer\;$(SolutionDir)\DirectX\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_RM1_;WIN32;NDEBUG;_WINDOWS;_USRDLL;RM1_EXT_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>irrlicht.lib;GLU32.LIB;gen.lib;winmm.lib;ddraw.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)RM1_Ext.dll</OutputFile>
+      <AdditionalLibraryDirectories>.\lib\;.\lib\Win32-visualstudio\;$(SolutionDir)\DirectX\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>libci.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>RM1_Ext.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\;.\include\;.\include\gen\;.\include\trainer\;$(SolutionDir)\DirectX\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_RM1_;WIN32;_DEBUG;_WINDOWS;_USRDLL;RM1_EXT_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>irrlichtf.lib;GLU32.LIB;gen_d.lib;winmm.lib;ddraw.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)RM1_Ext.dll</OutputFile>
+      <AdditionalLibraryDirectories>.\lib\;.\lib\Win32-visualstudio\;$(SolutionDir)\DirectX\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>libci.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>RM1_Ext.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>.\;.\include\;.\include\gen\;.\include\trainer\;$(SolutionDir)\DirectX\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_RM1_;WIN32;NDEBUG;_WINDOWS;_USRDLL;RM1_EXT_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>irrlichtf.lib;GLU32.LIB;gen.lib;winmm.lib;ddraw.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)RM1_Ext.dll</OutputFile>
+      <AdditionalLibraryDirectories>.\lib\;.\lib\Win32-visualstudio\;$(SolutionDir)\DirectX\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>libci.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>RM1_Ext.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="3DCData.cpp" />
+    <ClCompile Include="_kill_RM1.cpp" />
+    <ClCompile Include="CCourse.cpp" />
+    <ClCompile Include="ccourse_utils.cpp" />
+    <ClCompile Include="CCustomSceneNode.cpp" />
+    <ClCompile Include="CCustomTriangleSelector.cpp" />
+    <ClCompile Include="CDecalSceneNode.cpp" />
+    <ClCompile Include="CShadowSceneNode.cpp" />
+    <ClCompile Include="CSkywallTiledSceneNode.cpp" />
+    <ClCompile Include="CSpriteSceneNode.cpp" />
+    <ClCompile Include="D3DBase.cpp" />
+    <ClCompile Include="dllmain.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="RCVData.cpp" />
+    <ClCompile Include="Rider.cpp" />
+    <ClCompile Include="RM1_Ext.cpp" />
+    <ClCompile Include="SecFile.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="UpgradeCheck.cpp" />
+    <ClCompile Include="version_RM1.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="_kill_RM1.txt">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GenKill %(FullPath) %(RootDir)%(Directory)\_kill_RM1.cpp
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_kill_RM1.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <None Include="RM1_Ext.def" />
+    <CustomBuildStep Include="dll\irrKlang.dll">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="dll\Irrlicht.dll">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="dll\Irrlichtd.dll">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuild Include="dll\Irrlichtf.dll">
+      <Command Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">copy %(RootDir)%(Directory)%(Filename)%(Extension) $(OutDir)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">$(OutDir)%(Filename)%(Extension);%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlicht.exp">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlichtd.exp">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <None Include="lib\Win32-visualstudio\Irrlichtf.exp" />
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CCourse.h" />
+    <ClInclude Include="ccourse_utils.h" />
+    <ClInclude Include="CCustomSceneNode.h" />
+    <ClInclude Include="CCustomTriangleSelector.h" />
+    <ClInclude Include="CDecalSceneNode.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="coursefile.h" />
+    <ClInclude Include="CShadowSceneNode.h" />
+    <ClInclude Include="CSkywallTiledSceneNode.h" />
+    <ClInclude Include="CSpriteSceneNode.h" />
+    <ClInclude Include="D3DBase.h" />
+    <ClInclude Include="globals.h" />
+    <ClInclude Include="Keycode.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Rider.h" />
+    <ClInclude Include="SecFile.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="terrain.h" />
+    <ClInclude Include="tlist.h" />
+    <ClInclude Include="tools.h" />
+    <ClInclude Include="vdefines.h" />
+    <ClInclude Include="include\aabbox3d.h" />
+    <ClInclude Include="include\CDynamicMeshBuffer.h" />
+    <ClInclude Include="include\CIndexBuffer.h" />
+    <ClInclude Include="include\CMeshBuffer.h" />
+    <ClInclude Include="include\coreutil.h" />
+    <ClInclude Include="include\CVertexBuffer.h" />
+    <ClInclude Include="include\dimension2d.h" />
+    <ClInclude Include="include\driverChoice.h" />
+    <ClInclude Include="include\EAttributes.h" />
+    <ClInclude Include="include\ECullingTypes.h" />
+    <ClInclude Include="include\EDebugSceneTypes.h" />
+    <ClInclude Include="include\EDeviceTypes.h" />
+    <ClInclude Include="include\EDriverFeatures.h" />
+    <ClInclude Include="include\EDriverTypes.h" />
+    <ClInclude Include="include\EGUIAlignment.h" />
+    <ClInclude Include="include\EGUIElementTypes.h" />
+    <ClInclude Include="include\EHardwareBufferFlags.h" />
+    <ClInclude Include="include\EMaterialFlags.h" />
+    <ClInclude Include="include\EMaterialTypes.h" />
+    <ClInclude Include="include\EMeshWriterEnums.h" />
+    <ClInclude Include="include\EMessageBoxFlags.h" />
+    <ClInclude Include="include\EPrimitiveTypes.h" />
+    <ClInclude Include="include\ESceneNodeAnimatorTypes.h" />
+    <ClInclude Include="include\ESceneNodeTypes.h" />
+    <ClInclude Include="include\EShaderTypes.h" />
+    <ClInclude Include="include\ETerrainElements.h" />
+    <ClInclude Include="include\fast_atof.h" />
+    <ClInclude Include="include\heapsort.h" />
+    <ClInclude Include="include\IAnimatedMesh.h" />
+    <ClInclude Include="include\IAnimatedMeshMD2.h" />
+    <ClInclude Include="include\IAnimatedMeshMD3.h" />
+    <ClInclude Include="include\IAnimatedMeshSceneNode.h" />
+    <ClInclude Include="include\IAttributeExchangingObject.h" />
+    <ClInclude Include="include\IAttributes.h" />
+    <ClInclude Include="include\IBillboardSceneNode.h" />
+    <ClInclude Include="include\IBillboardTextSceneNode.h" />
+    <ClInclude Include="include\IBoneSceneNode.h" />
+    <ClInclude Include="include\ICameraSceneNode.h" />
+    <ClInclude Include="include\ICursorControl.h" />
+    <ClInclude Include="include\IDummyTransformationSceneNode.h" />
+    <ClInclude Include="include\IDynamicMeshBuffer.h" />
+    <ClInclude Include="include\IEventReceiver.h" />
+    <ClInclude Include="include\IFileArchive.h" />
+    <ClInclude Include="include\IFileList.h" />
+    <ClInclude Include="include\IFileSystem.h" />
+    <ClInclude Include="include\IGeometryCreator.h" />
+    <ClInclude Include="include\IGPUProgrammingServices.h" />
+    <ClInclude Include="include\IGUIButton.h" />
+    <ClInclude Include="include\IGUICheckBox.h" />
+    <ClInclude Include="include\IGUIColorSelectDialog.h" />
+    <ClInclude Include="include\IGUIComboBox.h" />
+    <ClInclude Include="include\IGUIContextMenu.h" />
+    <ClInclude Include="include\IGUIEditBox.h" />
+    <ClInclude Include="include\IGUIElement.h" />
+    <ClInclude Include="include\IGUIElementFactory.h" />
+    <ClInclude Include="include\IGUIEnvironment.h" />
+    <ClInclude Include="include\IGUIFileOpenDialog.h" />
+    <ClInclude Include="include\IGUIFont.h" />
+    <ClInclude Include="include\IGUIFontBitmap.h" />
+    <ClInclude Include="include\IGUIImage.h" />
+    <ClInclude Include="include\IGUIImageList.h" />
+    <ClInclude Include="include\IGUIInOutFader.h" />
+    <ClInclude Include="include\IGUIListBox.h" />
+    <ClInclude Include="include\IGUIMeshViewer.h" />
+    <ClInclude Include="include\IGUIScrollBar.h" />
+    <ClInclude Include="include\IGUISkin.h" />
+    <ClInclude Include="include\IGUISpinBox.h" />
+    <ClInclude Include="include\IGUISpriteBank.h" />
+    <ClInclude Include="include\IGUIStaticText.h" />
+    <ClInclude Include="include\IGUITabControl.h" />
+    <ClInclude Include="include\IGUITable.h" />
+    <ClInclude Include="include\IGUIToolbar.h" />
+    <ClInclude Include="include\IGUITreeView.h" />
+    <ClInclude Include="include\IGUIWindow.h" />
+    <ClInclude Include="include\IImage.h" />
+    <ClInclude Include="include\IImageLoader.h" />
+    <ClInclude Include="include\IImageWriter.h" />
+    <ClInclude Include="include\IIndexBuffer.h" />
+    <ClInclude Include="include\ILightManager.h" />
+    <ClInclude Include="include\ILightSceneNode.h" />
+    <ClInclude Include="include\ILogger.h" />
+    <ClInclude Include="include\IMaterialRenderer.h" />
+    <ClInclude Include="include\IMaterialRendererServices.h" />
+    <ClInclude Include="include\IMesh.h" />
+    <ClInclude Include="include\IMeshBuffer.h" />
+    <ClInclude Include="include\IMeshCache.h" />
+    <ClInclude Include="include\IMeshLoader.h" />
+    <ClInclude Include="include\IMeshManipulator.h" />
+    <ClInclude Include="include\IMeshSceneNode.h" />
+    <ClInclude Include="include\IMeshWriter.h" />
+    <ClInclude Include="include\IMetaTriangleSelector.h" />
+    <ClInclude Include="include\IOSOperator.h" />
+    <ClInclude Include="include\IParticleAffector.h" />
+    <ClInclude Include="include\IParticleAnimatedMeshSceneNodeEmitter.h" />
+    <ClInclude Include="include\IParticleAttractionAffector.h" />
+    <ClInclude Include="include\IParticleBoxEmitter.h" />
+    <ClInclude Include="include\IParticleCylinderEmitter.h" />
+    <ClInclude Include="include\IParticleEmitter.h" />
+    <ClInclude Include="include\IParticleFadeOutAffector.h" />
+    <ClInclude Include="include\IParticleGravityAffector.h" />
+    <ClInclude Include="include\IParticleMeshEmitter.h" />
+    <ClInclude Include="include\IParticleRingEmitter.h" />
+    <ClInclude Include="include\IParticleRotationAffector.h" />
+    <ClInclude Include="include\IParticleSphereEmitter.h" />
+    <ClInclude Include="include\IParticleSystemSceneNode.h" />
+    <ClInclude Include="include\IQ3LevelMesh.h" />
+    <ClInclude Include="include\IQ3Shader.h" />
+    <ClInclude Include="include\IReadFile.h" />
+    <ClInclude Include="include\IReferenceCounted.h" />
+    <ClInclude Include="include\irrAllocator.h" />
+    <ClInclude Include="include\irrArray.h" />
+    <ClInclude Include="include\IrrCompileConfig.h" />
+    <ClInclude Include="include\irrlicht.h" />
+    <ClInclude Include="include\IrrlichtDevice.h" />
+    <ClInclude Include="include\irrList.h" />
+    <ClInclude Include="include\irrMap.h" />
+    <ClInclude Include="include\irrMath.h" />
+    <ClInclude Include="include\irrString.h" />
+    <ClInclude Include="include\irrTypes.h" />
+    <ClInclude Include="include\irrXML.h" />
+    <ClInclude Include="include\ISceneCollisionManager.h" />
+    <ClInclude Include="include\ISceneManager.h" />
+    <ClInclude Include="include\ISceneNode.h" />
+    <ClInclude Include="include\ISceneNodeAnimator.h" />
+    <ClInclude Include="include\ISceneNodeAnimatorCameraFPS.h" />
+    <ClInclude Include="include\ISceneNodeAnimatorCameraMaya.h" />
+    <ClInclude Include="include\ISceneNodeAnimatorCollisionResponse.h" />
+    <ClInclude Include="include\ISceneNodeAnimatorFactory.h" />
+    <ClInclude Include="include\ISceneNodeFactory.h" />
+    <ClInclude Include="include\ISceneUserDataSerializer.h" />
+    <ClInclude Include="include\IShaderConstantSetCallBack.h" />
+    <ClInclude Include="include\IShadowVolumeSceneNode.h" />
+    <ClInclude Include="include\ISkinnedMesh.h" />
+    <ClInclude Include="include\ITerrainSceneNode.h" />
+    <ClInclude Include="include\ITextSceneNode.h" />
+    <ClInclude Include="include\ITexture.h" />
+    <ClInclude Include="include\ITimer.h" />
+    <ClInclude Include="include\ITriangleSelector.h" />
+    <ClInclude Include="include\IVertexBuffer.h" />
+    <ClInclude Include="include\IVideoDriver.h" />
+    <ClInclude Include="include\IVideoModeList.h" />
+    <ClInclude Include="include\IVolumeLightSceneNode.h" />
+    <ClInclude Include="include\IWriteFile.h" />
+    <ClInclude Include="include\IXMLReader.h" />
+    <ClInclude Include="include\IXMLWriter.h" />
+    <ClInclude Include="include\Keycodes.h" />
+    <ClInclude Include="include\line2d.h" />
+    <ClInclude Include="include\line3d.h" />
+    <ClInclude Include="include\matrix4.h" />
+    <ClInclude Include="include\path.h" />
+    <ClInclude Include="include\plane3d.h" />
+    <ClInclude Include="include\position2d.h" />
+    <ClInclude Include="include\quaternion.h" />
+    <ClInclude Include="include\rect.h" />
+    <ClInclude Include="include\S3DVertex.h" />
+    <ClInclude Include="include\SAnimatedMesh.h" />
+    <ClInclude Include="include\SceneParameters.h" />
+    <ClInclude Include="include\SColor.h" />
+    <ClInclude Include="include\SExposedVideoData.h" />
+    <ClInclude Include="include\SIrrCreationParameters.h" />
+    <ClInclude Include="include\SKeyMap.h" />
+    <ClInclude Include="include\SLight.h" />
+    <ClInclude Include="include\SMaterial.h" />
+    <ClInclude Include="include\SMaterialLayer.h" />
+    <ClInclude Include="include\SMesh.h" />
+    <ClInclude Include="include\SMeshBuffer.h" />
+    <ClInclude Include="include\SMeshBufferLightMap.h" />
+    <ClInclude Include="include\SMeshBufferTangents.h" />
+    <ClInclude Include="include\SParticle.h" />
+    <ClInclude Include="include\SSharedMeshBuffer.h" />
+    <ClInclude Include="include\SSkinMeshBuffer.h" />
+    <ClInclude Include="include\SVertexIndex.h" />
+    <ClInclude Include="include\SVertexManipulator.h" />
+    <ClInclude Include="include\SViewFrustum.h" />
+    <ClInclude Include="include\triangle3d.h" />
+    <ClInclude Include="include\vector2d.h" />
+    <ClInclude Include="include\vector3d.h" />
+    <ClInclude Include="include\trainer\beep2.h" />
+    <ClInclude Include="include\trainer\bike.h" />
+    <ClInclude Include="include\trainer\commtest.h" />
+    <ClInclude Include="include\trainer\config.h" />
+    <ClInclude Include="include\trainer\course.h" />
+    <ClInclude Include="include\trainer\dataSource.h" />
+    <ClInclude Include="include\trainer\Decoder.h" />
+    <ClInclude Include="include\trainer\demodecoder.h" />
+    <ClInclude Include="include\trainer\demosource.h" />
+    <ClInclude Include="include\trainer\dx7.h" />
+    <ClInclude Include="include\trainer\ergocourse.h" />
+    <ClInclude Include="include\trainer\formula.h" />
+    <ClInclude Include="include\trainer\handlebardecoder.h" />
+    <ClInclude Include="include\trainer\handlebarRTD.h" />
+    <ClInclude Include="include\trainer\heartrate.h" />
+    <ClInclude Include="include\trainer\hue.h" />
+    <ClInclude Include="include\trainer\jimData.h" />
+    <ClInclude Include="include\trainer\jimdecoder.h" />
+    <ClInclude Include="include\trainer\mbox.h" />
+    <ClInclude Include="include\trainer\mfd.h" />
+    <ClInclude Include="include\trainer\oldss.h" />
+    <ClInclude Include="include\trainer\perfdecoder.h" />
+    <ClInclude Include="include\trainer\perfsource.h" />
+    <ClInclude Include="include\trainer\physics.h" />
+    <ClInclude Include="include\trainer\preveldata.h" />
+    <ClInclude Include="include\trainer\regularCourse.h" />
+    <ClInclude Include="include\trainer\resources.h" />
+    <ClInclude Include="include\trainer\rtd.h" />
+    <ClInclude Include="include\trainer\ss.h" />
+    <ClInclude Include="include\trainer\types.h" />
+    <ClInclude Include="include\trainer\user.h" />
+    <ClInclude Include="include\trainer\vdefines.h" />
+    <ClInclude Include="include\trainer\velotrondecoder.h" />
+    <ClInclude Include="include\trainer\velotronrtd.h" />
+    <ClInclude Include="include\trainer\vutils.h" />
+    <ClInclude Include="include\trainer\willcourse.h" />
+    <ClInclude Include="include\gen\amplifier.h" />
+    <ClInclude Include="include\gen\axis.h" />
+    <ClInclude Include="include\gen\beepsound.h" />
+    <ClInclude Include="include\gen\button.h" />
+    <ClInclude Include="include\gen\colorselector.h" />
+    <ClInclude Include="include\gen\crc.h" />
+    <ClInclude Include="include\gen\crf.h" />
+    <ClInclude Include="include\gen\defines.h" />
+    <ClInclude Include="include\gen\fatalerror.h" />
+    <ClInclude Include="include\gen\fileselector.h" />
+    <ClInclude Include="include\gen\float2d.h" />
+    <ClInclude Include="include\gen\gentypes.h" />
+    <ClInclude Include="include\gen\genutils.h" />
+    <ClInclude Include="include\gen\ini.h" />
+    <ClInclude Include="include\gen\logger.h" />
+    <ClInclude Include="include\gen\lpfilter.h" />
+    <ClInclude Include="include\gen\md5.h" />
+    <ClInclude Include="include\gen\modaldialog.h" />
+    <ClInclude Include="include\gen\modallistbox.h" />
+    <ClInclude Include="include\gen\progressbar.h" />
+    <ClInclude Include="include\gen\repeater.h" />
+    <ClInclude Include="include\gen\round.h" />
+    <ClInclude Include="include\gen\scaler.h" />
+    <ClInclude Include="include\gen\seh.h" />
+    <ClInclude Include="include\gen\serial.h" />
+    <ClInclude Include="include\gen\signalstrengthmeter.h" />
+    <ClInclude Include="include\gen\smav.h" />
+    <ClInclude Include="include\gen\statictext.h" />
+    <ClInclude Include="include\gen\statusdlg.h" />
+    <ClInclude Include="include\gen\twopolefilter.h" />
+    <ClInclude Include="include\gen\utils.h" />
+    <ClInclude Include="include\gen\utilsclass.h" />
+    <ClInclude Include="include\gen\warnings.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="lib\gen.lib">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\gen_d.lib">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\trainer.lib">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\trainer_d.lib">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlicht.lib">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlichtd.lib">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <Library Include="lib\Win32-visualstudio\Irrlichtf.lib" />
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlichts.lib">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlichtsd.lib">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleasefDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="lib\Win32-visualstudio\Irrlichtsf.lib">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

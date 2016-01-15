@@ -1,0 +1,20 @@
+﻿<Window x:Class="RacerMateOne.Dialogs.GpxImportTrackSelector"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+    Title="GPX File Tracks" 
+    Name="GpxTrackSelector" Background="#76a7ca"
+	HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontSize="20" FontFamily="Arial" Height="280" Width="505">
+    <Window.Resources>
+    </Window.Resources>
+    <Grid>
+            <c:LogoAbout Grid.ColumnSpan="2" />
+            <Label Style="{DynamicResource TopLine}" FontSize="35" Height="49" Margin="213.525,18,20.525,0" Foreground="White" VerticalAlignment="Top" Grid.ColumnSpan="2">GPX File Import</Label>
+            <TextBlock FontSize="15" Margin="30,69,29,0" Name="TextBlock1" TextWrapping="Wrap" Height="47" VerticalAlignment="Top" Grid.ColumnSpan="2">There is more than one track in the selected file.  Please select one to import.</TextBlock>
+            <ListBox Margin="45,112,46,43" x:Name="ListGpxTracks" />
+        <Button Height="27" FontSize="15" Margin="0,0,89,7" Name="ButtonOk" VerticalAlignment="Bottom" IsTabStop="True" Click="ButtonOk_Click" HorizontalAlignment="Right" Width="71">OK</Button>
+        <Button Height="27" FontSize="15"  HorizontalAlignment="Right" Margin="0,0,17,7" Name="ButtonCancel" VerticalAlignment="Bottom" Width="67" Click="ButtonCancel_Click" Grid.Column="1" >Cancel</Button>
+    </Grid>
+</Window>

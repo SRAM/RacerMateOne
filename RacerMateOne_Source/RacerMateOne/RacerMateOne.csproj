@@ -1,0 +1,2354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8EAE976C-256E-4390-A2FF-4F0778533EFB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RacerMateOne</RootNamespace>
+    <AssemblyName>RacerMateOne</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <ApplicationIcon>Resources\RM1.ico</ApplicationIcon>
+    <StartupObject>RacerMateOne.App</StartupObject>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetZone>LocalIntranet</TargetZone>
+    <GenerateManifests>true</GenerateManifests>
+    <ManifestCertificateThumbprint>DB8F301E24F997C70283521AF0757C3B250DC2AB</ManifestCertificateThumbprint>
+    <ManifestKeyFile>RacerMateOne_TemporaryKey.pfx</ManifestKeyFile>
+    <SignManifests>false</SignManifests>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>\\EDGARCT-PC\Shared\RacerMate\Publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>false</MapFileExtensions>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>index.html</WebPage>
+    <ApplicationRevision>11</ApplicationRevision>
+    <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ExpressionBlendVersion>5.2.30810.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<IntermediateOutputPath>c:\temp\</IntermediateOutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DirectShowLib-2005, Version=2.0.0.0, Culture=neutral, PublicKeyToken=67e7b740cdfc2d3f, processorArchitecture=MSIL" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="PresentationFramework.Classic" />
+    <Reference Include="PresentationFramework.Luna" />
+    <Reference Include="PresentationFramework.Royale" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="AppWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\BarSpinScan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Busy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ButtonBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ColorBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ColorPickerControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Control_Selection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ModeDisplayPartners.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\LineGraphReview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CoursePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CourseEditorDev\CourseEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CourseEditorDev\Dialogs\CourseSelection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CourseEditorDev\Dialogs\FileSlection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CourseEditorDev\Dialogs\InfoDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CourseEditorDev\Dialogs\OkCancelDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CourseEditorDev\Dialogs\SegmentEditDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CourseEditorDev\Options\SetGearTeeth2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CourseEditorDev\Resources\PillButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CourseEditorDev\SplashWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\_Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Properties\DesignTimeResources.xaml" Condition="'$(DesignTime)'=='true' OR ('$(SolutionPath)'!='' AND Exists('$(SolutionPath)') AND '$(BuildingInsideVisualStudio)'!='true' AND '$(BuildingInsideExpressionBlend)'!='true')">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="Themes\BlendStyleScrollBarResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MiscAdded.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MiscResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\RacerResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\RacerScrollBarResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ScrollBarResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\SliderResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\StatsBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RangeSlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TimerExLeft.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RaceCourseDisplayOld.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CountDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CountDown_Old.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CourseControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CourseDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CourseDisplayEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CoursePickerLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\D3DBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\DemoBikeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Gear.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\GlowClick.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\HardwareLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\HoverBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\InfoLineTop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\LineGraph.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\LogoAbout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Option.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Fade.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Pillbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ModeDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\PlainButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\PolarSpinScan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RaceCourseDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RCV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RCVPreview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Render3DFrame.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Render3DView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ReverseBorder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RiderPickerLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RM1PageTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RTabSmall.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SpinScan3D.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SpinScanBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\StatsArea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\StatsLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\StatsLineSmall.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TextButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Timer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TimerEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\UnitCycle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\UnitsDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\UpDownCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\AdvancedColorPickerDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Ask.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\JustInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ExportPerformance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ReportQuestions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Edit_PerformanceBot.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Edit_PercentBot.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Edit_AIBot.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Edit_HRBot.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Edit_Bot.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Edit_WattsBot.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Edit_DelayBot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\HardwareLine_Select.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\SavePerformance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TextLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Window_CustomLoadBackupFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Mode_Calibration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Mode_Accuwatt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Basic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Blank.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Calibration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ComingSoon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Cedits.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\GPXImportTrackSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Dialogs\SetGearTeeth1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\Accuwatt_hold.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\ClassicMultiRider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\Calibrate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\Calibrate2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\Accuwatt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\PowerTraining_Review.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\Loader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\SpinScan_Review.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\RCV_Split.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\RCV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\SpinScan.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\PowerTraining.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\zzz_RCV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\Ride3D.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\Scanning.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\zzz_SpinScan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Modes\Staging.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RideOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RideOptionsAll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Selection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SelectRider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Splash.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Start\PreviewWarning.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Start\FirstUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Start\ImportCSV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Start\Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Start\RunCalibration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Start\Registration_Send.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Start\Welcome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\StyleSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Window_Log.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Window_Welcome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Window_ImportCSV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppWin.xaml.cs">
+      <DependentUpon>AppWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bot.cs" />
+    <Compile Include="BrowserClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\BaseUnit.cs" />
+    <Compile Include="CommonDialogWrappers.cs" />
+    <Compile Include="Controls\BarSpinScan.xaml.cs">
+      <DependentUpon>BarSpinScan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Busy.xaml.cs">
+      <DependentUpon>Busy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ButtonBox.xaml.cs">
+      <DependentUpon>ButtonBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BaseClick.cs" />
+    <Compile Include="Controls\ColorBox.xaml.cs">
+      <DependentUpon>ColorBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColorPickerControlView.xaml.cs">
+      <DependentUpon>ColorPickerControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Control_Selection.xaml.cs">
+      <DependentUpon>Control_Selection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ModeDisplayPartners.xaml.cs">
+      <DependentUpon>ModeDisplayPartners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LineGraphReview.xaml.cs">
+      <DependentUpon>LineGraphReview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CoursePicker.xaml.cs">
+      <DependentUpon>CoursePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatsBox.xaml.cs">
+      <DependentUpon>StatsBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RangeSlider.xaml.cs">
+      <DependentUpon>RangeSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TimerExLeft.xaml.cs">
+      <DependentUpon>TimerExLeft.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RaceCourseDisplayOld.xaml.cs">
+      <DependentUpon>RaceCourseDisplayOld.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CountDown.xaml.cs">
+      <DependentUpon>CountDown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CountDown_Old.xaml.cs">
+      <DependentUpon>CountDown_Old.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CourseControl.xaml.cs">
+      <DependentUpon>CourseControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CourseDisplay.xaml.cs">
+      <DependentUpon>CourseDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CourseDisplayEx.xaml.cs">
+      <DependentUpon>CourseDisplayEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CoursePickerLine.xaml.cs">
+      <DependentUpon>CoursePickerLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\D3DBase.xaml.cs">
+      <DependentUpon>D3DBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DemoBikeView.xaml.cs">
+      <DependentUpon>DemoBikeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Gear.xaml.cs">
+      <DependentUpon>Gear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GlowClick.xaml.cs">
+      <DependentUpon>GlowClick.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HardwareLine.xaml.cs">
+      <DependentUpon>HardwareLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HoverBox.xaml.cs">
+      <DependentUpon>HoverBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InfoLineTop.xaml.cs">
+      <DependentUpon>InfoLineTop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LineGraph.xaml.cs">
+      <DependentUpon>LineGraph.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LogoAbout.xaml.cs">
+      <DependentUpon>LogoAbout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Option.xaml.cs">
+      <DependentUpon>Option.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Fade.xaml.cs">
+      <DependentUpon>Fade.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Pillbox.xaml.cs">
+      <DependentUpon>Pillbox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ModeDisplay.xaml.cs">
+      <DependentUpon>ModeDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PlainButton.xaml.cs">
+      <DependentUpon>PlainButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PolarSpinScan.xaml.cs">
+      <DependentUpon>PolarSpinScan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RaceCourseDisplay.xaml.cs">
+      <DependentUpon>RaceCourseDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RandomImage.cs" />
+    <Compile Include="Controls\RCV.xaml.cs">
+      <DependentUpon>RCV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RCVPreview.xaml.cs">
+      <DependentUpon>RCVPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Render3D.xaml.cs" />
+    <Compile Include="Controls\Render3DFrame.xaml.cs">
+      <DependentUpon>Render3DFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Render3DView.xaml.cs">
+      <DependentUpon>Render3DView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ReverseBorder.xaml.cs">
+      <DependentUpon>ReverseBorder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RiderPickerLine.xaml.cs">
+      <DependentUpon>RiderPickerLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RM1PageTitle.xaml.cs">
+      <DependentUpon>RM1PageTitle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RTab.xaml.cs">
+      <DependentUpon>RTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RTabSmall.xaml.cs">
+      <DependentUpon>RTabSmall.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SpinScan3D.xaml.cs">
+      <DependentUpon>SpinScan3D.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SpinScanBox.xaml.cs">
+      <DependentUpon>SpinScanBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatsArea.xaml.cs">
+      <DependentUpon>StatsArea.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatsLine.xaml.cs">
+      <DependentUpon>StatsLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatsLineSmall.xaml.cs">
+      <DependentUpon>StatsLineSmall.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextButton.xaml.cs">
+      <DependentUpon>TextButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Timer.xaml.cs">
+      <DependentUpon>Timer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TimerEx.xaml.cs">
+      <DependentUpon>TimerEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UnitCycle.xaml.cs">
+      <DependentUpon>UnitCycle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UnitsDisplay.xaml.cs">
+      <DependentUpon>UnitsDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UpDownCtrl.xaml.cs">
+      <DependentUpon>UpDownCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CourseEditorDev\AttachedProperties\ListBoxExtenders.cs" />
+    <Compile Include="CourseEditorDev\AttachedProperties\TextBoxMaskBehavior.cs" />
+    <Compile Include="CourseEditorDev\Converters\BackgroundConverter.cs" />
+    <Compile Include="CourseEditorDev\Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="CourseEditorDev\Converters\CombindConverter.cs" />
+    <Compile Include="CourseEditorDev\Converters\DateToStringConverter.cs" />
+    <Compile Include="CourseEditorDev\Converters\DecimalPlacesConverter.cs" />
+    <Compile Include="CourseEditorDev\Converters\DistanceConverter.cs" />
+    <Compile Include="CourseEditorDev\Converters\DoubleToStringConverter.cs" />
+    <Compile Include="CourseEditorDev\Converters\IntToVisibilitycs.cs" />
+    <Compile Include="CourseEditorDev\Converters\IsMetricConverter.cs" />
+    <Compile Include="CourseEditorDev\Converters\PathConverter.cs" />
+    <Compile Include="CourseEditorDev\Converters\RoundConverter.cs" />
+    <Compile Include="CourseEditorDev\Converters\TimeConverter.cs" />
+    <Compile Include="CourseEditorDev\Converters\VisibilityMode.cs" />
+    <Compile Include="CourseEditorDev\Converters\WindConverter.cs" />
+    <Compile Include="CourseEditorDev\CourseEditorViewModel.cs" />
+    <Compile Include="CourseEditorDev\CourseUnits.cs" />
+    <Compile Include="CourseEditorDev\CourseEditor.xaml.cs">
+      <DependentUpon>CourseEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CourseEditorDev\Dialogs\CourseSelection.xaml.cs">
+      <DependentUpon>CourseSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CourseEditorDev\Dialogs\FileSlection.xaml.cs">
+      <DependentUpon>FileSlection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CourseEditorDev\Dialogs\InfoDialog.xaml.cs">
+      <DependentUpon>InfoDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CourseEditorDev\Dialogs\OkCancelDialog.xaml.cs">
+      <DependentUpon>OkCancelDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CourseEditorDev\Dialogs\SegmentEditDialog.xaml.cs">
+      <DependentUpon>SegmentEditDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CourseEditorDev\EnumTpes.cs" />
+    <Compile Include="CourseEditorDev\FileSelectionViewModel.cs" />
+    <Compile Include="CourseEditorDev\GPXLoader.cs" />
+    <Compile Include="CourseEditorDev\Options\BicycleRider.cs" />
+    <Compile Include="CourseEditorDev\Options\RiderExtended2.cs" />
+    <Compile Include="CourseEditorDev\Options\SetGearTeeth2.xaml.cs">
+      <DependentUpon>SetGearTeeth2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CourseEditorDev\PolygonData.cs" />
+    <Compile Include="CourseEditorDev\RacerMateHeader.cs" />
+    <Compile Include="CourseEditorDev\RacerMateInfo.cs" />
+    <Compile Include="CourseEditorDev\SplashWindow.xaml.cs">
+      <DependentUpon>SplashWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CourseEditorDev\Ulilities.cs" />
+    <Compile Include="Course.cs" />
+    <Compile Include="CustomClass_RacerMatePaths.cs" />
+    <Compile Include="CustomControl1.cs" />
+    <Compile Include="Dialogs\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AdvancedColorPickerDialog.xaml.cs">
+      <DependentUpon>AdvancedColorPickerDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Ask.xaml.cs">
+      <DependentUpon>Ask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\JustInfo.xaml.cs">
+      <DependentUpon>JustInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ExportPerformance.xaml.cs">
+      <DependentUpon>ExportPerformance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ReportQuestions.xaml.cs">
+      <DependentUpon>ReportQuestions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_PerformanceBot.xaml.cs">
+      <DependentUpon>Edit_PerformanceBot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_PercentBot.xaml.cs">
+      <DependentUpon>Edit_PercentBot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_AIBot.xaml.cs">
+      <DependentUpon>Edit_AIBot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_HRBot.xaml.cs">
+      <DependentUpon>Edit_HRBot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_Bot.xaml.cs">
+      <DependentUpon>Edit_Bot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_WattsBot.xaml.cs">
+      <DependentUpon>Edit_WattsBot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_DelayBot.xaml.cs">
+      <DependentUpon>Edit_DelayBot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\HardwareLine_Select.xaml.cs">
+      <DependentUpon>HardwareLine_Select.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SavePerformance.xaml.cs">
+      <DependentUpon>SavePerformance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TextLine.xaml.cs">
+      <DependentUpon>TextLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs" />
+    <Compile Include="Pages\Basic.xaml.cs">
+      <DependentUpon>Basic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ComingSoon.xaml.cs">
+      <DependentUpon>ComingSoon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Cedits.xaml.cs">
+      <DependentUpon>Cedits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\GPXImportTrackSelector.xaml.cs">
+      <DependentUpon>GPXImportTrackSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Accuwatt_hold.xaml.cs">
+      <DependentUpon>Accuwatt_hold.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\ClassicMultiRider.xaml.cs">
+      <DependentUpon>ClassicMultiRider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Calibrate.xaml.cs">
+      <DependentUpon>Calibrate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Calibrate2.xaml.cs">
+      <DependentUpon>Calibrate2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Accuwatt.xaml.cs">
+      <DependentUpon>Accuwatt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GPXLoader.cs" />
+    <Compile Include="Pages\Modes\ListBoxExtenders.cs" />
+    <Compile Include="Pages\Modes\PowerTraining_Review.xaml.cs">
+      <DependentUpon>PowerTraining_Review.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Loader.xaml.cs">
+      <DependentUpon>Loader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\ReviewBase.cs" />
+    <Compile Include="Pages\Modes\SpinScan_Review.xaml.cs">
+      <DependentUpon>SpinScan_Review.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\RCV_Split.xaml.cs">
+      <DependentUpon>RCV_Split.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\RCV.xaml.cs">
+      <DependentUpon>RCV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\SpinScan.xaml.cs">
+      <DependentUpon>SpinScan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\SavePerformance.cs" />
+    <Compile Include="Pages\Modes\Staging.xaml.cs">
+      <DependentUpon>Staging.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\PreviewWarning.xaml.cs">
+      <DependentUpon>PreviewWarning.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\Registration.xaml.cs">
+      <DependentUpon>Registration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\Registration_Send.xaml.cs">
+      <DependentUpon>Registration_Send.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TagPage.cs" />
+    <Compile Include="PerfFrame.cs" />
+    <Compile Include="Pages\Modes\PowerTraining.xaml.cs">
+      <DependentUpon>PowerTraining.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\zzz_RCV.xaml.cs">
+      <DependentUpon>zzz_RCV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Ride3D.xaml.cs">
+      <DependentUpon>Ride3D.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\RideBase.cs" />
+    <Compile Include="Pages\Modes\zzz_SpinScan.xaml.cs">
+      <DependentUpon>zzz_SpinScan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SelectRider.xaml.cs">
+      <DependentUpon>SelectRider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReferenceClock.cs" />
+    <Compile Include="ReportColumns.cs" />
+    <Compile Include="RiderGroup.cs" />
+    <Compile Include="Riders.cs" />
+    <Compile Include="Dialogs\Mode_Calibration.xaml.cs">
+      <DependentUpon>Mode_Calibration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Mode_Accuwatt.xaml.cs">
+      <DependentUpon>Mode_Accuwatt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Blank.xaml.cs">
+      <DependentUpon>Blank.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Calibration.xaml.cs">
+      <DependentUpon>Calibration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Dialogs\SetGearTeeth1.xaml.cs">
+      <DependentUpon>SetGearTeeth1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Scanning.xaml.cs">
+      <DependentUpon>Scanning.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RideOptions.xaml.cs">
+      <DependentUpon>RideOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RideOptionsAll.xaml.cs">
+      <DependentUpon>RideOptionsAll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Selection.xaml.cs">
+      <DependentUpon>Selection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Splash.xaml.cs">
+      <DependentUpon>Splash.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\FirstUsers.xaml.cs">
+      <DependentUpon>FirstUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\ImportCSV.xaml.cs">
+      <DependentUpon>ImportCSV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\RunCalibration.xaml.cs">
+      <DependentUpon>RunCalibration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\Welcome.xaml.cs">
+      <DependentUpon>Welcome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StyleSheet.xaml.cs">
+      <DependentUpon>StyleSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Rider.cs" />
+    <Compile Include="RideSpec.cs" />
+    <Compile Include="RM1.cs" />
+    <Compile Include="RM1_Commands.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Behaviors.cs" />
+    <Compile Include="Statistics.cs" />
+    <Compile Include="TrainerUserConfigurable.cs" />
+    <Compile Include="Dialogs\Window_CustomLoadBackupFile.xaml.cs">
+      <DependentUpon>Window_CustomLoadBackupFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Window_Log.xaml.cs">
+      <DependentUpon>Window_Log.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Window_Welcome.xaml.cs">
+      <DependentUpon>Window_Welcome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Window_ImportCSV.xaml.cs">
+      <DependentUpon>Window_ImportCSV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Unit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XmlStream.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Resource Include="CourseEditorDev\Images\Bicycle.png" />
+    <Resource Include="CourseEditorDev\Images\Gears.png" />
+    <Resource Include="CourseEditorDev\Images\wind.png" />
+    <Resource Include="CourseEditorDev\Images\windEmpty.png" />
+    <Resource Include="CourseEditorDev\Images\windNagative.png" />
+    <Resource Include="CourseEditorDev\Images\L1.png" />
+    <Resource Include="CourseEditorDev\Images\L2.png" />
+    <Resource Include="CourseEditorDev\Images\L3.png" />
+    <Resource Include="CourseEditorDev\Images\S10.png" />
+    <Resource Include="CourseEditorDev\Images\S2.png" />
+    <Resource Include="CourseEditorDev\Images\S3.png" />
+    <Resource Include="CourseEditorDev\Images\S4.png" />
+    <Resource Include="CourseEditorDev\Images\S5.png" />
+    <Resource Include="CourseEditorDev\Images\S6.png" />
+    <Resource Include="CourseEditorDev\Images\S7.png" />
+    <Resource Include="CourseEditorDev\Images\S8.png" />
+    <Resource Include="CourseEditorDev\Images\S9.png" />
+    <Resource Include="CourseEditorDev\Images\S1.png" />
+    <Content Include="Media\courses\c.3dc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\courses\Lastcrs.3dc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\banner.x">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\banner2.x">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\BIKE_Frame_Gold.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\BIKE_Frame_Nuetral.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Box_Test.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\detailmap.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Lastcrs.3dc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerMale_Access.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerMale_Body.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerMale_WhiteGray.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerMate_ShirtGray.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerMate_ShortsGray.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_Chrome.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\THREE21.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\UV.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\Standard.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\StandardCC.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\StandardNRL.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\Atlanta.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\AtlantaCC.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\AtlantaNRL.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\OKFalls.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\OKFallsCC.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\OKFallsNRL.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\PentictonBC.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\PentictonBCCC.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\PentictonBCNRL.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\Teton.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\TetonCC.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\TetonNRL.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerFemale_RedBlue.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerChrome_Body.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerFemale_Body.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerFemale_WhiteGray.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerGold_Body.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_Gold.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Signs.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_Chrome.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_ChromeFemale.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_ChromeMale.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_Gold.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Banner_Finish.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Banner_Start.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Gate.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\racer_logo_new.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_OldBikeFemale.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_OldBikeMale.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerMateOne-Logo.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Courses\Distance and Grade\Warmup_3dc.rmc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RacerMateOne_TemporaryKey.pfx" />
+    <None Include="unpatch.bat" />
+    <None Include="updatepatch.bat" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RM1_RideOutput.xml" />
+    <Resource Include="RM1_RiderDB.xml" />
+    <Resource Include="RM1_Settings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Stop.png" />
+    <Resource Include="Resources\Ok.png" />
+    <Content Include="RM1_DefaultSettings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Art\Reports\aboutyou.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\Reports\tourlogosmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\Reports\urllogosmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\Training Gym Logo\GymLogo-170x70.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\3DCycling-200x160.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\ClassicMultiRider-200x160.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Edit.png" />
+    <Content Include="Art\UI\ErgVideo-200x160.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\PowerTraining-200x160.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\RealCourseVideo-200x160.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Bike-DanPlastina.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Bike-Gary.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Biker-Carfrae.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Biker-Gushe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Biker-Llamos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Biker-Potts.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Biker-Ruyack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Biker-Sheides.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Biker-Snow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SpinScan-200x160.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\BikeRider.png" />
+    <Resource Include="Resources\Logo.png" />
+    <Resource Include="Resources\Pillbox_Left.png" />
+    <Resource Include="Resources\Pillbox_Mid.png" />
+    <Resource Include="Resources\Pillbox_Right.png" />
+    <Resource Include="Resources\RM1.ico" />
+    <Resource Include="Resources\ComingSoon.png" />
+    <Resource Include="Resources\Trash.png" />
+    <Content Include="Help\3D_Cycling.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Accuwatt_Tips.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Accuwatt_VT.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Classic_MultiRider.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\HB_KeysVeloTron.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\updates.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Course_Creator.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Course_Profile_Edit.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Customize_Report.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Definitions.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\DemoMode.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\DragFactor.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\First_Use.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Hardware_Detect.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\heartrate.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\help.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3DC-Examples.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3Dcollage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3Dcollage_small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3DCyclingSetup-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3DCyclingSetup.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3Dw_pacers.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3Dw_pacers_s.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Accuwatt-Results-Velotron.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Accuwatt-Setup-Velotron.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Balloon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Bargraph-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Bargraph.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_extra2-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_extra2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Inst.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Inst_S.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Polar-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Polar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Result-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Result.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_UNCAL.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_UNCAL_S.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\HB_KeysCompuTrainer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course-Creator-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course-Creator.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course_Sorting-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course_Sorting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course_Sort_click-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course_Sort_click.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\DataFull-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\DataFull.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\DataSplit-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\DataSplit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\DragFactor-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\DragFactor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\End-at.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\ExistingAccount-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\ExistingAccount.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Export_Q.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\FTDIUSBstereosmall.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\HeartRate-Settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\IMG_0043.JPG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\IMG_0108.JPG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\LaunchPad-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\LaunchPad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\ManualRegistration-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\ManualRegistration.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Multi-Rider-Options-Selector.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Multi-Rider-Selector-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Multi-Rider-Selector.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\MultiRider-Coach.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\MultiRider-Settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\MultiRider-TeamTimeTrials.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\MultiRider-Test-TeamTimeTrial.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\MultiRider-TimeTrials.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\New RM1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\New-Account-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\New-Account.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Advanced-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Advanced.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Display-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Display.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Display_custom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Display_custom_sm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-File-Saving-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-File-Saving.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Hardware-Identify-s.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Hardware-Identify.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Hardware-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Hardware.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Riders-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Riders.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options_Riders_Velotron.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options_Riders_Velotron_s.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Pacer_Assignment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Pacer_Assignment_s.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Partners.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PowerTraining-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PowerTraining.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PowerTrainingGradeManual.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PowerTrainingWattsManual.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\ProfileReverse.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Profile_Desc-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Profile_Desc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTraining-GradeCourse.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTraining-GradeCoursesmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTraining-GradeStartEnd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTraining-GradeStartEndsmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTraining-GradeZoom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTraining-GradeZoomsmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTrainingATMan-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTrainingATMan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTrainingGradeManual-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTrainingWattsMan-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTrainingWattsMan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_DF_Adjust.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_DF_Adjust_small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_Erg-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_Erg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_Erg_StartEnd-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_Erg_StartEnd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_Erg_StartEnd_zoom-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_Erg_StartEnd_zoom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\RCV-Examples.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\RCV-Setttings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\RCVthumb-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\RCVthumb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\report.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\reportsmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\scroll bar-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\scroll bar.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Calibrate.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-CompuTrainer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Looking-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Looking.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-NoHardwareFound.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Riders-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Riders.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Use-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Use.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\SpinScan-Settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\SpinScan-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\SpinScan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Start-From.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Start_Cal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Start_Cal_S.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\stereo_cable.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\TrackingTrue.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Zoom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Key_presses_shortcuts.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Launchpad.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Manual_AT.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Manual_Grade.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Manual_Watts.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Options_Advanced.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Options_Display.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Options_File_Saving.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Options_Hardware.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Options_Riders.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Partners.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Pick_Course_Ergo.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Pick_Course_WL.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Pick_Rider.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Power_Training.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Real_Course_Video.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Real_Course_Video_reg.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Register_RM1.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\RM1.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\RM_Hardware.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Rolling_Calibration_CT.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\SpinScan-BillEdwards.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\SpinScan.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\troubleshoot.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Velotron_Gearing.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\InsetLegs.png" />
+    <Resource Include="Resources\LegEdit.png" />
+    <Content Include="Resources\RM1_RideInput.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\RM1_RideOutput.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\ZRes_Icon.ico" />
+    <Resource Include="RM1.ico">
+    </Resource>
+    <Resource Include="Resources\BikeRider2.png" />
+    <Content Include="Resources\RM1Logo.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Options.png" />
+    <Resource Include="Resources\Course_City.png" />
+    <Resource Include="Resources\Course_NoRoadLines.png" />
+    <Resource Include="Resources\Course_Standard.png" />
+    <Resource Include="Resources\Pad.png" />
+    <Resource Include="Resources\ComputrainerOverlay.png" />
+    <Resource Include="Resources\RCV.jpg" />
+    <Resource Include="Resources\OptionCog.png" />
+    <Resource Include="Resources\BikeIcon.png" />
+    <Resource Include="Resources\RacerMateOne-Logo.png" />
+    <Resource Include="Resources\NoSign.png" />
+    <Resource Include="Resources\Icon_OutAndBack.png" />
+    <Resource Include="Resources\Icon_Reverse.png" />
+    <Resource Include="Resources\F1.jpg" />
+    <Resource Include="Resources\F2.jpg" />
+    <Resource Include="Resources\F3.jpg" />
+    <Resource Include="Resources\Fn.jpg" />
+    <Resource Include="Resources\F_down.jpg" />
+    <Resource Include="Resources\F_up.jpg" />
+    <None Include="CleanSettings.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ErrorReport.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Irrlichtf.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Render3DView_Placeholder.jpg" />
+    <Resource Include="Resources\Heart28x23.png" />
+    <Content Include="Media\Atlanta.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\AtlantaCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\AtlantaNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Banner.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\chrome2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\D3DConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\detailmap3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Finish.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\gold2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\HappyTest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\help.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\lucida.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\lucida0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Numbers.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\open.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\skydome.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\skydome2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\skydome5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\tools.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\zip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\OKFalls.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\OKFallsCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\OKFallsNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\PentictonBC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\PentictonBCCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\PentictonBCNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\ptdesert.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\PtdesertCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\PtdesertNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\ptdesert.zip" />
+    <Content Include="Media\scenes\PtdesertCC.zip" />
+    <Content Include="Media\scenes\PtdesertNRL.zip" />
+    <Content Include="Media\scenes\seattle.zip" />
+    <Content Include="Media\scenes\SeattleCC.zip" />
+    <Content Include="Media\scenes\SeattleNRL.zip" />
+    <Content Include="Media\seattle.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\SeattleCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\SeattleNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\Standard.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\StandardCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\StandardNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\Teton.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\TetonCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\TetonNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\wind.png" />
+    <Resource Include="Resources\windEmpty.png" />
+    <Resource Include="Resources\windNagative.png" />
+    <Resource Include="Resources\PBCenter.png" />
+    <Resource Include="Resources\PBLeft.png" />
+    <Resource Include="Resources\PBRight.png" />
+    <Resource Include="Resources\colorChart.PNG" />
+    <Resource Include="Resources\PressAnyPadKey.jpg" />
+    <Resource Include="Resources\PressOn.jpg" />
+    <Resource Include="Resources\Velotron.jpg" />
+    <EmbeddedResource Include="Templates\RunLog.xml" />
+    <EmbeddedResource Include="Templates\RunLog.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WPFMediaKit\WPFMediaKit.csproj">
+      <Project>{6030628D-EE93-4D61-B6BE-8B6AE99F3935}</Project>
+      <Name>WPFMediaKit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\Stats\" />
+    <Folder Include="obj\" />
+    <Folder Include="UserPersonal\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets. 
+  <Target Name="BeforeBuild"></Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <PropertyGroup>
+    <PostBuildEvent>post.bat</PostBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+</Project>

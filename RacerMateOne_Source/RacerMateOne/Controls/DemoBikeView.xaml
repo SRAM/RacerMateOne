@@ -1,0 +1,5 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.DemoBikeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Unloaded="UserControl_Unloaded" Loaded="UserControl_Loaded"
+	Background="Black" SizeChanged="UserControl_SizeChanged" IsVisibleChanged="UserControl_IsVisibleChanged">
+</UserControl>

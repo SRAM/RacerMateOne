@@ -1,0 +1,410 @@
+﻿<modes:ReviewBase x:Class="RacerMateOne.Pages.Modes.PowerTraining_Review"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+	xmlns:modes="clr-namespace:RacerMateOne.Pages.Modes"
+	Style="{DynamicResource FullScreenPage}"
+    Title="RiderOptions" 
+    x:Name="RiderOptions" Background="#76a7ca"
+    ShowsNavigationUI="False" HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontSize="20" FontFamily="Arial" 
+	Loaded="Page_Loaded" Unloaded="Page_Unloaded" SizeChanged="RiderOptions_SizeChanged">
+	<Page.Resources>
+	</Page.Resources>
+	<!-- <Viewbox> -->
+	<Grid     Width="910" Height="640" Name="MainGrid">
+		<!--HEADER -->
+		<Grid>
+			<StackPanel Orientation="Horizontal" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" >
+				<Image Height="38" VerticalAlignment="Center" Source="/RacerMateOne;component/Resources/RacerMateOne-Logo.png" />
+				<Label Style="{DynamicResource TopLine}" VerticalAlignment="Center" Margin="10,0,0,0" Height="Auto" FontSize="30">Power Training</Label>
+				<c:TextButton VerticalAlignment="Center" Margin="10,0,0,0" Text="Back" x:Name="Back" Click="Back_Click" />
+			</StackPanel>
+			<Label Name="d_Time" Padding="0" Margin="0,11,20,0" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="30">00:00:00.1</Label>
+			<Label Name="d_RiderName" Padding="0" Margin="0,40,20,0" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="20">Terry</Label>
+		</Grid>
+
+		<!-- Main Box -->
+		<Border Margin="12,65,12,12" Background="#FF8FB7D3" CornerRadius="33">
+			<Grid>
+				<StackPanel Margin="30,0,0,0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+					<Label Name="l_Current" VerticalAlignment="Bottom" Padding="0" FontSize="12" Margin="0,0,0,3" >Current</Label>
+					<Label Name="d_Current" Padding="0" Margin="5,0,20,0" FontSize="24">00:00:44.1</Label>
+					
+					<Label Name="l_Last" VerticalAlignment="Bottom" Padding="0" FontSize="12" Margin="0,0,0,3" >Last</Label>
+					<Label Name="d_Last" Padding="0" Margin="5,0,0,0" FontSize="24">00:00:44.1</Label>
+
+					<Label Name="l_Best" VerticalAlignment="Bottom" Padding="0" FontSize="12" Margin="0,0,0,3" Width="98" HorizontalContentAlignment="Right">Best (lap 120)</Label>
+					<Label Name="d_Best" Padding="0" Margin="5,0,0,0" FontSize="24">00:00:44.1</Label>
+				</StackPanel>
+
+				<!--
+					<Rectangle x:Name="t_BarSS_Small" Visibility="Collapsed" Margin="0,20,66,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="117" Width="318" Opacity="0.5" Fill="Azure"/>
+					<Rectangle x:Name="t_BarSS_Large" Visibility="Collapsed" Margin="51,71,0,0" Opacity="0.5" Fill="Azure" HorizontalAlignment="Left" Width="413" Height="219" VerticalAlignment="Top" />
+					<Rectangle x:Name="t_PolarSS_Small" Visibility="Collapsed" Margin="0,5,145,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="145" Width="145" Opacity="0.5" Fill="Green"/>
+					<Rectangle x:Name="t_PolarSS_Large" Visibility="Collapsed" Margin="80,20,0,0" Opacity="0.5" Fill="Green" HorizontalAlignment="Left" Width="356" Height="356" VerticalAlignment="Top" />
+					<c:PolarSpinScan x:Name="d_SpinScan" Margin="80,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="356" Width="356" />
+					<c:BarSpinScan x:Name="d_BarSpinScan" Margin="0,20,66,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="117" Width="318" />
+					-->
+				<StackPanel Margin="15,28,15,0">
+					<!-- Main Graph -->
+					<Border Height="202" VerticalAlignment="Top" CornerRadius="12" Background="#FF266388">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="286*" />
+								<ColumnDefinition Width="74*" />
+								<ColumnDefinition Width="442*" />
+							</Grid.ColumnDefinitions>
+							<!-- Graphs -->
+							<Grid Grid.ColumnSpan="3" Margin="6,6,57,6">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="10*"/>
+									<ColumnDefinition Width="10*"/>
+									<ColumnDefinition Width="10*"/>
+									<ColumnDefinition Width="10*"/>
+									<ColumnDefinition Width="10*"/>
+									<ColumnDefinition Width="10*"/>
+									<ColumnDefinition Width="10*"/>
+									<ColumnDefinition Width="10*"/>
+									<ColumnDefinition Width="10*"/>
+									<ColumnDefinition Width="10*"/>
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="10*"/>
+									<RowDefinition Height="10*"/>
+									<RowDefinition Height="10*"/>
+									<RowDefinition Height="10*"/>
+								</Grid.RowDefinitions>
+								<Rectangle Width="0.3" Fill="#388EC2" Grid.Column="0" Grid.RowSpan="4" HorizontalAlignment="Right"/>
+								<Rectangle Width="0.3" Fill="#388EC2" Grid.Column="1" Grid.RowSpan="4" HorizontalAlignment="Right"/>
+								<Rectangle Width="0.3" Fill="#388EC2" Grid.Column="2" Grid.RowSpan="4" HorizontalAlignment="Right"/>
+								<Rectangle Width="0.3" Fill="#388EC2" Grid.Column="3" Grid.RowSpan="4" HorizontalAlignment="Right"/>
+								<Rectangle Width="0.3" Fill="#388EC2" Grid.Column="4" Grid.RowSpan="4" HorizontalAlignment="Right"/>
+								<Rectangle Width="0.3" Fill="#388EC2" Grid.Column="5" Grid.RowSpan="4" HorizontalAlignment="Right"/>
+								<Rectangle Width="0.3" Fill="#388EC2" Grid.Column="6" Grid.RowSpan="4" HorizontalAlignment="Right"/>
+								<Rectangle Width="0.3" Fill="#388EC2" Grid.Column="7" Grid.RowSpan="4" HorizontalAlignment="Right"/>
+								<Rectangle Width="0.3" Fill="#388EC2" Grid.Column="8" Grid.RowSpan="4" HorizontalAlignment="Right"/>
+								<Rectangle Height="0.3" Fill="#388EC2" Grid.Row="0" Grid.ColumnSpan="10" VerticalAlignment="Bottom"/>
+								<Rectangle Height="0.3" Fill="#388EC2" Grid.Row="1" Grid.ColumnSpan="10" VerticalAlignment="Bottom"/>
+								<Rectangle Height="0.3" Fill="#388EC2" Grid.Row="2" Grid.ColumnSpan="10" VerticalAlignment="Bottom"/>
+							</Grid>
+							<Viewbox Grid.ColumnSpan="3" Margin="6,6,57,6">
+								<!-- Width="789" Height="188" -->
+								<c:LineGraphReview Width="1578" Height="376" x:Name="d_Graph" SecondSize="100.0" Items=""  SecondsChanged="d_Graph_SecondsChanged" HorizontalAlignment="Left"  VerticalAlignment="Top" />
+							</Viewbox>
+							<!-- Time,0.0,100.0,Yellow -->
+							<!-- Graphs -->
+							<Border Margin="0,8,8,8" CornerRadius="12" HorizontalAlignment="Right" Width="43" Grid.Column="2">
+								<Border.Background>
+									<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
+										<GradientStop Color="#00FFFFFF" Offset="0.0" />
+										<GradientStop Color="#60FFFFFF" Offset="0.5" />
+										<GradientStop Color="#00FFFFFF" Offset="1.0" />
+									</LinearGradientBrush>
+								</Border.Background>
+								<Grid Name="RPMArea">
+									<UniformGrid Name="LineGrid" Columns="1" Rows="21" Margin="0,6,0,6">
+										<Line Style="{DynamicResource GraphLine}"/>
+										<!-- 100 -->
+										<Line Style="{DynamicResource GraphLine}"/>
+										<Line Style="{DynamicResource GraphLine}"/>
+										<Line Style="{DynamicResource GraphLine}"/>
+										<Line Style="{DynamicResource GraphLine}"/>
+
+										<Line Style="{DynamicResource GraphLine}"/>
+										<!-- 95 -->
+										<Line Style="{DynamicResource GraphLine}"/>
+										<Line Style="{DynamicResource GraphLine}"/>
+										<Line Style="{DynamicResource GraphLine}"/>
+										<Line Style="{DynamicResource GraphLine}"/>
+
+										<Line Style="{DynamicResource GraphLine}"/>
+										<!-- 90 -->
+										<Line Style="{DynamicResource GraphLine}"/>
+										<Line Style="{DynamicResource GraphLine}"/>
+										<Line Style="{DynamicResource GraphLine}"/>
+										<Line Style="{DynamicResource GraphLine}"/>
+
+										<Line Style="{DynamicResource GraphLine}"/>
+										<!-- 85 -->
+										<Line Style="{DynamicResource GraphLine}"/>
+										<Line Style="{DynamicResource GraphLine}"/>
+										<Line Style="{DynamicResource GraphLine}"/>
+										<Line Style="{DynamicResource GraphLine}"/>
+
+										<Line Style="{DynamicResource GraphLine}"/>
+										<!-- 80 -->
+									</UniformGrid>
+									<UniformGrid Columns="1" Rows="9">
+										<Label Name="plus10" Style="{DynamicResource GraphLabel}">100</Label>
+										<Rectangle Visibility="Hidden"/>
+										<Label Name="plus5" Style="{DynamicResource GraphLabel}">95</Label>
+										<Rectangle Visibility="Hidden"/>
+										<Label Name="at0" Style="{DynamicResource GraphLabel}">90</Label>
+										<Rectangle Visibility="Hidden"/>
+										<Label Name="minus5" Style="{DynamicResource GraphLabel}">85</Label>
+										<Rectangle Visibility="Hidden"/>
+										<Label Name="minus10" Style="{DynamicResource GraphLabel}">80</Label>
+									</UniformGrid>
+									<Border Name="RPMLine" Margin="2,170.5,2,0" Height="7" Background="#80ED2025" Width="43" VerticalAlignment="Top" BorderThickness="0" CornerRadius="3.5,3.5,3.5,3.5" />
+								</Grid>
+							</Border>
+						</Grid>
+					</Border>
+					<!-- Race area -->
+					<Grid>
+						<StackPanel>
+							<Grid Margin="0,5,0,0">
+								<Border Background="White" CornerRadius="10"/>
+								<c:CourseDisplay x:Name="d_Course" Height="80" Margin="10,5,10,0" DistanceChanged="d_Course_DistanceChanged" />
+								<Border Name="d_GhostBox" Visibility="Collapsed" Background="#B0BBBBBB" CornerRadius="0,10,10,0"/>
+							</Grid>
+							<!-- Course info line -->
+							<Grid Margin="0,2,0,0">
+								<Label Padding="0" FontSize="14" HorizontalAlignment="Left">
+									<TextBlock>
+								<TextBlock Name="l_Distance">Distance</TextBlock>
+								<TextBlock Name="d_Distance" FontWeight="Bold">1.2 Km</TextBlock>
+							</TextBlock>
+								</Label>
+								<Label Padding="0" FontSize="14" HorizontalAlignment="Center">
+									<TextBlock Name="d_TrackInfo">
+									</TextBlock>
+								</Label>
+								<Label Name="lx_Remaining" Padding="0" FontSize="14" HorizontalAlignment="Right">
+									<TextBlock>
+								<TextBlock Name="l_Remaining">Remaining</TextBlock>
+								<TextBlock Name="d_Remaining" FontWeight="Bold">1.2 Km</TextBlock>
+							</TextBlock>
+								</Label>
+							</Grid>
+							<Border Margin="0,8,0,0" Height="29" CornerRadius="12" BorderBrush="White" BorderThickness="1" Background="#FF266388">
+								<Grid Margin="10,0,10,0">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<Label Name="d_Grade" Grid.Column="0" Padding="0" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center">Grade</Label>
+									<Label Name="d_Wind" Grid.Column="1" Padding="0" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center">Wind</Label>
+									<Label Name="d_Load" Grid.Column="2" Padding="0" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center">Load</Label>
+									<Label Name="d_RRC" Grid.Column="3" Padding="0" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+										<TextBlock>
+									<TextBlock Margin="0,-2,0,0">RRC</TextBlock>
+									<Image Name="d_NoRRC" Height="16" Margin="0,2,0,0" Source="/RacerMateOne;component/Resources/NoSign.png" />
+									<TextBlock Name="d_RRCText" Margin="0,-2,0,0">2.0 Lbs</TextBlock>
+								</TextBlock>
+									</Label>
+									<Label Name="d_GearInches" Grid.Column="4" Padding="0" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center">Gear 93</Label>
+									<Label Name="d_Gearing" Grid.Column="5" Padding="0" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center">Gearing 52/14</Label>
+								</Grid>
+							</Border>
+						</StackPanel>
+						<!-- 
+						<Image Name="BikeIcon" Margin="-3,-8,0,0" Style="{DynamicResource BikeIcon}" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="31" MouseDown="BikeIcon_MouseDown" MouseUp="BikeIcon_MouseUp" />
+						-->
+					</Grid>
+				
+				</StackPanel>
+				
+				<Grid Name="TopGrid" Margin="0,325,0,150"/>
+				<StackPanel Margin="0,5,25,0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+					<Label VerticalAlignment="Bottom" Padding="0" FontSize="14" Margin="0,0,0,3">Target RPM</Label>
+					<TextBox Name="TargetRPMInput" dw:TextBoxMaskBehavior.Mask="Integer" Height="22" Margin="5,0,0,0" Width="40" HorizontalContentAlignment="Center" FontSize="16" TextChanged="TargetRPM_TextChanged" GotFocus="TargetRPMInput_GotFocus" LostFocus="TargetRPMInput_LostFocus">
+						90
+					</TextBox>
+				</StackPanel>
+				<Grid VerticalAlignment="Bottom" Margin="12,0,12,20">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="170" />
+						<ColumnDefinition Width="150" />
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="255" />
+					</Grid.ColumnDefinitions>
+					<Grid Grid.Column="0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="75" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"  Margin="0,28,5,0">
+							<Label Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Right">Weight</Label>
+							<Label Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Right">DragFactor</Label>
+							<Label Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Right">PulsePower</Label>
+							<Label Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Right">Calories</Label>
+							<Label Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Right"></Label>
+						</StackPanel>
+						<Border Margin="0,20,0,0" CornerRadius="15" BorderThickness="1" BorderBrush="White" Background="#FF266388" Grid.Column="1" />
+						<StackPanel Grid.Column="1"  Margin="0,28,5,0">
+							<Label Name="d_Weight" Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Center">97kg</Label>
+							<Label Name="d_DragFactor" Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Center">100</Label>
+							<Label Name="d_PulsePower" Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Center">23.3</Label>
+							<Label Name="d_Calories" Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Center">999.9</Label>
+							<Label Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Right"></Label>
+						</StackPanel>
+					</Grid>
+					<Grid Grid.Column="1">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="75" />
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0"  Margin="0,28,5,3">
+							<Label Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Right">Wkg</Label>
+							<Label Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Right">HR Zone</Label>
+							<Label Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Right">TSS</Label>
+							<Label Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Right">IF</Label>
+							<Label Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Right">NP</Label>
+						</StackPanel>
+						<Border Margin="0,20,0,0" CornerRadius="15" BorderThickness="1" BorderBrush="White" Background="#FF266388" Grid.Column="1"/>
+						<StackPanel Grid.Column="1"  Margin="0,28,5,3">
+							<Label Name="d_Wkg" Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Center">2.6</Label>
+							<Label Name="d_HRZone" Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Center">3</Label>
+							<Label Name="d_TSS" Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Center">16.8</Label>
+							<Label Name="d_IF" Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Center">3</Label>
+							<Label Name="d_NP" Height="24" Padding="0" FontSize="16" VerticalContentAlignment="Center" HorizontalAlignment="Center">203</Label>
+						</StackPanel>
+					</Grid>
+					<Grid Name="d_SpinScanSection" Grid.Column="2">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="18" />
+							<ColumnDefinition Width="55" />
+							<ColumnDefinition Width="55" />
+							<ColumnDefinition Width="55" />
+						</Grid.ColumnDefinitions>
+						<Label Grid.Column="2" FontSize="18" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Top">Left</Label>
+						<Label Grid.Column="3" FontSize="14" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,4,0,0">Mid</Label>
+						<Label Grid.Column="4" FontSize="18" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Top">Right</Label>
+						<StackPanel Grid.Column="0"  Margin="0,28,5,3">
+							<Label Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Right">SpinScan</Label>
+							<Label Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Right">Average</Label>
+							<Label Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Right">ATA</Label>
+							<Label Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Right">% Split</Label>
+						</StackPanel>
+						<StackPanel Grid.Column="1"  Margin="0,28,5,3">
+							<c:ColorBox x:Name="ck_SS" Margin="0,7,0,7" Height="16" Width="10" Fill="Purple" IsOn="True" IsOnChanged="ck_IsOnChanged"/>
+							<c:ColorBox x:Name="ck_SS_Avg" Margin="0,7,0,7" Height="16" Width="10" Fill="Pink" IsOn="True" IsOnChanged="ck_IsOnChanged"/>
+							<c:ColorBox x:Name="ck_SS_ATA" Margin="0,7,0,7" Height="16" Width="10" Fill="White" IsOn="True" IsOnChanged="ck_IsOnChanged"/>
+							<c:ColorBox x:Name="ck_SS_Watts" Margin="0,7,0,7" Height="16" Width="10" Fill="LightGreen" IsOn="True" IsOnChanged="ck_IsOnChanged"/>
+						</StackPanel>
+						<Border Margin="0,20,0,0" CornerRadius="15" BorderThickness="1" BorderBrush="White" Background="#FF266388" Grid.Column="2"  Grid.ColumnSpan="3"  />
+						<Border Margin="0,24,0,60" CornerRadius="12" Background="White" Grid.Column="3"  />
+						<StackPanel Grid.Column="2"  Margin="0,28,5,3">
+							<Label Name="d_SSLeft" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold">-</Label>
+							<Label Name="d_SSLeft_Avg" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center">-</Label>
+							<Label Name="d_SSLeftATA" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center">-</Label>
+							<Label Name="d_SSLeftWatts" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center">-</Label>
+						</StackPanel>
+						<StackPanel Grid.Column="3"  Margin="0,28,5,3">
+							<Label Name="d_SS" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" Foreground="#FF266388" HorizontalAlignment="Center" FontWeight="Bold">-</Label>
+							<Label Name="d_SS_Avg" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" Foreground="#FF266388" HorizontalAlignment="Center">-</Label>
+							<Label Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center"></Label>
+							<Label Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center"></Label>
+						</StackPanel>
+						<StackPanel Grid.Column="4"  Margin="0,28,5,3">
+							<Label Name="d_SSRight" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold">-</Label>
+							<Label Name="d_SSRight_Avg" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center">-</Label>
+							<Label Name="d_SSRightATA" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center">-</Label>
+							<Label Name="d_SSRightWatts" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center">-</Label>
+						</StackPanel>
+						<Rectangle Name="d_Disable_SpinScan" Fill="White" Grid.ColumnSpan="5" Visibility="Collapsed" Opacity="0.0"/>
+					</Grid>
+					<Grid Grid.Column="3">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="18" />
+							<ColumnDefinition Width="55" />
+							<ColumnDefinition Width="55" />
+							<ColumnDefinition Width="55" />
+						</Grid.ColumnDefinitions>
+						<Label Grid.Column="2" FontSize="18" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Top">Now</Label>
+						<Label Grid.Column="3" FontSize="14" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,4,0,0">Avg</Label>
+						<Label Grid.Column="4" FontSize="18" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Top">Peak</Label>
+						<StackPanel Grid.Column="0"  Margin="0,28,5,3">
+							<Label Name="l_Speed" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Right">MPH</Label>
+							<Label Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Right">Watts</Label>
+							<Label Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Right">HR</Label>
+							<Label Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Right">RPM</Label>
+						</StackPanel>
+						<StackPanel Grid.Column="1"  Margin="0,28,5,3">
+							<c:ColorBox x:Name="ck_Speed" Margin="0,7,0,7" Height="16" Width="10" Fill="LightBlue" IsOn="True" IsOnChanged="ck_IsOnChanged"/>
+							<c:ColorBox x:Name="ck_Watts" Margin="0,7,0,7" Height="16" Width="10" Fill="Green" IsOn="True" IsOnChanged="ck_IsOnChanged"/>
+							<c:ColorBox x:Name="ck_HeartRate" Margin="0,7,0,7" Height="16" Width="10" Fill="Red" IsOn="True" IsOnChanged="ck_IsOnChanged"/>
+							<c:ColorBox x:Name="ck_Cadence" Margin="0,7,0,7" Height="16" Width="10" Fill="Yellow" IsOn="True" IsOnChanged="ck_IsOnChanged"/>
+						</StackPanel>
+						<Border Margin="0,20,0,0" CornerRadius="15" BorderThickness="1" BorderBrush="White" Background="#FF266388" Grid.Column="2"  Grid.ColumnSpan="3"  />
+						<Border Margin="0,24,0,4" CornerRadius="12" Background="White" Grid.Column="3"  />
+						<StackPanel Grid.Column="2"  Margin="0,28,5,3">
+							<Label Name="d_Speed" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold">77</Label>
+							<Label Name="d_Watts" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center">63</Label>
+							<Label Name="d_HeartRate" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center">96</Label>
+							<Label Name="d_Cadence" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center">62</Label>
+						</StackPanel>
+						<StackPanel Grid.Column="3"  Margin="0,28,5,3">
+							<Label Name="d_Speed_Avg" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" Foreground="#FF266388" HorizontalAlignment="Center" FontWeight="Bold">77</Label>
+							<Label Name="d_Watts_Avg" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" Foreground="#FF266388" HorizontalAlignment="Center">66</Label>
+							<Label Name="d_HeartRate_Avg" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" Foreground="#FF266388" HorizontalAlignment="Center">101</Label>
+							<Label Name="d_Cadence_Avg" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" Foreground="#FF266388" HorizontalAlignment="Center">99</Label>
+						</StackPanel>
+						<StackPanel Grid.Column="4"  Margin="0,28,5,3">
+							<Label Name="d_Speed_Max" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold">77</Label>
+							<Label Name="d_Watts_Max" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center">63</Label>
+							<Label Name="d_HeartRate_Max" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center">96</Label>
+							<Label Name="d_Cadence_Max" Height="30" Padding="0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center">62</Label>
+						</StackPanel>
+					</Grid>
+				</Grid>
+			</Grid>
+		</Border>
+
+		<c:Fade x:Name="Paused">
+			<Border Style="{DynamicResource Border3D}" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<Label Foreground="Red" FontFamily="Arial" FontWeight="Bold" FontSize="100">Paused</Label>
+			</Border>
+		</c:Fade>
+
+
+		<!-- Dlg -->
+		<c:Fade x:Name="Dlg">
+		</c:Fade>
+		<Grid Name="DlgGrid" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<Border MinWidth="400" Margin="8" Style="{DynamicResource PopupBox}" x:Name="CannotFind" Opacity="1">
+				<Border.Effect>
+					<DropShadowEffect Color="Black" Direction="315" Opacity=".45"/>
+				</Border.Effect>
+				<Grid>
+					<StackPanel Margin="15" >
+						<Label Name="Dlg_TopLabel" FontSize="25">Top Label</Label>
+						<Border x:Name="Dlg_ProgressBar" Height="20" CornerRadius="5" Background="#FF266388" Visibility="Collapsed">
+							<Border x:Name="PerfProgressBar" Margin="3" HorizontalAlignment="Left" Width="0"  CornerRadius="5" Background="#9000FF44"></Border>
+						</Border>
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0,25,0,0" HorizontalAlignment="Right">
+							<c:PlainButton x:Name="Dlg_f1" Height="35" Click="Dlg_f1_Click">
+								<c:PlainButton.Text>
+									<StackPanel Margin="3,3,3,3" Orientation="Horizontal">
+										<Image Source="/RacerMateOne;component/Resources/F1.jpg" Height="20px" Margin="0,0,5,0" VerticalAlignment="Center"/>
+										<Label Padding="0" FontSize="18" VerticalAlignment="Center" Loaded="Dlg_f1_Loaded">Saved</Label>
+									</StackPanel>
+								</c:PlainButton.Text>
+							</c:PlainButton>
+							<c:PlainButton x:Name="Dlg_f2" Height="35" Margin="10,0,0,0" Click="Dlg_f2_Click">
+								<c:PlainButton.Text>
+									<StackPanel Margin="3,3,3,3" Orientation="Horizontal">
+										<Image Source="/RacerMateOne;component/Resources/F2.jpg" Height="20px" Margin="0,0,5,0" VerticalAlignment="Center"/>
+										<Label Padding="0" FontSize="18" VerticalAlignment="Center" Loaded="Dlg_f2_Loaded">Cancel</Label>
+									</StackPanel>
+								</c:PlainButton.Text>
+							</c:PlainButton>
+						</StackPanel>
+					</StackPanel>
+				</Grid>
+			</Border>
+		</Grid>
+
+	</Grid>
+
+		<!-- </Viewbox> -->
+</modes:ReviewBase>

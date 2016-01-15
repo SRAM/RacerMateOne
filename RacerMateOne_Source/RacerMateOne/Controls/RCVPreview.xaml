@@ -1,0 +1,9 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.RCVPreview"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:c="clr-namespace:RacerMateOne.Controls"		
+	xmlns:DShow="clr-namespace:WPFMediaKit.DirectShow.Controls;assembly=WPFMediaKit">
+	<Grid>
+		<DShow:MediaUriElement x:Name="VControl" Visibility="Hidden" VideoRenderer="VideoMixingRenderer9" AllowDrop="True" PreferedPositionFormat="Frame" OverridesDefaultStyle="True" LoadedBehavior="Manual" />		
+	</Grid>
+</UserControl>

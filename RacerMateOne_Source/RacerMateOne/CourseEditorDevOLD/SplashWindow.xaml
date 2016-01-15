@@ -1,0 +1,49 @@
+﻿<Window
+    x:Class="RacerMateOne.CourseEditorDev.SplashWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="SplashWindow"
+    SizeToContent="WidthAndHeight"
+    ShowInTaskbar="False"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    AllowsTransparency="True" Width="300" Height="300"
+    
+    Background="Transparent">
+    <Grid>
+        <Border
+            CornerRadius="10"
+            BorderBrush="LightGray"
+            BorderThickness="1"
+            SnapsToDevicePixels="True"
+            Margin="0 0 10 10"
+            Background="#FF8FB7D3"
+            Padding="10">
+            <Border.Effect>
+                <DropShadowEffect
+                    Color="Gray"
+                    BlurRadius="10" />
+            </Border.Effect>
+            <StackPanel>
+                <Label
+                    Content="Please wait while data is being loaded"
+                    Foreground="White"
+                    FontSize="14"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Margin="0 10" />
+                <Image Source="Images/Bicycle.png" Stretch="None" />
+                <!--<Label
+                    x:Name="lblProgress"
+                    Content="Loading."
+                    Foreground="White"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="0 10 0 10" />
+                <ProgressBar x:Name="OurProgressBar" Minimum="0"  Maximum="100" Value="0" Height="20"  HorizontalAlignment="Stretch"  />-->
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

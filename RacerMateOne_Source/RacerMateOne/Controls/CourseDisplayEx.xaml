@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.CourseDisplayEx"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+	Name="courseDisplay" Loaded="CourseDisplayEx_Loaded" Unloaded="CourseDisplayEx_Unloaded">
+	<UserControl.Resources>
+		<Style x:Key="Border3D" TargetType="{x:Type Border}">
+			<Setter Property="CornerRadius" Value="10"/>
+			<Setter Property="Background" Value="#99000000"/>
+			<Setter Property="Effect">
+				<Setter.Value>
+					<BlurEffect Radius="5" />
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</UserControl.Resources>
+	<Grid>
+		<!-- <Border Style="{DynamicResource Border3D}"/> -->
+		<Grid Name="CourseBox" Margin="10,2,10,2">
+			<Path Name="CoursePath" Width="1" Height="1" Stroke="#99999999" Fill="#99000000"/>
+			<Border Name="TopBar" Width="4"  Background="#30FF0000" HorizontalAlignment="Left" ClipToBounds="True">
+			</Border>
+			<Border Name="LocBar" Width="4" HorizontalAlignment="Left" ClipToBounds="True">
+				<Path HorizontalAlignment="Left" VerticalAlignment="Top" Name="LocPath" Width="1" Height="1" Fill="Red" ClipToBounds="True" />
+			</Border>
+			<Border x:Name="Disable_Box" Visibility="Collapsed" Opacity="0" Background="#FF999999" Margin="0,0,0,0" />
+		</Grid>
+	</Grid>
+</UserControl>

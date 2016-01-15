@@ -1,0 +1,19 @@
+[COURSE HEADER]
+UNITS = METRIC
+DESCRIPTION = New Course
+FILE NAME = NewCours.crs
+;DISTANCE	GRADE		WIND
+; Created by Course Creator 2.0
+; http://cc2.bradculberson.com
+; Created by Brad Culberson
+[END COURSE HEADER]
+
+[COURSE DATA]
+0.586		0		0
+0.052		0.167		0
+0.599		0		0
+0.097		-0.26		0
+1.262		0		0
+0.252		0		0
+0.991		0		0
+[END COURSE DATA]

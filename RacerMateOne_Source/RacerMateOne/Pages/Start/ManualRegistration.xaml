@@ -1,0 +1,76 @@
+﻿<Page x:Class="RacerMateOne.Pages.Start.ManualRegistration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+    Background="#76a7ca"
+	Style="{StaticResource FullScreenPage}"
+    ShowsNavigationUI="False" HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontSize="20" FontFamily="Arial" Loaded="Page_Loaded">
+	<Page.Resources>
+		<ResourceDictionary Source="/RacerMateOne;component/Pages/_Styles.xaml"/>
+	</Page.Resources>
+	<Grid Width="910" Height="640">
+		<!--HEADER -->
+		<Grid>
+			<c:LogoAbout/>
+			<StackPanel>
+				<Label Name="t_Title" Style="{StaticResource TopLine}">Manual Registration</Label>
+				<Label Padding="0" FontSize="17" Margin="0,-7,0,0" HorizontalAlignment="Center" Foreground="#1e3964">(Commonly for computers not connected to the Internet)</Label>
+			</StackPanel>
+			<Image Style="{StaticResource Branding}"/>
+		</Grid>
+		<!--End of HEADER -->
+		<!-- Footer -->
+		<Grid Margin="12,0,12,18" VerticalAlignment="Bottom">
+			<StackPanel  Orientation="Horizontal" >
+				<c:TextButton VerticalAlignment="Center" Text="Help" x:Name="Help" Grid.ColumnSpan="3" Click="Help_Click" />
+			</StackPanel>
+		</Grid>
+		<!-- Main Box -->
+		<Border Style="{StaticResource Setup_Border}" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="700" >
+			<Grid>
+				<StackPanel Margin="20">
+					<Label Foreground="#1e3964" Padding="0" FontSize="20" FontWeight="Bold">Step 1</Label>
+					<Grid>
+						<Label Margin="30,0,0,0">Write Down this number</Label>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+							<Path Margin="0,0,10,0" VerticalAlignment="Center" Data="M 0 5 L 20 5 L 20 0 L 30 10 L 20 20 L 20 15 L 0 15 Z" Fill="#1e3964" />
+							<TextBox Name="t_HardwareID" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4" IsReadOnly="True"/>
+						</StackPanel>
+					</Grid>
+
+					<Label Margin="30,0,0,0">Make sur you also have your CD Key</Label>
+					
+					<Label Margin="0,15,0,0" Foreground="#1e3964" Padding="0" FontSize="20" FontWeight="Bold">Step 2</Label>
+					<Label Margin="30,0,0,0">Using anonter computer (or a smart phone) go to:</Label>
+					<Label HorizontalAlignment="Right" Margin="0,0,0,0" FontFamily="Courier New" Foreground="#1e3964" FontSize="20" FontWeight="Bold">www.RacerMateInc.com/Register</Label>
+					
+					<Label Margin="0,15,0,0" Foreground="#1e3964" Padding="0" FontSize="20" FontWeight="Bold">Step 3</Label>
+					<Label Margin="30,0,0,0">Now you can fill this in:</Label>
+					<StackPanel Orientation="Horizontal" Margin="0,2,0,0" HorizontalAlignment="Right">
+						<Label VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">Keycode</Label>
+						<TextBox BorderBrush="Red" Name="t_Keycode" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4">
+							<TextBox.BitmapEffect>
+								<OuterGlowBitmapEffect GlowColor="Red" GlowSize="3"/>
+							</TextBox.BitmapEffect>
+						</TextBox>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right" >
+						<Label VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">CD Key</Label>
+						<TextBox BorderBrush="Red" Name="t_SerialNumberManual" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4">
+							<TextBox.BitmapEffect>
+								<OuterGlowBitmapEffect GlowColor="Red" GlowSize="3"/>
+							</TextBox.BitmapEffect>
+						</TextBox>
+					</StackPanel>
+					<Grid Margin="0,40,0,0">
+						<c:PlainButton x:Name="t_RegisterOffline" Text="Register later" FlowDirection="LeftToRight" HorizontalAlignment="Left" VerticalAlignment="Center" Height="24" Width="170" Margin="0,0,50,0" Click="t_RegisterOffline_Click" />
+						<c:Pillbox x:Name="t_Register" Text="Register now" VerticalAlignment="Center" Width="170"  HorizontalAlignment="Right"  Click="t_Register_Click" />
+					</Grid>
+
+				</StackPanel>
+			</Grid>
+		</Border>
+	</Grid>
+</Page>

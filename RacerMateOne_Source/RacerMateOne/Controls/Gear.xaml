@@ -1,0 +1,10 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.Gear"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	MinWidth="100" MinHeight="100"
+	Name="btn"
+	Loaded="Gear_Loaded" SizeChanged="Gear_SizeChanged">
+    <Grid>
+		<Path x:Name="GearPath" Fill="{Binding Fill,ElementName=btn}" StrokeThickness="1" Stroke="#FF266388"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:05 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from ASS_KICKING.mrc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="ASS_KICKING_mrc" Description="ASS KICKING THIS MRC" FileName="ASS_KICKING_mrc.rmc" Type="Watts" Looped="False" Length="66.0" Laps="1" StartAt="0" EndAt="3960" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="PercentAT" OriginalHash="2D520CF985E14736B57DB13ECD6D0BD5" CourseHash="53CDB4855AFFB007B63EEA1997DDC9CA" HeaderHash="2D520CF985E14736B57DB13ECD6D0BD5"/>
+		<Segments Count="13">
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>7</Minutes>
+				<StartAt>110</StartAt>
+				<EndAt>110</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>115</StartAt>
+				<EndAt>115</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>115</StartAt>
+				<EndAt>115</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>120</StartAt>
+				<EndAt>120</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>120</StartAt>
+				<EndAt>120</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>120</StartAt>
+				<EndAt>120</EndAt>
+			</Val>
+			<Val>
+				<Minutes>15</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

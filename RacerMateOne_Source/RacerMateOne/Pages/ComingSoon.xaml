@@ -1,0 +1,49 @@
+﻿<Page x:Class="RacerMateOne.Pages.ComingSoon"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+    Background="#76a7ca"
+	Style="{DynamicResource FullScreenPage}"
+    ShowsNavigationUI="False" HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontSize="20" FontFamily="Arial" Loaded="ComingSoon_Loaded">
+	<Page.Resources>
+	</Page.Resources>
+	<Grid Width="910" Height="640">
+		<!--HEADER -->
+		<Grid>
+			<c:LogoAbout/>
+			<Label Name="t_Title" Style="{DynamicResource TopLine}">Title</Label>
+			<Image Style="{DynamicResource Branding}"/>
+		</Grid>
+		<!--End of HEADER -->
+		<!-- MainBox -->
+		<Border Style="{DynamicResource Setup_Border}">
+			<Grid>
+				<Image Source="/RacerMateOne;component/Resources/ComingSoon.png" Margin="238.5,69,238.5,153" />
+				<Border Name="ClickBorder" Background="#0076a7ca" CornerRadius="15" HorizontalAlignment="Center" Margin="0,0,0,80"  Width="500" VerticalAlignment="Bottom" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseDown="ClickBorder_MouseDown">
+					<Label Padding="10" Name="ClickText" Foreground="#1e3966" FontWeight="Bold" HorizontalAlignment="Center" FontSize="22" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave">
+						<TextBlock TextWrapping="Wrap" TextAlignment="Left">
+						To follow the progress on this addition to your RacerMate One software, click here
+						</TextBlock>
+					</Label>
+				</Border>
+			</Grid>
+		</Border>
+		<!-- End of MainBox -->
+		<!-- Footer -->
+		<Grid Margin="12,0,12,18" VerticalAlignment="Bottom">
+			<StackPanel  Orientation="Horizontal" >
+				<c:TextButton HorizontalAlignment="Left" VerticalAlignment="Center" Click="Options_Click" Text="Options" />
+				<Line Style="{DynamicResource DivLine}" Panel.ZIndex="-2"/>
+				<c:TextButton VerticalAlignment="Center" Text="Help" x:Name="Help" Grid.ColumnSpan="3" Click="Help_Click" />
+				<Line Style="{DynamicResource DivLine}" Panel.ZIndex="-2" />
+				<c:TextButton VerticalAlignment="Center" Text="Back" x:Name="Back" Click="Back_Click" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  >
+				<c:Pillbox x:Name="Start" Visibility="Hidden" Text="Start" Width="105" VerticalAlignment="Center" IsEnabled="True" Click="Start_Click" />
+			</StackPanel>
+		</Grid>
+		<!-- End of MainBox -->
+	</Grid>
+</Page>

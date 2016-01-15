@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Zip2SecureExe>
+    <PublisherName>Chilkat Software, Inc.</PublisherName>
+    <PublisherUrl>http://www.chilkatsoft.com/</PublisherUrl>
+    <ExeFile />
+    <ZipFile>D:\home\racermate\RacermateOne\RacerMateOneSetup\Debug\RacerMateOneSetup.zip</ZipFile>
+    <Password />
+    <SfxConfig>
+        <AutoTemp>1</AutoTemp>
+        <DeleteAfterSetup>0</DeleteAfterSetup>
+        <ShowFin>0</ShowFin>
+        <ShowMain>0</ShowMain>
+        <ShowProgress>0</ShowProgress>
+        <WaitForSetup>1</WaitForSetup>
+        <Encryption>0</Encryption>
+        <KeyLength>128</KeyLength>
+        <SetupExe>install.bat</SetupExe>
+        <UnzipDir />
+        <DefaultDir />
+        <IconFile>D:\home\racermate\RacermateOne\RacerMateOne\RM1.ico</IconFile>
+        <Url />
+        <Cleanup>1</Cleanup>
+    </SfxConfig>
+</Zip2SecureExe>

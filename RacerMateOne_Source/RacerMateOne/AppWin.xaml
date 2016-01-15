@@ -1,0 +1,164 @@
+﻿<Window x:Class="RacerMateOne.AppWin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"		
+    Title="RacerMate One" 
+    Width="924" 
+    Height="668" 
+    Icon="/RacerMateOne;component/Resources/RM1.ico" 
+    VerticalContentAlignment="Center" WindowStartupLocation="CenterScreen"
+    FontFamily="Arial"  Background="#FF76A7CA" Closed="Window_Closed" Loaded="Window_Loaded" AllowsTransparency="False" Opacity="1" Visibility="Visible" Closing="Window_Closing">
+
+    <!-- Key bindings -->
+    <Window.Resources>
+            <local:Cmd_ToggleLog x:Key="ToggleLog"/>
+            <local:Cmd_OnKey x:Key="OnKey"/>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Command="{StaticResource ToggleLog}" Key="Oem3" Modifiers="Shift"/>
+		<KeyBinding x:Name="Key_S" Command="{StaticResource OnKey}" Key="S" CommandParameter="S"/>
+		<KeyBinding x:Name="Key_G" Command="{StaticResource OnKey}" Key="G" CommandParameter="G" />
+		<KeyBinding x:Name="Key_A" Command="{StaticResource OnKey}" Key="A" CommandParameter="A" />
+		<KeyBinding x:Name="Key_R" Command="{StaticResource OnKey}" Key="R" CommandParameter="R" />
+		<KeyBinding x:Name="Key_B" Command="{StaticResource OnKey}" Key="B" CommandParameter="B" />
+		<KeyBinding x:Name="Key_Up" Command="{StaticResource OnKey}" Key="Up" CommandParameter="u" />
+		<KeyBinding x:Name="Key_Down" Command="{StaticResource OnKey}" Key="Down" CommandParameter="d" />
+		<KeyBinding x:Name="Key_CtrlUp" Command="{StaticResource OnKey}" Key="Up" CommandParameter="U" Modifiers="Ctrl" />
+		<KeyBinding x:Name="Key_CtrlDown" Command="{StaticResource OnKey}" Key="Down" CommandParameter="D" Modifiers="Ctrl" />
+	</Window.InputBindings>
+    
+    <Grid Name="MainGrid">
+		<c:Render3D x:Name="MainRender3D" Visibility="Hidden">
+			<Grid>
+				<Grid Name="U_1" Visibility="Hidden">
+					<c:Render3DView x:Name="R_1_0" />
+				</Grid>
+				<Grid Name="U_2" Visibility="Hidden">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="50*" />
+						<ColumnDefinition Width="5px" />
+						<ColumnDefinition Width="50*" />
+					</Grid.ColumnDefinitions>
+					<c:Render3DView x:Name="R_2_0" Grid.Column="0"/>
+					<c:Render3DView x:Name="R_2_1" Grid.Column="2"/>
+				</Grid>
+				<Grid Name="U_2a" Visibility="Hidden">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="50*" />
+						<ColumnDefinition Width="5px" />
+						<ColumnDefinition Width="50*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="500*"/>
+						<RowDefinition Name="U_2a_r" Height="100*"/>
+					</Grid.RowDefinitions>
+					<c:Render3DView x:Name="R_2a_0" Grid.Column="0"/>
+					<c:Render3DView x:Name="R_2a_1" Grid.Column="2"/>
+				</Grid>
+				<Grid Name="U_3" Visibility="Hidden">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="50*" />
+						<ColumnDefinition Width="5px" />
+						<ColumnDefinition Width="50*" />
+						<ColumnDefinition Width="5px" />
+						<ColumnDefinition Width="50*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="500*"/>
+						<RowDefinition Name="U_3_r" Height="100*"/>
+					</Grid.RowDefinitions>
+					<c:Render3DView x:Name="R_3_0" Grid.Column="0"/>
+					<c:Render3DView x:Name="R_3_1" Grid.Column="2"/>
+					<c:Render3DView x:Name="R_3_2" Grid.Column="4"/>
+				</Grid>
+				<Grid Name="U_4" Visibility="Hidden">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="50*" />
+						<ColumnDefinition Width="5px" />
+						<ColumnDefinition Width="50*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="250*"/>
+						<RowDefinition Height="5px" />
+						<RowDefinition Height="250*"/>
+						<RowDefinition Name="U_4_r" Height="100*"/>
+					</Grid.RowDefinitions>
+					<c:Render3DView x:Name="R_4_0" Grid.Column="0"/>
+					<c:Render3DView x:Name="R_4_1" Grid.Column="2"/>
+					<c:Render3DView x:Name="R_4_2" Grid.Column="0" Grid.Row="2"/>
+					<c:Render3DView x:Name="R_4_3" Grid.Column="2" Grid.Row="2"/>
+				</Grid>
+				<Grid Name="U_6" Visibility="Hidden">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="50*" />
+						<ColumnDefinition Width="5px" />
+						<ColumnDefinition Width="50*" />
+						<ColumnDefinition Width="5px" />
+						<ColumnDefinition Width="50*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="250*"/>
+						<RowDefinition Height="5px" />
+						<RowDefinition Height="250*"/>
+						<RowDefinition Name="U_6_r" Height="140*"/>
+					</Grid.RowDefinitions>
+					<c:Render3DView x:Name="R_6_0" Grid.Column="0"/>
+					<c:Render3DView x:Name="R_6_1" Grid.Column="2"/>
+					<c:Render3DView x:Name="R_6_2" Grid.Column="4"/>
+					<c:Render3DView x:Name="R_6_3" Grid.Column="0" Grid.Row="2"/>
+					<c:Render3DView x:Name="R_6_4" Grid.Column="2" Grid.Row="2"/>
+					<c:Render3DView x:Name="R_6_5" Grid.Column="4" Grid.Row="2"/>
+				</Grid>
+				<Grid Name="U_8" Visibility="Hidden">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="50*" />
+						<ColumnDefinition Width="5px" />
+						<ColumnDefinition Width="50*" />
+						<ColumnDefinition Width="5px" />
+						<ColumnDefinition Width="50*" />
+						<ColumnDefinition Width="5px" />
+						<ColumnDefinition Width="50*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="250*"/>
+						<RowDefinition Height="5px" />
+						<RowDefinition Height="250*"/>
+						<RowDefinition Name="U_8_r" Height="190*"/>
+					</Grid.RowDefinitions>
+					<c:Render3DView x:Name="R_8_0" Grid.Column="0"/>
+					<c:Render3DView x:Name="R_8_1" Grid.Column="2"/>
+					<c:Render3DView x:Name="R_8_2" Grid.Column="4"/>
+					<c:Render3DView x:Name="R_8_3" Grid.Column="6"/>
+					<c:Render3DView x:Name="R_8_4" Grid.Column="0" Grid.Row="2"/>
+					<c:Render3DView x:Name="R_8_5" Grid.Column="2" Grid.Row="2"/>
+					<c:Render3DView x:Name="R_8_6" Grid.Column="4" Grid.Row="2"/>
+					<c:Render3DView x:Name="R_8_7" Grid.Column="8" Grid.Row="2"/>
+				</Grid>
+				<Grid Name="Custom3D"/>
+			</Grid>
+		</c:Render3D>
+		<Grid Name="FixedCenterBackground" Visibility="Collapsed" Background="#FF76A7CA">
+			<Viewbox Margin="1">
+				<Grid Name="FixedCenter" Width="910" Height="640">
+				</Grid>
+			</Viewbox>
+		</Grid>
+        <!--<Frame FocusVisualStyle= "{x:Null}" Background="Transparent" NavigationUIVisibility="Hidden" x:Name="MainFrame" Navigated="MainFrame_Navigated"></Frame>-->
+
+        <local:FaderFrame FocusVisualStyle= "{x:Null}" Background="Transparent" NavigationUIVisibility="Hidden" x:Name="MainFrame" FadeDuration="00:00:00.1000000" Navigated="MainFrame_Navigated"></local:FaderFrame>
+		<Grid Name="FrontFrameOverlay" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top">
+			<Border Background="Transparent" BorderThickness="3,3,0,0" BorderBrush="#40000000"></Border>
+			<Border Background="Transparent" Margin="3,3,0,0" BorderThickness="0,0,3,3" BorderBrush="#20FFFFFF"></Border>
+			<Border Background="#FF76A7CA" Name="FixItBlank" Visibility="Collapsed"/>
+		</Grid>
+		<c:ButtonBox x:Name="p1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="102" Margin="0,12,0,0" />
+		<c:ButtonBox x:Name="p2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="102" Margin="108,12,0,0" />
+		<c:ButtonBox x:Name="p3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="102" Margin="216,12,0,0" />
+		<c:ButtonBox x:Name="p4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="102" Margin="324,12,0,0" />
+		<c:ButtonBox x:Name="p5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="102" Margin="432,12,0,0" />
+		<c:ButtonBox x:Name="p6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="102" Margin="540,12,0,0" />
+		<c:ButtonBox x:Name="p7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="102" Margin="648,12,0,0" />
+		<c:ButtonBox x:Name="p8" HorizontalAlignment="Left" VerticalAlignment="Top" Width="102" Margin="756,12,0,0" />
+	</Grid>
+</Window>

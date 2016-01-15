@@ -1,0 +1,139 @@
+﻿<c:BaseUnit x:Class="RacerMateOne.Controls.StatsBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:RacerMateOne.Controls" 
+	Background="#76A7CA"
+	x:Name="statsBox"
+	Foreground="White">
+	<UserControl.Resources>
+		<Style TargetType="{x:Type Label}">
+			<Setter Property="FontFamily" Value="Arial" />
+			<Setter Property="FontSize" Value="16" />
+			<Setter Property="Foreground" Value="{Binding ElementName=statsBox,Path=Foreground}" />
+			<Setter Property="Padding" Value="0,0,0,0"/>
+			<Setter Property="Height" Value="23"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="HorizontalAlignment" Value="Right"/>
+			<Setter Property="HorizontalContentAlignment" Value="Right"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+		<Style x:Key="Header" TargetType="{x:Type Label}">
+			<Setter Property="FontFamily" Value="Arial" />
+			<Setter Property="FontSize" Value="16" />
+			<Setter Property="Foreground" Value="{Binding ElementName=statsBox,Path=Foreground}" />
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="Padding" Value="0,0,0,0"/>
+			<Setter Property="Height" Value="20"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="HorizontalAlignment" Value="Right"/>
+			<Setter Property="HorizontalContentAlignment" Value="Right"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+		<Style TargetType="{x:Type Line}">
+			<Setter Property="Margin" Value="5,0,5,0"/>
+			<Setter Property="Stroke" Value="{Binding ElementName=statBox,Path=Line}"/>
+			<Setter Property="StrokeThickness" Value="1.0"/>
+			<Setter Property="Y2" Value="1"/>
+			<Setter Property="Stretch" Value="Fill"/>
+		</Style>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="20" />
+			<RowDefinition Height="20" />
+			<RowDefinition Height="20" />
+			<RowDefinition Height="20" />
+			<RowDefinition Height="20" />
+			<RowDefinition Height="20" />
+			<RowDefinition Height="20" />
+			<RowDefinition Height="20" />
+			<RowDefinition Height="20" />
+			<RowDefinition Height="20" />
+			<RowDefinition Height="20" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="55" />
+			<ColumnDefinition Width="55" />
+			<ColumnDefinition Width="55" />
+		</Grid.ColumnDefinitions>
+		<!-- 
+			MPH xxx,  Avg xxx, Max xxx
+			Dst xxx   Gap xxx
+			Watts xxx Avg xxx  Max xxx 
+			Wkg xxx  TSS/IF/NP 0/0/0
+			RPM xxx Avg xxx Max xxx
+			HR xx Avg xxx Max xxx 
+			Calories xxx PP xxx
+			Grade xxx  Wind xxx 
+			Gear 0   Gearing 0/0
+			-->
+		<Label Grid.Row="0" Grid.Column="2" Style="{DynamicResource Header}">Avg</Label>
+		<Label Grid.Row="0" Grid.Column="3" Style="{DynamicResource Header}">Max</Label>
+
+		<Label Grid.Row="1" Grid.Column="0" Name="SpeedLabel" Style="{DynamicResource Header}">MPH</Label>
+		<Label Grid.Row="1" Grid.Column="1" Name="Speed">xxx.0</Label>
+		<Label Grid.Row="1" Grid.Column="2" Name="Speed_Avg">xxx.0</Label>
+		<Label Grid.Row="1" Grid.Column="3" Name="Speed_Max">xxx.0</Label>
+
+		<Label Grid.Row="2" Grid.Column="0" Style="{DynamicResource Header}">Dst</Label>
+		<Label Grid.Row="2" Grid.Column="1" Name="Distance">xxx.0</Label>
+
+		<Label Grid.Row="3" Grid.Column="0" Style="{DynamicResource Header}">Watts</Label>
+		<Label Grid.Row="3" Grid.Column="1" Name="Watts">xxx</Label>
+		<Label Grid.Row="3" Grid.Column="2" Name="Watts_Avg">xxx</Label>
+		<Label Grid.Row="3" Grid.Column="3" Name="Watts_Max">xxx</Label>
+
+		<Label Grid.Row="4" Grid.Column="0" Style="{DynamicResource Header}">Wkg</Label>
+		<Label Grid.Row="4" Grid.Column="1" Name="Watts_Wkg">xxx</Label>
+
+		<StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Left">
+			<Label Margin="0,0,10,0" Style="{DynamicResource Header}">TSS/IF/NP</Label>
+			<Label Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Name="TSS">0/0/0</Label>
+		</StackPanel>
+
+		<Label Grid.Row="6" Grid.Column="0" Style="{DynamicResource Header}">RPM</Label>
+		<Label Grid.Row="6" Grid.Column="1" Name="Cadence">xxx</Label>
+		<Label Grid.Row="6" Grid.Column="2" Name="Cadence_Avg">xxx</Label>
+		<Label Grid.Row="6" Grid.Column="3" Name="Cadence_Max">xxx</Label>
+
+		<Label Grid.Row="7" Grid.Column="0" Style="{DynamicResource Header}">
+			<Image Height="16" Source="/RacerMateOne;component/Resources/Heart28x23.png" />
+		</Label>
+		<Label Grid.Row="7" Grid.Column="1" Name="HeartRate">xxx</Label>
+		<Label Grid.Row="7" Grid.Column="2" Name="HeartRate_Avg">xxx</Label>
+		<Label Grid.Row="7" Grid.Column="3" Name="HeartRate_Max">xxx</Label>
+		
+		<Label Grid.Row="8" Grid.Column="0" Style="{DynamicResource Header}">Calories</Label>
+		<Label Grid.Row="8" Grid.Column="1" Name="Calories">xxxx</Label>
+		<Label Grid.Row="8" Grid.Column="2" Style="{DynamicResource Header}">PP</Label>
+		<Label Grid.Row="8" Grid.Column="3" Name="PulsePower">xxxx</Label>
+
+		<Label Grid.Row="9" Grid.Column="0" Style="{DynamicResource Header}">Grade</Label>
+		<Label Grid.Row="9" Grid.Column="1" Name="Grade">xx.0</Label>
+		<Label Grid.Row="9" Grid.Column="2" Style="{DynamicResource Header}">Wind</Label>
+		<Label Grid.Row="9" Grid.Column="3" Name="Wind">xx.0</Label>
+		
+		<StackPanel Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" Name="GearLine" HorizontalAlignment="Right">
+			<Label Style="{DynamicResource Header}" Width="55">Gear</Label>
+			<Label Width="35" Name="Gear">130</Label>
+			<Label Width="75" Style="{DynamicResource Header}">Gearing</Label>
+			<Label Width="55" Grid.Row="10" Grid.Column="3" Name="Gearing">15/15</Label>
+		</StackPanel>
+		<!-- -->
+		<!-- -->
+		<!-- 
+			MPH xxx,  Avg xxx, Max xxx
+			Dst xxx   Gap xxx
+			Watts xxx Avg xxx  Max xxx 
+			Wkg xxx  TSS/IF/NP 0/0/0
+			RPM xxx Avg xxx Max xxx
+			HR xx Avg xxx Max xxx PP xxx
+			Calories xxx
+			Grade xxx  Wind xxx 
+			Gear 0   Gearing 0/0
+			-->
+
+	</Grid>
+</c:BaseUnit>
+

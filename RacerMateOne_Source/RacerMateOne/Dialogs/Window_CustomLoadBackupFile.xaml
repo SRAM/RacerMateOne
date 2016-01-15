@@ -1,0 +1,23 @@
+﻿<Window x:Class="RacerMateOne.Window_CustomLoadBackupFile"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    Width="281" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Icon="/RacerMateOne;component/Resources/ZRes_Icon.ico" SizeToContent="Height">
+
+    <!-- Key bindings -->
+    <Window.Resources>
+        <dw:Cmd_ToggleLog x:Key="ToggleLog"/>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Command="{DynamicResource ToggleLog}" Key="F12"/>
+    </Window.InputBindings>
+
+    <Grid>
+        <StackPanel Name="stackPanel1">
+            <TextBlock Margin ="10" Name="txtblkCaption"  TextWrapping="Wrap">Label</TextBlock>
+            <Button Margin ="5" Height="23" Name="buttonBackup" Click="buttonBackup_Click">Load from backup file</Button>
+            <Button Margin ="5" Height="23" Name="buttonDefault" Click="buttonDefault_Click">Load factory default settings</Button>
+            <Button Margin ="5" Height="23" Name="buttonExit" Click="buttonExit_Click">Exit Application</Button>
+        </StackPanel>
+    </Grid>
+</Window>

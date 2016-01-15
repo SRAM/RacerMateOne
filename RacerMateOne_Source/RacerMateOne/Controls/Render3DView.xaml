@@ -1,0 +1,7 @@
+﻿<c:BaseUnit x:Class="RacerMateOne.Controls.Render3DView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:c="clr-namespace:RacerMateOne.Controls"			 
+	IsVisibleChanged="UserControl_IsVisibleChanged">
+	<Image Name="wrk" Visibility="Hidden" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" StretchDirection="Both"></Image>
+</c:BaseUnit>

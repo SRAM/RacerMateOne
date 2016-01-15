@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.StatsLine"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:RacerMateOne.Controls" 
+	Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded">
+	<UserControl.Resources>
+		<Style TargetType="{x:Type Label}">
+			<Setter Property="FontFamily" Value="Arial" />
+			<Setter Property="FontSize" Value="16" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="Padding" Value="0,0,0,0"/>
+			<Setter Property="Width" Value="50"/>
+			<Setter Property="Height" Value="23"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+		<Style x:Key="Header" TargetType="{x:Type Label}">
+			<Setter Property="FontFamily" Value="Arial" />
+			<Setter Property="FontSize" Value="12" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="Padding" Value="0,0,0,0"/>
+			<Setter Property="Width" Value="50"/>
+			<Setter Property="Height" Value="18"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+		<Style TargetType="{x:Type Line}">
+			<Setter Property="Margin" Value="5,0,5,0"/>
+			<Setter Property="Stroke" Value="#88FFFFFF"/>
+			<Setter Property="StrokeThickness" Value="1.0"/>
+			<Setter Property="Y2" Value="1"/>
+			<Setter Property="Stretch" Value="Fill"/>
+		</Style>
+	</UserControl.Resources>
+	<Viewbox>
+		<StackPanel Name="Panel" Orientation="Horizontal">
+			<StackPanel Name="RiderName">
+				<Label Style="{DynamicResource Header}" Width="110"></Label>
+			</StackPanel>
+			<StackPanel Name="Speed">
+				<Label Style="{DynamicResource Header}">MPH</Label>
+			</StackPanel>
+			<StackPanel Name="Speed_Avg">
+				<Label Style="{DynamicResource Header}">Avg</Label>
+			</StackPanel>
+			<StackPanel Name="Speed_Max">
+				<Label Style="{DynamicResource Header}">Max</Label>
+			</StackPanel>
+			<StackPanel Name="Watts">
+				<Label Style="{DynamicResource Header}">Power</Label>
+			</StackPanel>
+			<StackPanel Name="Watts_Avg">
+				<Label Style="{DynamicResource Header}">Avg</Label>
+			</StackPanel>
+			<StackPanel Name="Watts_Max">
+				<Label Style="{DynamicResource Header}">Max</Label>
+			</StackPanel>
+			<StackPanel Name="HeartRate">
+				<Label Style="{DynamicResource Header}">
+					<Image Height="18" Source="/RacerMateOne;component/Resources/Heart28x23.png" />
+				</Label>
+			</StackPanel>
+			<StackPanel Name="HeartRate_Avg">
+				<Label Style="{DynamicResource Header}">Avg</Label>
+			</StackPanel>
+			<StackPanel Name="HeartRate_Max">
+				<Label Style="{DynamicResource Header}">Max</Label>
+			</StackPanel>
+
+			<StackPanel Name="Cadence">
+				<Label Style="{DynamicResource Header}">RPM</Label>
+			</StackPanel>
+			<StackPanel Name="Cadence_Avg">
+				<Label Style="{DynamicResource Header}">Avg</Label>
+			</StackPanel>
+			<StackPanel Name="Cadence_Max">
+				<Label Style="{DynamicResource Header}">Max</Label>
+			</StackPanel>
+
+			<StackPanel Name="Distance" >
+				<Label Style="{DynamicResource Header}" Width="75">Distance</Label>
+			</StackPanel>
+			<StackPanel Name="Calories" >
+				<Label Style="{DynamicResource Header}" Width="85">Calories</Label>
+			</StackPanel>
+
+			<StackPanel Name="Grade" >
+				<Label Style="{DynamicResource Header}" Width="50">Grade</Label>
+			</StackPanel>
+		</StackPanel>
+	</Viewbox>
+</UserControl>

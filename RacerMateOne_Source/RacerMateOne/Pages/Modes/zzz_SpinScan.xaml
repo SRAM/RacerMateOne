@@ -1,0 +1,110 @@
+﻿<modes:RideBase x:Class="RacerMateOne.Pages.Modes.zzz_SpinScan"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+	xmlns:modes="clr-namespace:RacerMateOne.Pages.Modes"
+    Title="RiderOptions" 
+	Style="{DynamicResource FullScreenPage}"
+	Background="#76a7ca"
+    ShowsNavigationUI="False" HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontSize="20" FontFamily="Arial" Loaded="RiderOptions_Loaded" Unloaded="RiderOptions_Unloaded">
+	<Page.Resources>
+	</Page.Resources>
+	<Grid Width="910" Height="640" Name="MainGrid" >
+		<!--HEADER -->
+		<Grid>
+			<c:LogoAbout/>
+			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+				<Label Style="{DynamicResource TopLine}">SpinScan</Label>
+				<c:TextButton VerticalAlignment="Top" Margin="0,31,0,0" Text="Back" Click="Back_Click" />
+			</StackPanel>
+			<!--<Image Style="{DynamicResource Branding}"/> -->
+		</Grid>
+		<StackPanel Margin="37,14,37,0" VerticalAlignment="Top" HorizontalAlignment="Right">
+			<Label HorizontalAlignment="Center" Name="d_Timer" Style="{DynamicResource TimerLabel}">00:00:00.1</Label>
+			<Label HorizontalAlignment="Center" Name="Date" Style="{DynamicResource HeaderLabel}" FontSize="16">August 25, 2010</Label>
+		</StackPanel>
+		<!-- 
+		<StackPanel Orientation="Horizontal" Margin="0,12,12,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="31" Width="189.5">
+			<c:TextButton Margin="0,0,3,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90" Text="Help" x:Name="Help" Height="31" Grid.ColumnSpan="3" Click="Help_Click" />
+			<Line VerticalAlignment="Center" Margin="3,0,3,0" Stroke="#FF8FB7D3" StrokeThickness="1" Y1="0" Y2="24" />
+			<c:TextButton Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90" Text="Back" x:Name="Back" Height="31" Click="Back_Click" Grid.ColumnSpan="3" />
+		</StackPanel>
+		-->
+		
+		<!-- Main Box -->
+		<Border Margin="12,80,12,12" Background="#FF8FB7D3" CornerRadius="33">
+			<Grid>
+				<StackPanel Visibility="Collapsed" Name="g_VelotronGears" Opacity="0.2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,0,0,0" Orientation="Horizontal">
+					<Label FontSize="18">Velotron Gears</Label>
+					<Label Name="d_VelotronGears" Width="60" HorizontalContentAlignment="Right"  FontSize="18">0/0</Label>
+				</StackPanel>
+
+				<Label Style="{DynamicResource SubNoteLabel}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,19,0">Press F2 to swap graph</Label>
+				<Rectangle x:Name="t_BarSS_Small" Visibility="Collapsed" Margin="0,20,37,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="117" Width="318" Opacity="0.5" Fill="Azure"/>
+				<Rectangle x:Name="t_BarSS_Large" Visibility="Collapsed" Margin="40,71,420,256" Opacity="0.5" Fill="Azure" />
+				<Rectangle x:Name="t_PolarSS_Small" Visibility="Collapsed" Margin="0,11,77,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="145" Width="145" Opacity="0.5" Fill="Green"/>
+				<Rectangle x:Name="t_PolarSS_Large" Visibility="Collapsed" Margin="80,20,0,0" Opacity="0.5" Fill="Green" HorizontalAlignment="Left" Width="356" Height="356" VerticalAlignment="Top" />
+				<c:PolarSpinScan x:Name="d_SpinScan" Margin="80,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="356" Width="356" />
+				<c:BarSpinScan x:Name="d_BarSpinScan" Margin="0,20,39,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="117" Width="318" ShowLabels="False" />
+				<c:InfoLineTop x:Name="InfoLine" Margin="43.388,0,36.612,146" VerticalAlignment="Bottom" Height="17.25" />
+				<Grid Margin="40,0,40,77" VerticalAlignment="Bottom">
+					<Border Background="White" CornerRadius="10"/>
+					<c:CourseDisplay x:Name="d_Course" Height="62" Margin="10,5,10,0" />
+					<Image Name="BikeIcon" Margin="-3,-10,0,0" Style="{DynamicResource BikeIcon}" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="31"/>
+				</Grid>
+				<Border x:Name="DataBox" VerticalAlignment="Bottom" Margin="40,0,40,10" Height="62" CornerRadius="10" Background="White">
+					<c:StatsLineSmall Margin="5,3,5,3" x:Name="Stats" Foreground="#FF266388" Line="#88266388"
+						 StatFlags="Speed,Speed_Avg,Speed_Max,Watts,Watts_Avg,Watts_Max,HeartRate,HeartRate_Avg,HeartRate_Max,Distance,Calories,Grade"/>
+				</Border>
+				<Grid Margin="0,156,40,0" HorizontalAlignment="Right" Height="221" VerticalAlignment="Top" Width="445">
+					<Border Margin="220,28,0,0" BorderBrush="White" BorderThickness="1" CornerRadius="20" Background="#FF266388" />
+					<StackPanel Margin="0,0,8,8">
+						<StackPanel Margin="0,0,0,4" Orientation="Horizontal">
+							<Label Style="{DynamicResource SSLabel}" Margin="0,0,15,0" Width="220" HorizontalContentAlignment="Right"></Label>
+							<Label Style="{DynamicResource SSLabel}" HorizontalContentAlignment="Center" FontSize="20" Width="61">Left</Label>
+							<Label Style="{DynamicResource SSLabel}" HorizontalContentAlignment="Center" FontSize="20" Width="80">Overall</Label>
+							<Label Style="{DynamicResource SSLabel}" HorizontalContentAlignment="Center" FontSize="20" Width="61">Right</Label>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label Style="{DynamicResource SSLabel}" Margin="0,0,15,0" Width="220" HorizontalContentAlignment="Right">SpinScan</Label>
+							<Label Name="d_SSLeft" Style="{DynamicResource SSLabel}" Width="61" FontWeight="Bold">77</Label>
+							<Label Name="d_SSAvg" Style="{DynamicResource SSLabel}" Width="80" FontWeight="Bold" Foreground="#70FFFFFF">62</Label>
+							<Label Name="d_SSRight" Style="{DynamicResource SSLabel}" Width="61" FontWeight="Bold">64</Label>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label Style="{DynamicResource SSLabel}" FontSize="20" Margin="0,0,15,0" Width="220" HorizontalContentAlignment="Right">Average</Label>
+							<Label Name="d_SSLeft_Avg" Style="{DynamicResource SSLabel}" Width="61">0</Label>
+							<Label Name="d_SSAvgATA" Style="{DynamicResource SSLabel}" Width="80" Foreground="#70FFFFFF">0</Label>
+							<Label Name="d_SSRight_Avg" Style="{DynamicResource SSLabel}" Width="61">0</Label>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label Style="{DynamicResource SSLabel}" FontSize="20" Margin="0,0,15,0" Width="220" HorizontalContentAlignment="Right">ATA</Label>
+							<Label Name="d_SSLeftATA" Style="{DynamicResource SSLabel}" Width="61">0</Label>
+							<Label Style="{DynamicResource SSLabel}" Width="80"></Label>
+							<Label Name="d_SSRightATA" Style="{DynamicResource SSLabel}" Width="61">0</Label>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Label Style="{DynamicResource SSLabel}" FontSize="20" Margin="0,0,15,0" Width="220" HorizontalContentAlignment="Right">Power Split</Label>
+							<Label Name="d_SSLeftWatts" Style="{DynamicResource SSLabel}" Width="61">0</Label>
+							<Label Style="{DynamicResource SSLabel}" Width="80">%</Label>
+							<Label Name="d_SSRightWatts" Style="{DynamicResource SSLabel}" Width="61">0</Label>
+						</StackPanel>
+					</StackPanel>
+				</Grid>
+				<!-- <MediaElement x:Name="VideoControl" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="240" LoadedBehavior="Manual" UnloadedBehavior="Manual" /> -->
+				<StackPanel Name="d_BarMaxForce" Visibility="Collapsed" Orientation="Horizontal" Margin="40,293,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+					<Label Style="{DynamicResource GraphLabel}"  Margin="0,0,5,0" FontSize="16" >Max Force</Label>
+					<Label Name="BarMaxForce" Style="{DynamicResource GraphLabel}"  Margin="0,0,5,0" FontSize="16" >--</Label>
+					<Label Style="{DynamicResource GraphLabel}"  FontSize="16" >ft/lbs</Label>
+				</StackPanel>
+				<StackPanel Name="d_MaxForce" Orientation="Horizontal" Margin="40,356,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+					<Label Style="{DynamicResource GraphLabel}"  Margin="0,0,5,0" FontSize="16" >Max Force</Label>
+					<Label Name="MaxForce" Style="{DynamicResource GraphLabel}"  Margin="0,0,5,0" FontSize="16" >--</Label>
+					<Label Style="{DynamicResource GraphLabel}"  FontSize="16" >ft/lbs</Label>
+				</StackPanel>
+			</Grid>
+		</Border>
+	</Grid>
+</modes:RideBase>

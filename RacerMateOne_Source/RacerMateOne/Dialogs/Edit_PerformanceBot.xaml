@@ -1,0 +1,58 @@
+﻿<Window x:Class="RacerMateOne.Dialogs.Edit_PerformanceBot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+	WindowStyle="None" Background="Transparent" AllowsTransparency="True"
+    HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontFamily="Arial"
+	Name="botbox"
+	Opacity="0" Loaded="Edit_Loaded" ResizeMode="NoResize" ShowInTaskbar="False" SizeToContent="WidthAndHeight"  WindowStartupLocation="CenterOwner">
+	<Window.Resources>
+	</Window.Resources>
+	<Window.Triggers>
+		<EventTrigger RoutedEvent="Page.Loaded">
+			<BeginStoryboard>
+				<Storyboard Name="Fade">
+					<DoubleAnimation  Name="FadeAnim" 
+                                            Storyboard.TargetName="botbox"
+                                            Storyboard.TargetProperty="(Window.Opacity)"
+                                            To="1.0" Duration="0:0:0.25"
+                                            AutoReverse="False" RepeatBehavior="1x" Completed="FadeAnim_Completed" />
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Page.Unloaded">
+		</EventTrigger>
+	</Window.Triggers>
+	<Grid>
+		<Border  Margin="8" Style="{DynamicResource PopupBox}" x:Name="CannotFind" Opacity="1">
+			<Border.Effect>
+				<DropShadowEffect Color="Black" Direction="315" Opacity=".45"/>
+			</Border.Effect>
+			<Grid>
+				<StackPanel Orientation="Horizontal" Margin="40,10,40,58" HorizontalAlignment="Center">
+					<StackPanel Name="p50">
+						<RadioButton Tag="0" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">As ridden</RadioButton>
+						<RadioButton Tag="2" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">+2%</RadioButton>
+						<RadioButton Tag="5" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">+5%</RadioButton>
+						<RadioButton Tag="10" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">+10</RadioButton>
+						<RadioButton Tag="15" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">+15</RadioButton>
+						<RadioButton Tag="20" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">+20</RadioButton>
+						<RadioButton Tag="30" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">+30</RadioButton>
+					</StackPanel>
+					<StackPanel Name="p100" Margin="50,18,0,0">
+						<RadioButton Tag="-2" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">-2%</RadioButton>
+						<RadioButton Tag="-5" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">-5%</RadioButton>
+						<RadioButton Tag="-10" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">-10%</RadioButton>
+						<RadioButton Tag="-15" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">-15%</RadioButton>
+						<RadioButton Tag="-20" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">-20%</RadioButton>
+						<RadioButton Tag="-30" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">-30%</RadioButton>
+					</StackPanel>
+				</StackPanel>
+				<c:Pillbox Text="Save" Width="110" VerticalAlignment="Bottom" Height="31" Margin="0,0,15,15" HorizontalAlignment="Right" Click="Save_Click"></c:Pillbox>
+			</Grid>
+		</Border>
+	</Grid>
+</Window>
+

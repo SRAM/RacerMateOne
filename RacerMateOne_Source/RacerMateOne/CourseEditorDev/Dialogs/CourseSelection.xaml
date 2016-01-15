@@ -1,0 +1,31 @@
+﻿<Window x:Class="RacerMateOne.CourseEditorDev.Dialogs.CourseSelection"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    	WindowStyle="None" Background="Transparent" AllowsTransparency="True"
+        HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial"
+        WindowStartupLocation="CenterOwner" 
+	    Title="CourseSelection" Width="450"  Height="400"  >
+    <Window.Resources>
+       
+    </Window.Resources>
+    <Grid>
+        <Border  Margin="8,12" Style="{StaticResource PopupBox}" Opacity="1" CornerRadius="5" >
+            <Border.Effect>
+                <DropShadowEffect Color="Black" Direction="315" Opacity=".45"/>
+            </Border.Effect>
+            <Canvas>
+                <Image Style="{DynamicResource LogoImage}"/>
+                <RadioButton Canvas.Top="90"  Canvas.Left="73"  GroupName="CopyGroup" FontSize="20"  VerticalContentAlignment="Center"  x:Name="DistanceAndGrade"  Content="Distance and Grade"  IsChecked="True"  />
+                <RadioButton Canvas.Top="120" Canvas.Left="73"  GroupName="CopyGroup" FontSize="20"  VerticalContentAlignment="Center"  x:Name="TimeAndGrade"     Content="Time and Grade"  />
+                <RadioButton Canvas.Top="150" Canvas.Left="73"  GroupName="CopyGroup" FontSize="20"  VerticalContentAlignment="Center"  x:Name="TimeAndWatts"      Content="Time and Watts"  />
+                <RadioButton Canvas.Top="180" Canvas.Left="73"  GroupName="CopyGroup" FontSize="20"  VerticalContentAlignment="Center"  x:Name="DistanceAndWatts"  Content="Distance and Watts"  />
+                <RadioButton Canvas.Top="210" Canvas.Left="73"  GroupName="CopyGroup" FontSize="20"  VerticalContentAlignment="Center"  x:Name="TimeAndAT"         Content="Time and %AT" />
+                <RadioButton Canvas.Top="240" Canvas.Left="73"  GroupName="CopyGroup" FontSize="20"  VerticalContentAlignment="Center"  x:Name="DistanceAndAT"     Content="Distance and %AT" />
+
+                <Button x:Name="OK" Style="{StaticResource PillStyleButton}"  Content="OK" Width="110" Height="31" Click="OK_Click" Canvas.Left="73" Canvas.Top="291"></Button>
+                <Button x:Name="Cancel" Style="{StaticResource PillStyleButton}" Content="Cancel" Width="110" Height="31" Click="Cancel_Click" Canvas.Left="277" Canvas.Top="291"/>
+
+            </Canvas>
+        </Border>
+    </Grid>
+</Window>

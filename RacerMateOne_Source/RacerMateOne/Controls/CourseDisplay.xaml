@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.CourseDisplay"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+	Name="courseDisplay" Loaded="courseDisplay_Loaded" Unloaded="CourseDisplay_Unloaded">
+    <Grid>
+		<Border Margin="0.5,2.5,0.5,0">
+			<Border.Background>
+				<DrawingBrush x:Name="FillBrush" Viewport="0,0,0.25,0.5" TileMode="Tile">
+					<DrawingBrush.Drawing>
+						<DrawingGroup>
+							<GeometryDrawing Brush="#FF437898">
+								<GeometryDrawing.Geometry>
+									<GeometryGroup>
+										<RectangleGeometry Rect="0,0,1,1.1" />
+									</GeometryGroup>
+								</GeometryDrawing.Geometry>
+							</GeometryDrawing>
+
+							<GeometryDrawing Brush="#FF3A7193">
+								<GeometryDrawing.Geometry>
+									<GeometryGroup>
+										<RectangleGeometry Rect="0,1,1,1" />
+									</GeometryGroup>
+								</GeometryDrawing.Geometry>
+							</GeometryDrawing>
+						</DrawingGroup>
+					</DrawingBrush.Drawing>
+				</DrawingBrush>
+			</Border.Background>
+			<Grid>
+				<Border Margin="0,0,0,0" x:Name="LocBar" Width="4" Background="Red" HorizontalAlignment="Left"/>
+			</Grid>
+		</Border>
+		<Viewbox x:Name="CourseBox" Margin="0,2,0,2" Stretch="Fill">
+			<Path Name="CoursePath" Width="1" Height="1" Fill="White" StrokeThickness="0" Stroke="Transparent" />
+		</Viewbox>
+		<Grid Margin="0,2,0,0">
+			<Border  x:Name="TopBar" Width="4" Background="#30FF0000" HorizontalAlignment="Left"/>
+		</Grid>
+		<Border x:Name="Disable_Box" Visibility="Collapsed" Background="#FF999999" Margin="0,0,0,0" />
+		<Border x:Name="d_GhostBox" Visibility="Collapsed" Background="#FF999999" Margin="0,0,0,0" />
+		<!-- <c:ReverseBorder Visibility="" CornerRadius="10,10,10,10"  Background="{Binding ElementName=courseDisplay,Path=RoundedEdge}"/> -->
+	</Grid>
+</UserControl>

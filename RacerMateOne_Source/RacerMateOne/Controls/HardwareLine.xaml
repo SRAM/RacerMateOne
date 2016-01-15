@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.HardwareLine"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+	Background="#8FB7D3"    
+	Name="btn" Loaded="btn_Loaded" IsVisibleChanged="btn_IsVisibleChanged" Unloaded="btn_Unloaded">
+	<UserControl.Resources>
+	</UserControl.Resources>
+	<Grid>
+		<StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+			<Label x:Name="BikeLabel" Padding="0,0,20,0" Width="80" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center">Bike 1</Label>
+			<ComboBox x:Name="Devices" Width="300" FontSize="12" SelectionChanged="Devices_SelectionChanged"></ComboBox>
+			<StackPanel x:Name="Extra" Orientation="Horizontal" Visibility="Hidden">
+				<Grid x:Name="IdentifyLED" Margin="8,0,0,0">
+					<Border Width="24" Height="24" BorderThickness="3" CornerRadius="12" BorderBrush="Gray"
+							>
+						<Border.Background>
+							<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
+								<GradientStop x:Name="LED_c1" Color="#FF000000" Offset="0.0" />
+								<GradientStop x:Name="LED_c2" Color="#FF777777" Offset="1.0" />
+							</LinearGradientBrush>
+						</Border.Background>
+					</Border>
+					<Ellipse Margin="5,4,5,12">
+						<Ellipse.Fill>
+							<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
+								<GradientStop Color="#00FFFFFF" Offset="0.0" />
+								<GradientStop Color="#10FFFFFF" Offset="0.1" />
+								<GradientStop Color="#60FFFFFF" Offset="1.0" />
+							</LinearGradientBrush>
+						</Ellipse.Fill>
+					</Ellipse>
+				</Grid>
+				<c:PlainButton x:Name="Identify" Text="Identify" Margin="8,0,0,0" HorizontalContentAlignment="Right" ToolTip="Select the device by pressing a button" FontSize="16" VerticalContentAlignment="Center" Click="Identify_Click" />
+				<Grid>
+					<c:PlainButton x:Name="Calibrate" FontSize="15" Margin="10,0,0,0" Text="Run Accuwatt" HorizontalAlignment="Left" Width="124" Click="Calibrate_Click" />
+				</Grid>
+				<StackPanel x:Name="Teeth" Orientation="Horizontal">
+					<Label Padding="20,0,5,0" FontSize="16" VerticalContentAlignment="Center">Chain ring</Label>
+					<TextBox x:Name="TeethValue" dw:TextBoxMaskBehavior.Mask="Integer" Width="30" FontSize="16" VerticalContentAlignment="Center" LostKeyboardFocus="TeethValue_LostKeyboardFocus"></TextBox>
+					<Label Padding="5,0,5,0" FontSize="16" VerticalContentAlignment="Center">teeth</Label>
+				</StackPanel>
+			</StackPanel>
+		</StackPanel>
+    </Grid>
+</UserControl>

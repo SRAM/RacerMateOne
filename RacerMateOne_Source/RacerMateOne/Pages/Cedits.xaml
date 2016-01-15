@@ -1,0 +1,121 @@
+﻿<Page x:Class="RacerMateOne.Pages.Credits"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+    Background="#76a7ca"
+	Style="{DynamicResource FullScreenPage}"
+    ShowsNavigationUI="False" HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontSize="20" FontFamily="Arial" Width="910">
+	<Page.Resources>
+	</Page.Resources>
+	<Grid Width="910" Height="640">
+		<!--HEADER -->
+		<Grid>
+			<c:LogoAbout/>
+			<Label Name="t_Title" Style="{DynamicResource TopLine}"></Label>
+			<Image Style="{DynamicResource Branding}"/>
+		</Grid>
+		<!--End of HEADER -->
+		<!-- Footer -->
+		<Grid Margin="12,0,12,18" VerticalAlignment="Bottom">
+			<StackPanel  Orientation="Horizontal" >
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  >
+				<c:Pillbox x:Name="Start" Text="Back" Width="105" VerticalAlignment="Center" IsEnabled="True" Click="Start_Click" />
+			</StackPanel>
+		</Grid>
+		<!-- Main Box -->
+		<Border Style="{DynamicResource Setup_Border}">
+			<Grid Margin="20,10,20,10">
+				<StackPanel>
+					<Label Style="{DynamicResource HeaderLabel}" FontWeight="Bold" FontSize="20">RacerMate</Label>
+					<StackPanel Margin="20,3,0,5">
+						<Label Padding="1" FontSize="14">
+							<TextBlock><TextBlock FontWeight="Bold">Wilfried Baatz</TextBlock> - President, Chief Engineer</TextBlock>
+						</Label>
+						<Label Padding="1" FontSize="14">
+							<TextBlock><TextBlock FontWeight="Bold">Chuck Wurster</TextBlock> - Vice President, General Manager, Marketing</TextBlock>
+						</Label>
+						<Label Padding="1" FontSize="14">
+							<TextBlock><TextBlock FontWeight="Bold">Roger Moore</TextBlock> - Software Products Manager, Technical Service Manager</TextBlock>
+						</Label>
+						<Label Padding="1" FontSize="14">
+							<TextBlock><TextBlock FontWeight="Bold">Ray David</TextBlock> - Sales and Lead Service Technician</TextBlock>
+						</Label>
+						<Label Padding="1" FontSize="14">
+							<TextBlock><TextBlock FontWeight="Bold">Larry McCourry</TextBlock> - Lead Programmer: Hardware interfacing</TextBlock>
+						</Label>
+					</StackPanel>
+
+					<Label Style="{DynamicResource HeaderLabel}" FontWeight="Bold" FontSize="20">Prolific Publishing, Inc.</Label>
+					<StackPanel Margin="20,5,0,5">				
+						<Label Padding="1" FontSize="14">
+							<TextBlock><TextBlock FontWeight="Bold">Baron R.K. Von Wolfsheild</TextBlock> - Chief Software Architect</TextBlock>
+						</Label>
+						<Label Padding="1" FontSize="14">
+							<TextBlock><TextBlock FontWeight="Bold">William Ware</TextBlock> - Lead programmer: User Interface, Back end</TextBlock>
+						</Label>
+						<Label Padding="1" FontSize="14">
+							<TextBlock><TextBlock FontWeight="Bold">Edgar Tolentino</TextBlock> - Programmer: 3D, Files</TextBlock>
+						</Label>
+					</StackPanel>
+					<Grid>
+						<StackPanel>
+							<Label Style="{DynamicResource HeaderLabel}" FontWeight="Bold" FontSize="20">Special Thanks</Label>
+							<StackPanel Margin="20,3,0,5">
+								<Label Padding="1" FontSize="14">
+									<TextBlock><TextBlock FontWeight="Bold">Paul Smeulders</TextBlock> - Partner, ErgVideo™, and "Closer".</TextBlock>
+								</Label>
+								<Label Padding="1" FontSize="14">
+									<TextBlock><TextBlock FontWeight="Bold">Dan Plastina</TextBlock> - UI Design Consultant</TextBlock>
+								</Label>
+								<Label Padding="1" FontSize="14">
+									<TextBlock><TextBlock FontWeight="Bold">Jim Sachs</TextBlock> - Original 3D designer/programmer</TextBlock>
+								</Label>
+								<Label Padding="1" FontSize="14">
+									<TextBlock><TextBlock FontWeight="Bold">Jason Suarez</TextBlock> - Artist: 3D and textures</TextBlock>
+								</Label>
+								<Label Padding="1" FontSize="14">
+									<TextBlock><TextBlock FontWeight="Bold">Jim Rathbun</TextBlock> - Web site and Help design</TextBlock>
+								</Label>
+							</StackPanel>
+						</StackPanel>
+						<StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Width="300">
+							<Label Style="{DynamicResource HeaderLabel}" FontWeight="Bold" FontSize="20">Source code and libraries</Label>
+							<StackPanel Margin="20,3,0,5">
+								<Label Padding="1" FontSize="14">Irrlicht Engine SDK version 1.8 (modified)</Label>
+								<Label Padding="1" FontSize="14">libpng versions 1.2.6</Label>
+								<Label Padding="1" FontSize="14">zlib 1.2.5</Label>
+                                <Label Padding="1" FontSize="14">IJG code</Label>
+							</StackPanel>
+						</StackPanel>	
+					</Grid>
+					<Label Style="{DynamicResource HeaderLabel}" FontWeight="Bold" FontSize="18" Margin="0,10,0,0">RacerMate would like to thank the following people for helping test our newest software:</Label>
+					<UniformGrid Margin="20,5,0,0" Rows="4" Columns="4" HorizontalAlignment="Left">
+						<Label Padding="1" FontSize="14" Width="150">Ray Ruyack</Label>
+						<Label Padding="1" FontSize="14">Jerry Perullo</Label>
+						<Label Padding="1" FontSize="14">Gregg Alderman</Label>
+						<Label Padding="1" FontSize="14">Stacey Alderman</Label>
+
+						<Label Padding="1" FontSize="14">Jack Lipnowski</Label>
+						<Label Padding="1" FontSize="14">Paris Speers</Label>
+						<Label Padding="1" FontSize="14">Sebastian Birch</Label>
+						<Label Padding="1" FontSize="14">Tom Moschetto</Label>
+
+						<Label Padding="1" FontSize="14">David Tunney</Label>
+						<Label Padding="1" FontSize="14">Jeff Andrews</Label>
+						<Label Padding="1" FontSize="14">Anthony Cree</Label>
+						<Label Padding="1" FontSize="14">David Derrig</Label>
+
+						<Label Padding="1" FontSize="14">Skip Kimpel</Label>
+						<Label Padding="1" FontSize="14">Larry Ronsko</Label>
+						<Label Padding="1" FontSize="14">Juan Guerra</Label>
+					</UniformGrid>
+				</StackPanel>
+				<Label Padding="0" HorizontalAlignment="Center" VerticalAlignment="Bottom">Copyright 2011, RacerMate Inc.</Label>
+				
+			</Grid>
+		</Border>
+	</Grid>
+</Page>

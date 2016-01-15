@@ -1,0 +1,29 @@
+﻿<c:BaseUnit x:Class="RacerMateOne.Controls.Timer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:c="clr-namespace:RacerMateOne.Controls"
+	Background="Blue">
+	<c:BaseUnit.Resources>
+		<Style TargetType="{x:Type Label}">
+			<Setter Property="FontFamily" Value="Arial" />
+			<Setter Property="FontSize" Value="30" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="Padding" Value="0,0,0,0"/>
+			<Setter Property="HorizontalAlignment" Value="Right"/>
+		</Style>
+	</c:BaseUnit.Resources>
+	<StackPanel Name="Panel" VerticalAlignment="Top" HorizontalAlignment="Right">
+		<Label Name="MainTimer" FontWeight="Bold">0:00:00.0</Label>
+		<Label Name="LapTimer" FontSize="30">0:00:00.0</Label>
+		<Label Name="RiderName" FontSize="16">Robert</Label>
+		<Label Name="Lap1">0:00:00</Label>
+		<Label Name="Lap2">0:00:00</Label>
+		<Label Name="Lap3">0:00:00</Label>
+		<Label Name="Lap4">0:00:00</Label>
+		<Label Name="Lap5">0:00:00</Label>
+		<Label Name="Lap6">0:00:00</Label>
+		<Label Name="Lap7">0:00:00</Label>
+		<Label Name="Lap8">0:00:00</Label>
+		<Label Name="Lap9">0:00:00</Label>
+	</StackPanel>
+</c:BaseUnit>

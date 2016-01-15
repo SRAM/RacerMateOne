@@ -1,0 +1,14 @@
+<ResourceDictionary 
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="/Themes/SliderResources.xaml" />
+        <ResourceDictionary Source="/Themes/RacerScrollBarResources.xaml" />
+        <ResourceDictionary Source="/Themes/RacerResources.xaml" />
+        <ResourceDictionary Source="/CourseEditorDev/Resources/PillButton.xaml" />
+        <ResourceDictionary Source="/Themes/MiscAdded.xaml" />
+        <!--<ResourceDictionary Source="/Themes/MiscResources.xaml" />-->
+	</ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

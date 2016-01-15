@@ -1,0 +1,42 @@
+﻿<Window x:Class="RacerMateOne.Window_NoHardwareFound"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    Title="No hardware found." Height="196" Width="536" WindowStartupLocation="CenterScreen">
+
+    <!-- Key bindings -->
+    <Window.Resources>
+        <dw:Cmd_ToggleLog x:Key="ToggleLog"/>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Command="{StaticResource ToggleLog}" Key="F12"/>
+    </Window.InputBindings>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Unloaded">
+            <BeginStoryboard>
+                <Storyboard Name="CheckingAnim">
+                    <DoubleAnimation  Name="CheckingAnimation"
+                                            Storyboard.TargetName="Checking"
+                                            Storyboard.TargetProperty="(Window.Opacity)"
+                                            From="1.0" To="0.0" Duration="0:0:0.5"
+                                            AutoReverse="True" RepeatBehavior="Forever"
+                                         />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid>
+        <TextBlock TextBlock.LineHeight="15" ClipToBounds="False" TextWrapping="Wrap" Panel.ZIndex="1" Margin="12,27,12,0" Height="46" VerticalAlignment="Top">
+            Did not find any hardware.   Make sure your Computrainer or Velotron has power, turned on and plugged into the computer.
+        </TextBlock>
+        <TextBlock TextBlock.LineHeight="15" ClipToBounds="False" TextWrapping="Wrap" Panel.ZIndex="1" Margin="12,71,12,41">
+            After you made adjustments you can retry the scan.
+        </TextBlock>
+        <Button Height="23" HorizontalAlignment="Left" Margin="312,0,0,12" Name="Retry" VerticalAlignment="Bottom" Width="75" Click="Retry_Click">Retry</Button>
+        <Button Height="23" HorizontalAlignment="Right" Margin="0,0,22,12" Name="Exit" VerticalAlignment="Bottom" Width="99" Click="Exit_Click">Exit the program</Button>
+        <Label Height="28" Margin="12,0,208,8.48" Name="Checking" VerticalAlignment="Bottom" FontWeight="Bold" Visibility="Hidden">Checking hardware</Label>
+        <Label Height="28" Margin="12,0,208,8.48" Name="CheckingError" VerticalAlignment="Bottom" FontWeight="Bold" Visibility="Hidden" Foreground="Red">Still not finding any hardware</Label>
+        <Button Visibility="Hidden" Margin="12,0,232,11" Name="TempFix" Height="24" VerticalAlignment="Bottom" Click="TempFix_Click">Temporary -- Just go ahead without hardware</Button>
+    </Grid>
+</Window>

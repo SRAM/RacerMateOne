@@ -1,0 +1,45 @@
+﻿<Window x:Class="RacerMateOne.Dialogs.Edit_Bot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+	WindowStyle="None" Background="Transparent" AllowsTransparency="True"
+    HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontFamily="Arial"
+	Name="botbox"
+	Width="405" Height="190" 	
+	Opacity="0" Loaded="Edit_Loaded" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner">
+	<Window.Resources>
+	</Window.Resources>
+	<Window.Triggers>
+		<EventTrigger RoutedEvent="Page.Loaded">
+			<BeginStoryboard>
+				<Storyboard Name="Fade">
+					<DoubleAnimation  Name="FadeAnim" 
+                                            Storyboard.TargetName="botbox"
+                                            Storyboard.TargetProperty="(Window.Opacity)"
+                                            To="1.0" Duration="0:0:0.25"
+                                            AutoReverse="False" RepeatBehavior="1x" Completed="FadeAnim_Completed" />
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Page.Unloaded">
+		</EventTrigger>
+	</Window.Triggers>
+	<Grid>
+		<Border  Margin="8" Style="{DynamicResource PopupBox}" x:Name="CannotFind" Opacity="1">
+			<Border.Effect>
+				<DropShadowEffect Color="Black" Direction="315" Opacity=".45"/>
+			</Border.Effect>
+			<Grid>
+				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Height="28.4" Margin="0,36,0,0">
+					<Slider Name="Slider" VerticalAlignment="Center" Width="180" SmallChange="0.1" LargeChange="2" ValueChanged="Slider_ValueChanged" Maximum="500000" Value="20" />
+					<TextBox Name="SliderText" dw:TextBoxMaskBehavior.Mask="Integer" dw:TextBoxMaskBehavior.MinimumValue="0" dw:TextBoxMaskBehavior.MaximumValue="15" Margin="10,0,5,0" VerticalAlignment="Center" Width="70" HorizontalContentAlignment="Right" TextChanged="Slider_TextChanged">1</TextBox>
+					<Label FontSize="16" VerticalAlignment="Center" Name="SliderLabel">vvv</Label>
+				</StackPanel>
+				<c:Pillbox Text="Save" Width="110" VerticalAlignment="Bottom" Height="31" Margin="0,0,15,15" HorizontalAlignment="Right" Click="Save_Click"></c:Pillbox>
+			</Grid>
+		</Border>
+	</Grid>
+</Window>
+

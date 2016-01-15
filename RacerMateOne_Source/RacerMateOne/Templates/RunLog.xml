@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type='text/xsl' href='RunLog.xslt'?>
+<!-- Contains information about when and what programs were run (also version information) -->
+<Log>
+  <Started>
+    <Name>RacerMate1</Name>
+    <Date>2002-05-30T09:30:10Z</Date>
+  </Started>
+</Log>

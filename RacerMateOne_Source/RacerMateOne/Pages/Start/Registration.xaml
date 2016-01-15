@@ -1,0 +1,208 @@
+﻿<Page x:Class="RacerMateOne.Pages.Start.Registration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+    Background="#76a7ca"
+	Style="{DynamicResource FullScreenPage}"
+    ShowsNavigationUI="False" HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontSize="20" FontFamily="Arial" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+	<Page.Resources>
+
+	</Page.Resources>
+	<Grid Width="910" Height="640">
+		<!--HEADER -->
+		<Grid>
+			<c:LogoAbout Loaded="LogoAbout_Loaded" />
+            <StackPanel>
+                <Label Name="t_Title" Style="{DynamicResource TopLine}">
+                    <TextBlock Name="t_TitleMsg">Registration</TextBlock>
+                </Label>
+                <Label Padding="0" FontSize="17" Margin="0,-7,0,0" HorizontalAlignment="Center" Foreground="#1e3964">
+                    <TextBlock Name="t_TitleNote">(Commonly for computers not connected to the Internet)</TextBlock>
+                </Label>
+            </StackPanel>
+			<Image Style="{DynamicResource Branding}"/>
+		</Grid>
+		<!--End of HEADER -->
+		<!-- MainBox -->
+		<Border Style="{DynamicResource Setup_Border}" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid Margin="25,25,25,25">
+                <StackPanel>
+                    <StackPanel Name="b_ErrorMsg" Visibility="Visible"  Margin="0,0,0,5">
+                        <Label BorderBrush="Red" Style="{DynamicResource HeaderLabel}" Width="650">
+                            <TextBlock Name="t_ErrorMsg" TextWrapping="Wrap" Foreground="Red">
+                            Test Error Message
+                            </TextBlock>
+                        </Label>
+                    </StackPanel>
+                    <StackPanel  Name="b_StartReg" Visibility="Visible" Width="650">
+                        <Label Style="{DynamicResource HeaderLabel}" Margin="30,10,30,20">
+                            <TextBlock TextWrapping="Wrap">
+                                Please register your copy of RacerMate One to activate its use with the trainer.
+                            </TextBlock>
+                        </Label>
+                        <Label Style="{DynamicResource HeaderLabel}"
+                               Margin="30,10,30,20">
+                            <TextBlock TextWrapping="Wrap">
+                                Please review the minimum system requirements before registering this software.</TextBlock>
+                        </Label>
+                        <Label Style="{DynamicResource HeaderLabel}" Margin="30,10,30,20">
+                            <TextBlock TextWrapping="Wrap">
+                                Unregistered, it will only operate in demo mode. We recommend you try demo mode to check the capability of this computer to run the software before registering.
+                            </TextBlock>
+                        </Label>
+                        <Label Style="{DynamicResource HeaderLabel}" Margin="30,10,30,40">
+                            <TextBlock TextWrapping="Wrap">
+                                Click on Help below for further assistance.
+                            </TextBlock>
+                        </Label>
+                    </StackPanel>
+                    <StackPanel  Name="b_ManualReg" Visibility="Collapsed" Width="650">
+                        <StackPanel>
+                            <Label Foreground="#1e3964" Padding="0" FontSize="20" FontWeight="Bold">Step 1</Label>
+                            <Grid>
+                                <Label Margin="30,0,0,0">Write down your Hardware ID:</Label>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Path Margin="0,0,10,0" VerticalAlignment="Center" Data="M 0 5 L 20 5 L 20 0 L 30 10 L 20 20 L 20 15 L 0 15 Z" Fill="#1e3964" />
+                                    <TextBox Name="t_HardwareID" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4" IsReadOnly="True"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Label Margin="30,0,0,0">With Hardware ID and CD Key (found on disc sleeve) proceed to step 2.</Label>
+
+                            <Label Margin="0,10,0,0" Foreground="#1e3964" Padding="0" FontSize="20" FontWeight="Bold">Step 2</Label>
+                            <Label Margin="30,0,0,0">Using another computer (or a smart phone) go to:</Label>
+                            <Label HorizontalAlignment="Right" Margin="0,0,0,0" FontFamily="Courier New" Foreground="#1e3964" FontSize="20" FontWeight="Bold">www.RacerMateInc.com/Register</Label>
+                            <Label Margin="30,0,0,0">Enter the registration information to receive a Registration Keycode from the website.</Label>
+                            <Label Margin="0,10,0,0" Foreground="#1e3964" Padding="0" FontSize="20" FontWeight="Bold">Step 3</Label>
+                            <Label Margin="30,0,0,0">Now you can fill this in:</Label>
+                            <StackPanel Orientation="Horizontal" Margin="0,2,0,0" HorizontalAlignment="Right">
+                                <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">Enter your: Registration Keycode</Label>
+                                <TextBox BorderBrush="Red" Name="t_Keycode" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4">
+                                    <TextBox.BitmapEffect>
+                                        <OuterGlowBitmapEffect GlowColor="Red" GlowSize="3"/>
+                                    </TextBox.BitmapEffect>
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right" >
+                                <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">CD Key (from CD sleeve)</Label>
+                                <TextBox BorderBrush="Red" Name="t_SerialNumberManual" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4" LostFocus="t_SerialNumberManual_LostFocus" GotFocus="t_SerialNumberManual_GotFocus">
+                                    <TextBox.BitmapEffect>
+                                        <OuterGlowBitmapEffect GlowColor="Red" GlowSize="3"/>
+                                    </TextBox.BitmapEffect>
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
+                                <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">Email</Label>
+                                <TextBox BorderBrush="Red" Name="t_EmailManual" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4" GotFocus="t_EmailManual_GotFocus" LostFocus="t_EmailManual_LostFocus">
+                                    <TextBox.BitmapEffect>
+                                        <OuterGlowBitmapEffect GlowColor="Red" GlowSize="3"/>
+                                    </TextBox.BitmapEffect>
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Name="b_CheckEmailManual" HorizontalAlignment="Right">
+                                <Label VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">Confirm email</Label>
+                                <TextBox BorderBrush="Red" Name="t_CheckEmailManual" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4">
+                                    <TextBox.BitmapEffect>
+                                        <OuterGlowBitmapEffect GlowColor="Red" GlowSize="3"/>
+                                    </TextBox.BitmapEffect>
+                                </TextBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+<!-- -->                   
+                    <StackPanel  Name="b_AutoReg" Visibility="Collapsed">
+                        <Label Style="{DynamicResource HeaderLabel}" Width="650" Margin="0,0,0,10">
+                            <TextBlock TextWrapping="Wrap">Please fill in the form below in order to complete the registration process for your RacerMate products.</TextBlock>
+                        </Label>
+                        <StackPanel Margin="20,0,0,10" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <RadioButton Name="t_NewAccount" GroupName="Account" IsChecked="True" Unchecked="NewAccount_Unchecked">New account</RadioButton>
+                            <RadioButton Name="t_ExistingAccount" GroupName="Account" Margin="20,0,0,0" Unchecked="ExistingAccount_Unchecked">Already have an account</RadioButton>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Name="b_FirstName">
+                            <Label Width="170" VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">First name</Label>
+                            <TextBox BorderBrush="Red" Name="t_FirstName" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4" GotFocus="t_FirstName_GotFocus" LostFocus="t_FirstName_LostFocus">
+                                <TextBox.BitmapEffect>
+                                    <OuterGlowBitmapEffect GlowColor="Red" GlowSize="3"/>
+                                </TextBox.BitmapEffect>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Name="b_LastName">
+                            <Label Width="170" VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">Last Name</Label>
+                            <TextBox BorderBrush="Red" Name="t_LastName" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4" GotFocus="t_LastName_GotFocus" LostFocus="t_LastName_LostFocus">
+                                <TextBox.BitmapEffect>
+                                    <OuterGlowBitmapEffect GlowColor="Red" GlowSize="3"/>
+                                </TextBox.BitmapEffect>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label Width="170" VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">CD Key</Label>
+                            <TextBox BorderBrush="Red" Name="t_SerialNumber" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4" GotFocus="t_SerialNumber_GotFocus" LostFocus="t_SerialNumber_LostFocus">
+                                <TextBox.BitmapEffect>
+                                    <OuterGlowBitmapEffect GlowColor="Red" GlowSize="3"/>
+                                </TextBox.BitmapEffect>
+                            </TextBox>
+                        </StackPanel>
+                        <Grid Margin="0,10,0,10" >
+                            <Label Style="{DynamicResource HeaderLabel}" HorizontalAlignment="Center" VerticalAlignment="Center">Account information</Label>
+                        </Grid>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                            <Label Width="170" VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">Email</Label>
+                            <TextBox BorderBrush="Red" Name="t_Email" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4" GotFocus="t_Email_GotFocus" LostFocus="t_Email_LostFocus">
+                                <TextBox.BitmapEffect>
+                                    <OuterGlowBitmapEffect GlowColor="Red" GlowSize="3"/>
+                                </TextBox.BitmapEffect>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Name="b_CheckEmail">
+                            <Label Width="170" VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">Confirm email</Label>
+                            <TextBox BorderBrush="Red" Name="t_CheckEmail" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4">
+                                <TextBox.BitmapEffect>
+                                    <OuterGlowBitmapEffect GlowColor="Red" GlowSize="3"/>
+                                </TextBox.BitmapEffect>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label Width="170" VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">Password</Label>
+                            <PasswordBox BorderBrush="Red" Name="t_Password" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4" PasswordChanged="Password1_OnPasswordChanged">
+                                <PasswordBox.BitmapEffect>
+                                    <OuterGlowBitmapEffect GlowColor="Red" GlowSize="3"/>
+                                </PasswordBox.BitmapEffect>
+                            </PasswordBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" Name="b_ConfirmPassword">
+                            <Label Width="170" VerticalAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Left">Confirm password</Label>
+                            <PasswordBox BorderBrush="Red" Name="t_CheckPassword" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Height="24.4" PasswordChanged="Password2_OnPasswordChanged">
+                                <PasswordBox.BitmapEffect>
+                                    <OuterGlowBitmapEffect GlowColor="Red" GlowSize="3"/>
+                                </PasswordBox.BitmapEffect>
+                            </PasswordBox>
+                        </StackPanel>
+                    </StackPanel>
+<!-- -->                    
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <c:PlainButton x:Name="t_RegisterOffline" Text="Register later" FlowDirection="LeftToRight" HorizontalAlignment="Left" VerticalAlignment="Center" Height="24" Width="170" Margin="0,0,50,0" Click="t_RegisterOffline_Click" />
+                        <CheckBox x:Name="t_Auto" Visibility="Hidden" IsChecked="True" Height="24" Width="80" VerticalAlignment="Center" Margin="20,5,20,0"  Click="Auto_OnClick">
+                            <Label Style="{DynamicResource HeaderLabel}">
+                                <TextBlock>
+                                    Online
+                                </TextBlock>
+                            </Label>
+                        </CheckBox>
+                        <c:Pillbox x:Name="t_Register" Text="Register now" VerticalAlignment="Center" Width="170"  HorizontalAlignment="Right"  Click="t_Register_Click" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+		<!-- End of MainBox -->
+		<!-- Footer -->
+		<Grid Margin="12,0,12,18" VerticalAlignment="Bottom">
+			<StackPanel  Orientation="Horizontal" >
+				<c:TextButton VerticalAlignment="Center" Text="Help" x:Name="Help" Grid.ColumnSpan="3" Click="Help_Click" />
+			</StackPanel>
+		</Grid>
+		<!-- End of MainBox -->
+	</Grid>
+</Page>
+

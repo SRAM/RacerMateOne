@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:08 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from TH_INTERVALS_1.mrc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="TH_INTERVALS_1_mrc" Description="TH INTERVALS 1 MRC" FileName="TH_INTERVALS_1_mrc.rmc" Type="Watts" Looped="False" Length="55.0" Laps="1" StartAt="0" EndAt="3300" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="PercentAT" OriginalHash="26D434B320A4D26C54CE735126F08A43" CourseHash="67CF133BFA6D44BF96D751EDA20D828C" HeaderHash="26D434B320A4D26C54CE735126F08A43"/>
+		<Segments Count="7">
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>87</StartAt>
+				<EndAt>87</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>98</StartAt>
+				<EndAt>98</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>87</StartAt>
+				<EndAt>87</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>98</StartAt>
+				<EndAt>98</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

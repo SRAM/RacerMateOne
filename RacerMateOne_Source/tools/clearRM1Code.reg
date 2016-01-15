@@ -1,0 +1,7 @@
+REGEDIT4
+
+[-HKEY_CURRENT_USER\Software\RacerMate,Inc\RacerMateOne]
+
+[-HKEY_LOCAL_MACHINE\SOFTWARE\RacerMate,Inc\RacerMateOne]
+
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\RacerMate,Inc\RacerMateOne]

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>6/28/2011 6:25:36 PM</Date>
+		<Version>1.02</Version>
+		<Copyright>(c) 2011, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from 3and6tenthloop.3dc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="3and6tenthloop_3dc" Description="" FileName="3and6tenthloop_3dc.rmc" Type="ThreeD" Looped="True" Length="2.3" Laps="1" StartAt="0" EndAt="3622.89986181259" Mirror="False" Reverse="False" Modified="False" XUnits="Distance" YUnits="Grade" OriginalHash="D223F98C52B24D8F3116FC05BAC4C24D" CourseHash="FF2E640C82AFEBD3CB80475EB83F04ED" HeaderHash="D223F98C52B24D8F3116FC05BAC4C24D"/>
+		<ThreeDType Count="60">
+			<Val Smooth="true">
+				<Divisions>8</Divisions>
+				<Length>25</Length>
+				<Grade>0.12</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val>
+				<Length>25</Length>
+				<Grade>0.12</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3927049</Rotation>
+			</Val>
+			<Val>
+				<Length>25</Length>
+				<Grade>0.12</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3927049</Rotation>
+			</Val>
+			<Val>
+				<Length>25</Length>
+				<Grade>0.12</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3927049</Rotation>
+			</Val>
+			<Val>
+				<Length>25</Length>
+				<Grade>0.12</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3927049</Rotation>
+			</Val>
+			<Val>
+				<Length>25</Length>
+				<Grade>0.12</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.3927049</Rotation>
+			</Val>
+		</ThreeDType>
+	</Course>
+</RMX>

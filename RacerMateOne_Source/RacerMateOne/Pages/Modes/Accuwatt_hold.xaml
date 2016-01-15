@@ -1,0 +1,104 @@
+﻿<modes:RideBase x:Class="RacerMateOne.Pages.Modes.Accuwatt_hold"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:modes="clr-namespace:RacerMateOne.Pages.Modes"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+	Style="{DynamicResource FullScreenPage}"				
+    Title="Accuwatt" Loaded="Page_Loaded" Unloaded="Page_Unloaded"
+	Background="#76a7ca"
+	>
+	<Page.Resources>
+	</Page.Resources>
+	<Page.Triggers>
+		<EventTrigger RoutedEvent="Page.Unloaded">
+			<BeginStoryboard>
+				<Storyboard Name="Flash">
+					<DoubleAnimation Name="Flash_Anim"
+												Storyboard.TargetProperty="(Label.Opacity)"
+												From="0.0" To="1.0" Duration="0:0:0.3"
+												AutoReverse="True" RepeatBehavior="Forever"
+												/>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+	</Page.Triggers>
+	<Grid Name="MainGrid" Width="910" Height="640">
+		<Grid>
+			<c:LogoAbout/>
+			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+				<Label Margin="30,15,0,0" Style="{DynamicResource TopLine}">Velotron Accuwatt test</Label>
+			</StackPanel>
+			<!--<Image Style="{DynamicResource Branding}"/> -->
+		</Grid>
+		<Grid Margin="12,0,12,18" VerticalAlignment="Bottom">
+			<StackPanel  Orientation="Horizontal" >
+				<!--
+				<c:TextButton HorizontalAlignment="Left" VerticalAlignment="Center" Click="Options_Click" Text="Options" />
+				<Line Style="{DynamicResource DivLine}" Panel.ZIndex="-2"/>
+				<c:TextButton VerticalAlignment="Center" Text="Help" x:Name="Help" Grid.ColumnSpan="3" Click="Help_Click" />
+				<Line Style="{DynamicResource DivLine}" Panel.ZIndex="-2" />
+				-->
+				<c:TextButton VerticalAlignment="Center" Text="Back" Click="Back_Click" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  >
+				<c:Pillbox x:Name="Retry" Margin="0,0,10,0" Text="Retry" Width="105" VerticalAlignment="Center" IsEnabled="True" Click="Retry_Click" />
+				<c:Pillbox x:Name="Cancel" Text="Cancel" Width="105" VerticalAlignment="Center" IsEnabled="True" Click="Cancel_Click" />
+			</StackPanel>
+		</Grid>
+		<Border Background="#FF8FB7D3" CornerRadius="33" Width="790" Height="400">
+			<Grid Margin="10">
+				<Image Margin="10,132,0,25" Width="372" HorizontalAlignment="Left" Source="/RacerMateOne;component/Resources/Velotron.jpg" />
+				<c:Fade x:Name="Results">
+					<Grid>
+						<Label VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="110,0,0,0" Padding="0" FontSize="12" >
+							* The count is the number of holes that passed the detector as the flywheel decelerates.
+						</Label>
+						<StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,20,0">
+							<Label FontSize="28" HorizontalAlignment="Left" Margin="250,0,0,0"  Padding="0,2,0,0" HorizontalContentAlignment="Center">Accuwatt counts</Label>
+							<Rectangle Fill="White" Height="3"/>
+							<StackPanel Orientation="Horizontal">
+								<Label FontSize="28" Padding="0,2,0,0" Width="300">Factory</Label>
+								<Label FontSize="28" Padding="0,2,0,0" Width="200" HorizontalContentAlignment="Right">254,000</Label>
+								<Label FontSize="28" Padding="0,2,0,0" Width="80" HorizontalContentAlignment="Right">1.5%</Label>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<Label FontSize="28" Padding="0,2,0,0" Width="300">Factory deviation</Label>
+								<Label FontSize="28" Padding="0,2,0,0" Width="200" HorizontalContentAlignment="Right">254,000</Label>
+								<Label FontSize="28" Padding="0,2,0,0" Width="80" HorizontalContentAlignment="Right">1.5%</Label>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<Label FontSize="28" Padding="0,2,0,0" Width="300">Successive deviation</Label>
+								<Label FontSize="28" Padding="0,2,0,0" Width="200" HorizontalContentAlignment="Right">254,000</Label>
+								<Label FontSize="28" Padding="0,2,0,0" Width="80" HorizontalContentAlignment="Right">1.5%</Label>
+							</StackPanel>
+							<Label FontSize="20" Padding="0,2,0,0" HorizontalAlignment="Right" HorizontalContentAlignment="Right">
+								(Acceptable)
+							</Label>
+						</StackPanel>
+					</Grid>
+				</c:Fade>					
+				<c:Fade x:Name="Test">
+					<Grid>
+					<StackPanel HorizontalAlignment="Right" Width="400" Margin="0,20,0,10" >
+						<Label FontSize="24" Padding="0,2,0,0" HorizontalContentAlignment="Center">
+							Please Peddle up to 23 MPH
+						</Label>
+						<Label FontSize="24" Padding="0,2,0,0" HorizontalContentAlignment="Center">
+							Then...stop.
+						</Label>
+						<Label FontSize="80" Padding="0,2,0,0" HorizontalContentAlignment="Center" Loaded="Speed_Loaded">
+							22.53
+						</Label>
+						<Label FontSize="24" Padding="0,2,0,0" HorizontalContentAlignment="Center"  Loaded="Comment_Loaded">
+							Getting close
+						</Label>
+					</StackPanel>
+				</Grid>
+				</c:Fade>
+			</Grid>
+		</Border>
+
+	</Grid>
+</modes:RideBase>
+	

@@ -1,0 +1,32 @@
+/* ----------------------------------------------------------------------------
+ * $Workfile: $
+ * $Revision: 1.1 $
+ *
+ * $Author: EdgarCT-PC\Edgar $
+ * $Date: 2008/06/27 07:00:40 $
+ * ----------------------------------------------------------------------------
+ * //Log: $
+ * ----------------------------------------------------------------------------
+ * This information is CONFIDENTIAL and PROPRIETARY
+ * Copyright (C) 2003, Prolific Publishing, Inc.
+ * All rights reserved.
+ *
+ * $Nokeywords: $
+ */
+const char *gProductID		= "@PRODUCT_INFO@\0%productcategory%,%productname%,%ssdate%.%version%.%revision%.%buildid%";
+const char *gProductCatagory= "%productcategory%";
+const char *gProductName	= "%productname%";
+const char *gProductNameXlat	= "%productname%";
+
+int gVersion=%version%;
+int gRevision=%revision%;
+const int gMinorRevision=0;
+const int gBuildId=%buildid%;
+
+const char *gVersionString	="%version%.%revision%";
+const char *gSSDate			="%ssdate%";
+const char *gUser			="%user%";
+
+const char *gBaseVersion	="%version%.%revision%";
+
+const char *gProlificVersion="%ssdate%.%version%.%revision%.%buildid%";

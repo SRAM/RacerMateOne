@@ -1,0 +1,62 @@
+﻿<Window x:Class="RacerMateOne.Window_ImportCSV"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    Title="Window_ImportCSV" Height="298" Width="576" 
+    Name="winImportCSV" WindowStyle="None" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen"
+    ResizeMode="NoResize" FontFamily="Arial" Icon="/RacerMateOne;component/Resources/RM1.ico" BorderBrush="#FF1318FB" BorderThickness="0">
+
+    <!-- Key bindings -->
+    <Window.Resources>
+        <dw:Cmd_ToggleLog x:Key="ToggleLog"/>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Command="{DynamicResource ToggleLog}" Key="F12"/>
+    </Window.InputBindings>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard Name="FormFade">
+                    <DoubleAnimation  Name="FormFadeAnimation" Completed="FormFadeIn_Completed"
+                                            Storyboard.TargetName="winImportCSV"
+                                            Storyboard.TargetProperty="(Window.Opacity)"
+                                            From="0.0" To="1.0" Duration="0:0:0.5"
+                                            AutoReverse="False" RepeatBehavior="1x"
+                                         />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Window.Unloaded">
+            <BeginStoryboard>
+                <Storyboard Name="FormFadeOut" Completed="FormFadeOut_Completed">
+                    <DoubleAnimation  Name="FormFadeOutAnimation"
+                                            Storyboard.TargetName="winImportCSV"
+                                            Storyboard.TargetProperty="(Window.Opacity)"
+                                            From="1.0" To="0.0" Duration="0:0:0.5"
+                                            AutoReverse="False" RepeatBehavior="1x"
+                                         />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="12*" />
+            <ColumnDefinition Width="507*" />
+            <ColumnDefinition Width="12*" />
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="#FFF8F7F5" Grid.ColumnSpan="3" Stroke="#FF1318FB">
+        </Rectangle>
+        <TextBlock FontSize="32" FontWeight="Bold" TextDecorations="None" Margin="0.025,12,0.025,0" VerticalAlignment="Top" Grid.Column="1" TextAlignment="Left" Height="36.797">
+            Import previous riders.csv data?
+        </TextBlock>
+        <TextBlock TextBlock.LineHeight="15" FontSize="12" ClipToBounds="False" TextWrapping="Wrap" Panel.ZIndex="1" FontWeight="Bold" Margin="0,0,0,396" Height="48.893" VerticalAlignment="Bottom" Grid.Column="1">
+            This is the most basic setup information to get you going.  If you want to see more detailed information about yourself or your other users, select More Options button within RM1 and go to the Riders tab to modify the users you create.
+        </TextBlock>
+        <TextBlock FontWeight="Bold" LineHeight="15" FontSize="12" Name="label1" TextAlignment="Center" Grid.ColumnSpan="3" Height="21" VerticalAlignment="Bottom">© 2010 RacerMate Inc.</TextBlock>
+        <Image Margin="0,0,2.025,27" Name="image1" Stretch="None" StretchDirection="UpOnly" Source="/RacerMateOne;component/Resources/Logo.png" Height="71" VerticalAlignment="Bottom" Grid.Column="1" />
+        <Button Grid.Column="1" Height="23" HorizontalAlignment="Right" Margin="0,122,79.96,0" Name="Yes" Width="75" Click="Yes_Click" VerticalAlignment="Top">Yes</Button>
+        <Button Grid.Column="1" Height="23" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,122,12,0" Name="No" Width="75" Click="No_Click" VerticalAlignment="Top">No</Button>
+    </Grid>
+</Window>

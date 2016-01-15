@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.ReverseBorder"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Name="bdr" Loaded="bdr_Loaded" SizeChanged="bdr_SizeChanged">
+    <Grid>
+        <Path Name="UpperLeft" 
+            >
+        </Path>
+        <Path Name="UpperRight" 
+            >
+        </Path>
+        <Path Name="LowerLeft" 
+            >
+        </Path>
+        <Path Name="LowerRight" 
+            >
+        </Path>
+        <Border Name="Border"/>
+    </Grid>
+</UserControl>

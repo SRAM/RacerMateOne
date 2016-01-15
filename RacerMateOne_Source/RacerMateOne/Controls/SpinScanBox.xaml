@@ -1,0 +1,75 @@
+﻿<c:BaseUnit x:Class="RacerMateOne.Controls.SpinScanBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:c="clr-namespace:RacerMateOne.Controls">
+	<c:BaseUnit.Resources>
+		<Style TargetType="{x:Type Label}">
+			<Setter Property="FontFamily" Value="Arial" />
+			<Setter Property="FontSize" Value="30" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="Padding" Value="0,0,0,0"/>
+			<Setter Property="HorizontalAlignment" Value="Right"/>
+		</Style>
+		<Style x:Key="StatLabel3D" TargetType="{x:Type Label}">
+			<Setter Property="FontFamily" Value="Arial" />
+			<Setter Property="FontSize" Value="16" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="Padding" Value="0,4,0,0"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+		<Style x:Key="StatHeaderLabel3D" TargetType="{x:Type Label}">
+			<Setter Property="FontFamily" Value="Arial" />
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontSize" Value="16" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="Padding" Value="0,0,0,0"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+		<Style x:Key="Border3D" TargetType="{x:Type Border}">
+			<Setter Property="CornerRadius" Value="10"/>
+			<Setter Property="Background" Value="#99000000"/>
+			<Setter Property="Effect">
+				<Setter.Value>
+					<BlurEffect Radius="5" />
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</c:BaseUnit.Resources>
+	<Grid>
+		<Border Name="BackBox" Visibility="Collapsed" Style="{DynamicResource Border3D}"/>
+		<StackPanel Name="SPanel" Margin="0">
+			<StackPanel Margin="0,0,0,4" Orientation="Horizontal">
+				<Label Style="{DynamicResource StatLabel3D}" Margin="0,0,15,0" Width="40" HorizontalContentAlignment="Right"></Label>
+				<Label Style="{DynamicResource StatLabel3D}" HorizontalContentAlignment="Center" FontSize="12" Width="50">Left</Label>
+				<Label Style="{DynamicResource StatLabel3D}" HorizontalContentAlignment="Center" FontSize="12" Margin="-20,0,-20,0" Width="70">Overall</Label>
+				<Label Style="{DynamicResource StatLabel3D}" HorizontalContentAlignment="Center" FontSize="12" Width="50">Right</Label>
+			</StackPanel>
+			<StackPanel Margin="0,0,0,4" Orientation="Horizontal">
+				<Label Style="{DynamicResource StatHeaderLabel3D}" Margin="0,0,15,0" Width="45" HorizontalContentAlignment="Right">SS</Label>
+				<Label Name="d_SSLeft" Style="{DynamicResource StatHeaderLabel3D}" Width="40">77</Label>
+				<Label Name="d_SSAvg" Style="{DynamicResource StatHeaderLabel3D}" Width="40" Foreground="#70FFFFFF">62</Label>
+				<Label Name="d_SSRight" Style="{DynamicResource StatHeaderLabel3D}" Width="40" FontWeight="Bold">64</Label>
+			</StackPanel>
+			<StackPanel Margin="0,0,0,4" Orientation="Horizontal">
+				<Label Style="{DynamicResource StatHeaderLabel3D}" Margin="0,0,15,0" Width="45" HorizontalContentAlignment="Right">Avg</Label>
+				<Label Name="d_SSLeft_Avg" Style="{DynamicResource StatLabel3D}" Width="40">0</Label>
+				<Label Name="d_SSAvgATA" Style="{DynamicResource StatLabel3D}" Width="40" Foreground="#70FFFFFF">0</Label>
+				<Label Name="d_SSRight_Avg" Style="{DynamicResource StatLabel3D}" Width="40">0</Label>
+			</StackPanel>
+			<StackPanel Margin="0,0,0,4" Orientation="Horizontal">
+				<Label Style="{DynamicResource StatHeaderLabel3D}" Margin="0,0,15,0" Width="45" HorizontalContentAlignment="Right">ATA</Label>
+				<Label Name="d_SSLeftATA" Style="{DynamicResource StatLabel3D}" Width="40">0</Label>
+				<Label Style="{DynamicResource StatLabel3D}" Width="40"></Label>
+				<Label Name="d_SSRightATA" Style="{DynamicResource StatLabel3D}" Width="40">0</Label>
+			</StackPanel>
+			<StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+				<Label Style="{DynamicResource StatHeaderLabel3D}" Margin="0,0,15,0" Width="45" HorizontalContentAlignment="Right">%</Label>
+				<Label Name="d_SSLeftWatts" Style="{DynamicResource StatLabel3D}" Width="40">0</Label>
+				<Label Style="{DynamicResource StatLabel3D}" Width="40"></Label>
+				<Label Name="d_SSRightWatts" Style="{DynamicResource StatLabel3D}" Width="40">0</Label>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</c:BaseUnit>

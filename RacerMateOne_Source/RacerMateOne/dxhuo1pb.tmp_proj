@@ -1,0 +1,1541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8EAE976C-256E-4390-A2FF-4F0778533EFB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RacerMateOne</RootNamespace>
+    <AssemblyName>RacerMateOne</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <ApplicationIcon>Resources\RM1.ico</ApplicationIcon>
+    <StartupObject>RacerMateOne.App</StartupObject>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetZone>LocalIntranet</TargetZone>
+    <GenerateManifests>true</GenerateManifests>
+    <ManifestCertificateThumbprint>DB8F301E24F997C70283521AF0757C3B250DC2AB</ManifestCertificateThumbprint>
+    <ManifestKeyFile>RacerMateOne_TemporaryKey.pfx</ManifestKeyFile>
+    <SignManifests>false</SignManifests>
+    <PublishUrl>\\EDGARCT-PC\Shared\RacerMate\Publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>false</MapFileExtensions>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>index.html</WebPage>
+    <ApplicationRevision>11</ApplicationRevision>
+    <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppWin.xaml.cs">
+      <DependentUpon>AppWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bot.cs" />
+    <Compile Include="BrowserClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\BaseUnit.cs" />
+    <Compile Include="CommonDialogWrappers.cs" />
+    <Compile Include="Controls\BarSpinScan.xaml.cs">
+      <DependentUpon>BarSpinScan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Busy.xaml.cs">
+      <DependentUpon>Busy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ButtonBox.xaml.cs">
+      <DependentUpon>ButtonBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BaseClick.cs" />
+    <Compile Include="Controls\ColorBox.xaml.cs">
+      <DependentUpon>ColorBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColorPickerControlView.xaml.cs">
+      <DependentUpon>ColorPickerControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Control_Selection.xaml.cs">
+      <DependentUpon>Control_Selection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LineGraphReview.xaml.cs">
+      <DependentUpon>LineGraphReview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CoursePicker.xaml.cs">
+      <DependentUpon>CoursePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatsBox.xaml.cs">
+      <DependentUpon>StatsBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TimerExLeft.xaml.cs">
+      <DependentUpon>TimerExLeft.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RaceCourseDisplayOld.xaml.cs">
+      <DependentUpon>RaceCourseDisplayOld.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CountDown.xaml.cs">
+      <DependentUpon>CountDown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CountDown_Old.xaml.cs">
+      <DependentUpon>CountDown_Old.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CourseControl.xaml.cs">
+      <DependentUpon>CourseControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CourseDisplay.xaml.cs">
+      <DependentUpon>CourseDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CourseDisplayEx.xaml.cs">
+      <DependentUpon>CourseDisplayEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CoursePickerLine.xaml.cs">
+      <DependentUpon>CoursePickerLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\D3DBase.xaml.cs">
+      <DependentUpon>D3DBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DemoBikeView.xaml.cs">
+      <DependentUpon>DemoBikeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Gear.xaml.cs">
+      <DependentUpon>Gear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GlowClick.xaml.cs">
+      <DependentUpon>GlowClick.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HardwareLine.xaml.cs">
+      <DependentUpon>HardwareLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HoverBox.xaml.cs">
+      <DependentUpon>HoverBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InfoLineTop.xaml.cs">
+      <DependentUpon>InfoLineTop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LineGraph.xaml.cs">
+      <DependentUpon>LineGraph.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LogoAbout.xaml.cs">
+      <DependentUpon>LogoAbout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Option.xaml.cs">
+      <DependentUpon>Option.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Fade.xaml.cs">
+      <DependentUpon>Fade.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Pillbox.xaml.cs">
+      <DependentUpon>Pillbox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ModeDisplay.xaml.cs">
+      <DependentUpon>ModeDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PlainButton.xaml.cs">
+      <DependentUpon>PlainButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PolarSpinScan.xaml.cs">
+      <DependentUpon>PolarSpinScan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RaceCourseDisplay.xaml.cs">
+      <DependentUpon>RaceCourseDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RandomImage.cs" />
+    <Compile Include="Controls\RCV.xaml.cs">
+      <DependentUpon>RCV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RCVPreview.xaml.cs">
+      <DependentUpon>RCVPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Render3D.xaml.cs" />
+    <Compile Include="Controls\Render3DFrame.xaml.cs">
+      <DependentUpon>Render3DFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Render3DView.xaml.cs">
+      <DependentUpon>Render3DView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ReverseBorder.xaml.cs">
+      <DependentUpon>ReverseBorder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RiderPickerLine.xaml.cs">
+      <DependentUpon>RiderPickerLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RM1PageTitle.xaml.cs">
+      <DependentUpon>RM1PageTitle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RTab.xaml.cs">
+      <DependentUpon>RTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RTabSmall.xaml.cs">
+      <DependentUpon>RTabSmall.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SpinScan3D.xaml.cs">
+      <DependentUpon>SpinScan3D.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SpinScanBox.xaml.cs">
+      <DependentUpon>SpinScanBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatsArea.xaml.cs">
+      <DependentUpon>StatsArea.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatsLine.xaml.cs">
+      <DependentUpon>StatsLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatsLineSmall.xaml.cs">
+      <DependentUpon>StatsLineSmall.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextButton.xaml.cs">
+      <DependentUpon>TextButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Timer.xaml.cs">
+      <DependentUpon>Timer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TimerEx.xaml.cs">
+      <DependentUpon>TimerEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UnitCycle.xaml.cs">
+      <DependentUpon>UnitCycle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UnitsDisplay.xaml.cs">
+      <DependentUpon>UnitsDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Course.cs" />
+    <Compile Include="CustomClass_RacerMatePaths.cs" />
+    <Compile Include="Dialogs\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AdvancedColorPickerDialog.xaml.cs">
+      <DependentUpon>AdvancedColorPickerDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Ask.xaml.cs">
+      <DependentUpon>Ask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\JustInfo.xaml.cs">
+      <DependentUpon>JustInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ExportPerformance.xaml.cs">
+      <DependentUpon>ExportPerformance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ReportQuestions.xaml.cs">
+      <DependentUpon>ReportQuestions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_PerformanceBot.xaml.cs">
+      <DependentUpon>Edit_PerformanceBot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_PercentBot.xaml.cs">
+      <DependentUpon>Edit_PercentBot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_AIBot.xaml.cs">
+      <DependentUpon>Edit_AIBot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_HRBot.xaml.cs">
+      <DependentUpon>Edit_HRBot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_Bot.xaml.cs">
+      <DependentUpon>Edit_Bot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_WattsBot.xaml.cs">
+      <DependentUpon>Edit_WattsBot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Edit_DelayBot.xaml.cs">
+      <DependentUpon>Edit_DelayBot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\HardwareLine_Select.xaml.cs">
+      <DependentUpon>HardwareLine_Select.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SavePerformance.xaml.cs">
+      <DependentUpon>SavePerformance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TextLine.xaml.cs">
+      <DependentUpon>TextLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs" />
+    <Compile Include="Pages\Basic.xaml.cs">
+      <DependentUpon>Basic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ComingSoon.xaml.cs">
+      <DependentUpon>ComingSoon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Cedits.xaml.cs">
+      <DependentUpon>Cedits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Accuwatt_hold.xaml.cs">
+      <DependentUpon>Accuwatt_hold.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\ClassicMultiRider.xaml.cs">
+      <DependentUpon>ClassicMultiRider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Calibrate.xaml.cs">
+      <DependentUpon>Calibrate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Calibrate2.xaml.cs">
+      <DependentUpon>Calibrate2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Accuwatt.xaml.cs">
+      <DependentUpon>Accuwatt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\PowerTraining_Review.xaml.cs">
+      <DependentUpon>PowerTraining_Review.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Loader.xaml.cs">
+      <DependentUpon>Loader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\ReviewBase.cs" />
+    <Compile Include="Pages\Modes\SpinScan_Review.xaml.cs">
+      <DependentUpon>SpinScan_Review.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\RCV_Split.xaml.cs">
+      <DependentUpon>RCV_Split.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\RCV.xaml.cs">
+      <DependentUpon>RCV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\SpinScan.xaml.cs">
+      <DependentUpon>SpinScan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\SavePerformance.cs" />
+    <Compile Include="Pages\Modes\Staging.xaml.cs">
+      <DependentUpon>Staging.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\PreviewWarning.xaml.cs">
+      <DependentUpon>PreviewWarning.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\Registration.xaml.cs">
+      <DependentUpon>Registration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\Registration_Send.xaml.cs">
+      <DependentUpon>Registration_Send.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TagPage.cs" />
+    <Compile Include="PerfFrame.cs" />
+    <Compile Include="Pages\Modes\CourseEditor.xaml.cs">
+      <DependentUpon>CourseEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\PowerTraining.xaml.cs">
+      <DependentUpon>PowerTraining.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\zzz_RCV.xaml.cs">
+      <DependentUpon>zzz_RCV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Ride3D.xaml.cs">
+      <DependentUpon>Ride3D.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\RideBase.cs" />
+    <Compile Include="Pages\Modes\zzz_SpinScan.xaml.cs">
+      <DependentUpon>zzz_SpinScan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SelectRider.xaml.cs">
+      <DependentUpon>SelectRider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReferenceClock.cs" />
+    <Compile Include="ReportColumns.cs" />
+    <Compile Include="RiderGroup.cs" />
+    <Compile Include="Riders.cs" />
+    <Compile Include="Dialogs\Window_Splash.xaml.cs">
+      <DependentUpon>Window_Splash.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Mode_Calibration.xaml.cs">
+      <DependentUpon>Mode_Calibration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Mode_Accuwatt.xaml.cs">
+      <DependentUpon>Mode_Accuwatt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Blank.xaml.cs">
+      <DependentUpon>Blank.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Calibration.xaml.cs">
+      <DependentUpon>Calibration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Dialogs\SetGearTeeth.xaml.cs">
+      <DependentUpon>SetGearTeeth.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modes\Scanning.xaml.cs">
+      <DependentUpon>Scanning.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RideOptions.xaml.cs">
+      <DependentUpon>RideOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RideOptionsAll.xaml.cs">
+      <DependentUpon>RideOptionsAll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Selection.xaml.cs">
+      <DependentUpon>Selection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Splash.xaml.cs">
+      <DependentUpon>Splash.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\FirstUsers.xaml.cs">
+      <DependentUpon>FirstUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\ImportCSV.xaml.cs">
+      <DependentUpon>ImportCSV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\RunCalibration.xaml.cs">
+      <DependentUpon>RunCalibration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Start\Welcome.xaml.cs">
+      <DependentUpon>Welcome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StyleSheet.xaml.cs">
+      <DependentUpon>StyleSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Rider.cs" />
+    <Compile Include="RideSpec.cs" />
+    <Compile Include="RM1.cs" />
+    <Compile Include="RM1_Commands.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Behaviors.cs" />
+    <Compile Include="Statistics.cs" />
+    <Compile Include="TrainerUserConfigurable.cs" />
+    <Compile Include="Dialogs\Window_CustomLoadBackupFile.xaml.cs">
+      <DependentUpon>Window_CustomLoadBackupFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Window_Log.xaml.cs">
+      <DependentUpon>Window_Log.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Window_Welcome.xaml.cs">
+      <DependentUpon>Window_Welcome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Window_NoHardwareFound.xaml.cs">
+      <DependentUpon>Window_NoHardwareFound.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Window_RunCalibration.xaml.cs">
+      <DependentUpon>Window_RunCalibration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Window_ImportCSV.xaml.cs">
+      <DependentUpon>Window_ImportCSV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Unit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XmlStream.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="Media\courses\c.3dc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\courses\Lastcrs.3dc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\banner.x">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\banner2.x">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\BIKE_Frame_Gold.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\BIKE_Frame_Nuetral.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Box_Test.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\detailmap.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Lastcrs.3dc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerMale_Access.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerMale_Body.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerMale_WhiteGray.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerMate_ShirtGray.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerMate_ShortsGray.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_Chrome.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\THREE21.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\UV.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\Standard.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\StandardCC.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\StandardNRL.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\Atlanta.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\AtlantaCC.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\AtlantaNRL.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\OKFalls.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\OKFallsCC.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\OKFallsNRL.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\PentictonBC.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\PentictonBCCC.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\PentictonBCNRL.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\Teton.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\TetonCC.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\TetonNRL.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerFemale_RedBlue.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerChrome_Body.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerFemale_Body.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerFemale_WhiteGray.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerGold_Body.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_Gold.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Signs.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_Chrome.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_ChromeFemale.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_ChromeMale.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_Gold.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Banner_Finish.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Banner_Start.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Gate.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\racer_logo_new.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_OldBikeFemale.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Racer_OldBikeMale.X">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\RacerMateOne-Logo.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Courses\Distance and Grade\Warmup_3dc.rmc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RacerMateOne_TemporaryKey.pfx" />
+    <None Include="unpatch.bat" />
+    <None Include="updatepatch.bat" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RM1_DefaultSettings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Art\Reports\aboutyou.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\Reports\tourlogosmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\Reports\urllogosmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\Training Gym Logo\GymLogo-170x70.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\3DCycling-200x160.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\ClassicMultiRider-200x160.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\ErgVideo-200x160.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\PowerTraining-200x160.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\RealCourseVideo-200x160.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Bike-DanPlastina.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Bike-Gary.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Biker-Carfrae.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Biker-Gushe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Biker-Llamos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Biker-Potts.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Biker-Sheides.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SetUp-Biker-Snow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Art\UI\SpinScan-200x160.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\3D_Cycling.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Accuwatt_Tips.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Accuwatt_VT.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Classic_MultiRider.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Course_Creator.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Course_Profile_Edit.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Customize_Report.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Definitions.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\DemoMode.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\DragFactor.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\First_Use.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Hardware_Detect.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\heartrate.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\help.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3DC-Examples.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3Dcollage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3Dcollage_small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3DCyclingSetup-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3DCyclingSetup.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3Dw_pacers.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\3Dw_pacers_s.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Accuwatt-Results-Velotron.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Accuwatt-Setup-Velotron.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Balloon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Bargraph-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Bargraph.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_extra2-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_extra2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Inst.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Inst_S.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Polar-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Polar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Result-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_Result.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_UNCAL.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Cal_UNCAL_S.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course-Creator-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course-Creator.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course-Editor-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course-Editor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course_Sorting-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course_Sorting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course_Sort_click-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Course_Sort_click.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\DataFull-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\DataFull.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\DataSplit-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\DataSplit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\DragFactor-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\DragFactor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\End-at.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\ExistingAccount-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\ExistingAccount.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Export_Q.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\FTDIUSBstereosmall.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\HB_KeysVelotron.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\HeartRate-Settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\IMG_0043.JPG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\IMG_0108.JPG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\LaunchPad-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\LaunchPad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\ManualRegistration-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\ManualRegistration.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Multi-Rider-Options-Selector.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Multi-Rider-Selector-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Multi-Rider-Selector.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\MultiRider-Coach.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\MultiRider-Settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\MultiRider-TeamTimeTrials.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\MultiRider-Test-TeamTimeTrial.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\MultiRider-TimeTrials.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\New RM1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\New-Account-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\New-Account.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Advanced-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Advanced.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Display-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Display.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Display_custom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Display_custom_sm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-File-Saving-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-File-Saving.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Hardware-Identify-s.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Hardware-Identify.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Hardware-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Hardware.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Riders-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options-Riders.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options_Riders_Velotron.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Options_Riders_Velotron_s.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Pacer_Assignment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Pacer_Assignment_s.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Partners.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PowerTraining-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PowerTraining.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PowerTrainingGradeManual.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PowerTrainingWattsManual.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\ProfileReverse.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Profile_Desc-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Profile_Desc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTraining-GradeCourse.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTraining-GradeCoursesmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTraining-GradeStartEnd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTraining-GradeStartEndsmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTraining-GradeZoom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTraining-GradeZoomsmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTrainingATMan-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTrainingATMan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTrainingGradeManual-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTrainingWattsMan-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PTrainingWattsMan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_DF_Adjust.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_DF_Adjust_small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_Erg-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_Erg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_Erg_StartEnd-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_Erg_StartEnd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_Erg_StartEnd_zoom-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\PT_Erg_StartEnd_zoom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\RCV-Examples.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\RCV-Setttings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\RCVthumb-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\RCVthumb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\report.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\reportsmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Calibrate.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-CompuTrainer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Looking-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Looking.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-NoHardwareFound-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-NoHardwareFound.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Riders-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Riders.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Use-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Setup-Use.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\SpinScan-Settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\SpinScan-small.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\SpinScan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Start-From.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Start_Cal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Start_Cal_S.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\stereo_cable.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\TrackingTrue.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Help_files\Zoom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Key_presses_shortcuts.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Launchpad.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Manual_AT.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Manual_Grade.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Manual_Watts.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Options_Advanced.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Options_Display.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Options_File_Saving.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Options_Hardware.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Options_Riders.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Partners.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Pick_Course_Ergo.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Pick_Course_WL.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Pick_Rider.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Power_Training.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Real_Course_Video.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Real_Course_Video_reg.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Register_RM1.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\RM1.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\RM_Hardware.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Rolling_Calibration_CT.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\SpinScan-BillEdwards.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\SpinScan.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\troubleshoot.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\Velotron_Gearing.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\RM1_RideInput.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\RM1_RideOutput.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\RM1Logo.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="CleanSettings.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ErrorReport.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Irrlichtf.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\Atlanta.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\AtlantaCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\AtlantaNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Banner.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\chrome2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\D3DConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\detailmap3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Finish.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\gold2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\HappyTest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\help.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\lucida.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\lucida0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\Numbers.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\open.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\skydome.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\skydome2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\skydome5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\tools.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\data\zip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\OKFalls.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\OKFallsCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\OKFallsNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\PentictonBC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\PentictonBCCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\PentictonBCNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\ptdesert.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\PtdesertCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\PtdesertNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\scenes\ptdesert.zip" />
+    <Content Include="Media\scenes\PtdesertCC.zip" />
+    <Content Include="Media\scenes\PtdesertNRL.zip" />
+    <Content Include="Media\scenes\seattle.zip" />
+    <Content Include="Media\scenes\SeattleCC.zip" />
+    <Content Include="Media\scenes\SeattleNRL.zip" />
+    <Content Include="Media\seattle.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\SeattleCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\SeattleNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\Standard.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\StandardCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\StandardNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\Teton.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\TetonCC.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\TetonNRL.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Templates\RunLog.xml" />
+    <EmbeddedResource Include="Templates\RunLog.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WPFMediaKit\WPFMediaKit.csproj">
+      <Project>{6030628D-EE93-4D61-B6BE-8B6AE99F3935}</Project>
+      <Name>WPFMediaKit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\" />
+    <Folder Include="UserPersonal\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets. 
+  <Target Name="BeforeBuild"></Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == xxx ("C:\Program Files (x86)\PreEmptive Solutions\Dotfuscator Professional Edition 4.9\dotfuscatorUI.exe" $(SolutionDir)Dotfuscator6RacerMate1Signed.xml)</PostBuildEvent>
+    <PreBuildEvent>if $(ConfigurationName) == Release (
+copy "$(ProjectDir)rm1obs.dll" "$(ProjectDir)$(OutDir)rm1.dll"
+cd $(SolutionDir)tools\phpfiles
+php rm1.php enc
+) ELSE (
+copy "$(ProjectDir)rm1clean.dll" "$(ProjectDir)$(OutDir)rm1.dll" 
+cd $(SolutionDir)tools\phpfiles 
+php rm1.php dec  )
+</PreBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <ReferencePath Include="bin\Release\DirectShowLib-2005.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.0\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.0\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.5\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.5\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Data.dll" />
+    <ReferencePath Include="C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll" />
+    <ReferencePath Include="C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Drawing.dll" />
+    <ReferencePath Include="C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Management.dll" />
+    <ReferencePath Include="C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Windows.Forms.dll" />
+    <ReferencePath Include="C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.5\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.0\UIAutomationProvider.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.0\WindowsBase.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.0\WindowsFormsIntegration.dll" />
+    <ReferencePath Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\WPFMediaKit\bin\Release\WPFMediaKit.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\AppWin.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\BarSpinScan.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\Busy.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\ButtonBox.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\ColorBox.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\ColorPickerControlView.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\Control_Selection.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\LineGraphReview.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\CoursePicker.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\StatsBox.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\TimerExLeft.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\RaceCourseDisplayOld.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\CountDown.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\CountDown_Old.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\CourseControl.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\CourseDisplay.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\CourseDisplayEx.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\CoursePickerLine.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\D3DBase.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\DemoBikeView.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\Gear.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\GlowClick.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\HardwareLine.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\HoverBox.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\InfoLineTop.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\LineGraph.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\LogoAbout.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\Option.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\Fade.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\Pillbox.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\ModeDisplay.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\PlainButton.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\PolarSpinScan.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\RaceCourseDisplay.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\RCV.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\RCVPreview.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\Render3DFrame.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\Render3DView.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\ReverseBorder.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\RiderPickerLine.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\RM1PageTitle.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\RTab.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\RTabSmall.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\SpinScan3D.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\SpinScanBox.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\StatsArea.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\StatsLine.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\StatsLineSmall.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\Test.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\TextButton.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\Timer.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\TimerEx.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\UnitCycle.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Controls\UnitsDisplay.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\About.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\AdvancedColorPickerDialog.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Ask.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\JustInfo.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\ExportPerformance.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\ReportQuestions.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Edit_PerformanceBot.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Edit_PercentBot.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Edit_AIBot.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Edit_HRBot.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Edit_Bot.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Edit_WattsBot.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Edit_DelayBot.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\HardwareLine_Select.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\SavePerformance.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\TextLine.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Window_Splash.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Window_CustomLoadBackupFile.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Mode_Calibration.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Mode_Accuwatt.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Basic.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Blank.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Calibration.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\ComingSoon.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Cedits.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Dialogs\SetGearTeeth.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\Accuwatt_hold.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\ClassicMultiRider.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\Calibrate.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\Calibrate2.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\Accuwatt.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\PowerTraining_Review.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\Loader.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\SpinScan_Review.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\RCV_Split.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\RCV.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\SpinScan.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\CourseEditor.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\PowerTraining.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\zzz_RCV.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\Ride3D.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\Scanning.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\zzz_SpinScan.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Modes\Staging.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\RideOptions.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\RideOptionsAll.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Selection.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\SelectRider.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Splash.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Start\PreviewWarning.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Start\FirstUsers.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Start\ImportCSV.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Start\Registration.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Start\RunCalibration.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Start\Registration_Send.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\Start\Welcome.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Pages\StyleSheet.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Window_Log.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Window_Welcome.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Window_NoHardwareFound.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Window_RunCalibration.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\Dialogs\Window_ImportCSV.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\App.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\RacerMateOne_Content.g.cs" />
+    <Compile Include="D:\Users\Smeulders\Documents\RacerMateOneBuildOBSBuildWorking160\RacerMateOne_Source\RacerMateOne\obj\Release\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
+</Project>

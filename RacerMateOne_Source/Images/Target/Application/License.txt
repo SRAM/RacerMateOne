@@ -1,0 +1,87 @@
+END USER SOFTWARE LICENSE AGREEMENT
+
+
+RacerMate Software Content LICENSE AND TERMS OF USE.
+
+Copyright © RacerMate Inc. 2012. All rights reserved. Protected by the copyright laws of the United States and by international treaties. 
+
+NOTICE TO USER: PLEASE READ THIS CONTRACT CAREFULLY. BY PURCHASING or INSTALLING OR USING ALL OR ANY PORTION OF THE SOFTWARE YOU ACCEPT ALL THE TERMS AND CONDITIONS OF THIS AGREEMENT, INCLUDING, IN PARTICULAR THE LIMITATIONS ON: USE CONTAINED IN SECTION 3; TRANSFERABILITY IN SECTION 7; WARRANTY IN SECTION 8; AND LIABILITY IN SECTION 10. YOU AGREE THAT THIS AGREEMENT IS ENFORCEABLE LIKE ANY WRITTEN NEGOTIATED AGREEMENT SIGNED BY YOU. IF YOU DO NOT AGREE, DO NOT USE THIS SOFTWARE. A COPY OF THIS AGREEMENT IS DISPLAYED ON THE RACERMATE WEBSITE http://www.racermateinc.com. 
+
+IT IS ILLEGAL AND STRICTLY PROHIBITED TO DISTRIBUTE, PUBLISH, OFFER FOR SALE, LICENSE OR SUBLICENSE, GIVE OR DISCLOSE TO ANY OTHER PARTY, THIS PRODUCT IN HARD COPY OR DIGITAL FORM. 
+
+The use of this product is governed by the terms and conditions set forth below. Please read them carefully. This License Agreement is applicable to the RacerMate One software and all Real Course Video content (video and data files contained and produced), and any and all Legacy software supplied on the software disc or available for download. You are deemed to have read, understood and accepted the terms of this License Agreement when you purchase or install or use RacerMate Inc. software or multimedia content, hereinafter referred to as the RACERMATE INC. PRODUCTS.
+
+1 Definitions
+
+When used in this Agreement, the following terms shall have the respective meanings indicated, such meanings to be applicable to both the singular and plural forms of the terms defined: 
+
+"Software" means (a) all of the contents of the files, disk(s), CD-ROM(s) or other media with which this Agreement is provided, including but not limited to (i) RacerMate Inc. or third party computer information or software; (ii) digital images, video, stock photographs, clip art, sounds or other artistic works ("Stock Files"); (iii) related explanatory written materials or files ("Documentation"); and (b) upgrades, modified versions, updates, additions, and copies of the Software, if any, licensed to you by RacerMate Inc.(collectively, "Updates"). 
+
+"Use" or "Using" means to access, install, download, copy or otherwise benefit from using the functionality of the Software in accordance with the Documentation. 
+
+“Licensee” means You or Your Company, unless otherwise indicated.
+
+"Permitted Number" means two (2) unless otherwise indicated.
+
+"Computer" means an electronic device that accepts information in digital or similar form and manipulates it for a specific result based on a sequence of instructions. 
+
+"Licensor" means RacerMate Inc., located at 3016 N.E. Blakeley St, Seattle, WA 98105
+
+
+2. Software License
+
+As long as you comply with the terms of this End User License Agreement (the "Agreement"), RacerMate Inc. grants to you a non-exclusive license to Use the Software for the purposes described in the Documentation. Some third party materials included in the Software may be subject to other terms and conditions, which are typically found in a "Read Me" file located near such materials.
+
+3. General Use
+
+The Licensee may install and use one copy of the Software on a single computer at any given point in time.  A second copy may be placed on a portable computer, or in the event of a computer malfunction have it installed and registered on a second computer; providing there is only one copy in use at any given point in time. This definition is strict and shall not be construed to imply any other meaning. Removal from one computer for installation to another is not implied and is not included beyond the two installations allowed. You may install the software as often as necessary on the same two computers by a single licensee.
+
+RacerMate Inc. may grant separate license(s) upon additional payment(s) of the purchase price (for each license) should you wish to install and use the Software on other computers.
+
+RacerMate software may be installed and licensed in a manner to allow it to be used by all users of the single computer on which it is installed and licensed. However, installations on networks or network disk drives to enable use at multiple computers is prohibited.
+
+4. Backup Copy
+
+You may make one backup copy of the Software, provided your backup copy is not installed or used on any computer. You may not transfer the rights to a backup copy.
+ 
+5. Stock Files
+
+You may not display, modify, reproduce or distribute any of the Stock Files included with the Software, or derivative works thereof. The Stock Files constitute the primary value of the product being distributed. Stock Files may not be used in the production of libelous, defamatory, fraudulent, lewd, obscene or pornographic material or any material that infringes upon any third party intellectual property rights or in any otherwise illegal manner. You may not claim any trademark rights or copyrights in the Stock Files or derivative works thereof.
+
+6. Intellectual Property Rights
+
+The Software and any copies that you are authorized by RacerMate Inc. to make are the intellectual property of and are owned by RacerMate Inc. and its suppliers. The structure, organization and code of the Software are the valuable trade secrets and confidential information of RacerMate Inc. and its suppliers. The Software is protected by copyright, including without limitation by United States Copyright Law, international treaty provisions and applicable laws in the country in which it is being used. You may not copy the Software, except as set forth in Section 2 ("Software License"). 
+
+Any copies that you are permitted to make pursuant to this Agreement must contain the same copyright and other proprietary notices that appear on or in the Software. You also agree not to reverse engineer, decompile, disassemble or otherwise attempt to discover the source code of the Software except to the extent you may be expressly permitted to decompile under applicable law.
+
+7. Transfer
+
+You may not rent, lease, sublicense or authorize all or any portion of the Software to be copied onto another users computer. Notwithstanding the foregoing, you may not transfer education, pre-release, or not for resale copies of the Software.
+
+RacerMate Inc. may grant separate license(s) upon additional payment(s) of the purchase price (for each one) should you or a transferee wish to transfer, install and use the Software on other computers.
+
+
+8. NO WARRANTY
+
+The Software is being delivered to you "AS IS" and RacerMate Inc. makes no warranty as to its use or performance. RacerMate Inc. and its suppliers do not and cannot warrant the performance or results you may obtain by using the software. Except for any warranty, condition, representation or term to the extent to which the same cannot or may not be excluded or limited by law applicable to you in your jurisdiction, RacerMate Inc. And its suppliers make no warranties conditions, representations, or terms (express or implied whether by statute, common law, custom, usage or otherwise) as to any matter including without limitation non-infringement of third party rights, merchantability, integration, satisfactory quality, or fitness for any particular purpose. 
+
+9. Pre-release Product Additional Terms
+
+If the product you have received with this license is pre-commercial release or beta Software ("Pre-release Software"), then the following Section applies. To the extent that any provision in this Section is in conflict with any other term or condition in this Agreement, this Section shall supersede such other term(s) and condition(s) with respect to the Pre-release Software, but only to the extent necessary to resolve the conflict. You acknowledge that the Software is a pre-release version, does not represent final product from RacerMate Inc., and may contain bugs, errors and other problems that could cause system or other failures and data loss. Consequently, the Pre-release Software is provided to you "AS-IS", and RacerMate Inc. disclaims any warranty or liability obligations to you of any kind. Where legally liability cannot be excluded for pre-release software, but it may be limited, RacerMate Inc.’s liability and that of its suppliers shall be limited to the sum of one dollars (u.s. $1) in total. You acknowledge that RacerMate Inc. has not promised or guaranteed to you that Pre-release Software will be announced or made available to anyone in the future, that RacerMate Inc. has no express or implied obligation to you to announce or introduce the Pre-release Software and that RacerMate Inc. may not introduce a product similar to or compatible with the Pre-release Software. Accordingly, you acknowledge that any research or development that you perform regarding the Pre-release Software or any product associated with the Pre-release Software is done entirely at your own risk. During the term of this Agreement, if requested by RacerMate Inc., you will provide feedback to RacerMate Inc. regarding testing and use of the Pre-release Software, including error or bug reports. If you have been provided the Pre-release Software pursuant to a separate written agreement, such as the RacerMate Inc. Serial Agreement for Unreleased Products, your use of the Software is also governed by such agreement. You agree that you may not and certify that you will not sublicense, lease, loan, rent, or transfer the Pre-release Software. Upon receipt of a later unreleased version of the Pre-release Software or release by RacerMate Inc. of a publicly released commercial version of the Software, whether as a stand-alone product or as part of a larger product, you agree to return or destroy all earlier Pre-release Software received from RacerMate Inc. and to abide by the terms of the End User License Agreement for any such later versions of the Pre-release Software. Notwithstanding anything in this Section to the contrary, if you are located outside the United States of America, you agree that you will return or destroy all unreleased versions of the Pre-release Software within thirty (30) days of the completion of your testing of the Software when such date is earlier than the date for RacerMate Inc.'s first commercial shipment of the publicly released (commercial) Software.
+
+10. LIMITATION OF LIABILITY
+
+In no event will RacerMate Inc. or its suppliers, be liable to you for any damages, claims or costs whatsoever or any consequential, indirect, incidental damages, or any lost profits or lost savings, even if a RacerMate Inc. representative has been advised of the possibility of such loss, damages, claims or costs or for any claim by any third party. The foregoing limitations and exclusions apply to the extent permitted by applicable law in your jurisdiction. RacerMate Inc.'s aggregate liability and that of its suppliers under or in connection with this agreement shall be limited to the amount paid for the software, if any. Nothing contained in this Agreement limits RacerMate Inc.'s liability to you in the event of death or personal injury resulting from RacerMate Inc.'s negligence or for the tort of deceit (fraud). RacerMate Inc. is acting on behalf of its suppliers for the purpose of disclaiming, excluding and/or limiting obligations, warranties and liability as provided in this Agreement, but in no other respects and for no other purpose. For further information, please see the jurisdiction specific information at the end of this Agreement, if any, or contact RacerMate Inc.’s Customer Support Department.
+
+11. Governing Law
+
+This Agreement shall be governed by and interpreted in accordance with the laws of Washington State, USA.
+
+12. General Provisions
+
+If any part of this Agreement is found void and unenforceable, it will not affect the validity of the balance of the Agreement, which shall remain valid and enforceable according to its terms. This Agreement shall not prejudice the statutory rights of any party dealing as a consumer. This Agreement may only be modified by a writing signed by an authorized officer of RacerMate Inc.. Updates may be licensed to you by RacerMate Inc. with additional or different terms. This is the entire agreement between RacerMate Inc. and you relating to the Software and it supersedes any prior representations, discussions, undertakings, communications or advertising relating to the Software. 
+
+13. Acceptance
+
+Your acceptance of the terms of use of RACERMATE PRODUCTS electronically, by taking the affirmative act of clicking on any acceptance button and by purchasing our products, shall be deemed to be your signature to this Agreement to the same extent as if your written signature was contained hereon. Our waiver of any breach of this Agreement shall not constitute an amendment to this Agreement or our waiver of subsequent breaches hereof. If any provision of this Agreement is found to be invalid or unenforceable, the remainder of this Agreement shall remain in full force and effect. Additionally, any provision that is deemed to be unenforceable or invalid shall be interpreted to the maximum extent of enforceability.
+

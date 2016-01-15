@@ -1,0 +1,74 @@
+﻿<Page x:Class="RacerMateOne.Pages.RideOptions"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+    Title="RiderOptions" 
+    Name="RiderOptions" Background="#76a7ca"
+	Style="{DynamicResource FullScreenPage}"
+    ShowsNavigationUI="False" HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontSize="20" FontFamily="Arial" Loaded="RiderOptions_Loaded">
+    <Page.Resources>
+    </Page.Resources>
+    <Grid Width="910" Height="640">
+        <!--HEADER -->
+		<Grid>
+			<c:LogoAbout/>
+			<Image Style="{DynamicResource Branding}"/>
+		</Grid>
+		<!-- Footer -->
+		<Grid Margin="12,0,12,18" VerticalAlignment="Bottom">
+			<StackPanel  Orientation="Horizontal" >
+				<!--
+				<c:TextButton HorizontalAlignment="Left" VerticalAlignment="Center" Click="Options_Click" Text="Options" />
+				<Line Style="{DynamicResource DivLine}" Panel.ZIndex="-2"/>
+				-->
+				<c:TextButton VerticalAlignment="Center" Text="Help" x:Name="Help" Grid.ColumnSpan="3" Click="Help_Click" />
+				<Line Style="{DynamicResource DivLine}" Panel.ZIndex="-2" />
+				<c:TextButton VerticalAlignment="Center" Text="Back" x:Name="Back" Click="Back_Click" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  >
+				<c:Pillbox Text="Save" Width="105" VerticalAlignment="Center" IsEnabled="True" Click="Start_Click" />
+			</StackPanel>
+		</Grid>
+		<!-- End of MainBox -->
+
+
+		<Grid>
+			<StackPanel Name="Tabs" Margin="46,105,0,0" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Orientation="Horizontal" Width="830">
+            </StackPanel>
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="222,14.704,185,0" Height="228.297">
+				<TextBlock Name="TopLine" FontSize="45" TextWrapping="Wrap" MaxWidth="280" Margin="0,0,5,0" Foreground="#1E3966" Typography.StandardLigatures="True" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Arial" Text="Hardware" Focusable="False">
+					<TextBlock.BitmapEffect>
+						<OuterGlowBitmapEffect GlowColor="#C8DCEA" GlowSize="6" />
+					</TextBlock.BitmapEffect></TextBlock>
+				<StackPanel Name="InfoBox" Margin="20,13,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="270">
+					<TextBox Tag="@All" Name="FindTag" Style="{DynamicResource FindTextBox}" Width="287" HorizontalAlignment="Left" VerticalAlignment="Top" TextChanged="FindTag_TextChanged"></TextBox>
+					<Label Tag="@All" Padding="0" FontSize="12" Margin="10,0,0,0" Name="label1" VerticalAlignment="Top" Height="13.8" Foreground="#1E3966">Find any option quickly e.g. "Heart rate"</Label>
+					<TextBlock Tag="@Hardware" FontSize="15" TextWrapping="Wrap" Foreground="#1E3966">
+						Configure your Velotrons or CompuTrainers.  To learn more click on help.</TextBlock>
+					<TextBlock Tag="@Rider" FontSize="15" TextWrapping="Wrap" Foreground="#1E3966">
+						 Build a unique profile for each rider.  To learn more click on help.</TextBlock>
+					<TextBlock Tag="@Display" FontSize="15" TextWrapping="Wrap" Foreground="#1E3966">
+						 Customize what metrics are shown on screen. To learn more click on help.</TextBlock>
+					<TextBlock Tag="@Reports" FontSize="15" TextWrapping="Wrap" Foreground="#1E3966">
+					Save a file with all your customized data.  To learn more click on help.</TextBlock>
+					<TextBlock Tag="@Advanced" FontSize="15" TextWrapping="Wrap" Foreground="#1E3966">
+					 Do you like to tweak things to be "just right"?  To learn more click on help.</TextBlock>
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+        <!-- End of header-->
+        
+        <!-- MainBox -->
+        <Border Margin="12,131,12,62" Background="#FF8FB7D3" CornerRadius="10">
+            <Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="20*" />
+					<RowDefinition Height="425*" />
+				</Grid.RowDefinitions>
+				<dw:FaderFrame FocusVisualStyle="{x:Null}" NavigationUIVisibility="Hidden" x:Name="Frame" FadeDuration="00:00:00.3000000"  Margin="20,0,0,0" Grid.RowSpan="2"></dw:FaderFrame>
+            </Grid>
+        </Border>
+	</Grid>
+</Page>

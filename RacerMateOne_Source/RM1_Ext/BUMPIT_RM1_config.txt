@@ -1,0 +1,8 @@
+productcategory: "RacerMate"
+productlabel: "RM1"
+version: "3"
+revision: "2"
+productid: none
+inputfile: %version.txt
+outputfile: %version_RM1.cpp
+lastbuildidfile: %last-buildid_RM1.txt

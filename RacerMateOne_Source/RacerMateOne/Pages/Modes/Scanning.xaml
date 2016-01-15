@@ -1,0 +1,39 @@
+﻿<Page x:Class="RacerMateOne.Pages.Modes.Scanning"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+    Title="RiderOptions" 
+    Name="RiderOptions" Background="#76a7ca"
+	Style="{DynamicResource FullScreenPage}"
+    ShowsNavigationUI="False" HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontSize="20" FontFamily="Arial">
+	<Page.Resources>
+	</Page.Resources>
+	<Grid Width="910" Height="640">
+		<!--HEADER -->
+		<Grid>
+			<c:LogoAbout/>
+			<TextBlock Name="TopLine" FontSize="50" 
+                Foreground="#1E3966"
+                Typography.StandardLigatures="True" VerticalAlignment="Top" FontFamily="Arial" Height="57.497" Margin="193,12,108,0">
+                <TextBlock.BitmapEffect>
+                    <OuterGlowBitmapEffect GlowColor="#C8DCEA" GlowSize="6"/>
+                </TextBlock.BitmapEffect>
+			</TextBlock>
+			<c:TextButton Margin="0,12,12,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90" Text="Back" x:Name="Back" Height="31" Click="Back_Click" />
+		</Grid>
+		<!-- End of header-->
+
+		<!-- MainBox -->
+		<Border Name="LoadingBox" Height="55" Margin="188,192,188,0" VerticalAlignment="Top" Background="#FF8FB7D3" CornerRadius="27.5,27.5,27.5,27.5" Grid.RowSpan="2">
+			<Grid>
+				<TextBlock Foreground="White" FontFamily="Arial" FontSize="30" Margin="0,10,90,6" HorizontalAlignment="Right" Width="421">
+                    Looking for RacerMate devices
+				</TextBlock>
+				<c:Busy x:Name="busy" Width="39" HorizontalAlignment="Right" Margin="0,6.5,29,6.5" Active="True" />
+			</Grid>
+		</Border>
+	</Grid>
+</Page>
+

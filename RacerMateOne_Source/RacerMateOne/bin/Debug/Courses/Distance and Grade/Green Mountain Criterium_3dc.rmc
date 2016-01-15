@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>6/28/2011 6:26:08 PM</Date>
+		<Version>1.02</Version>
+		<Copyright>(c) 2011, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from Green Mountain Criterium.3dc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="Green Mountain Criterium_3dc" Description="" FileName="Green Mountain Criterium_3dc.rmc" Type="ThreeD" Looped="True" Length="0.6" Laps="1" StartAt="0" EndAt="969.830906391144" Mirror="False" Reverse="False" Modified="False" XUnits="Distance" YUnits="Grade" OriginalHash="197BF01997B0B8F90988A507BB45139F" CourseHash="3413E25C78725DCC5EB6885C66C72AD3" HeaderHash="197BF01997B0B8F90988A507BB45139F"/>
+		<ThreeDType Count="20">
+			<Val Smooth="true">
+				<Divisions>12</Divisions>
+				<Length>37.4921226501465</Length>
+				<Grade>0.002286742</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>42</Divisions>
+				<Length>16.1370620727539</Length>
+				<Grade>0.04422721</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.493387</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>34</Divisions>
+				<Length>104.101638793945</Length>
+				<Grade>0.05381953</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>44</Divisions>
+				<Length>15.7079582214355</Length>
+				<Grade>-0.01425782</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.570796</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>36</Divisions>
+				<Length>109.419906616211</Length>
+				<Grade>-0.006963709</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>42</Divisions>
+				<Length>16.0394420623779</Length>
+				<Grade>0.06837121</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.511405</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>31</Divisions>
+				<Length>94.7576751708984</Length>
+				<Grade>-0.006869403</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>42</Divisions>
+				<Length>16.0394420623779</Length>
+				<Grade>-0.01057025</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.511405</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>34</Divisions>
+				<Length>102.608345031738</Length>
+				<Grade>-0.02176278</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>44</Divisions>
+				<Length>15.3670520782471</Length>
+				<Grade>-0.04135037</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.629229</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>34</Divisions>
+				<Length>104.738792419434</Length>
+				<Grade>-0.05469083</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>6</Divisions>
+				<Length>19.9998111724854</Length>
+				<Grade>-0.05322281</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.0108898</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>37</Divisions>
+				<Length>113.374336242676</Length>
+				<Grade>-0.05255331</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>44</Divisions>
+				<Length>15.2399997711182</Length>
+				<Grade>0.05341279</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.570742</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>4</Divisions>
+				<Length>3.54740762710571</Length>
+				<Grade>0</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.0383907</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>4</Divisions>
+				<Length>5</Length>
+				<Grade>0.0605896</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val>
+				<Length>36.1173820495605</Length>
+				<Grade>0.0605896</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.00743897</Rotation>
+			</Val>
+			<Val>
+				<Length>5</Length>
+				<Grade>0.0605896</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>14</Divisions>
+				<Length>135.142532348633</Length>
+				<Grade>0</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+			<Val>
+				<Length>4</Length>
+				<Grade>0</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+		</ThreeDType>
+	</Course>
+</RMX>

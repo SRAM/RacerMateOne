@@ -1,0 +1,36 @@
+﻿<Page x:Class="RacerMateOne.Pages.Start.PreviewWarning"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+    Background="#76a7ca"
+	Style="{DynamicResource FullScreenPage}"
+    ShowsNavigationUI="False" HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontSize="20" FontFamily="Arial">
+	<Page.Resources>
+
+	</Page.Resources>
+	<Grid Width="910" Height="640">
+		<!--HEADER -->
+		<Grid>
+			<c:LogoAbout/>
+			<Label Name="t_Title" Style="{DynamicResource TopLine}">Entering Demo Mode</Label>
+			<Image Style="{DynamicResource Branding}"/>
+		</Grid>
+		<!--End of HEADER -->
+		<!-- Footer -->
+		<Grid Margin="12,0,12,18" VerticalAlignment="Bottom">
+			<StackPanel  Orientation="Horizontal" >
+				<c:TextButton VerticalAlignment="Center" Text="Help" x:Name="Help" Grid.ColumnSpan="3" Click="Help_Click" />
+			</StackPanel>
+		</Grid>
+		<!-- Main Box -->
+		<Border Style="{DynamicResource Setup_Border}" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<StackPanel Margin="20" Width="650">
+				<TextBlock Foreground="White" TextWrapping="Wrap">You have chosen to register later.   The software will now enter Demo mode. Demo mode will allow you to confirm the capability of running RacerMate One on this computer.   You will be able to run demo mode from the computer keyboard, but not from the trainer hardware.</TextBlock>
+				<TextBlock Margin="0,20,0,0" Foreground="White" TextWrapping="Wrap">For information on this mode, click on the Help button below.</TextBlock>
+				<c:Pillbox x:Name="OKButton" Text="OK" HorizontalAlignment="Right" Width="80" Margin="0,20,0,0" Click="Start_Click"></c:Pillbox>
+			</StackPanel>
+		</Border>
+	</Grid>
+</Page>

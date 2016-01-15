@@ -1,0 +1,31 @@
+﻿<c:BaseUnit x:Class="RacerMateOne.Controls.TimerEx"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:c="clr-namespace:RacerMateOne.Controls"
+	Background="Blue"
+	>
+	<c:BaseUnit.Resources>
+		<Style TargetType="{x:Type Label}">
+			<Setter Property="FontFamily" Value="Arial" />
+			<Setter Property="FontSize" Value="30" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="Padding" Value="0,0,0,0"/>
+			<Setter Property="HorizontalAlignment" Value="Right"/>
+		</Style>
+	</c:BaseUnit.Resources>
+	<StackPanel>
+		<Label Name="RiderName" FontSize="16">Robert</Label>
+		<StackPanel Orientation="Horizontal" Name="s_Lap" HorizontalAlignment="Right">
+			<Label Name="s_Final" Margin="0,0,5,0" FontSize="16"  VerticalAlignment="Center" Visibility="Collapsed">Final</Label>
+			<Label Name="LapTimer" FontSize="30">0:00:00.0</Label>
+		</StackPanel>
+		<StackPanel Orientation="Horizontal" Name="s_Last" HorizontalAlignment="Right">
+			<Label Name="LastLabel" Margin="0,0,5,0" FontSize="16"  VerticalAlignment="Center">Last</Label>
+			<Label Name="LastLap" FontSize="25"  VerticalAlignment="Center">0:00:00.0</Label>
+		</StackPanel>
+		<StackPanel Orientation="Horizontal" Name="s_Best" HorizontalAlignment="Right">
+			<Label Name="BestLabel" Margin="0,0,5,0" FontSize="16"  VerticalAlignment="Center">Best</Label>
+			<Label Name="BestLap" FontSize="25"  VerticalAlignment="Center">0:00:00.0</Label>
+		</StackPanel>
+	</StackPanel>
+</c:BaseUnit>

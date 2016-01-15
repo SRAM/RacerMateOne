@@ -1,0 +1,839 @@
+﻿<Page x:Class="RacerMateOne.CourseEditorDev.CourseEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+    xmlns:local="clr-namespace:RacerMateOne.Pages.Modes"
+    xmlns:s="clr-namespace:System.Collections;assembly=mscorlib"
+    xmlns:p="clr-namespace:System;assembly=mscorlib"
+    xmlns:Attached="clr-namespace:RacerMateOne.CourseEditorDev.AttachedProperties"
+    xmlns:Converter="clr-namespace:RacerMateOne.CourseEditorDev.Converters"
+    Title="RiderOptions" 
+    Name="RiderOptions" Background="#76a7ca"
+	Style="{DynamicResource FullScreenPage}"
+    ShowsNavigationUI="False" HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontSize="16" FontFamily="Arial" >
+    <Page.Resources>
+        <SolidColorBrush x:Key="SelectedBrush" Color="#FFFFAAAA" ></SolidColorBrush>
+        <LinearGradientBrush  x:Key="ItemBrush" StartPoint="0,0" EndPoint="0,1" >
+            <GradientStop Color="#FF4682AA" Offset="0" />
+            <GradientStop Color="#FFFAFAFA" Offset="1.0" />
+        </LinearGradientBrush >
+        <Style x:Key="SimpleListBoxItem" TargetType="ListBoxItem">
+            <!--<Setter Property="FocusVisualStyle" Value="{x:Null}" />-->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="Border" SnapsToDevicePixels="true">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource SelectedBrush}"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="Red"/>
+                                <Setter TargetName="Border" Property="BorderThickness" Value="3"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Converter:WindConverter x:Key="WindConverter" />
+        <Converter:PathConverter x:Key="PathConverter" />
+        <Converter:DoubleToStringConverter x:Key="DoubleToStringConverter" />
+        <Converter:CombindConverter x:Key="CombindConverter" />
+        <Converter:DistanceConverter x:Key="DistanceConverter" />
+        <Converter:VisibilityMode x:Key="VisibilityMode" />
+        <Converter:TimeConverter x:Key="TimeConverter" />
+        <Converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <Converter:IsMetricConverter x:Key="IsMatricConverter" />
+
+        
+
+        <GridView x:Key="GV_DISTGRADE">
+            <GridViewColumn Header="Leg"        Width="70"   DisplayMemberBinding="{Binding Segment, Mode=TwoWay}" />
+            <GridViewColumn Header="Dist"       Width="100"  DisplayMemberBinding="{Binding Path=DisplayLength, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=2, Mode=TwoWay}"  />
+            <GridViewColumn Header="Grade"      Width="100"  DisplayMemberBinding="{Binding Path=DisplayGrade, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=2, Mode=TwoWay}" />
+            <GridViewColumn Header="Wind"       Width="70"   DisplayMemberBinding="{Binding Path=Wind, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=2, Mode=TwoWay}" />
+            <GridViewColumn Header="Accum"      Width="100"  DisplayMemberBinding="{Binding Path=AccumDistGrade, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=2, Mode=TwoWay}" />
+        </GridView>
+
+        <GridView x:Key="GV_TIMEGRADE">
+            <GridViewColumn Header="Leg"        Width="70"   DisplayMemberBinding="{Binding Segment, Mode=TwoWay}" />
+            <GridViewColumn Header="Time"       Width="100"  DisplayMemberBinding="{Binding Time, Converter={StaticResource TimeConverter}}" />
+            <GridViewColumn Header="Grade"      Width="100"  DisplayMemberBinding="{Binding Path=DisplayGrade, Converter={StaticResource DoubleToStringConverter}, Mode=TwoWay, ConverterParameter=1}" />
+            <GridViewColumn Header="Wind"       Width="70"   DisplayMemberBinding="{Binding Path=Wind, Converter={StaticResource DoubleToStringConverter}, Mode=TwoWay, ConverterParameter=1}" />
+            <GridViewColumn Header="Accum"      Width="100"  DisplayMemberBinding="{Binding Path=AccumTimeGrade, Converter={StaticResource TimeConverter}}" />
+        </GridView>
+
+        <GridView x:Key="GV_TIMEWATT">
+            <GridViewColumn Header="Leg"        Width="70"  DisplayMemberBinding="{Binding Segment}"    />
+            <GridViewColumn Header="Time"       Width="90" DisplayMemberBinding="{Binding Time, Converter={StaticResource TimeConverter}}" />
+            <GridViewColumn Header="Start Watt" Width="95" DisplayMemberBinding="{Binding Path=StartWatt, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=0}" />
+            <GridViewColumn Header="End Watt"   Width="90"  DisplayMemberBinding="{Binding Path=EndWatt, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=0}" />
+            <GridViewColumn Header="Accum"      Width="95" DisplayMemberBinding="{Binding Path=AccumTimeWatt, Converter={StaticResource TimeConverter}}" />
+        </GridView>
+
+        <GridView x:Key="GV_DISTWATT">
+            <GridViewColumn Header="Leg"        Width="60" DisplayMemberBinding="{Binding Segment}"  />
+            <GridViewColumn Header="Dist"       Width="90" DisplayMemberBinding="{Binding Path=DisplayLength, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=2}"  />
+            <GridViewColumn Header="Start Watt" Width="95" DisplayMemberBinding="{Binding Path=StartWatt, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=0}" />
+            <GridViewColumn Header="End Watt"   Width="95" DisplayMemberBinding="{Binding Path=EndWatt, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=0}" />
+            <GridViewColumn Header="Accum"      Width="95" DisplayMemberBinding="{Binding Path=AccumDistWatt, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=2}" />
+        </GridView>
+
+        <GridView x:Key="GV_TIMEAT">
+            <GridViewColumn Header="Leg"       Width="60" DisplayMemberBinding="{Binding Segment}" />
+            <GridViewColumn Header="Time"      Width="90" DisplayMemberBinding="{Binding Time, Converter={StaticResource TimeConverter}}" />
+            <GridViewColumn Header="Start %AT" Width="95" DisplayMemberBinding="{Binding Path=StartAT, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=0}" />
+            <GridViewColumn Header="End %AT"   Width="95" DisplayMemberBinding="{Binding Path=EndAT, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=0}" />
+            <GridViewColumn Header="Accum"     Width="95" DisplayMemberBinding="{Binding Path=AccumTimeAT, Converter={StaticResource TimeConverter}}" />
+        </GridView>
+
+        <GridView x:Key="GV_DISTAT">
+            <GridViewColumn Header="Leg"        Width="70"  DisplayMemberBinding="{Binding Segment}" />
+            <GridViewColumn Header="Dist"       Width="100" DisplayMemberBinding="{Binding DisplayLength, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=2}" />
+            <GridViewColumn Header="Start %AT"  Width="100" DisplayMemberBinding="{Binding Path=StartAT, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=0}" />
+            <GridViewColumn Header="End %AT"    Width="70"  DisplayMemberBinding="{Binding Path=EndAT, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=0}" />
+            <GridViewColumn Header="Accum"      Width="100" DisplayMemberBinding="{Binding Path=AccumDistAT, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=2}" />
+        </GridView>
+
+        <Grid x:Key="GRID_DISTGRADE" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16" />
+                <RowDefinition Height="16" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="0">Grade</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="0">Grade</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="0">Wind</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="0">Wind</Label>
+
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="1">min/max</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="1">avg</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="1">min/max</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="1">avg</Label>
+
+            <Label x:Name="lblMinMaxGrade_DISTGRADE"    Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="3" FontWeight="Bold" Content="{Binding MinMaxGrade}" />
+            <Label x:Name="lblAvargeGrade_DISTGRADE"    Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="3" FontWeight="Bold" Content="{Binding AvargeGrade}" />
+            <Label x:Name="lblMinMaxWind_DISTGRADE"     Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="3" FontWeight="Bold" Content="{Binding MinMaxWind}" />
+            <Label x:Name="lblAvargeWind_DISTGRADE"     Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="3" FontWeight="Bold" Content="{Binding AvargeWind}" />
+            
+            <Rectangle Fill="White" Height="1.25"  Grid.ColumnSpan="7" Grid.Row="2" Margin="0,3,0,3"></Rectangle>
+        </Grid>
+
+        <Grid x:Key="GRID_TIMEGRADE" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16" />
+                <RowDefinition Height="16" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="0">Grade</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="0">Grade</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="0">Time</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="0">Time</Label>
+
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="1">Min/Max</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="1">avg</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="1">Min/Max</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="1">avg</Label>
+
+            <Label x:Name="lblMinMaxGrade_TIMEGRADE"    Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="3" FontWeight="Bold" Content="{Binding MinMaxGrade}" />
+            <Label x:Name="lblAvargeGrade_TIMEGRADE"    Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="3" FontWeight="Bold" Content="{Binding AvargeGrade}" />
+            <Label x:Name="lblMinMaxTime_TIMEGRADE"     Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="3" FontWeight="Bold" Content="{Binding MinMaxTime}" />
+            <Label x:Name="lblAvargeTime_TIMEGRADE"     Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="3" FontWeight="Bold" Content="{Binding AvargeTime}" />
+            <Rectangle Fill="White" Height="1.25" Grid.ColumnSpan="7" Grid.Row="2" Margin="0,3,0,3"></Rectangle>
+        </Grid>
+
+        
+        <Grid x:Key="GRID_TIMEWATT" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16" />
+                <RowDefinition Height="16" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="0">Watts</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="0">Watts</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="0">Time</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="4" Grid.Row="0">Time</Label>
+        
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="1">Min/Max</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="1">avg</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="1">Min/Max</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="1">avg</Label>
+
+            <Label x:Name ="lblWattsMinMax_TIMEWATT"   Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="3" FontWeight="Bold" Content="{Binding MinMaxWatts}" />
+            <Label x:Name="lblAvargeWatts_TIMEWATT"    Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="3" FontWeight="Bold" Content="{Binding AvargeWatts}" />
+            <Label x:Name="lblMinMaxTime_TIMEWATT"     Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="3" FontWeight="Bold" Content="{Binding MinMaxTime}" />
+            <Label x:Name="lblAvargeTime_TIMEWATT"     Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="3" FontWeight="Bold" Content="{Binding AvargeTime}" />
+            
+            <Rectangle Fill="White" Height="1.25" Grid.ColumnSpan="7" Grid.Row="2" Margin="0,3,0,3"></Rectangle>
+        </Grid>
+
+        <Grid x:Key="GRID_DISTWATT" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16" />
+                <RowDefinition Height="16" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="0">Dist</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="0">Dist</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="0">Watts</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="0">Watts</Label>
+
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="1">Min/Max</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="1">avg</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="1">Min/Max</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="1">avg</Label>
+
+            <Label x:Name ="lblMinMaxDist_DISTWATTT"    Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="3" FontWeight="Bold" Content="{Binding MinMaxDist}" />
+            <Label x:Name ="lblAvgDist_DISTWATT"         Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="3" FontWeight="Bold" Content="{Binding AvargeDist}" />
+            <Label x:Name ="lblMinMaxWat_DISTWATT"       Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="3" FontWeight="Bold" Content="{Binding MinMaxWatts}" />
+            <Label x:Name ="lblAvgWatt_DISTWATT"         Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="3" FontWeight="Bold" Content="{Binding AvargeWatts}" />
+            
+            <Rectangle Fill="White" Height="1.25" Grid.ColumnSpan="7" Grid.Row="2" Margin="0,3,0,3"></Rectangle>
+        </Grid>
+
+        <Grid x:Key="GRID_DISTAT" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16" />
+                <RowDefinition Height="16" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="0">Dist</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="0">Dist</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="0">AT%</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="0">AT%</Label>
+
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="1">Min/Max</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="1">avg</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="1">Min/Max</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="1">avg</Label>
+
+            <Label x:Name ="lblMinMaxDist_DISTAT"   Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="3" FontWeight="Bold" Content="{Binding MinMaxDist}" />
+            <Label x:Name="lblAvargeDist_DISTAT"    Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="3" FontWeight="Bold" Content="{Binding AvargeDist}" />
+            <Label x:Name="lblMinMaxWatts_DISTAT"   Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="3" FontWeight="Bold" Content="{Binding MinMaxWatts}" />
+            <Label x:Name="lblAvargeWatts_DISTAT"   Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="3" FontWeight="Bold" Content="{Binding AvargeWatts}" />
+     
+            <Rectangle Fill="White" Height="1.25" Grid.ColumnSpan="7" Grid.Row="2" Margin="0,3,0,3"></Rectangle>
+        </Grid>
+
+        
+       
+
+        <Grid x:Key="GRID_TIMEAT" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16" />
+                <RowDefinition Height="16" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="0">Watts</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="0">Watts</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="0">Time</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="0">Time</Label>
+
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="1">Min/Max</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="1">avg</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="1">Min/Max</Label>
+            <Label Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="1">avg</Label>
+
+            <Label x:Name ="lblGradeMin_TIMEAT"       Style="{DynamicResource CCTableLabel}" Grid.Column="0" Grid.Row="3" FontWeight="Bold" Content="{Binding MinMaxWatts}" />
+            <Label x:Name="lblGradeAvg_TIMEAT"        Style="{DynamicResource CCTableLabel}" Grid.Column="1" Grid.Row="3" FontWeight="Bold" Content="{Binding AvargeWatts}" />
+            <Label x:Name="lblWindMin_TIMEAT"         Style="{DynamicResource CCTableLabel}" Grid.Column="2" Grid.Row="3" FontWeight="Bold" Content="{Binding MinMaxTime}" />
+            <Label x:Name="lblWindAvg_TIMEAT"         Style="{DynamicResource CCTableLabel}" Grid.Column="3" Grid.Row="3" FontWeight="Bold" Content="{Binding AvargeTime}" />
+            <Rectangle Fill="White" Height="1.25" Grid.ColumnSpan="7" Grid.Row="2" Margin="0,3,0,3"></Rectangle>
+        </Grid>                                                                                            
+                                                                                                           
+
+        <Style TargetType="{x:Type ListBoxItem}" x:Key="LIST_DISTGRADE" >
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Name="Border" Padding="2" SnapsToDevicePixels="true" BorderThickness="0">
+                            <Canvas Height="200" Width="130">
+                                <Path x:Name="PathShape" Stroke="Gray" StrokeThickness="1"  Fill="{StaticResource ItemBrush}" Data="{Binding Path=PolygonDataValue, Converter={StaticResource PathConverter}}"  />
+
+                                <TextBlock Canvas.Left="5" Canvas.Top="160" FontSize="12" Text="Leg" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="148" FontSize="12" Text="Acc.." />
+                                <TextBlock Canvas.Left="5" Canvas.Top="136" FontSize="12" Text="Wind" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="124" FontSize="12" Text="Grade" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="112" FontSize="12" Text="Dist" />
+
+
+                                <TextBlock Canvas.Left="42" Canvas.Top="160" FontSize="12" Text="{Binding Segment, Mode=TwoWay}" />
+                                <Image Width="20" Height="20" Canvas.Left="107" Canvas.Top="130" Source="{Binding Wind, Converter={StaticResource WindConverter}}" />
+                                
+                                <TextBlock Canvas.Left="42" Canvas.Top="112" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="2">
+                                            <Binding Path="DisplayLength" />
+                                            <Binding Path="LengthUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Canvas.Left="42" Canvas.Top="124" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="1" >
+                                            <Binding Path="DisplayGrade" />
+                                            <Binding Path="GradeUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="Wind" Canvas.Left="42" Canvas.Top="136" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="1" >
+                                            <Binding Path="Wind" />
+                                            <Binding Path="WindUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Canvas.Left="42" Canvas.Top="148" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="2" >
+                                            <Binding Path="AccumDistGrade" />
+                                            <Binding Path="AccumulatorUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Canvas>
+
+                            <!--<ContentPresenter />-->
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="PathShape" Property="Fill" Value="{DynamicResource SelectedBrush}"/>
+                                <Setter TargetName="PathShape" Property="Stroke" Value="Red"/>
+                                <Setter TargetName="PathShape" Property="StrokeThickness" Value="3"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type ListBoxItem}" x:Key="LIST_TIMEGRADE" >
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Name="Border" Padding="2" SnapsToDevicePixels="true" BorderThickness="0">
+                            <Canvas Height="200" Width="130">
+                                <Path x:Name="PathShape" Stroke="Transparent" StrokeThickness="3"  Fill="{StaticResource ItemBrush}" Data="{Binding Path=PolygonDataValue, Converter={StaticResource PathConverter}}" />
+
+                                <TextBlock Canvas.Left="5" Canvas.Top="160" FontSize="12" Text="Leg" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="148" FontSize="12" Text="Acc.." />
+                                <TextBlock Canvas.Left="5" Canvas.Top="136" FontSize="12" Text="Wind" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="124" FontSize="12" Text="Grade" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="112" FontSize="12" Text="Time" />
+
+                                <TextBlock Canvas.Left="42" Canvas.Top="160" FontSize="12" Text="{Binding Segment}" />
+                                <Image Width="20" Height="20" Canvas.Left="107" Canvas.Top="130" Source="{Binding Wind, Converter={StaticResource WindConverter}}" />
+                                <TextBlock x:Name="Wind" Canvas.Left="42" Canvas.Top="136" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="1">
+                                            <Binding Path="Wind" />
+                                            <Binding Path="WindUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="Time" Canvas.Left="42" Canvas.Top="112" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="2" >
+                                            <Binding Path="Time" />
+                                            <Binding Path="TimeUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="Grade" Canvas.Left="42" Canvas.Top="124" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="1" >
+                                            <Binding Path="DisplayGrade" />
+                                            <Binding Path="GradeUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Canvas.Left="42" Canvas.Top="148" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="2">
+                                            <Binding Path="AccumTimeGrade" />
+                                            <Binding Path="TimeUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Canvas>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="PathShape" Property="Fill" Value="{DynamicResource SelectedBrush}"/>
+                                <Setter TargetName="PathShape" Property="Stroke" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type ListBoxItem}" x:Key="LIST_TIMEWATT" >
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Name="Border" Padding="2" SnapsToDevicePixels="true" BorderThickness="0">
+                            <Canvas Height="200" Width="130">
+                                <Path x:Name="PathShape" Stroke="Transparent" StrokeThickness="3"  Fill="{StaticResource ItemBrush}" Data="{Binding Path=PolygonDataValue, Converter={StaticResource PathConverter}}" />
+
+                                <TextBlock Canvas.Left="5" Canvas.Top="160" FontSize="12" Text="Leg" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="148" FontSize="12" Text="Acc.." />
+                                <TextBlock Canvas.Left="5" Canvas.Top="124" FontSize="12" Text="Start" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="136" FontSize="12" Text="End" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="112" FontSize="12" Text="Time" />
+
+                                <TextBlock Canvas.Left="42" Canvas.Top="160" FontSize="12" Text="{Binding Segment}" />
+                                <Image Width="20" Height="20" Canvas.Left="107" Canvas.Top="130" Source="{Binding DetailedWind.Answer, Converter={StaticResource WindConverter}}" />
+                                <TextBlock x:Name="TimeTIMEWATT" Canvas.Left="42" Canvas.Top="112" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="2">
+                                            <Binding Path="Time" />
+                                            <Binding Path="TimeUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="StartWattTIMEWATT" Canvas.Left="42" Canvas.Top="136" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="0" >
+                                            <Binding Path="EndWatt" />
+                                            <Binding Path="WattUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="EndWattTIMEWATT" Canvas.Left="42" Canvas.Top="124" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="0" >
+                                            <Binding Path="StartWatt" />
+                                            <Binding Path="WattUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Canvas.Left="42" Canvas.Top="148" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="2">
+                                            <Binding Path="AccumTimeWatt" />
+                                            <Binding Path="TimeUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Canvas>
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="PathShape" Property="Fill" Value="{DynamicResource SelectedBrush}"/>
+                                <Setter TargetName="PathShape" Property="Stroke" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type ListBoxItem}" x:Key="LIST_DISTWATT" >
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Name="Border" Padding="2" SnapsToDevicePixels="true" BorderThickness="0">
+                            <Canvas Height="200" Width="130">
+                                <Path x:Name="PathShape" Stroke="Transparent" StrokeThickness="3"  Fill="{StaticResource ItemBrush}" Data="{Binding Path=PolygonDataValue, Converter={StaticResource PathConverter}}" />
+
+                                <TextBlock Canvas.Left="5" Canvas.Top="160" FontSize="12" Text="Leg" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="148" FontSize="12" Text="Acc.." />
+                                <TextBlock Canvas.Left="5" Canvas.Top="124" FontSize="12" Text="Start" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="136" FontSize="12" Text="End" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="112" FontSize="12" Text="Dist" />
+
+                                <TextBlock Canvas.Left="42" Canvas.Top="160" FontSize="12" Text="{Binding Segment}" />
+
+                                <TextBlock x:Name="TimeDISTWATT" Canvas.Left="42" Canvas.Top="112" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="2">
+                                            <Binding Path="DisplayLength" />
+                                            <Binding Path="LengthUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="StartWattDISTWATT" Canvas.Left="42" Canvas.Top="124" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="0" >
+                                            <Binding Path="StartWatt" />
+                                            <Binding Path="WattUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="EndWattDISTWATT" Canvas.Left="42" Canvas.Top="136" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="0" >
+                                            <Binding Path="EndWatt" />
+                                            <Binding Path="WattUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="AccumDISTWATT" Canvas.Left="42" Canvas.Top="148" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="2" >
+                                            <Binding Path="AccumDistWatt" />
+                                            <Binding Path="AccumulatorUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Canvas>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="PathShape" Property="Fill" Value="{DynamicResource SelectedBrush}"/>
+                                <Setter TargetName="PathShape" Property="Stroke" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type ListBoxItem}" x:Key="LIST_TIMEAT" >
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Name="Border" Padding="2" SnapsToDevicePixels="true" BorderThickness="0">
+                            <Canvas Height="200" Width="130">
+                                <Path x:Name="PathShape" Stroke="Transparent" StrokeThickness="3"  Fill="{StaticResource ItemBrush}" Data="{Binding Path=PolygonDataValue, Converter={StaticResource PathConverter}}" />
+
+                                <TextBlock Canvas.Left="5" Canvas.Top="160" FontSize="12" Text="Leg" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="148" FontSize="12" Text="Acc.." />
+                                <TextBlock Canvas.Left="5" Canvas.Top="136" FontSize="12" Text="End At" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="124" FontSize="12" Text="Start At" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="112" FontSize="12" Text="Time" />
+
+
+
+                                <TextBlock Canvas.Left="52" Canvas.Top="160" FontSize="12" Text="{Binding Segment}" />
+
+                                <TextBlock x:Name="TimeTIMEAT" Canvas.Left="52" Canvas.Top="112" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="2">
+                                            <Binding Path="Time" />
+                                            <Binding Path="TimeUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="StartWattTIMEAT" Canvas.Left="52" Canvas.Top="124" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="0" >
+                                            <Binding Path="StartAT" />
+                                            <Binding Path="ATUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="EndWattTIMEAT" Canvas.Left="52" Canvas.Top="136" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="0" >
+                                            <Binding Path="EndAT" />
+                                            <Binding Path="ATUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="AccumTIMEAT" Canvas.Left="52" Canvas.Top="148" FontSize="12" >
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="2" >
+                                            <Binding Path="AccumTimeAT" />
+                                            <Binding Path="TimeUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Canvas>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="PathShape" Property="Fill" Value="{DynamicResource SelectedBrush}"/>
+                                <Setter TargetName="PathShape" Property="Stroke" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type ListBoxItem}" x:Key="LIST_DISTAT" >
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Name="Border" Padding="2" SnapsToDevicePixels="true" BorderThickness="0">
+                            <Canvas Height="200" Width="130">
+                                <Path x:Name="PathShape" Stroke="Transparent" StrokeThickness="3"  Fill="{StaticResource ItemBrush}" Data="{Binding Path=PolygonDataValue, Converter={StaticResource PathConverter}}" />
+
+
+                                <TextBlock Canvas.Left="5" Canvas.Top="160" FontSize="12" Text="Leg" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="148" FontSize="12" Text="Acc.." />
+                                <TextBlock Canvas.Left="5" Canvas.Top="136" FontSize="12" Text="End At" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="124" FontSize="12" Text="Start At" />
+                                <TextBlock Canvas.Left="5" Canvas.Top="112" FontSize="12" Text="Dist" />
+
+                                <TextBlock Canvas.Left="52" Canvas.Top="160" FontSize="12" Text="{Binding Segment}" />
+
+                                <TextBlock x:Name="DistanceDISTAT" Canvas.Left="52" Canvas.Top="112" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="2" >
+                                            <Binding Path="DisplayLength" />
+                                            <Binding Path="LengthUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="StartWattDISTAT" Canvas.Left="52" Canvas.Top="124" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="0" >
+                                            <Binding Path="StartAT" />
+                                            <Binding Path="ATUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="EndWattDISTAT" Canvas.Left="52" Canvas.Top="136" FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="0" >
+                                            <Binding Path="EndAT" />
+                                            <Binding Path="ATUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock x:Name="AccumDISTAT" Canvas.Left="52" Canvas.Top="148" FontSize="12"  >
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource CombindConverter}" ConverterParameter="2" >
+                                            <Binding Path="AccumDistAT" />
+                                            <Binding Path="AccumulatorUnit" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Canvas>
+
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="PathShape" Property="Fill" Value="{DynamicResource SelectedBrush}"/>
+                                <Setter TargetName="PathShape" Property="Stroke" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+
+    <Grid Width="910" Height="640">
+
+       
+        <!--HEADER -->
+        <Grid>
+            <c:LogoAbout/>
+            <Label Style="{DynamicResource TopLine}">Course Creator</Label>
+            <Label Content="{Binding SelectMeters,Converter={StaticResource IsMatricConverter}}" HorizontalAlignment="Right" Margin="10,60" Height="30" VerticalAlignment="Top" />
+       </Grid>
+
+
+        <Border Style="{DynamicResource Setup_Border}" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="16*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="16*" />
+                    <RowDefinition Height="3*" />
+                </Grid.RowDefinitions>
+
+
+                
+                    <Grid Margin="10" Grid.Row="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="4*" />
+                                <RowDefinition Height="4*" />
+                                <RowDefinition Height="5*" />
+                            </Grid.RowDefinitions>
+
+
+                        <Grid Margin="10,0" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition  />
+                                <ColumnDefinition  />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel  Orientation="Horizontal">
+                                <c:PlainButton Text="New" Width="80" VerticalAlignment="Center" Click="NewCourseBtnClick" />
+                                <c:PlainButton Text="Import" Width="80" VerticalAlignment="Center" Margin="10,0,0,0" Click="ImportBtnClick" />
+                            </StackPanel>
+                            <TextBlock x:Name="CourceTypeTB" Height="22" Grid.Column="1"  Width="150" />
+                        </Grid>
+                           
+
+                        <Label Grid.Row="0" VerticalAlignment="Bottom" Style="{DynamicResource CCLabel}" Margin="5,0,0,0" >Notes</Label>
+                            <TextBox Grid.Row="1" DataContext="{Binding Info}" x:Name="TxtNotes" TextWrapping="Wrap" Text="{Binding Description, Mode=TwoWay}" BorderBrush="White" Margin="5,0"/>
+
+                            <ContentControl Grid.Row="2" Margin="3" Content="{StaticResource GRID_DISTGRADE}" DataContext="{Binding}" Visibility="{Binding CurrCourseType, Converter={StaticResource VisibilityMode}, ConverterParameter='0'}" />
+                            <ContentControl Grid.Row="2" Margin="3" Content="{StaticResource GRID_TIMEGRADE}" DataContext="{Binding}" Visibility="{Binding CurrCourseType, Converter={StaticResource VisibilityMode}, ConverterParameter='1'}" />
+                            <ContentControl Grid.Row="2" Margin="3" Content="{StaticResource GRID_TIMEWATT}"  DataContext="{Binding}" Visibility="{Binding CurrCourseType, Converter={StaticResource VisibilityMode}, ConverterParameter='2'}" />
+                            <ContentControl Grid.Row="2" Margin="3" Content="{StaticResource GRID_DISTWATT}"  DataContext="{Binding}" Visibility="{Binding CurrCourseType, Converter={StaticResource VisibilityMode}, ConverterParameter='3'}" />
+                            <ContentControl Grid.Row="2" Margin="3" Content="{StaticResource GRID_TIMEAT}"    DataContext="{Binding}" Visibility="{Binding CurrCourseType, Converter={StaticResource VisibilityMode}, ConverterParameter='4'}" />
+                            <ContentControl Grid.Row="2" Margin="3" Content="{StaticResource GRID_DISTAT}"    DataContext="{Binding}" Visibility="{Binding CurrCourseType, Converter={StaticResource VisibilityMode}, ConverterParameter='5'}" />
+
+                        </Grid>
+
+                        <ListView Name="ListViewSegments" Grid.Column="1" ItemsSource="{Binding CourceUnitCollection}"  ScrollViewer.VerticalScrollBarVisibility="Visible" Attached:ListBoxExtenders.AutoScrollToCurrentItem="True" SelectionChanged="ListViewSegments_SelectionChanged" GridViewColumnHeader.Click="ListView_Click" Margin="5,10,8,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+                            <ListView.CommandBindings>
+                                <CommandBinding Command="{x:Static ApplicationCommands.Copy}" Executed="OnAddCopyListItemExecute"/>
+                                <CommandBinding Command="{x:Static ApplicationCommands.Paste}" Executed="OnAddPasteListItemExecute"/>
+                                <CommandBinding Command="{x:Static ApplicationCommands.Delete}" Executed="OnAddDeleteListItemExecute"/>
+                            </ListView.CommandBindings>
+                            <ListView.Resources>
+                                <DataTemplate x:Key="HeaderTemplateDescending">
+                                    <DockPanel>
+                                        <TextBlock HorizontalAlignment="Center" Text="{Binding}" />
+                                        <Path x:Name="arrow" StrokeThickness="1" Fill="DarkGray" Data="M 5,10 L 15,10 L 10,5" />
+                                    </DockPanel>
+                                </DataTemplate>
+                                <DataTemplate x:Key="HeaderTemplateAscending">
+                                    <DockPanel>
+                                        <TextBlock HorizontalAlignment="Center" Text="{Binding}"/>
+                                        <Path x:Name="arrow" StrokeThickness="1" Fill="DarkGray" Data="M 5,5 L 10,10 L 15,5" />
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ListView.Resources>
+                        </ListView>
+                    </Grid>
+                
+
+                <Grid Grid.Row="1" Margin="10,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" x:Name="DisplySegments"  Height="22" VerticalAlignment="Center" Width="150" FontSize="16" />
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0">
+                            <c:PlainButton Text="Insert" Width="75"  Margin="6,0,0,0" VerticalAlignment="Center" Click="InsertButton_Click" />
+                            <c:PlainButton Text="Copy" Width="75"  Margin="6,0,0,0" VerticalAlignment="Center" Click="CopyButton_Click" />
+                            <c:PlainButton Text="Delete" Width="75"  Margin="6,0,0,0" VerticalAlignment="Center" Click="DeleteButton_Click" Visibility="{Binding CountVisibility}" />
+                            <c:PlainButton Text="Undo" Width="75"  Margin="6,0,0,0" VerticalAlignment="Center"  Click="UndoButton_Click" Visibility="{Binding UndoVisibility}"  />
+                            <c:PlainButton Text="Paste" Width="75"  Margin="6,0,0,0" VerticalAlignment="Center" Visibility="{Binding MemoryCanvas}" Click="PasteButton_Click" />
+                        </StackPanel>
+
+                        <Grid Grid.Column="2" Visibility="{Binding MemoryCanvas}" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <RadioButton x:Name="CopyBefore" Content="Before" GroupName="CopyGroup" IsChecked="True" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+                            <RadioButton x:Name="CopyAfter"  Content="After" GroupName="CopyGroup" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+                            <c:PlainButton  Text="Clear" Width="80" Click="MemoryButtonClick"  Grid.Column="2"/>
+                        </Grid>
+                        <StackPanel  Orientation="Horizontal" >
+                        </StackPanel>
+                        <Canvas Grid.Column="2" Visibility="{Binding MemoryCanvas}" Grid.Row="2" Height="35" Width="260" HorizontalAlignment="Right" VerticalAlignment="Top" >
+                        </Canvas>
+                    </Grid>
+                </Grid>
+
+                <ListBox Grid.Row="2" Margin="10,0" x:Name="HorizontalList" ItemsSource="{Binding CourceUnitCollection}" Tag="{Binding SelectMeters}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Auto" Attached:ListBoxExtenders.AutoScrollToCurrentItem="True"  SelectionChanged="HorizontalList_SelectionChanged" MouseDoubleClick="OnList_MouseDoubleClik"  SelectionMode="Single" >
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                 </ListBox>
+                
+
+                    
+                
+                <Grid Grid.Row="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Margin="10,4" Style="{DynamicResource CCLabel}" FontWeight="Bold" HorizontalContentAlignment="Center" Content="{Binding CourseDistance}" VerticalAlignment="Top" ></Label>
+                    <Label x:Name="DirNameLable" Grid.Row="1"  FontWeight="Bold" Style="{DynamicResource CCLabel}" Content="{Binding CourseFileName}" HorizontalContentAlignment="Center"  />
+                </Grid>
+                   
+            </Grid>
+        </Border>
+
+        <Grid Margin="12,0,12,18" Grid.Row="2" VerticalAlignment="Bottom">
+            <StackPanel  Orientation="Horizontal" >
+                <c:TextButton HorizontalAlignment="Left" VerticalAlignment="Center" Click="Options_Click" Text="Options" />
+                <Line Style="{DynamicResource DivLine}" Panel.ZIndex="-2"/>
+                <c:TextButton VerticalAlignment="Center" Text="Help" x:Name="Help" Grid.ColumnSpan="3" Click="Help_Click" />
+                <Line Style="{DynamicResource DivLine}" Panel.ZIndex="-2" />
+                <c:TextButton VerticalAlignment="Center" Text="Back" x:Name="Back" Click="Back_Click" />
+            </StackPanel>
+            <c:Pillbox Margin="10,0" Text="Save" Width="105" VerticalAlignment="Center" IsEnabled="True" Click="SaveBtnClick" HorizontalAlignment="Right"  />
+        </Grid>
+    </Grid>
+</Page>

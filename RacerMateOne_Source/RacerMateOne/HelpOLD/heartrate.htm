@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<title>Heart rate zone settings</title>
+<link rel="stylesheet" type="text/css" href="RM1.css">
+</head>
+<body>
+<table>
+  <tr>
+    <td style="width:250px;"><table><tr><td><h1>Table of Contents</h1></td></tr><tr><td><h2> Shortcuts</h2></td></tr><tr><td><a href="Key_presses_shortcuts.htm">Key press shortcuts</a></td></tr><tr><td><h2>Applications</h2></td></tr><tr><td><a href="3D_Cycling.htm">3D Cycling</a></td></tr><tr><td><a href="Classic_MultiRider.htm">Classic MultiRider Help</a></td></tr><tr><td><a href="Course_Creator.htm">Course Creator</a></td></tr><tr><td><a href="Power_Training.htm">Power Training</a></td></tr><tr><td><a href="Real_Course_Video.htm">Real Course Video</a></td></tr><tr><td><a href="SpinScan.htm">SpinScan</a></td></tr><tr><td><a href="Accuwatt_VT.htm">Velotron Accuwatt Help</a></td></tr><tr><td><h2>Home</h2></td></tr><tr><td><a href="Definitions.htm">Definitions</a></td></tr><tr><td><a href="help.htm">Welcome to RacerMate One</a></td></tr><tr><td><h2>Misc.</h2></td></tr><tr><td><a href="Partners.htm">3rd Party Partners</a></td></tr><tr><td><h2>Options</h2></td></tr><tr><td><a href="Options_Advanced.htm">Advanced Options</a></td></tr><tr><td><a href="Options_Display.htm">Display Options</a></td></tr><tr><td><a href="Options_File_Saving.htm">File Saving Options</a></td></tr><tr><td><a href="Options_Hardware.htm">Hardware Setup</a></td></tr><tr><td><a href="Customize_Report.htm">Reports</a></td></tr><tr><td><a href="Options_Riders.htm">Rider Setup</a></td></tr><tr><td><h2>Setup</h2></td></tr><tr><td><a href="Launchpad.htm">Application Launchpad</a></td></tr><tr><td><a href="Course_Profile_Edit.htm">Course Profile Editing</a></td></tr><tr><td><a href="DemoMode.htm">Demo Mode Functions</a></td></tr><tr><td><a href="DragFactor.htm">DragFactor&#0153</a></td></tr><tr><td><a href="RM_Hardware.htm">Hardware Configuration</a></td></tr><tr><td><a href="Pick_Course_Ergo.htm">Pick Ergo Course</a></td></tr><tr><td><a href="Pick_Rider.htm">Pick Riders</a></td></tr><tr><td><a href="Pick_Course_WL.htm">Pick Road Course</a></td></tr><tr><td><a href="First_Use.htm">RacerMate One First-use Wizard</a></td></tr><tr><td><a href="Hardware_Detect.htm">RacerMate One Hardware Detection</a></td></tr><tr><td><a href="Register_RM1.htm">RacerMate One Registration</a></td></tr><tr><td><a href="Real_Course_Video_reg.htm">Real Course Video Registration</a></td></tr><tr><td><a href="Rolling_Calibration_CT.htm">Rolling Resistance Calibration - CompuTrainer</a></td></tr><tr><td><a href="Velotron_Gearing.htm">Velotron Gearing Setup</a></td></tr><tr><td><h2>Tips</h2></td></tr><tr><td><a href="heartrate.htm">Heart rate zone settings</a></td></tr><tr><td><a href="Manual_Grade.htm">Manual Grade Changes</a></td></tr><tr><td><a href="Manual_Watts.htm">Manual Watts Changes</a></td></tr><tr><td><a href="Accuwatt_Tips.htm">Velotron Accuwatt Tips</a></td></tr><tr><td><h2>Troubleshooting</h2></td></tr><tr><td><a href="updates.htm">Finding updates to RacerMate One</a></td></tr><tr><td><a href="troubleshoot.htm">Troubleshoot Hardware</a></td></tr></table></td>
+    <td class="vertline"></td>
+    <td style="width:524px;">
+
+<h1>Setting Heart Rate Zones</h1>
+<p>
+<img border="0" src="Help_files/HeartRate-Settings.png" width="462" height="334"></p>
+<p>To setup heart rate zones on RacerMate One you should 
+hopefully know your Anaerobic, Resting, and Maximum heart rates.&nbsp; 
+If you don't know these values you'll have opportunity to change these in your profile at any 
+time.</p>
+<ul>
+	<li>Anaerobic (threshold heart rate) - enter this value to 
+	populate reports and to save it with your performance files.</li>
+	<li>Resting (heart rate) - enter this value to be used 
+	in the calculation of the 5 heart rate zones.</li>
+	<li>Maximum (heart rate) - enter this value to be used 
+	in the calculation of the 5 heart rate zones.</li>
+	<li>Zones - these are calculated from your resting and 
+	maximum heart rates.</li>
+	<li>Setting Zone Alarms - you can set both low and high 
+	alarms.&nbsp; If the trainer detects you are outside the ranges you set, you 
+	may 
+	be warned (hardware dependant).&nbsp; You are not required to set alarms.&nbsp; 
+	Enable or disable the low and high alarms by clicking an alarm to activate 
+	it or a second time to clear it.</li>
+	<li>Calculate - press to use the resting and maximum 
+	heart rate settings to populate the 5 zones.</li>
+</ul>
+<h3>How are zones calculated</h3>
+<p>There are many zone calculators, but we chose the 
+following called the Karvonen formula:</p>
+<ul>
+	<li>MHR=Maxumum Heart Rate</li>
+	<li>RHR=Resting Heart Rate</li>
+</ul>
+<blockquote>
+	<table border="0" width="470" cellpadding="5">
+		<tr>
+			<td>
+			<p align="center"><font face="Verdana">MHR-RHR=______x % = _______ + 
+			RHR = Zone Value<br>
+			For Example: MHR=180 &amp; RHR=60<br>
+			180 - 60 = 120 x 70% = 84 + 60 = 144bpm</font></p></td>
+		</tr>
+	</table>
+
+</blockquote>
+Note: Currently the zone calculation is preset to the above formula, but future 
+versions of RacerMate One will possibly support other formulas, or allow you to 
+set your own ranges manually.<h3>How are zones used</h3>
+<ul>
+	<li>Heart rate zones are used for alarms if the hardware supports it and for 
+reports.&nbsp; </li>
+	<li>The zones are also passed out as part of the user profile and can 
+be used by third-party analysis software.&nbsp; </li>
+	<li>You will also notice the HR numbers flash either fast or slow if you are 
+	outside any preset hi/lo alarm settings.</li>
+</ul>
+<h3>Setting zone alarms</h3>
+<p>Once you have calculated your heart rate zones, you can set the low and high 
+alarms by clicking on the appropriate radio button.&nbsp; You can set a low and 
+not a high, or a high and not a low - or both for low and high alarms.&nbsp; You 
+can turn alarms off altogether by not selecting either a low or high setting.</p>
+
+</td>
+    <td class="vertline"></td>
+    <td style="width:250px;"><h1>Related Topics</h1>
+<a href="Options_Riders.htm">Rider Setup</a><br />
+
+<hr />
+Learn more about RacerMate One in our <a href="http://www.racermate.net/forum/index.php">Racermate Forum</a>
+<hr />
+Last updated 2012 Jun 25
+</td>
+</table>
+</body>
+</html>

@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.D3DBase"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:i="clr-namespace:System.Windows.Interop;assembly=PresentationCore"			 
+    MinWidth="32" MinHeight="32" Name="d3dbox">
+    <Grid>
+		<Border x:Name="design" Background="Black" Visibility="Collapsed"   >
+			<Viewbox >
+				<Label FontFamily="Arial" Foreground="White" Padding="0">D3DBase</Label>
+			</Viewbox>
+		</Border>
+		<Image x:Name="imgelt" Width="{Binding Width,ElementName=d3dbox}" Height="{Binding Height,ElementName=d3dbox}">
+			<Image.Source>
+				<i:D3DImage x:Name="d3dimg" />
+			</Image.Source>
+		</Image>
+	</Grid>
+</UserControl>

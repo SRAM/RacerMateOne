@@ -1,0 +1,40 @@
+﻿<Window x:Class="RacerMateOne.Window_Log"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    Title="Log" Height="465" Width="615" Loaded="Window_Loaded" BorderBrush="AliceBlue" Background="AliceBlue" WindowStyle="ThreeDBorderWindow" ShowInTaskbar="False" FontFamily="Arial" Icon="/RacerMateOne;component/Resources/RM1.ico" SizeToContent="Manual" Topmost="False" Closing="Window_Closing">
+
+    <!-- Key bindings -->
+    <Window.Resources>
+        <dw:Cmd_ToggleLog x:Key="ToggleLog"/>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Command="{StaticResource ToggleLog}" Key="Oem3" Modifiers="Shift"/>
+    </Window.InputBindings>
+
+    <Grid>
+        <Grid Margin="12,0,12,36">
+            <Label Height="28" Name="Current" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="12,0">------</Label>
+            <ListBox Margin="0,34" Name="LogBox" />
+            <Button Height="23" HorizontalAlignment="Left" Margin="0,0,10,5" Name="ClearSettings" VerticalAlignment="Bottom" Click="ClearSettings_Click">
+                Clear Settings
+            </Button>
+            <Button Height="23" HorizontalAlignment="Left" Margin="91,0,0,5" Name="ClearRiders" VerticalAlignment="Bottom" Click="ClearRiders_Click" >
+                Clear Settings &amp; Riders
+            </Button>
+            <Button Margin="230,0,242,6" Name="button1" Click="button1_Click" Background="Transparent" Height="23" VerticalAlignment="Bottom" BorderThickness="0" BorderBrush="Transparent" Foreground="Blue">Write test report</Button>
+            <Button Visibility="Hidden" Height="23" HorizontalAlignment="Right" Margin="0,0,106,5" Name="BatchConvert" VerticalAlignment="Bottom" Click="BatchConvert_Click" Width="130.05">
+                Batch Convert Courses
+            </Button>
+            <Button Height="23" HorizontalAlignment="Right" Width="100" Margin="11,0,0,5" Name="ClearReg" VerticalAlignment="Bottom" Click="ClearReg_Click" Visibility="Hidden" >
+                Clear Registration
+            </Button>
+        </Grid>
+        <Grid Margin="12,0,12,0" VerticalAlignment="Bottom" Height="36">
+            <Button HorizontalAlignment="Left" Margin="0,5,5,5" Name="btnRestoreCourses" VerticalAlignment="Bottom" Click="btnRestoreCourses_Click">
+                Restore Default Courses
+            </Button>
+            <Label Name="Version" Height="25" VerticalAlignment="Bottom" Margin="92,0,0,0" FlowDirection="LeftToRight" HorizontalContentAlignment="Right">Version: 0.2.0.0</Label>
+        </Grid>
+    </Grid>
+</Window>

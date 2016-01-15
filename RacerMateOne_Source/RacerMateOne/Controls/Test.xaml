@@ -1,0 +1,9 @@
+﻿<c:BaseUnit x:Class="RacerMateOne.Controls.Test"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:c="clr-namespace:RacerMateOne.Controls"
+    >
+    <Grid>
+		<Label x:Name="Timer" FontSize="20">1234</Label>
+    </Grid>
+</c:BaseUnit>

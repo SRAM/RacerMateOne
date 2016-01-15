@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:09 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from Five_Minute_Ramp.erg</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="Five_Minute_Ramp_erg" Description="5 MINUTE RAMP" FileName="Five_Minute_Ramp_erg.rmc" Type="Watts" Looped="False" Length="5.0" Laps="1" StartAt="0" EndAt="300" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="Watts" OriginalHash="558B4F29AC996037C27E6D04998F79BB" CourseHash="4FED8130929C87DA95C8D36E80010984" HeaderHash="558B4F29AC996037C27E6D04998F79BB"/>
+		<Segments Count="5">
+			<Val>
+				<Minutes>1</Minutes>
+				<StartWatts>300</StartWatts>
+				<EndWatts>400</EndWatts>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartWatts>400</StartWatts>
+				<EndWatts>500</EndWatts>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartWatts>500</StartWatts>
+				<EndWatts>400</EndWatts>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartWatts>400</StartWatts>
+				<EndWatts>300</EndWatts>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartWatts>300</StartWatts>
+				<EndWatts>0</EndWatts>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

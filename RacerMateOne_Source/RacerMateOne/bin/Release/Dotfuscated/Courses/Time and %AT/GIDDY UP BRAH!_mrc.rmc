@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:06 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from GIDDY UP BRAH!.mrc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="GIDDY UP BRAH!_mrc" Description="GIDDY UP BRAH! MRC" FileName="GIDDY UP BRAH!_mrc.rmc" Type="Watts" Looped="False" Length="65.0" Laps="1" StartAt="0" EndAt="3900" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="PercentAT" OriginalHash="50D5F38089761C3D3DBEED5EFFD18D8A" CourseHash="1147EC9C16B580FA9E12FAB7A3D0F037" HeaderHash="50D5F38089761C3D3DBEED5EFFD18D8A"/>
+		<Segments Count="9">
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>85</StartAt>
+				<EndAt>85</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>90</StartAt>
+				<EndAt>90</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>100</StartAt>
+				<EndAt>100</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>90</StartAt>
+				<EndAt>90</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>95</StartAt>
+				<EndAt>95</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>105</StartAt>
+				<EndAt>105</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>55</StartAt>
+				<EndAt>55</EndAt>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

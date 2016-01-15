@@ -1,0 +1,26 @@
+﻿<Window x:Class="RacerMateOne.Dialogs.TestD3D"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="clr-namespace:System.Windows.Interop;assembly=PresentationCore"
+    Title="Window1" Height="300" Width="300" Background="PaleGoldenrod" Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28*" />
+            <RowDefinition Height="192*" />
+            <RowDefinition Height="42*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="34*" />
+            <ColumnDefinition Width="15*" />
+            <ColumnDefinition Width="180*" />
+            <ColumnDefinition Width="15*" />
+            <ColumnDefinition Width="34*" />
+        </Grid.ColumnDefinitions>
+        <Image x:Name="imgelt" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3">
+            <Image.Source>
+                <i:D3DImage x:Name="d3dimg" />
+            </Image.Source>
+        </Image>
+        <Rectangle Grid.Row="1" Name="rectangle1" Stroke="White" RadiusX="32" RadiusY="32" StrokeThickness="5" Grid.Column="2" Margin="1,0,3,0" />
+    </Grid>
+</Window>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:05 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from BADA-BING-O!!!!!!.mrc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="BADA-BING-O!!!!!!_mrc" Description="BADA-BING-O!!!!!! MRC" FileName="BADA-BING-O!!!!!!_mrc.rmc" Type="Watts" Looped="False" Length="60.0" Laps="1" StartAt="0" EndAt="3600" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="PercentAT" OriginalHash="B462F9A61E7CA0200389E59525B13310" CourseHash="A2CE84A222726498D0C2C3B57CE2F0DA" HeaderHash="B462F9A61E7CA0200389E59525B13310"/>
+		<Segments Count="12">
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>87</StartAt>
+				<EndAt>87</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>110</StartAt>
+				<EndAt>110</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>112</StartAt>
+				<EndAt>112</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>115</StartAt>
+				<EndAt>115</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>112</StartAt>
+				<EndAt>112</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>85</StartAt>
+				<EndAt>85</EndAt>
+			</Val>
+			<Val>
+				<Minutes>9</Minutes>
+				<StartAt>65</StartAt>
+				<EndAt>65</EndAt>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

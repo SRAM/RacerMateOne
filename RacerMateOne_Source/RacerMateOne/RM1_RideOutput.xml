@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="C:\Users\Dan\Documents\RacerMate\ReportTemplates\RM1_RideOutput.xsl"?>
+
+<!-- RaceMate One Post-Ride Outputs from Engine-->
+<RideOutput>
+
+  <!-- Engine exit code -->
+ 
+  <!-- Larry: Stuff this section with debug information... FATAL.LOG type stuff -->
+  <ExitCode>0</ExitCode>
+  <ExitCodeText>No Errors</ExitCodeText>
+
+  <!-- Results from performance -->
+  <Results>
+
+    <!-- Larry: This is the output file you create. Use the directory below. Later on I'll get you file name settings -->
+    <SavedPerformance>
+      <FileName>C:\Users\Dan\Documents\RacerMate\Performances\DPlastina_2009-05-31@06-11-23_(03:30).vel</FileName>
+    </SavedPerformance>
+    
+    <!-- Larry: When Autoexport in on, we'll get this. I'd suggest you test with it always on -->
+    <ExportedPerformance>
+      <FileName>C:\Users\Dan\Documents\RacerMate\Performances\DPlastina_2009-05-31@06-11-23_(03:30).txt</FileName>
+    </ExportedPerformance>
+    
+    <!-- Larry: Not for you yet... these are the results from ErgVideo's FTP test that we'll want back-->
+    <ErgVideo_FTP>345</ErgVideo_FTP>
+
+  </Results>
+
+  <!-- Larry: I expect you to past the entire Ride INPUT file into the output so that we can report on this stuff -->
+  <RideInput>
+    <RideMode Type="Mode_Multi"/>
+    <Riders>
+      <Rider DatabaseKey="DPlastina" Index="1" Type="Human">
+        <FirstName>Dan</FirstName>
+        <LastName>Plastina</LastName>
+        <Gender>M</Gender>
+        <Birthday>07/31/1964</Birthday>
+        <HRAeT>160</HRAeT>
+        <HRMax>200</HRMax>
+        <HRAlarmMin>140</HRAlarmMin>
+        <HRAlarmMax>180</HRAlarmMax>
+        <PowerAeT>200</PowerAeT>
+        <PowerFTP>210</PowerFTP>
+        <WeightRider>140</WeightRider>
+        <WeightBike>20</WeightBike>
+        <DragFactor>0</DragFactor>
+        <Color3DSkin UXProfile="1">1</Color3DSkin>
+        <Color3DRider UXProfile="1">1</Color3DRider>
+      </Rider>
+      <Rider Index="2" Type="PacerHeartRate">130</Rider>
+      <Rider Index="3" Type="PacerPower">136</Rider>
+      <Rider Index="4" Type="PacerFixedPower">240</Rider>
+      <Rider Index="5" Type="PacerTimeDelay">3</Rider>
+      <Rider Index="6" Type="PacerFixedSpeed">18.0</Rider>
+      <Rider Index="7" Type="PacerRoadRacer">1</Rider>
+      <Rider Index="8" Type="PacerSavedPerformance" File="C:\Users\Dan\Documents\RacerMate\RacerMate One\Courses\Intervals\8x4min@315Won10min.VEL">115%</Rider>
+    </Riders>
+    <Course>
+      <FileName>C:\Users\Dan\Documents\RacerMate\RacerMate One\Courses\Intervals\8x4min@315Won10min.erg</FileName>
+      <StartTimeOffset>0</StartTimeOffset>
+      <Duration>0</Duration>
+    </Course>
+  </RideInput>
+</RideOutput>
+

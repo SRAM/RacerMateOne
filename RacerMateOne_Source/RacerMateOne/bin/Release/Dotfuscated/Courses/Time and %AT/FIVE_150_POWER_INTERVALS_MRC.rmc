@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:06 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from FIVE_150_POWER_INTERVALS.MRC</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="FIVE_150_POWER_INTERVALS_MRC" Description="FIVE 150 POWER INTERVALS MRC" FileName="FIVE_150_POWER_INTERVALS_MRC.rmc" Type="Watts" Looped="False" Length="35.0" Laps="1" StartAt="0" EndAt="2100" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="PercentAT" OriginalHash="8CE10CC50C39D6F65C4B096F0BBB3DCF" CourseHash="2F64441016BB8ACD8FF622D5A423C7AC" HeaderHash="8CE10CC50C39D6F65C4B096F0BBB3DCF"/>
+		<Segments Count="12">
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>100</StartAt>
+				<EndAt>100</EndAt>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartAt>150</StartAt>
+				<EndAt>150</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartAt>150</StartAt>
+				<EndAt>150</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartAt>150</StartAt>
+				<EndAt>150</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartAt>150</StartAt>
+				<EndAt>150</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartAt>150</StartAt>
+				<EndAt>150</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

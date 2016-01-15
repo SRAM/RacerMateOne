@@ -1,0 +1,20 @@
+[COURSE HEADER]
+UNITS = ENGLISH
+DESCRIPTION = Example of distance and watts course
+FILE NAME = example.dnw
+;DISTANCE	WATTS	; instructions not to be saved in file
+; COMMENTS
+[END COURSE HEADER]
+
+[COURSE DATA]
+1.5   		100 	; for 1.5 miles ramp from 100-175 watts
+1.0		175	; for 1.0 miles hold 175 watts
+1.25		175	; for 1.25 miles ramp from 175-200 watts
+1.5		200	; for 1.5 miles ramp from 200-225 watts
+2.0		225	; for 2.0 miles ramp from 225-250 watts
+2.0		250	; for 2.0 miles hold 250 watts
+0.75		250	; for .75 miles ramp from 250-300 watts
+1.0		300	; for 1.0 miles ramp from 300-325 watts
+0.5		325	; for .5 miles ramp from 325-100 watts
+1.0		100	; for 1.0 miles hold 100 watts and end ride.
+[END COURSE DATA]

@@ -1,0 +1,35 @@
+﻿<c:BaseUnit x:Class="RacerMateOne.Controls.RCV"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:c="clr-namespace:RacerMateOne.Controls"		
+	xmlns:DShow="clr-namespace:WPFMediaKit.DirectShow.Controls;assembly=WPFMediaKit" IsVisibleChanged="BaseUnit_IsVisibleChanged">
+	<c:BaseUnit.Resources>
+		<Style TargetType="{x:Type Label}">
+			<Setter Property="FontFamily" Value="Arial" />
+			<Setter Property="FontSize" Value="12" />
+			<Setter Property="Padding" Value="0"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="FontWeight" Value="Bold"/>
+		</Style>
+	</c:BaseUnit.Resources>
+	<Grid>
+		<DShow:MediaUriElement x:Name="VControl" Visibility="Hidden" VideoRenderer="VideoMixingRenderer9" AllowDrop="True" PreferedPositionFormat="Frame" OverridesDefaultStyle="True" LoadedBehavior="Manual" />
+		<!--
+		<StackPanel VerticalAlignment="Top" Margin="0,30,0,0"  Background="#80000000" HorizontalAlignment="Center">
+			<Label Name="l_TargetRate">Test</Label>
+			<Label Name="l_Rate">Test2</Label>
+			<Label Name="l_TargetFrame">Test</Label>
+			<Label Name="l_CurrentFrame">Test2</Label>
+			<Label Name="l_Difference">Test2</Label>
+			<Label Name="l_Split">Test2</Label>
+			<Label Name="l_Speed">Test2</Label>
+			<Label Name="l_CatchupRate">Test2</Label>
+			<Label Name="l_TrackInfo">Test2</Label>
+			<Label Width="400">
+				<TextBlock Name="l_Text" TextWrapping="Wrap"/>
+			</Label>
+		</StackPanel>
+		-->
+	</Grid>
+</c:BaseUnit>

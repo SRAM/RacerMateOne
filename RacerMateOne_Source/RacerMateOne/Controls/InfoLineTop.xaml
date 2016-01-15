@@ -1,0 +1,48 @@
+﻿<c:BaseUnit x:Class="RacerMateOne.Controls.InfoLineTop"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:c="clr-namespace:RacerMateOne.Controls">
+	<c:BaseUnit.Resources>
+		<Style TargetType="{x:Type Label}">
+			<Setter Property="FontFamily" Value="Arial" />
+			<Setter Property="FontSize" Value="15" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="Padding" Value="0,0,0,0"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+	</c:BaseUnit.Resources>
+	<StackPanel>
+		<StackPanel Name="p_AltDrag" Visibility="Collapsed" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+			<Label>Drag factor</Label>
+			<StackPanel Orientation="Horizontal">
+				<Label Name="l_DragFactorAlt" FontWeight="Bold" Width="40" >95</Label>
+			</StackPanel>
+		</StackPanel>			
+		<Grid>
+			<StackPanel Name="p_Left" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+				<Label>TSS</Label>
+				<Label Name="l_TSS" FontWeight="Bold" Width="40" Margin="0,0,5,0">0.0</Label>
+				<Label>IF</Label>
+				<Label Name="l_IF" FontWeight="Bold" Width="40" Margin="0,0,5,0">0.0</Label>
+				<Label>NP</Label>
+				<Label Name="l_NP" FontWeight="Bold" Width="40" Margin="0,0,5,0">0.0</Label>
+			</StackPanel>
+			<StackPanel Name="p_Center" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Label>Drag factor</Label>
+				<StackPanel Orientation="Horizontal">
+					<Label Name="l_DragFactor" FontWeight="Bold" Width="40" >95</Label>
+				</StackPanel>
+			</StackPanel>
+			<StackPanel Name="p_Right" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+				<Label Name="l_Length_label">Length</Label>
+				<Label Name="l_Length" FontWeight="Bold" Margin="5,0,5,0" >20km</Label>
+				<StackPanel Name="p_Laps" Orientation="Horizontal">
+					<Label>Laps</Label>
+					<Label Name="l_Laps" FontWeight="Bold" Margin="5,0,5,0" >2/3</Label>
+				</StackPanel>
+			</StackPanel>
+		</Grid>		
+	</StackPanel>
+</c:BaseUnit>
+

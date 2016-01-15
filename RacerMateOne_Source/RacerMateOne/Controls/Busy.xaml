@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="RacerMateOne.Controls.Busy"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Loaded="UserControl_Loaded">
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UserControl.Unloaded">
+            <BeginStoryboard>
+                <Storyboard Name="a1" RepeatBehavior="Forever" SlipBehavior="Slip" Duration="00:00:02">
+                    <ColorAnimation Storyboard.TargetName="p1"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        From="White" To="#FF76A7CA"
+                                        AutoReverse="True" RepeatBehavior="1x" Duration="0:0:0.5" DecelerationRatio="1" />
+                </Storyboard>
+            </BeginStoryboard>
+            <BeginStoryboard>
+                <Storyboard Name="a2" RepeatBehavior="Forever" SlipBehavior="Slip" BeginTime="0:0:0.25" Duration="00:00:02">
+                    <ColorAnimation Storyboard.TargetName="p2"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        From="White" To="#FF76A7CA"
+                                        AutoReverse="True" RepeatBehavior="1x" Duration="0:0:0.5" DecelerationRatio="1" />
+                </Storyboard>
+            </BeginStoryboard>
+            <BeginStoryboard>
+                <Storyboard Name="a3" RepeatBehavior="Forever" SlipBehavior="Slip" BeginTime="0:0:0.5" Duration="00:00:02">
+                    <ColorAnimation Storyboard.TargetName="p3"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        From="White" To="#FF76A7CA"
+                                        AutoReverse="True" RepeatBehavior="1x" Duration="0:0:0.5" DecelerationRatio="1" />
+                </Storyboard>
+            </BeginStoryboard>
+            <BeginStoryboard>
+                <Storyboard Name="a4" RepeatBehavior="Forever" SlipBehavior="Slip" BeginTime="0:0:0.75" Duration="00:00:02">
+                    <ColorAnimation Storyboard.TargetName="p4"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        From="White" To="#FF76A7CA"
+                                        AutoReverse="True" RepeatBehavior="1x" Duration="0:0:0.5" DecelerationRatio="1" />
+                </Storyboard>
+            </BeginStoryboard>
+            <BeginStoryboard>
+                <Storyboard Name="a5" RepeatBehavior="Forever" SlipBehavior="Slip" BeginTime="0:0:1" Duration="00:00:02">
+                    <ColorAnimation Storyboard.TargetName="p5"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        From="White" To="#FF76A7CA"
+                                        AutoReverse="True" RepeatBehavior="1x" Duration="0:0:0.5" DecelerationRatio="1" />
+                </Storyboard>
+            </BeginStoryboard>
+            <BeginStoryboard>
+                <Storyboard Name="a6" RepeatBehavior="Forever" SlipBehavior="Slip" BeginTime="0:0:1.25" Duration="00:00:02">
+                    <ColorAnimation Storyboard.TargetName="p6"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        From="White" To="#FF76A7CA"
+                                        AutoReverse="True" RepeatBehavior="1x" Duration="0:0:0.5" DecelerationRatio="1" />
+                </Storyboard>
+            </BeginStoryboard>
+            <BeginStoryboard>
+                <Storyboard Name="a7" RepeatBehavior="Forever" SlipBehavior="Slip" BeginTime="0:0:1.5" Duration="00:00:02">
+                    <ColorAnimation Storyboard.TargetName="p7"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        From="White" To="#FF76A7CA"
+                                        AutoReverse="True" RepeatBehavior="1x" Duration="0:0:0.5" DecelerationRatio="1" />
+                </Storyboard>
+            </BeginStoryboard>
+            <BeginStoryboard>
+                <Storyboard Name="a8" RepeatBehavior="Forever" SlipBehavior="Slip" BeginTime="0:0:1.75" Duration="00:00:02">
+                    <ColorAnimation Storyboard.TargetName="p8"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        From="White" To="#FF76A7CA"
+                                        AutoReverse="True" RepeatBehavior="1x" Duration="0:0:0.5" DecelerationRatio="1" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Viewbox>
+        <Canvas Width="100" Height="100">
+            <Path Name="p8" Stroke="#FF6392B7"
+                    Data="M 50,50 L 50,0 A 50,50 90 0 0 14.64466,14.64466 L 50,50" Fill="White" StrokeThickness="3">
+            </Path>
+            <Path Name="p7" Stroke="#FF6392B7"
+                    Data="M 50,50 L 14.64466,14.64466 A 50,50 90 0 0 0,50 L 50,50" Fill="White" StrokeThickness="3">
+            </Path>
+            <Path Name="p6" Stroke="#FF6392B7"
+                    Data="M 50,50 L 0,50 A 50,50 90 0 0 14.64466,85.35534 L 50,50" Fill="White" StrokeThickness="3">
+            </Path>
+            <Path Name="p5" Stroke="#FF6392B7"
+                    Data="M 50,50 L 14.64466,85.35534 A 50,50 90 0 0 50,100 L 50,50" Fill="White" StrokeThickness="3">
+            </Path>
+            <Path Name="p4" Stroke="#FF6392B7"
+                    Data="M 50,50 L 50,100 A 50,50 90 0 0 85.35534,85.35534 L 50,50" Fill="White" StrokeThickness="3">
+            </Path>
+            <Path Name="p3" Stroke="#FF6392B7"
+                    Data="M 50,50 L 85.35534,85.35534 A 50,50 90 0 0 100,50 L 50,50" Fill="White" StrokeThickness="3">
+            </Path>
+            <Path Name="p2" Stroke="#FF6392B7"
+                    Data="M 50,50 L 100,50 A 50,50 90 0 0 85.35534,14.64466 L 50,50" Fill="White" StrokeThickness="3">
+            </Path>
+            <Path Name="p1" Stroke="#FF6392B7"
+                    Data="M 50,50 L 85.35534,14.64466 A 50,50 90 0 0 50,0 L 50,50" Fill="White" StrokeThickness="3">
+            </Path>
+        </Canvas>
+    </Viewbox>
+</UserControl>

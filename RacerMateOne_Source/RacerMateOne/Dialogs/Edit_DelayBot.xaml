@@ -1,0 +1,45 @@
+﻿<Window x:Class="RacerMateOne.Dialogs.Edit_DelayBot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+	WindowStyle="None" Background="Transparent" AllowsTransparency="True"
+    HorizontalAlignment="Center" VerticalAlignment="Center"      
+    FontFamily="Arial"
+	Width="405" Height="190" 	
+	Name="wattsbox"
+	Opacity="0" Loaded="Edit_Loaded"  WindowStartupLocation="CenterOwner">
+	<Window.Resources>
+	</Window.Resources>
+	<Window.Triggers>
+		<EventTrigger RoutedEvent="Page.Loaded">
+			<BeginStoryboard>
+				<Storyboard Name="Fade">
+					<DoubleAnimation  Name="FadeAnim" 
+                                            Storyboard.TargetName="wattsbox"
+                                            Storyboard.TargetProperty="(Window.Opacity)"
+                                            To="1.0" Duration="0:0:0.25"
+                                            AutoReverse="False" RepeatBehavior="1x" Completed="FadeAnim_Completed" />
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Page.Unloaded">
+		</EventTrigger>
+	</Window.Triggers>
+	<Grid>
+		<Border  Margin="8" Style="{DynamicResource PopupBox}" x:Name="CannotFind" Opacity="1">
+			<Border.Effect>
+				<DropShadowEffect Color="Black" Direction="315" Opacity=".45"/>
+			</Border.Effect>
+			<Grid>
+				<StackPanel Name="StepSecondsGroup" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Height="28.4" Margin="0,36,0,0">
+					<Slider Name="SecondsStepSlider" VerticalAlignment="Center" Width="180" Style="{DynamicResource HSlider}" Minimum="1" SmallChange="1" LargeChange="2" Maximum="15" ValueChanged="SecondsStepSlider_ValueChanged" />
+					<TextBox Name="SecondsStep" dw:TextBoxMaskBehavior.Mask="Integer" dw:TextBoxMaskBehavior.MinimumValue="1" dw:TextBoxMaskBehavior.MaximumValue="15" Margin="10,0,5,0" VerticalAlignment="Center" Width="70" HorizontalContentAlignment="Right" TextChanged="SecondsStep_TextChanged">1</TextBox>
+					<Label FontSize="16" VerticalAlignment="Center">Seconds</Label>
+				</StackPanel>
+				<c:Pillbox Text="Save" Width="110" VerticalAlignment="Bottom" Height="31" Margin="0,0,15,15" HorizontalAlignment="Right" Click="Save_Click"></c:Pillbox>
+			</Grid>
+		</Border>
+	</Grid>
+</Window>
+
