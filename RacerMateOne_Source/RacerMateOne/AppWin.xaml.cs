@@ -182,16 +182,16 @@ namespace RacerMateOne  {
 				Pages.StyleSheet ps = new Pages.StyleSheet();
 				MainFrame.Navigate(ps);
 			}
-			else if (!IsRegistered())
-			{
+
+
+            else if (!IsRegistered())  {
 				FixDirectKeyboard();
 				Page_Splash = new Pages.Splash();
                 //Pages.Start.Registration reg = new Pages.Start.Registration();
                 Page_Registration = new Pages.Start.Registration();
                 MainFrame.Navigate(Page_Registration);
 			}
-			else
-			{
+			else  {
                 // Sample of how to get the registration info
                 string regCode = "", CDKey = "", Email = "";
                 bool bRegistered = GetRegistrationInfo(ref regCode, ref CDKey, ref Email);
@@ -199,6 +199,8 @@ namespace RacerMateOne  {
 				Page_Splash = new Pages.Splash();
 				MainFrame.Navigate(Page_Splash);	// Handles the initialization process.
 			}
+
+
             Log.Debug(string.Format("{0} - Window_Loaded", DateTime.Now));
         }
 		static int timenum = 0;
@@ -957,11 +959,12 @@ namespace RacerMateOne  {
 		/// Should return true if everything is registered and false if is not.
 		/// </summary>
 		/// <returns></returns>
-		public static bool IsRegistered()
-		{
+		public static bool IsRegistered()  {
+            //return true;
+
 			#if DEBUG
 				// The "#if DEBUG" is to protect it, just in case someone forgets to uncomment it, but should be commented out unless absollutly nessary.
-				//return true;
+				return true;
 			#endif
 			string hardwareid = App.GetHardwareID();
             IntPtr p_hardwareid = Marshal.StringToHGlobalAnsi(hardwareid);

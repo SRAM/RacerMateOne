@@ -34,6 +34,7 @@ namespace RacerMateOne  {
 
 		******************************************************************************************************************/
 
+
 		static RM1() {
 			#if DEBUG
 			Log.WriteLine("RM1() static constructor");
@@ -53,7 +54,6 @@ namespace RacerMateOne  {
 				//String dir = Directory.GetCurrentDirectory();				// "D:\\_fs\\rm1\\RacerMateOne_Source\\RacerMateOne\\bin\\Release"
 				//System.Console.WriteLine(dir);
 #endif
-
 
 #if DEBUG
 			Debug.WriteLine("RM1.cs   calling DLL.racermate_init()");
@@ -76,12 +76,12 @@ namespace RacerMateOne  {
 				//Thread.Sleep(3000);				// gotta give server time to start up. maybe move this earlier in the program.
 				network_started = true;
 
-				status = DLL.start_network_server();
+				//status = DLL.start_network_server();							// does nothing
 				//assert(status == ALL_OK);
 			}
 
-#if DEBUG
-			System.IO.File.Delete("client.log");
+			#if DEBUG
+				System.IO.File.Delete("client.log");
 				String s;
 				//IntPtr pfullpath = Marshal.StringToHGlobalAnsi(RacerMatePaths.DebugFullPath);
 				s = ".";
@@ -95,6 +95,7 @@ namespace RacerMateOne  {
 				s = DLLVersion;											// "1.0.13"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				s = ms_DLLVersion;										// "1.0.13"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				s = dll_build_date;										// "Apr 14 2015 11:39:59"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+				bp = 0;
 			#endif
 
 		}											// static RM1() constructor
@@ -693,17 +694,18 @@ namespace RacerMateOne  {
 
 
 							if (port >= 230 && port <= 245)  {						// trainer is server
-								int tcp_port, status;
-								IntPtr url;
-								String surl;
+								//int tcp_port;
+                                //int status;
+								//IntPtr url;
+								//String surl;
 
 #if DEBUG
-								tcp_port = 9072;
-								surl = "miney2.mselectron.net";
+								//tcp_port = 9072;
+								//surl = "miney2.mselectron.net";
 #else
 								//tcp_port = 8899;
-								tcp_port = 9072;
-								surl = "10.10.100.254";
+								//tcp_port = 9072;
+								//surl = "10.10.100.254";
 #endif
 
 								/*
@@ -1738,6 +1740,9 @@ namespace RacerMateOne  {
 			/// </summary>
 
 			protected void Stop() {
+#if DEBUG
+				Debug.WriteLine("RM1.cs   Stop()");
+#endif
 				if (IsStarted) {
 					ms_Mux.WaitOne();
 					try {
@@ -1745,20 +1750,20 @@ namespace RacerMateOne  {
 						Log.WriteLine(TypeString + " " + Version + " - Stopped");
 						IsStarted = false;
 						if (!bFake)
-		#if DEBUG
-		#if OBFUSCATE
-							//RM1.DLL.x3a7d4fd38f0687e5896e1d50efeb698e(PortNumber);
-							RM1.DLL.stopTrainer(PortNumber);
-		#else
-							RM1.DLL.stopTrainer(PortNumber);
-		#endif
-		#else
-		#if OBFUSCATE
-						RM1.DLL.x3a7d4fd38f0687e5896e1d50efeb698e(PortNumber);
-		#else
-		#endif
-
-		#endif
+							#if DEBUG
+								#if OBFUSCATE
+												//RM1.DLL.x3a7d4fd38f0687e5896e1d50efeb698e(PortNumber);
+												RM1.DLL.stopTrainer(PortNumber);
+								#else
+											//Debug.WriteLine("RM1.cs   calling DLL.stopTrainer()");
+											//RM1.DLL.stopTrainer(PortNumber);
+								#endif
+							#else
+								#if OBFUSCATE
+											RM1.DLL.x3a7d4fd38f0687e5896e1d50efeb698e(PortNumber);
+								#else
+								#endif
+							#endif
 						ms_StartedList.Remove(this);
 					}
 					catch (Exception ex) {
@@ -2153,6 +2158,7 @@ namespace RacerMateOne  {
 		#endif
 					}
 
+
 					// update grade, watts, drag if they have changed
 
 					if ((uflags & (UpdateFlags.Grade | UpdateFlags.Watts | UpdateFlags.Drag)) != UpdateFlags.Zero) {
@@ -2210,11 +2216,26 @@ namespace RacerMateOne  {
 				}										// if (uflags != UpdateFlags.Zero)  {
 
 
-		#if !OBFUSCATE
-				int raw = (bFake ? FakeKeys : DLL.GetHandleBarButtons(PortNumber, VersionNum));
-		#else
-				int raw = (bFake ? FakeKeys : DLL.xbe6cdadfa51b89ea48e8847cb65682a0(PortNumber, VersionNum));
-		#endif
+				int raw=0;
+
+
+				#if !OBFUSCATE
+					#if DEBUG
+						try {
+					#endif
+							//xxx
+							raw = (bFake ? FakeKeys : DLL.GetHandleBarButtons(PortNumber, VersionNum));
+					#if DEBUG
+						}
+						catch (Exception ex) {
+							MutexException(ex);
+							bp = 3;
+						}
+					#endif
+				#else					// obfuscate
+					raw = (bFake ? FakeKeys : DLL.xbe6cdadfa51b89ea48e8847cb65682a0(PortNumber, VersionNum));
+				#endif
+
 				if (AppWin.PreviewMode)
 					raw &= 0x7fffff80;
 				if (raw != 0)
@@ -2383,6 +2404,7 @@ namespace RacerMateOne  {
 								m_TrainerData = DLL.xdd0a789ee158e3f3cc2af3a6c2c27bfa(PortNumber, Ver);
 		#endif
 
+
 		#if DEBUG
 								if (m_TrainerData.HR > 0.0f) {
 									bp = 1;
@@ -2398,13 +2420,50 @@ namespace RacerMateOne  {
 		#endif
 								}
 
+
+
 		#if !OBFUSCATE
 								m_SpinScanData = DLL.get_ss_data(PortNumber, Ver);
-								ip = DLL.get_bars(PortNumber, Ver);
-								Marshal.Copy(ip, m_Bars, 0, 24);
+								#if DEBUG
+									try {
+								#endif
+										//xxx
+										ip = DLL.get_bars(PortNumber, Ver);
+										if (ip != IntPtr.Zero) {
+											Marshal.Copy(ip, m_Bars, 0, 24);
+										}
+								#if DEBUG
+									}
+									catch (Exception ex)  {
+										MutexException(ex);
+										bp = 3;
+									}
+								#endif
+
+								#if DEBUG
+								try {
+								#endif
 
 								ip = DLL.get_average_bars(PortNumber, Ver);
-								Marshal.Copy(ip, m_AverageBars, 0, 24);
+								if (ip != IntPtr.Zero) {
+									Marshal.Copy(ip, m_AverageBars, 0, 24);
+								}
+								else {
+#if DEBUG
+									bp = 4;
+#endif
+								}
+
+
+#if DEBUG
+								}
+								catch (Exception ex) {
+									MutexException(ex);
+#if DEBUG
+									bp = 3;
+#endif
+								}
+#endif
 
 								m_PulsePower = DLL.get_pp(PortNumber, Ver);
 								m_Calories = DLL.get_calories(PortNumber, Ver);
@@ -2435,7 +2494,6 @@ namespace RacerMateOne  {
 
 								if (Type == DeviceType.VELOTRON) {
 		#if !OBFUSCATE
-									//xxx
 									m_GearPair = DLL.GetCurrentVTGear(PortNumber, Ver);
 		#if DEBUG
 									if (m_GearPair.Front == 56) {
@@ -2604,7 +2662,7 @@ namespace RacerMateOne  {
 			 **********************************************************************************************************/
 
 			private void initDevice() {
-				int status;
+				//int status;
 
 				if (IsStarted) {
 					Log.WriteLine(String.Format("Stopping Trainer {0}", PortNumber + 1));
@@ -2778,7 +2836,25 @@ namespace RacerMateOne  {
 			private static void ThreadLoop() {
 		#if DEBUG
 				Log.WriteLine("RM1.cs, ThreadLoop() beginning");
+            int bp = 0;
+
+				//using System.Diagnostics;
+
+				Process proc = Process.GetCurrentProcess();
+				int pid = proc.Id;
+				Debug.WriteLine("RM1.cs   ThreadLoop pid = " + pid.ToString());
+
+				//long mem1 = GC.GetTotalMemory(true);
+				long startmem = proc.PrivateMemorySize64;
+				long mem;
+				mem = startmem;
+
+				//Debug.WriteLine("RM1.cs   mem1 = " + mem1.ToString());
+				Debug.WriteLine("RM1.cs   mem = " + mem.ToString());
+
 		#endif
+                int cnt = 0;
+                int cnt2 = 0;
 
 				App.SetDefaultCulture();
 
@@ -2876,13 +2952,35 @@ namespace RacerMateOne  {
 							}
 							else {
 								nextframe += ms_TargetTicks;
+								cnt = (cnt+1)%1600;		// about 1 minute?
+								if (cnt == 0) {
+									GC.Collect();
+
+									#if DEBUG
+										cnt2++;
+										Debug.WriteLine("GC" + cnt2.ToString());
+									#endif
+								}
+
 							}
 						}
 					}
-					catch (Exception ex) {
+					catch (Exception ex)  {
 						MutexException(ex);
+                        string s = ex.ToString();
+						#if DEBUG
+                        bp = 1;
+						#endif
 					}
 					ms_Mux.ReleaseMutex();
+
+					#if DEBUG
+						mem = proc.PrivateMemorySize64;
+						long diff = mem - startmem;
+						if (diff > 0) {
+							bp = 2;
+						}
+                    #endif
 				}																// for (; !ms_WaitEvent.WaitOne(new TimeSpan(wait)) && !ms_bShutdown; )  {
 
 		#if DEBUG
