@@ -25,8 +25,10 @@ namespace RacerMateOne.Dialogs
 				m_RB[Convert.ToInt32(((RadioButton)e).Tag.ToString())] = (RadioButton)e;
 			foreach(UIElement e in p100.Children)
 				m_RB[Convert.ToInt32(((RadioButton)e).Tag.ToString())] = (RadioButton)e;
-		}
-		bool m_bClosing;
+            foreach (UIElement e in p150.Children)
+                m_RB[Convert.ToInt32(((RadioButton)e).Tag.ToString())] = (RadioButton)e;
+        }
+        bool m_bClosing;
 		Dictionary<int, RadioButton> m_RB = new Dictionary<int, RadioButton>();
 
 
@@ -66,7 +68,8 @@ namespace RacerMateOne.Dialogs
 				m_Bot = null;
 				if (value != null)
 				{
-					p100.Visibility = value.MaxPercent > 100 ? Visibility.Visible : Visibility.Collapsed;
+                    p150.Visibility = value.MaxPercent > 150 ? Visibility.Visible : Visibility.Collapsed;
+                    p100.Visibility = value.MaxPercent > 100 ? Visibility.Visible : Visibility.Collapsed;
 					RadioButton rb;
 					if (m_RB.TryGetValue(value.Percent, out rb))
 					{

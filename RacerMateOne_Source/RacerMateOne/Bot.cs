@@ -2135,6 +2135,7 @@ namespace RacerMateOne
 		public const string c_KeyName = "FTPBot";
 		FTPBot( int percent )
 		{
+			m_MaxPercent = 200;
 			Percent = (int)(Math.Round(percent / 5.0) * 5);
 		}
 		protected override void UpdateNames()
@@ -2193,14 +2194,12 @@ namespace RacerMateOne
 				tbi.Add("Smart Pacer - FTP ");
 				t = new TextBlock();
 				t.Foreground = Brushes.Gray;
-				tbi.Add(String.Format("(50% to 100%)"));
+				tbi.Add(String.Format("(50% to 200%)"));
 				return tb;
 			}
 			public String DefaultKey { get { return c_KeyName; } }
 		}
 		public static readonly IBotInfo gInfo = new BotInfo();
-
-
 	}
 
 	public class AeTBot : PercentBot
@@ -2228,7 +2227,7 @@ namespace RacerMateOne
 		{
 			get
 			{
-				return String.Format("FTP {0}%,{1} Watts", Percent, Watts);
+				return String.Format("AeT {0}%,{1} Watts", Percent, Watts);
 			}
 		}
 

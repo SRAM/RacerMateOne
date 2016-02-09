@@ -57,7 +57,19 @@
 						<RadioButton Tag="145" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">145%</RadioButton>
 						<RadioButton Tag="150" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">150%</RadioButton>
 					</StackPanel>
-				</StackPanel>
+                    <StackPanel Name="p150" Margin="50,0,0,0">
+                        <RadioButton Tag="155" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">155%</RadioButton>
+                        <RadioButton Tag="160" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">160%</RadioButton>
+                        <RadioButton Tag="165" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">165%</RadioButton>
+                        <RadioButton Tag="170" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">170%</RadioButton>
+                        <RadioButton Tag="175" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">175%</RadioButton>
+                        <RadioButton Tag="180" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">180%</RadioButton>
+                        <RadioButton Tag="185" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">185%</RadioButton>
+                        <RadioButton Tag="190" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">190%</RadioButton>
+                        <RadioButton Tag="195" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">195%</RadioButton>
+                        <RadioButton Tag="200" Style="{DynamicResource SmallRadioButton}" Checked="RadioButton_Checked" GroupName="Std">200%</RadioButton>
+                    </StackPanel>
+                </StackPanel>
 				<c:Pillbox Text="Save" Width="110" VerticalAlignment="Bottom" Height="31" Margin="0,0,15,15" HorizontalAlignment="Right" Click="Save_Click"></c:Pillbox>
 			</Grid>
 		</Border>
