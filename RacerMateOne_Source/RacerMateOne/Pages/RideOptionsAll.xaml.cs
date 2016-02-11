@@ -161,11 +161,11 @@ namespace RacerMateOne.Pages
 		}
 
 		private void riderOptionsAll_Loaded(object sender, RoutedEventArgs e)  {
-			m_bLoaded =true;
+			m_bLoaded = true;
 			if (m_bLoaded) { };
 
-#if DEBUG
-            c_SpinScanValuesBox.Visibility = System.Windows.Visibility.Hidden;
+#if !DEBUG
+            c_SpinScanValuesBox.Visibility = System.Windows.Visibility.Collapsed;
 #endif
 
             MetricChanged();
