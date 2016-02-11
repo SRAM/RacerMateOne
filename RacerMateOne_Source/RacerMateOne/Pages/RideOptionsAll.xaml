@@ -1091,7 +1091,7 @@
 									</StackPanel>
 								</StackPanel>
 							</GroupBox>
-							<GroupBox Height="230" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="395">
+							<GroupBox Height="230" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="395" Name="c_SpinScanValuesBox">
 								<GroupBox.Header>
 									<Label Padding="0" FontSize="18">SpinScan Values</Label>
 								</GroupBox.Header>

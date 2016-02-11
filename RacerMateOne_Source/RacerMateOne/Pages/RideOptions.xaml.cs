@@ -54,7 +54,8 @@ namespace RacerMateOne.Pages
 				AddTab("Hardware setup", "@Hardware", "Options_Hardware.htm");
 				AddTab("Display", "@Display", "Options_Display.htm");
 				AddTab("File Saving", "@Reports", "Options_File_Saving.htm");
-				AddTab("Advanced", "@Advanced", "Options_Advanced.htm");
+                AddTab("Advanced", "@Advanced", "Options_Advanced.htm");
+
 				//AddTab("All", "@All");
 				m_bNow = true;
 				if (!SelectTab(ms_SelectedTab))

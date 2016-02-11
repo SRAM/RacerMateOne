@@ -35,7 +35,7 @@ namespace RacerMateOne.Pages
 		private Dictionary<String,List<OptionGroup>> m_TagMap = new Dictionary<String,List<OptionGroup>>();
 		private List<OptionGroup> m_All;
 		private Controls.HardwareLine[] m_HardwareLines;
-      private bool m_bLoaded=false;
+        private bool m_bLoaded=false;
 
 		int TagVersion = 0;
 
@@ -163,6 +163,10 @@ namespace RacerMateOne.Pages
 		private void riderOptionsAll_Loaded(object sender, RoutedEventArgs e)  {
 			m_bLoaded =true;
 			if (m_bLoaded) { };
+
+#if DEBUG
+            c_SpinScanValuesBox.Visibility = System.Windows.Visibility.Hidden;
+#endif
 
             MetricChanged();
             //UpdateKeyControls();
