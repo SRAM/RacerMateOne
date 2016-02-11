@@ -595,8 +595,10 @@
 												<CheckBox Width="40" Name="D_Gear" VerticalAlignment="Center" Style="{StaticResource SmallCheckBox}"/>
 												<Label Width="75" Style="{StaticResource DisplayLabel}">Gear</Label>
 												<Label Style="{StaticResource DisplayLabel}">
-													<TextBlock>Gear<TextBlock FontSize="12" Margin="10,0,0,0">(Velotron only)</TextBlock></TextBlock>
-												</Label>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="Gear"/>
+                                                        <TextBlock FontSize="12" Margin="5,0,0,0" Text="(Velotron only)" VerticalAlignment="Center"></TextBlock>
+                                                    </StackPanel>												</Label>
 											</StackPanel>
 										</StackPanel>
 										<StackPanel Orientation="Horizontal" Margin="0,5,0,0">
@@ -614,8 +616,10 @@
 												<CheckBox Width="40" Name="D_Gearing" VerticalAlignment="Center" Style="{StaticResource SmallCheckBox}"/>
 												<Label Width="75" Style="{StaticResource DisplayLabel}">Gearing</Label>
 												<Label Style="{StaticResource DisplayLabel}">
-													<TextBlock>Gearing<TextBlock FontSize="12" Margin="10,0,0,0">(Velotron only)</TextBlock></TextBlock>
-												</Label>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="Gearing"/>
+                                                        <TextBlock FontSize="12" Margin="5,0,0,0" Text="(Velotron only)" VerticalAlignment="Center"></TextBlock>
+                                                    </StackPanel>												</Label>
 											</StackPanel>
 										</StackPanel>
 										<StackPanel Orientation="Horizontal" Margin="0,5,0,0">
