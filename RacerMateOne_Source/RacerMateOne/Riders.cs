@@ -307,8 +307,17 @@ namespace RacerMateOne {
 						gearcount += 1;
 					}
 
+                    // Newer rider databases will have AnT instead of AeT, but we need to support loading from older database.
+                    XElement xHrAnT = ele.Element("HRAnT");
+                    XElement xHrAeT = ele.Element("HRAeT");
+                    int hrAnT = (xHrAnT != null) ? Convert.ToInt32(xHrAnT.Value) : (xHrAeT != null) ? Convert.ToInt32(xHrAeT.Value) : 0;
 
-					// int VelotronChainring = Convert.ToInt32(ele.Element("VelotronChainring").Value);
+                    // Likewise for PowerAnT and PowerAeT
+                    XElement xPowerAnT = ele.Element("PowerAnT");
+                    XElement xPowerAeT = ele.Element("PowerAeT");
+                    int powerAnT = (xPowerAnT != null) ? Convert.ToInt32(xPowerAnT.Value) : (xPowerAeT != null) ? Convert.ToInt32(xPowerAeT.Value) : 0;
+
+                    // int VelotronChainring = Convert.ToInt32(ele.Element("VelotronChainring").Value);
 					float WheelDiameter = Convert.ToSingle(ele.Element("WheelDiameter").Value);
 					Rider thisrider = new Rider(
 						ele.Attribute("DatabaseKey").Value,
@@ -317,11 +326,11 @@ namespace RacerMateOne {
 						ele.Element("NickName").Value,
 						ele.Element("Gender").Value,
 						ele.Element("Age").Value,
-						Convert.ToInt32(ele.Element("HRAeT").Value),
+                        hrAnT,
 						Convert.ToInt32(ele.Element("HRMax").Value),
 						0,
 						0,
-						Convert.ToInt32(ele.Element("PowerAeT").Value),
+						powerAnT,
 						Convert.ToInt32(ele.Element("PowerFTP").Value),
 						Convert.ToDouble(ele.Element("WeightRider").Value),
 						Convert.ToDouble(ele.Element("WeightBike").Value),

@@ -592,9 +592,9 @@ namespace RacerMateOne
             public Int16 DragFactor;
             public UInt16 DeviceType;
             public UInt16 DeviceVersion;
-            public UInt16 PowerAeT;
+            public UInt16 PowerAnT;
             public UInt16 PowerFTP;
-            public byte HrAeT;
+            public byte HrAnT;
             public byte HrMin;
             public byte HrMax;
             public byte HrZone1;
@@ -615,7 +615,7 @@ namespace RacerMateOne
                 DragFactor = 0,
                 DeviceType = 0,
                 DeviceVersion = 0,
-                PowerAeT = 0,
+                PowerAnT = 0,
                 PowerFTP = 0,
                 Mode = 0,
                 RawCalibrationValue = -200,
@@ -626,7 +626,7 @@ namespace RacerMateOne
                 HrZone3 = (byte)(avg * 0.70f),
                 HrZone4 = (byte)(avg * 0.80f),
                 HrZone5 = (byte)(avg * 0.90f),
-                HrAeT = (byte)(avg * 0.90f)
+                HrAnT = (byte)(avg * 0.90f)
             };
         }
 
@@ -1057,7 +1057,7 @@ namespace RacerMateOne
             public UInt32 DeviceType {set; get;}
             public UInt32 DeviceVersion { set; get; }
 
-            public Int32 PowerAeT { set; get; }
+            public Int32 PowerAnT { set; get; }
             public Int32 PowerFTP { set; get; }
             public Int32 DragFactor { set; get; }
 
@@ -1067,7 +1067,7 @@ namespace RacerMateOne
 				get { return Unit.GetAppModeString(Mode); }
             }
             public Int16 RawCalibrationValue { set; get; }
-            public int HrAeT { set; get; }
+            public int HrAnT { set; get; }
             public int HrMin { set; get; }
             public int HrMax { set; get; }
             public int HrZone1 { set; get; }
@@ -1117,9 +1117,9 @@ namespace RacerMateOne
                     infoext.Mode = (UInt16)Mode;
                     infoext.RawCalibrationValue = RawCalibrationValue;
                     infoext.DragFactor = (Int16)DragFactor;
-                    infoext.PowerAeT = (UInt16)PowerAeT;
+                    infoext.PowerAnT = (UInt16)PowerAnT;
                     infoext.PowerFTP = (UInt16)PowerFTP;
-                    infoext.HrAeT = (byte)HrAeT;
+                    infoext.HrAnT = (byte)HrAnT;
                     infoext.HrMin = (byte)HrMin;
                     infoext.HrMax = (byte)HrMax;
                     infoext.HrZone1 = (byte)HrZone1;
@@ -1194,9 +1194,9 @@ namespace RacerMateOne
 
                         RawCalibrationValue = infoext.RawCalibrationValue;
                         DragFactor = infoext.DragFactor;
-                        PowerAeT = infoext.PowerAeT;
+                        PowerAnT = infoext.PowerAnT;
                         PowerFTP = infoext.PowerFTP;
-                        HrAeT = infoext.HrAeT;
+                        HrAnT = infoext.HrAnT;
                         HrMin = infoext.HrMin;
                         HrMax = infoext.HrMax;
                         HrZone1 = infoext.HrZone1;
@@ -2745,7 +2745,7 @@ namespace RacerMateOne
                 DragFactor = 0,
                 DeviceType = 0,
                 DeviceVersion = 0,
-                PowerAeT = 0,
+                PowerAnT = 0,
                 PowerFTP = 0,
                 Mode = Unit.AppMode,
                 RawCalibrationValue = statistics.RawCalibrationValue, //- 200,
@@ -2756,7 +2756,7 @@ namespace RacerMateOne
                 HrZone3 = (int)(hravg * 0.70f),
                 HrZone4 = (int)(hravg * 0.80f),
                 HrZone5 = (int)(hravg * 0.90f),
-                HrAeT = (int)(hravg * 0.90f)
+                HrAnT = (int)(hravg * 0.90f)
 
             };
             if (thisUnit.Trainer != null)
@@ -2782,9 +2782,9 @@ namespace RacerMateOne
                 pih.RFMeas = 0;
                 pih.Watts_Factor = 0;
                 pih.FTP = (float)rider.PowerFTP;        
-                pih.PowerAeT = rider.PowerAeT;
+                pih.PowerAnT = rider.PowerAnT;
                 pih.PowerFTP = rider.PowerFTP;
-                pih.HrAeT = rider.HrAeT;
+                pih.HrAnT = rider.HrAnT;
                 pih.HrMin = rider.HrMin;
                 pih.HrMax = rider.HrMax;
                 pih.HrZone1 = rider.HrZone1;
@@ -6353,12 +6353,12 @@ Date/Time: {1}</font></p>
          m_rmx.Info.Age, // 3
          m_rmx.Info.Weight * ConvertConstLBSToReportUnits(), // 4
          m_rmx.Info.Gender, // 5
-         m_rmx.Info.PowerAeT, // 6
+         m_rmx.Info.PowerAnT, // 6
          m_rmx.Info.PowerFTP, // 7
          m_rmx.Info.DragFactor, // 8
          m_rmx.Info.HrMin, // 9
          m_rmx.Info.HrMax, // 10
-         m_rmx.Info.HrAeT, // 11
+         m_rmx.Info.HrAnT, // 11
          m_rmx.Info.HrZone1, // 12
          m_rmx.Info.HrZone2 - 1, // 13
          m_rmx.Info.HrZone2, // 14

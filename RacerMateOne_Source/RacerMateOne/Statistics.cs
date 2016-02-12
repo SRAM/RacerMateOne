@@ -1864,7 +1864,7 @@ namespace RacerMateOne
 
 						m_PercentAT = w;
 						// We need to find the percentage of the at from the rider.
-						w = (float)(m_Rider == null ? 200.0:m_Rider.PowerAeT * w * 0.01);
+						w = (float)(m_Rider == null ? 200.0:m_Rider.PowerAnT * w * 0.01);
 					}
 					if (m_Watts_Load != w || m_bForceWatts)
 					{

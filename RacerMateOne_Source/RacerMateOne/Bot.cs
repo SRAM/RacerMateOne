@@ -60,7 +60,7 @@ namespace RacerMateOne
 			Bots.Add(HRBot.gInfo);
 			//Bots.Add(AIBot.gInfo);
 			Bots.Add(FTPBot.gInfo);
-			Bots.Add(AeTBot.gInfo);
+			Bots.Add(AnTBot.gInfo);
 			OtherBots.Add(PerformanceBot.gInfo);
         }
 
@@ -2202,24 +2202,24 @@ namespace RacerMateOne
 		public static readonly IBotInfo gInfo = new BotInfo();
 	}
 
-	public class AeTBot : PercentBot
+	public class AnTBot : PercentBot
 	{
-		public const string c_KeyName = "AeTBot";
-		AeTBot(int percent)
+		public const string c_KeyName = "AnTBot";
+		AnTBot(int percent)
 		{
 			m_MaxPercent = 150;
 			Percent = (int)(Math.Round(percent / 5.0) * 5);
 		}
 		protected override void UpdateNames()
 		{
-			BaseName = String.Format("AeT {0}%", Percent);
+			BaseName = String.Format("AnT {0}%", Percent);
 			Key = String.Format("{0},{1}", c_KeyName, Percent);
 			UpdateDisplayName();
 			base.UpdateNames();
 		}
 		protected override void UpdateDisplayName()
 		{
-			m_DisplayName = String.Format("AeT {0}%,{1}w", Percent, Watts);
+			m_DisplayName = String.Format("AnT {0}%,{1}w", Percent, Watts);
 			base.UpdateDisplayName();
 		}
 
@@ -2227,17 +2227,17 @@ namespace RacerMateOne
 		{
 			get
 			{
-				return String.Format("AeT {0}%,{1} Watts", Percent, Watts);
+				return String.Format("AnT {0}%,{1} Watts", Percent, Watts);
 			}
 		}
 
 		protected override void Update()
 		{
-			Diff = m_ControlUnit == null || m_ControlUnit.Rider == null ? 0 : (m_ControlUnit.Rider.PowerAeT * m_PercentV - m_ControlUnit.Statistics.Watts) / 20;
+			Diff = m_ControlUnit == null || m_ControlUnit.Rider == null ? 0 : (m_ControlUnit.Rider.PowerAnT * m_PercentV - m_ControlUnit.Statistics.Watts) / 20;
 			base.Update();
 		}
 
-		public override float Watts { get { return (float)(m_ControlUnit == null || m_ControlUnit.Rider == null ? 0 : m_ControlUnit.Rider.PowerAeT * m_PercentV); }}
+		public override float Watts { get { return (float)(m_ControlUnit == null || m_ControlUnit.Rider == null ? 0 : m_ControlUnit.Rider.PowerAnT * m_PercentV); }}
 
 
 		//--------
@@ -2252,9 +2252,9 @@ namespace RacerMateOne
 				try
 				{
 					if (ss.Length < 2)
-						bot = new AeTBot(100);
+						bot = new AnTBot(100);
 					else
-						bot = new AeTBot((int)Convert.ToInt32(ss[1]));
+						bot = new AnTBot((int)Convert.ToInt32(ss[1]));
 				}
 				catch { }
 				return bot;
@@ -2264,7 +2264,7 @@ namespace RacerMateOne
 				TextBlock tb = new TextBlock();
 				TextBlock t = new TextBlock();
 				InlineCollection tbi = tb.Inlines;
-				tbi.Add("Smart Pacer - AeT ");
+				tbi.Add("Smart Pacer - AnT ");
 				t = new TextBlock();
 				t.Foreground = Brushes.Gray;
 				tbi.Add(String.Format("(50% to 150%)"));

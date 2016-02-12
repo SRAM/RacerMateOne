@@ -1266,11 +1266,11 @@ namespace RacerMateOne.Pages
 				Rider_DragLabel.SetBinding(Label.ContentProperty, binding);
 
 
-				binding = new Binding("HrAeT");//set binding parameters if necessary
+				binding = new Binding("HrAnT");//set binding parameters if necessary
 				binding.ValidatesOnExceptions = true;
 				binding.Source = Riders.RidersList;
 				binding.UpdateSourceTrigger = UpdateSourceTrigger.LostFocus;
-				Rider_HRAeT.SetBinding(TextBox.TextProperty, binding);
+				Rider_HRAnT.SetBinding(TextBox.TextProperty, binding);
 
 				binding = new Binding("HrMin");//set binding parameters if necessary
 				binding.ValidatesOnExceptions = true;
@@ -1282,11 +1282,11 @@ namespace RacerMateOne.Pages
 				binding.Source = Riders.RidersList;
 				Rider_HRmax.SetBinding(TextBox.TextProperty, binding);
 
-				binding = new Binding("PowerAeT");//set binding parameters if necessary
+				binding = new Binding("PowerAnT");//set binding parameters if necessary
 				binding.ValidatesOnExceptions = true;
 				binding.Source = Riders.RidersList;
 				binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-				Rider_PowerAeT.SetBinding(TextBox.TextProperty, binding);
+				Rider_PowerAnT.SetBinding(TextBox.TextProperty, binding);
 
 				binding = new Binding("PowerFTP");//set binding parameters if necessary
 				binding.ValidatesOnExceptions = true;
@@ -1682,12 +1682,12 @@ namespace RacerMateOne.Pages
 		}
 
 
-		private void Rider_HRAeT_LostFocus(object sender, RoutedEventArgs e)
+		private void Rider_HRAnT_LostFocus(object sender, RoutedEventArgs e)
 		{
 			Rider rider = RiderEditSelect.SelectedItem as Rider;
 			if (rider != null)
 			{
-				rider.HrAeT = Convert.ToInt32(Rider_HRAeT.Text);
+				rider.HrAnT = Convert.ToInt32(Rider_HRAnT.Text);
 			}
 		}
 

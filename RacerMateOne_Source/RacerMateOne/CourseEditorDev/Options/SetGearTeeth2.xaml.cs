@@ -216,12 +216,12 @@ namespace RacerMateOne.CourseEditorDev.Options {
 									NickName = r.Element("NickName").Value,
 									Gender = r.Element("Gender").Value,
 									Age = r.Element("Age").Value,
-									HRAeT = r.Element("HRAeT").Value,
+									HRAnT = r.Element("HRAeT").Value,
 									HRMax = r.Element("HRMax").Value,
 									HRMin = r.Element("HRMin").Value,
 									AlarmMinZone = r.Element("AlarmMinZone").Value,
 									AlarmMaxZone = r.Element("AlarmMaxZone").Value,
-									PowerAeT = r.Element("PowerAeT").Value,
+									PowerAnT = r.Element("PowerAeT").Value,
 									PowerFTP = r.Element("PowerFTP").Value,
 									Metric = r.Element("Metric").Value,
 									WeightBike = r.Element("WeightBike").Value,
@@ -287,12 +287,12 @@ namespace RacerMateOne.CourseEditorDev.Options {
 				rider.NickName = br.NickName;
 				rider.Gender = br.Gender;
 				rider.Age = br.Age;
-				rider.HRAeT = br.HRAeT;
+				rider.HRAnT = br.HRAnT;
 				rider.HRMax = br.HRMax;
 				rider.HRMin = br.HRMin;
 				rider.AlarmMinZone = br.AlarmMinZone;
 				rider.AlarmMaxZone = br.AlarmMinZone;
-				rider.PowerAeT = br.PowerAeT;
+				rider.PowerAnT = br.PowerAnT;
 				rider.PowerFTP = br.PowerFTP;
 				rider.Metric = br.Metric;
 				rider.WeightBike = br.WeightBike;
@@ -410,13 +410,13 @@ namespace RacerMateOne.CourseEditorDev.Options {
 				Val.Add(new XElement("NickName", BicycleRiderList[i].NickName));
 				Val.Add(new XElement("Gender", BicycleRiderList[i].Gender));
 				Val.Add(new XElement("Age", BicycleRiderList[i].Age));
-				Val.Add(new XElement("HRAeT", BicycleRiderList[i].HRAeT));
+				Val.Add(new XElement("HRAeT", BicycleRiderList[i].HRAnT));
 				Val.Add(new XElement("HRMax", BicycleRiderList[i].HRMax));
 				Val.Add(new XElement("HRMin", BicycleRiderList[i].HRMin));
 
 				Val.Add(new XElement("AlarmMinZone", BicycleRiderList[i].AlarmMinZone));
 				Val.Add(new XElement("AlarmMaxZone", BicycleRiderList[i].AlarmMaxZone));
-				Val.Add(new XElement("PowerAeT", BicycleRiderList[i].PowerAeT));
+				Val.Add(new XElement("PowerAeT", BicycleRiderList[i].PowerAnT));
 				Val.Add(new XElement("PowerFTP", BicycleRiderList[i].PowerFTP));
 				Val.Add(new XElement("Metric", BicycleRiderList[i].Metric));
 				Val.Add(new XElement("WeightBike", BicycleRiderList[i].WeightBike));

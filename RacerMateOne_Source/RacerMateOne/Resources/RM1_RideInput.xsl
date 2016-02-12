@@ -2768,6 +2768,34 @@
                 <td style="width:2in; ">
                   <h3>
                     <span>
+                      <xsl:text>HRAnT</xsl:text>
+                    </span>
+                  </h3>
+                </td>
+                <td colspan="10">
+                  <xsl:for-each select="RideInput">
+                    <xsl:for-each select="LiveRiders">
+                      <xsl:for-each select="Rider">
+                        <xsl:for-each select="RiderInfo">
+                          <xsl:for-each select="HRAnT">
+                            <xsl:apply-templates/>
+                            <br/>
+                          </xsl:for-each>
+                        </xsl:for-each>
+                      </xsl:for-each>
+                    </xsl:for-each>
+                  </xsl:for-each>
+                </td>
+                <td>
+                  <span>
+                    <xsl:text>Heart rate anaerobic threshold for heart rate based training</xsl:text>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td style="width:2in; ">
+                  <h3>
+                    <span>
                       <xsl:text>HRMax</xsl:text>
                     </span>
                   </h3>
@@ -2852,6 +2880,34 @@
                 <td style="width:2in; ">
                   <h3>
                     <span>
+                      <xsl:text>PowerAnT</xsl:text>
+                    </span>
+                  </h3>
+                </td>
+                <td colspan="10">
+                  <xsl:for-each select="RideInput">
+                    <xsl:for-each select="LiveRiders">
+                      <xsl:for-each select="Rider">
+                        <xsl:for-each select="RiderInfo">
+                          <xsl:for-each select="PowerAnT">
+                            <xsl:apply-templates/>
+                            <br/>
+                          </xsl:for-each>
+                        </xsl:for-each>
+                      </xsl:for-each>
+                    </xsl:for-each>
+                  </xsl:for-each>
+                </td>
+                <td>
+                  <span>
+                    <xsl:text>Anaerobic threshold for Power based training</xsl:text>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td style="width:2in; ">
+                  <h3>
+                    <span>
                       <xsl:text>PowerAeT</xsl:text>
                     </span>
                   </h3>
@@ -2872,7 +2928,7 @@
                 </td>
                 <td>
                   <span>
-                    <xsl:text>Aerobic threahold for Power based training</xsl:text>
+                    <xsl:text>Aerobic threshold for Power based training</xsl:text>
                   </span>
                 </td>
               </tr>

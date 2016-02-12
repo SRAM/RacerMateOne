@@ -86,12 +86,12 @@
                         <TextBlock FontSize="16"  Grid.Row="0"  HorizontalAlignment="Center"    Grid.Column="8" Text="Modified"      />
                         <TextBlock FontSize="16"  Grid.Row="0"  HorizontalAlignment="Center"    Grid.Column="10" Text="Gender"       />
                         <TextBlock FontSize="16"  Grid.Row="0"  HorizontalAlignment="Center"    Grid.Column="12" Text="Age"          />
-                        <TextBlock FontSize="16"  Grid.Row="4"  HorizontalAlignment="Center"    Grid.Column="0" Text="HRAeT"         />
+                        <TextBlock FontSize="16"  Grid.Row="4"  HorizontalAlignment="Center"    Grid.Column="0" Text="HRAnT"         />
                         <TextBlock FontSize="16"  Grid.Row="4"  HorizontalAlignment="Center"    Grid.Column="2" Text="HRMax"         />
                         <TextBlock FontSize="16"  Grid.Row="4"  HorizontalAlignment="Center"    Grid.Column="4" Text="HRMin"         />
                         <TextBlock FontSize="16"  Grid.Row="4"  HorizontalAlignment="Center"    Grid.Column="6" Text="Min Alarm"     />
                         <TextBlock FontSize="16"  Grid.Row="4"  HorizontalAlignment="Center"    Grid.Column="8" Text="Max Alarm"     />
-                        <TextBlock FontSize="16"  Grid.Row="4"  HorizontalAlignment="Center"    Grid.Column="10" Text="PowerAeT"     />
+                        <TextBlock FontSize="16"  Grid.Row="4"  HorizontalAlignment="Center"    Grid.Column="10" Text="PowerAnT"     />
                         <TextBlock FontSize="16"  Grid.Row="4"  HorizontalAlignment="Center"    Grid.Column="12" Text="PowerFTP"     />
                         <TextBlock FontSize="16"  Grid.Row="8"  HorizontalAlignment="Center"    Grid.Column="0" Text="Metric"        />
                         <TextBlock FontSize="16"  Grid.Row="8"  HorizontalAlignment="Center"    Grid.Column="2" Text="WeightBike"    />
@@ -110,12 +110,12 @@
                         <TextBlock FontSize="16"  Grid.Row="2"  HorizontalAlignment="Center"   Grid.Column="10" Text="{Binding Gender}"    />
                         <TextBlock FontSize="16"  Grid.Row="2"  HorizontalAlignment="Center"   Grid.Column="12" Text="{Binding Age}"    />
 
-                        <TextBlock FontSize="16"  Grid.Row="6"  HorizontalAlignment="Center"   Grid.Column="0" Text="{Binding HrAeT}"    />
+                        <TextBlock FontSize="16"  Grid.Row="6"  HorizontalAlignment="Center"   Grid.Column="0" Text="{Binding HrAnT}"    />
                         <TextBlock FontSize="16"  Grid.Row="6"  HorizontalAlignment="Center"   Grid.Column="2" Text="{Binding HrMax}"    />
                         <TextBlock FontSize="16"  Grid.Row="6"  HorizontalAlignment="Center"   Grid.Column="4" Text="{Binding HrMin}"    />
                         <TextBlock FontSize="16"  Grid.Row="6"  HorizontalAlignment="Center"   Grid.Column="6" Text="{Binding AlarmMinZone}"    />
                         <TextBlock FontSize="16"  Grid.Row="6"  HorizontalAlignment="Center"   Grid.Column="8" Text="{Binding AlarmMaxZone}"    />
-                        <TextBlock FontSize="16"  Grid.Row="6"  HorizontalAlignment="Center"   Grid.Column="10" Text="{Binding PowerAeT}"    />
+                        <TextBlock FontSize="16"  Grid.Row="6"  HorizontalAlignment="Center"   Grid.Column="10" Text="{Binding PowerAnT}"    />
                         <TextBlock FontSize="16"  Grid.Row="6"  HorizontalAlignment="Center"   Grid.Column="12" Text="{Binding PowerFTP}"    />
                         
                         <TextBlock FontSize="16"  Grid.Row="10"  HorizontalAlignment="Center"   Grid.Column="0" Text="{Binding Metric}"    />

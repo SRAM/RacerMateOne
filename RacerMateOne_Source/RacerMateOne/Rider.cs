@@ -109,12 +109,12 @@ namespace RacerMateOne
 		private string _gender;		// "M" or "F"
 		private int _age;		// Age
 
-		private int _hrAeT;          // HR @ aerobic threshold
+		private int _hrAnT;          // HR @ anaerobic threshold
 		private int _hrMin;		// HR @ resting threashold
 		private int _hrMax;          // HR @ MAX Effort
 		private int _alarmMinZone;
 		private int _alarmMaxZone;
-		private int _powerAeT;       // Power @ aerobic threshold
+		private int _powerAnT;       // Power @ anaerobic threshold
 		private int _powerFTP;       // Power @ Functional threshold
 		private float _weightRider; // Weight in lbs
 		private float _weightBike;  // Weight in lbs
@@ -140,12 +140,12 @@ namespace RacerMateOne
 		private const string def_gender = "M";
 		private const string def_birthday = "01/01/1960"; //note that Windows shows no dd/mm/yyyy format in slashes, only dashes dd-MMM-yyyy
 		private const int def_age = 0;
-		private const int def_hrAeT = 160;          // HR @ aerobic threshold
+		private const int def_hrAnT = 160;          // HR @ anaerobic threshold
 		private const int def_hrMin = 60;			// HR @ minimum
 		private const int def_hrMax = 170;          // HR @ MAX Effort
 		private const int def_alarmMinZone = 0;		// Off
 		private const int def_alarmMaxZone = 6;		// Off
-		private const int def_powerAeT = 200;       // Power @ aerobic threshold
+		private const int def_powerAnT = 200;       // Power @ anaerobic threshold
 		private const int def_powerFTP = 210;       // Power @ Functional threshold
 		private const float def_weightRider = 160; // Weight in lbs
 		private const float def_weightBike = 20;  // Weight in lbs
@@ -349,14 +349,14 @@ namespace RacerMateOne
 		/// <summary>
 		/// hrAet non negative
 		/// </summary>
-		public int HrAeT
+		public int HrAnT
 		{
-				get { return _hrAeT; }
+				get { return _hrAnT; }
 				set
 				{
-					try { _hrAeT = Math.Max(0, value); }
-					catch { _hrAeT = def_hrAeT; }
-					OnPropertyChanged("HrAeT");
+					try { _hrAnT = Math.Max(0, value); }
+					catch { _hrAnT = def_hrAnT; }
+					OnPropertyChanged("HrAnT");
 				}//ensure not negative
 		}
 
@@ -487,17 +487,17 @@ namespace RacerMateOne
 
 
 		/// <summary>
-		/// powerAeT non negative
-		/// Power @ aerobic threshold
+		/// powerAnT non negative
+		/// Power @ anaerobic threshold
 		/// </summary>
-		public int PowerAeT
+		public int PowerAnT
 		{
-				get { return _powerAeT; }
+				get { return _powerAnT; }
 				set
 				{
-					try { _powerAeT = Math.Max(0, value); }
-					catch { _powerAeT = def_powerAeT; }
-					OnPropertyChanged("PowerAeT");
+					try { _powerAnT = Math.Max(0, value); }
+					catch { _powerAnT = def_powerAnT; }
+					OnPropertyChanged("PowerAnT");
 			}
 		}
 
@@ -827,11 +827,11 @@ namespace RacerMateOne
 		/// <param name="firstName"></param>
 		/// <param name="gender"></param>
 		/// <param name="birthday"></param>
-		/// <param name="hrAeT"></param>
+		/// <param name="hrAnT"></param>
 		/// <param name="hrMax"></param>
 		/// <param name="hrAlarmMin"></param>
 		/// <param name="hrAlarmMax"></param>
-		/// <param name="powerAeT"></param>
+		/// <param name="powerAnT"></param>
 		/// <param name="powerFTP"></param>
 		/// <param name="weightRider"></param>
 		/// <param name="weightBike"></param>
@@ -842,12 +842,12 @@ namespace RacerMateOne
 		/// <param name="velotronChainring"></param>
 		/// <param name="wheelDiameter"></param>
 
-		//private int c_zoneAeT = -1;
+		//private int c_zoneAnT = -1;
 		//private int c_zone = -1;
 
 
-		public Rider(string databaseKey, string lastName, string firstName, string nickName, string gender, string age, int hrAeT,
-					int hrMax, int hrAlarmMin, int hrAlarmMax, int powerAeT, int powerFTP, double weightRider, double weightBike, int dragFactor,
+		public Rider(string databaseKey, string lastName, string firstName, string nickName, string gender, string age, int hrAnT,
+					int hrMax, int hrAlarmMin, int hrAlarmMax, int powerAnT, int powerFTP, double weightRider, double weightBike, int dragFactor,
 					int[] crankset, int[] cogset, float wheelDiameter)
 		{
 		
@@ -858,9 +858,9 @@ namespace RacerMateOne
 			this.Gender = gender;
 			//this.Birthday = birthday;
 			this.AgeString = age;
-			this.HrAeT = hrAeT;
+			this.HrAnT = hrAnT;
 			this.HrMax = hrMax;
-			this.PowerAeT = powerAeT;
+			this.PowerAnT = powerAnT;
 			this.PowerFTP = powerFTP;
 			this.WeightRider = weightRider;
 			this.WeightBike = weightBike;
@@ -885,12 +885,12 @@ namespace RacerMateOne
 				NickName = def_nickName;
 				Gender = def_gender;
 				Birthday = def_birthday;
-				HrAeT = def_hrAeT;
+				HrAnT = def_hrAnT;
 				HrMin = def_hrMin;
 				HrMax = def_hrMax;
 				AlarmMinZone = def_alarmMinZone;
 				AlarmMaxZone = def_alarmMaxZone;
-				PowerAeT = def_powerAeT;
+				PowerAnT = def_powerAnT;
 				PowerFTP = def_powerFTP;
 				Metric = def_metric;
 				WeightRider = def_weightRider;
@@ -1184,13 +1184,13 @@ namespace RacerMateOne
 				new XElement("Gender", bbb.Gender),
 				//new XElement("Birthday", bbb.Birthday),
 				new XElement("Age", bbb.Age),
-				new XElement("HRAeT", bbb.HrAeT),
+                new XElement("HRAnT", bbb.HrAnT),
 				new XElement("HRMax", bbb.HrMax),
 				new XElement("HRMin", bbb.HrMin),
 				new XElement("AlarmMinZone", bbb.AlarmMinZone == 0 ? "Off" : bbb.AlarmMinZone.ToString()),
 				new XElement("AlarmMaxZone", bbb.AlarmMaxZone == 6 || bbb.AlarmMaxZone == 0 ? "Off" : bbb.AlarmMaxZone.ToString()),
-				new XElement("PowerAeT", bbb.PowerAeT),
-				new XElement("PowerFTP", bbb.PowerFTP),
+                new XElement("PowerAnT", bbb.PowerAnT),
+                new XElement("PowerFTP", bbb.PowerFTP),
 				new XElement("Metric", bbb.Metric.ToString()),
 				new XElement("WeightBike", bbb.WeightBike.ToString("####")),
 				new XElement("WeightRider", bbb.WeightRider.ToString("####")),

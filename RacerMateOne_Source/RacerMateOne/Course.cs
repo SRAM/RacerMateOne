@@ -1894,7 +1894,7 @@ namespace RacerMateOne
 			// Make a small segment.
 			double y = yunits == CourseYUnits.Grade ? RM1_Settings.General.GradeInitial / 100 :
 				yunits == CourseYUnits.Watts ? RM1_Settings.General.WattsInitial :
-				unit == null || unit.Rider == null ? 100:unit.Rider.PowerAeT * (RM1_Settings.General.PercentATInitial / 100) ;
+				unit == null || unit.Rider == null ? 100:unit.Rider.PowerAnT * (RM1_Settings.General.PercentATInitial / 100) ;
 			Segment seg = yunits == CourseYUnits.Grade ? new PysicalSegment(1, (float)y, 0, 0) as Segment : (new WattsSegment(1, (float)y, (float)y)) as Segment;
 
 			c.AddLast( seg );

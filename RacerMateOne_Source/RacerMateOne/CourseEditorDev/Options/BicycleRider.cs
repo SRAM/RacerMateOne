@@ -17,12 +17,12 @@ namespace RacerMateOne.CourseEditorDev.Options
         public string NickName { get; set; }
         public string Gender { get; set; }
         public string Age { get; set; }
-        public string HRAeT { get; set; }
+        public string HRAnT { get; set; }
         public string HRMax { get; set; }
         public string HRMin { get; set; }
         public string AlarmMinZone { get; set; }
         public string AlarmMaxZone { get; set; }
-        public string PowerAeT { get; set; }
+        public string PowerAnT { get; set; }
         public string PowerFTP { get; set; }
         public string Metric { get; set; }
         public string WeightBike { get; set; }

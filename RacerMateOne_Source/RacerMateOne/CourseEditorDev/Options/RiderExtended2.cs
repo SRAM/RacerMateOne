@@ -127,8 +127,8 @@ namespace RacerMateOne.CourseEditorDev.Options  {
 		************************************************************************************************/
 
 		public RiderExtended2(Rider rider)
-			: base(rider.DatabaseKey, rider.LastName, rider.FirstName, rider.NickName, rider.Gender, rider.AgeString, rider.HrAeT, rider.HrMax, rider.HrAlarmMin,
-					rider.HrAlarmMax, rider.PowerAeT, rider.PowerFTP, rider.WeightRider, rider.WeightBike, rider.DragFactor, rider.GearingCrankset, rider.GearingCogset, rider.WheelDiameter)
+			: base(rider.DatabaseKey, rider.LastName, rider.FirstName, rider.NickName, rider.Gender, rider.AgeString, rider.HrAnT, rider.HrMax, rider.HrAlarmMin,
+					rider.HrAlarmMax, rider.PowerAnT, rider.PowerFTP, rider.WeightRider, rider.WeightBike, rider.DragFactor, rider.GearingCrankset, rider.GearingCogset, rider.WheelDiameter)
 		{
 
 			_CrankGear = new ObservableCollection<GearData>();

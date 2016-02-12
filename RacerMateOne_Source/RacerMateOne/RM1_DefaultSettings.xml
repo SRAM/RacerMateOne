@@ -42,7 +42,7 @@
 
     <PacerHeartRate UserSetting="0" Default="0" FeatureEnabled="1" DisplayString="Maintain Heartrate">
       <Selections>
-        <Selection Index="0" DisplayString="Set pace to maintain Aerobic Threshold" />
+        <Selection Index="0" DisplayString="Set pace to maintain Anaerobic Threshold" />
         <Selection Index="1" DisplayString="Set pace to maintain 50% of HRmax" />
         <Selection Index="2" DisplayString="Set pace to maintain 55% of HRmax" />
         <Selection Index="3" DisplayString="Set pace to maintain 60% of HRmax" />

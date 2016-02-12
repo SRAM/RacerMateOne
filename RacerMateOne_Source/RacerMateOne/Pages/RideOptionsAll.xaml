@@ -358,9 +358,9 @@
 					<StackPanel>
 						<GroupBox FontSize="12" Foreground="White" Width="314" Header="Heart rate" Padding="-15,10,8,5" Margin="12,12,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
 							<StackPanel>
-								<StackPanel ToolTip="Aerobic threshold heartrate (AeT)" Orientation="Horizontal">
+								<StackPanel ToolTip="Anaerobic threshold heartrate (AnT)" Orientation="Horizontal">
 									<Label HorizontalContentAlignment="Right" Width="100">Anaerobic</Label>
-									<TextBox Name="Rider_HRAeT" dw:TextBoxMaskBehavior.Mask="Integer" Height="23" Width="39"  dw:TextBoxMaskBehavior.MinimumValue="1" dw:TextBoxMaskBehavior.MaximumValue="999" HorizontalContentAlignment="Right" LostFocus="Rider_HRAeT_LostFocus" IsReadOnly="False" />
+									<TextBox Name="Rider_HRAnT" dw:TextBoxMaskBehavior.Mask="Integer" Height="23" Width="39"  dw:TextBoxMaskBehavior.MinimumValue="1" dw:TextBoxMaskBehavior.MaximumValue="999" HorizontalContentAlignment="Right" LostFocus="Rider_HRAnT_LostFocus" IsReadOnly="False" />
 								</StackPanel>
 								<StackPanel Orientation="Horizontal">
 									<Label HorizontalContentAlignment="Right" Width="100">Resting</Label>
@@ -417,11 +417,11 @@
 						<Grid Name="C_Power" Tag="@Rider,Rider,Power" Visibility="Collapsed">
 							<GroupBox FontSize="12" Width="314" Foreground="White" Header="Power" Padding="-15,10,15,5" Margin="12,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
 								<StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-									<StackPanel ToolTip="Power at Aerobic Threshold (AeT)" Orientation="Horizontal">
-										<Label HorizontalContentAlignment="Right" Padding="0" VerticalAlignment="Center">AeT (watts)</Label>
-										<TextBox Name="Rider_PowerAeT" dw:TextBoxMaskBehavior.Mask="Decimal" Height="23" Width="40" HorizontalContentAlignment="Right" />
+									<StackPanel ToolTip="Power at Anaerobic Threshold (AnT)" Orientation="Horizontal">
+										<Label HorizontalContentAlignment="Right" Padding="0,0,5,0" VerticalAlignment="Center">AnT (watts)</Label>
+										<TextBox Name="Rider_PowerAnT" dw:TextBoxMaskBehavior.Mask="Decimal" Height="23" Width="40" HorizontalContentAlignment="Right" />
 									</StackPanel>
-									<StackPanel ToolTip="Funtional Threshold Power(FTP)" Orientation="Horizontal">
+									<StackPanel ToolTip="Funtional Threshold Power (FTP)" Orientation="Horizontal">
 										<Label HorizontalContentAlignment="Right" Padding="8,0,5,0" VerticalAlignment="Center">FTP (watts)</Label>
 										<TextBox Name="Rider_PowerFTP" dw:TextBoxMaskBehavior.Mask="Decimal" Height="23" Width="50" HorizontalContentAlignment="Right" />
 									</StackPanel>
