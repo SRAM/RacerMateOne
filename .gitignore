@@ -5,6 +5,17 @@ RacerMateOne_Source/ErrorReport/obj/
 RacerMateOne_Source/ErrorReport/bin/
 RacerMateOne_Source/RacerMateOne/obj/
 RacerMateOne_Source/WPFMediaKit/obj/
+RacerMateOne_Source/RacerMateOne/bin/Debug/app.publish/
+RacerMateOne_Source/RacerMateOne/bin/Debug/Help/
+RacerMateOne_Source/RacerMateOne/bin/Debug/Media/
+RacerMateOne_Source/RacerMateOne/bin/Debug/Resources/
+RacerMateOne_Source/RacerMateOne/bin/Debug/ErrorReport.exe
+RacerMateOne_Source/RacerMateOne/bin/Debug/RacerMateOne.application
+RacerMateOne_Source/RacerMateOne/bin/Debug/RacerMateOne.exe
+RacerMateOne_Source/RacerMateOne/bin/Debug/RacerMateOne.exe.manifest
+RacerMateOne_Source/RacerMateOne/bin/Debug/RacerMateOne.pdb
+RacerMateOne_Source/RacerMateOne/bin/Debug/WPFMediaKit.dll
+RacerMateOne_Source/RacerMateOne/bin/Debug/WPFMediaKit.pdb
 
 # ignore Visual Studio's .vs directory
 RacerMateOne_Source/.vs/
