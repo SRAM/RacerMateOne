@@ -786,7 +786,7 @@
 											<Label Width="75" FontWeight="Bold" Style="{StaticResource DisplayLabel}" VerticalAlignment="Top">TSS</Label>
 											<Label Style="{StaticResource DisplayLabel}">
 												<TextBlock Width="210" FontSize="12" TextWrapping="Wrap">
-													Training Stress Score/Intensity Factor/Normailzed Power
+													Training Stress Score/Intensity Factor/Normalized Power
 												</TextBlock>
 											</Label>
 										</StackPanel>
