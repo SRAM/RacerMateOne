@@ -1695,7 +1695,7 @@ namespace RacerMateOne.Pages
 
 		//===============================================================================================
 		private bool m_bDisplayInit = false;
-		private void C_PerformaceDisplay_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		private void C_PerformanceDisplay_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
 			Binding binding;
 			Grid grid = sender as Grid;

@@ -453,7 +453,7 @@
 				</Grid>
 				<!-- ************************************************************************************ -->
 				<!-- Display -->
-				<Grid Name="C_PerformaceDisplay" Tag="@Display,Display,Performace" Visibility="Collapsed" IsVisibleChanged="C_PerformaceDisplay_IsVisibleChanged">
+				<Grid Name="C_PerformanceDisplay" Tag="@Display,Display,Performance" Visibility="Collapsed" IsVisibleChanged="C_PerformanceDisplay_IsVisibleChanged">
 					<ComboBox Name="PerfModeDefaults" Visibility="Collapsed" Margin ="0,0,10,0" SelectedIndex="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" SelectionChanged="PerfModeDefaults_SelectionChanged" />
 					<GroupBox Margin="16.5,16,0,0" FontSize="16" Header="What to show on screen">
 						<Grid>
