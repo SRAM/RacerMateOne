@@ -46,9 +46,6 @@ To Build a full version installer
    - For a release it will be around 124 megs.
    - For a patch usually 5 to 20 megs depending on the changes.
    
--- NOTE: The build process updates an installDB.r file.   Keep this around to
-correctly build the susequent patches.
-
--- Also note the first time you run this it may ask you to register rebol.
-Just answer the questions then rebuild the patch again.
+-- NOTE: The build process updates an installDB.r file.   Keep this around to correctly build the susequent patches.
+-- Also note the first time you run this it may ask you to register rebol.   Just answer the questions then rebuild the patch again.
 
