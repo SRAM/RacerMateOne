@@ -223,7 +223,8 @@
 						</StackPanel>
 					</Grid>
 					<StackPanel HorizontalAlignment="Right"  VerticalAlignment="Center" Orientation="Horizontal">
-						<c:PlainButton x:Name="GearTeathButton" Margin="0,0,0,0" VerticalAlignment="Center" Text="Set Velotron Gearing" Click="SetGearTeeth_Click" />
+                        <c:PlainButton x:Name="ANTSensorsButton" Margin="0,0,5,0" VerticalAlignment="Center" Text="ANT+ Sensors" Click="ANTSensors_Click" />
+                        <c:PlainButton x:Name="GearTeathButton" Margin="0,0,0,0" VerticalAlignment="Center" Text="Set Velotron Gearing" Click="SetGearTeeth_Click" />
 					</StackPanel>
 				</Grid>
 				<!-- ************************************************************************************ -->

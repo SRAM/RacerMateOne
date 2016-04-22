@@ -339,11 +339,25 @@ namespace RacerMateOne {
 						Cogset,
 						WheelDiameter);
 
-#if DEBUG
-					//int bbpp = 0;
-					//tlm
+                    // Support ANT+ Sensors
+                    XElement xHrSensorId = ele.Element("HrSensorId");
+                    XElement xCadenceSensorId = ele.Element("CadenceSensorId");
 
-					result = thisrider.NickName.Equals("barak", StringComparison.Ordinal);
+                    if (xHrSensorId != null)
+                    {
+                        thisrider.HrSensorId = Convert.ToInt32(xHrSensorId.Value);
+                    }
+
+                    if (xCadenceSensorId != null)
+                    {
+                        thisrider.CadenceSensorId = Convert.ToInt32(xCadenceSensorId.Value);
+                    }
+
+#if DEBUG
+                    //int bbpp = 0;
+                    //tlm
+
+                    result = thisrider.NickName.Equals("barak", StringComparison.Ordinal);
 					if(result) {
 						int i, n = Crankset.Length;
 						// okhere 2
@@ -432,8 +446,19 @@ namespace RacerMateOne {
 						catch { }
 					}
 
+                    if ((e = ele.Element("HrSensorId")) != null)
+                    {
+                        try { thisrider.HrSensorId = (int)Convert.ToInt32(e.Value); }
+                        catch { }
+                    }
+                    if ((e = ele.Element("CadenceSensorId")) != null)
+                    {
+                        try { thisrider.CadenceSensorId = (int)Convert.ToInt32(e.Value); }
+                        catch { }
+                    }
+
 #if DEBUG
-					if(result) {
+                    if (result) {
 						//bbpp = 8;
 					}
 #endif

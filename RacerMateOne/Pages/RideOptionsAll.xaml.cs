@@ -1592,7 +1592,7 @@ namespace RacerMateOne.Pages
 
 		private void AddRider_Click(object sender, RoutedEventArgs e)
 		{
-            //adds a new rider to the list by instantiating teh default rider with "FirstName", "LastName", "NickName" showing in the three textboxes.
+            //adds a new rider to the list by instantiating the default rider with "FirstName", "LastName", "NickName" showing in the three textboxes.
             //generates a unique GUID too.
             Rider AddedRider = new Rider();
 			RacerMateOne.Dialogs.TextLine tline = new RacerMateOne.Dialogs.TextLine();
@@ -1626,7 +1626,45 @@ namespace RacerMateOne.Pages
 
 		*****************************************************************************************************************************/
 
-		private void SetGearTeeth_Click(object sender, RoutedEventArgs e)  {
+        private void ANTSensors_Click(object sender, RoutedEventArgs e) {
+            Rider rider = RiderEditSelect.SelectedItem as Rider;
+
+            // Heart rate sensor
+            RacerMateOne.Dialogs.TextLine hrline = new RacerMateOne.Dialogs.TextLine();
+            hrline.Owner = AppWin.Instance;
+            hrline.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            hrline.TopText.Text = "Enter ANT+ Heart Rate Sensor ID";
+            hrline.OutText = rider.HrSensorId.ToString();
+            hrline.ShowDialog();
+            int hrSensorId = rider.HrSensorId;
+            //while (hrline.OutText != null && Int32.TryParse(hrline.OutText, out hrSensorId) == false)
+            //{
+            //    hrline.ShowDialog();
+            //}
+            if (hrline.OutText != null && Int32.TryParse(hrline.OutText, out hrSensorId))
+            {
+                rider.HrSensorId = hrSensorId;
+            }
+
+            // Cadence sensor
+            RacerMateOne.Dialogs.TextLine cadline = new RacerMateOne.Dialogs.TextLine();
+            cadline.Owner = AppWin.Instance;
+            cadline.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            cadline.TopText.Text = "Enter ANT+ Cadence Sensor ID";
+            cadline.OutText = rider.CadenceSensorId.ToString();
+            cadline.ShowDialog();
+            int cadenceSensorId = rider.CadenceSensorId;
+            //while (cadline.OutText != null && Int32.TryParse(cadline.OutText, out cadenceSensorId) == false)
+            //{
+            //    cadline.ShowDialog();
+            //}
+            if (cadline.OutText != null && Int32.TryParse(cadline.OutText, out cadenceSensorId))
+            {
+                rider.CadenceSensorId = cadenceSensorId;
+            }
+        }
+
+        private void SetGearTeeth_Click(object sender, RoutedEventArgs e)  {
 			Rider rider = RiderEditSelect.SelectedItem as Rider;
 
 			/*
