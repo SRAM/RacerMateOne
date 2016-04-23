@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:dw="clr-namespace:RacerMateOne"
     xmlns:c="clr-namespace:RacerMateOne.Controls"
-    Title="FirstUsers" 
+    Title="Message" 
 	WindowStyle="None" Background="Transparent" AllowsTransparency="True"
     HorizontalAlignment="Center" VerticalAlignment="Center"      
     FontFamily="Arial"

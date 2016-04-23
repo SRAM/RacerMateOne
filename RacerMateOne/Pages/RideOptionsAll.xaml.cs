@@ -1629,36 +1629,23 @@ namespace RacerMateOne.Pages
         private void ANTSensors_Click(object sender, RoutedEventArgs e) {
             Rider rider = RiderEditSelect.SelectedItem as Rider;
 
-            // Heart rate sensor
-            RacerMateOne.Dialogs.TextLine hrline = new RacerMateOne.Dialogs.TextLine();
-            hrline.Owner = AppWin.Instance;
-            hrline.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            hrline.TopText.Text = "Enter ANT+ Heart Rate Sensor ID";
-            hrline.OutText = rider.HrSensorId.ToString();
-            hrline.ShowDialog();
+            RacerMateOne.Dialogs.ANTSensorsDialog dialog = new RacerMateOne.Dialogs.ANTSensorsDialog();
+            dialog.Owner = AppWin.Instance;
+            dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            dialog.HrSensorIdText.Text = rider.HrSensorId.ToString();
+            dialog.CadenceSensorIdText.Text = rider.CadenceSensorId.ToString();
+            dialog.ShowDialog();
+
+            // HeartRate sensor
             int hrSensorId = rider.HrSensorId;
-            //while (hrline.OutText != null && Int32.TryParse(hrline.OutText, out hrSensorId) == false)
-            //{
-            //    hrline.ShowDialog();
-            //}
-            if (hrline.OutText != null && Int32.TryParse(hrline.OutText, out hrSensorId))
+            if (dialog.HrSensorId != null && Int32.TryParse(dialog.HrSensorId, out hrSensorId))
             {
                 rider.HrSensorId = hrSensorId;
             }
 
             // Cadence sensor
-            RacerMateOne.Dialogs.TextLine cadline = new RacerMateOne.Dialogs.TextLine();
-            cadline.Owner = AppWin.Instance;
-            cadline.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            cadline.TopText.Text = "Enter ANT+ Cadence Sensor ID";
-            cadline.OutText = rider.CadenceSensorId.ToString();
-            cadline.ShowDialog();
             int cadenceSensorId = rider.CadenceSensorId;
-            //while (cadline.OutText != null && Int32.TryParse(cadline.OutText, out cadenceSensorId) == false)
-            //{
-            //    cadline.ShowDialog();
-            //}
-            if (cadline.OutText != null && Int32.TryParse(cadline.OutText, out cadenceSensorId))
+            if (dialog.CadenceSensorId != null && Int32.TryParse(dialog.CadenceSensorId, out cadenceSensorId))
             {
                 rider.CadenceSensorId = cadenceSensorId;
             }
