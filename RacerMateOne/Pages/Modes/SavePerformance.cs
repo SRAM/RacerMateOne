@@ -107,20 +107,17 @@ namespace RacerMateOne.Pages.Modes
 		}
 
 		// This event handler handles end of worker thread
-		private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-		{
+		private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)  {
 			Progress(1.0, true);
 		}
 
-		public void Cancel()
-		{
+		public void Cancel()  {
 			bw.CancelAsync();
 		}
 
 		public Perf SavePerf;
 
-		private void bw_DoSaveWork(object sender, DoWorkEventArgs e)
-		{
+		private void bw_DoSaveWork(object sender, DoWorkEventArgs e)  {
             App.SetDefaultCulture();
 
             // Do not access the form's BackgroundWorker reference directly.
@@ -130,11 +127,25 @@ namespace RacerMateOne.Pages.Modes
 			// Extract the argument.
 			//int arg = (int)e.Argument;
 
+			//----------------------------------------------------
 			// Start the time-consuming operation.
-			if (SavePerf != null)
+			//----------------------------------------------------
+
+			// Unit
+			//		Unit.ActiveUnits = 3
+			//		Unit.Active = 1
+			//
+			//		can make a pd = new PerfData(unit)
+			//			pd.iRider = 0
+			//			pd.Perf.framecnt = 776
+			//			pd.m_filename = "C:\\Users\\larry\\Documents\\RacerMate\\Performances\\2016-03-09@08-51-24_3-bob smith_5_CDAmini_0h00m25.9s.rmp"
+
+			if (SavePerf != null) {
 				ProcessSaveFromPerf(bw, SavePerf);
-			else
+			}
+			else {
 				ProcessSave(bw);
+			}
 
 			e.Result = true;
 
@@ -161,79 +172,99 @@ namespace RacerMateOne.Pages.Modes
 			}
 		}
 
-		private void ProcessSave(BackgroundWorker bw)
-		{
+		/**********************************************************************************************
+
+		**********************************************************************************************/
+
+		private void ProcessSave(BackgroundWorker bw)  {
 			List<PerfData> perfdata = new List<PerfData>();
 			List<Unit> saveUnits = Unit.Active;
 			int progresscount;
-			if (saveUnits.Count > 0)
-			{
-				foreach (Unit unit in saveUnits)
-				{
-					if (unit.IsActive && (unit.IsDemoUnit || unit.IsPerson))
+
+			if (saveUnits.Count > 0)  {
+				foreach (Unit unit in saveUnits)  {
+					if (unit.IsActive && (unit.IsDemoUnit || unit.IsPerson)) {
 						perfdata.Add(new PerfData(unit));
+				}
 				}
 
 				int numFiles = 0;
-				if (SavePWX)
+
+				if (SavePWX) {
 					numFiles++;
-				if (ExportSave)
+				}
+
+				if (ExportSave) {
 					numFiles++;
-				if (SaveReport)
+				}
+
+				if (SaveReport) {
 					numFiles++;
+				}
 
 				progresscount = perfdata.Count * numFiles;
-				if (progresscount == 0)
+
+				if (progresscount == 0) {
 					progresscount = 1;
+				}
+
 				int cnt = 0;
 				double per;
 
-				foreach (PerfData pd in perfdata)
-				{
+				foreach (PerfData pd in perfdata)  {					// one pd for each rider
+					// pd.iRider = 0
+					// pd.Perf.framecnt = 776
+					// pd.Perf.m_filename = "C:\\Users\\larry\\Documents\\RacerMate\\Performances\\2016-03-09@08-51-24_3-bob smith_5_CDAmini_0h00m25.9s.rmp"
 
-					if (bw.CancellationPending)
+					if (bw.CancellationPending) {
 						return;
+					}
 
-					if (SavePWX)
-					{
-                        pd.Perf.ExportPWX(bw, pd.Unit.Statistics, pd.Unit, m_ReportColumns.StatFlags);
+					if (SavePWX)  {
+                  //pd.Perf.ExportPWX(bw, pd.Unit.Statistics, pd.Unit, m_ReportColumns.StatFlags);
+						pd.Perf.ExportPWXFromFile(bw, pd.Perf.m_filename, m_ReportColumns.StatFlags);
 						cnt++;
 						per = cnt * 100.0 / progresscount;
 						bw.ReportProgress((int)per, per);
 					}
 
-					if (bw.CancellationPending)
+					if (bw.CancellationPending) {
 						return;
+					}
 
-					if (ExportSave)
-					{
-                        pd.Perf.ExportCSV(bw, pd.Unit.Statistics, pd.Unit, m_ReportColumns.StatFlags);
+					if (ExportSave)  {
+                  //pd.Perf.ExportCSV(bw, pd.Unit.Statistics, pd.Unit, m_ReportColumns.StatFlags);
+						pd.Perf.ExportCSVFromFile(bw, pd.Perf.m_filename, m_ReportColumns.StatFlags);
 						cnt++;
 						per = cnt * 100.0 / progresscount;
 						bw.ReportProgress((int)per, per);
 					}
 
-					if (bw.CancellationPending)
+					if (bw.CancellationPending) {
 						return;
+					}
 
 
-					// Save report here if prompted
-					if (SaveReport)
-					{
-                        pd.Perf.SaveReport(bw, pd.Unit.Statistics, pd.Unit, m_ReportColumns.StatFlags);
+					if (SaveReport)  {				// Save report here if prompted
+						pd.Perf.SaveReportFromFile(bw, pd.Perf.m_filename, m_ReportColumns.StatFlags);
+						//pd.Perf.SaveReport(bw, pd.Unit.Statistics, pd.Unit, m_ReportColumns.StatFlags);
 						cnt++;
 						per = cnt * 100.0 / progresscount;
 						bw.ReportProgress((int)per, per);
 					}
 					
-					if (bw.CancellationPending)
+					if (bw.CancellationPending) {
 						return;
 				}
 			}
 		}
+		}												// ProcessSave()
 
-		private void ProcessSaveFromPerf(BackgroundWorker bw, Perf perf)
-		{
+		/**********************************************************************************************
+
+		**********************************************************************************************/
+
+		private void ProcessSaveFromPerf(BackgroundWorker bw, Perf perf)  {
 			List<PerfData> perfdata = new List<PerfData>();
 			List<Unit> saveUnits = Unit.Active;
 			int progresscount;
@@ -253,8 +284,7 @@ namespace RacerMateOne.Pages.Modes
 			if (bw.CancellationPending)
 				return;
 
-			if (SavePWX)
-			{
+			if (SavePWX)  {
 				//perf.ExportPWXFromLoadedFile(bw, m_ReportColumns.StatFlags); //somehow there were 2 entries here.
 				perf.ExportPWXFromLoadedFile(bw, m_ReportColumns.StatFlags);
 				cnt++;
@@ -265,8 +295,7 @@ namespace RacerMateOne.Pages.Modes
 			if (bw.CancellationPending)
 				return;
 
-			if (ExportSave)
-			{
+			if (ExportSave)  {
 				perf.ExportCSVFromLoadedFile(bw, m_ReportColumns.StatFlags);
 				cnt++;
 				per = cnt * 100.0 / progresscount;
@@ -276,9 +305,7 @@ namespace RacerMateOne.Pages.Modes
 				return;
 
 
-			// Save report here if prompted
-			if (SaveReport)
-			{
+			if (SaveReport)  {					// Save report here if prompted
 				perf.SaveReportFromLoadedFile(bw, m_ReportColumns.StatFlags);
 				cnt++;
 				per = cnt * 100.0 / progresscount;
@@ -289,4 +316,6 @@ namespace RacerMateOne.Pages.Modes
 				return;
 		}
 	}
-}
+}									// ProcessSaveFromPerf()
+
+

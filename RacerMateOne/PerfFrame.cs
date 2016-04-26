@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
@@ -710,8 +711,8 @@ namespace RacerMateOne
         }
     }
 
-    public class PerfFile
-    {
+		public class PerfFile  {
+
 		class BackgroundTask
 		{
 			public static bool ms_Running;
@@ -1573,12 +1574,10 @@ namespace RacerMateOne
                 npd.StatFlags = (UInt64)changed; // (UInt64)(gVar.PerformanceFlags & changed);
             }
 
-            public void Write(RawStream str)
-            {
+				public void Write(RawStream str)  {
                 RawStatFlags changedflags = (RawStatFlags)GroupFlags;
 
-                try
-                {
+						try  {
                     str.AddRawField(xtag.TimeMS, TimeMS);
                     str.AddRawField("GroupFlags", GroupFlags);
 
@@ -1663,7 +1662,7 @@ namespace RacerMateOne
                     Debug.WriteLine(exc.Message);
                 }
 
-            }
+				}				// Write(RawStream str)
 
             public bool Read(RawStream str, float version)
             {
@@ -2255,8 +2254,13 @@ namespace RacerMateOne
         static public StatFlags AllGroups = Group1 | Group2 | Group3 | Group4 | Group5 | Group6 | Group7 | Group8 | Group9 | Group10 | Group11 | Group12;
     }
 
-    public class Perf 
-    {
+		public class Perf   {
+
+			private int tick = 0;
+//#if DEBUG
+			private int cnt2 = 0;
+//#endif
+
 		// Keeping track of loaded performances for debug testing.
 		public static List<String> LoadedSets = new List<String>();
 		public static int ms_KeyCnt = 0;
@@ -2291,14 +2295,16 @@ namespace RacerMateOne
         // current running frames
         StatFlags PerfFlags = gVar.AllFlags;
 
+
         LinkedListNode<PerfFrame.PerfData> m_curFrame = null;
-        public LinkedList<PerfFrame.PerfData> CurFrames = new LinkedList<PerfFrame.PerfData>();
+			private uint framecnt = 0;			// todo: check usage
+
         public PerfFrame.PerfData LastPD = PerfFrame.PerfDataCreate(); // for keeping keyframe
         //public PerfFrame.PerfRawData LastPRD = PerfFrame.PerfRawDataCreate(); // for keeping keyframe
         public PerfFile.CPerfRawData LastCPRD = new PerfFile.CPerfRawData(); // for keeping keyframe
 
         string m_loadedfilename = "";
-        string m_filename = "";
+			public string m_filename = "";
         DateTime m_runDate = DateTime.Now;
         RawStream m_rawStrm = new RawStream();
 
@@ -2351,31 +2357,21 @@ namespace RacerMateOne
         {
             return LoadedFrames;
         }
-        // Get the from the current running frames list
-        public LinkedList<PerfFrame.PerfData> GetRunningList()
-        {
-            return CurFrames;
-        }
 
-        public Performance GetLoadedFrame(double timeacc)
-        {
+			public Performance GetLoadedFrame(double timeacc)  {
             return GetLoadedFrame(timeacc, gVar.PerformanceFlags, ref m_curFrame);
         }
-        public Performance GetLoadedFrame(double timeacc, StatFlags neededFlags)
-        {
+			public Performance GetLoadedFrame(double timeacc, StatFlags neededFlags)  {
             return GetLoadedFrame(timeacc, neededFlags, ref m_curFrame);
         }
-        public Performance GetLoadedFrame(double timeacc, StatFlags neededFlags, ref LinkedListNode<PerfFrame.PerfData> cur)
-        {
+			public Performance GetLoadedFrame(double timeacc, StatFlags neededFlags, ref LinkedListNode<PerfFrame.PerfData> cur)  {
             Performance workPerformance = new Performance();
             return GetLoadedFrame(ref workPerformance, timeacc, neededFlags, ref cur);
         }
-        public Performance GetLoadedFrame(ref Performance performance, double timeacc)
-        {
+			public Performance GetLoadedFrame(ref Performance performance, double timeacc)  {
             return GetLoadedFrame(ref performance, timeacc, gVar.PerformanceFlags, ref m_curFrame);
         }
-        public Performance GetLoadedFrame(ref Performance performance, double timeacc, StatFlags neededFlags)
-        {
+			public Performance GetLoadedFrame(ref Performance performance, double timeacc, StatFlags neededFlags)  {
             return GetLoadedFrame(ref performance, timeacc, neededFlags, ref m_curFrame);
         }
 
@@ -2548,84 +2544,24 @@ namespace RacerMateOne
 		}
 
 
+			bool saveRawAsync = true;
+			//bool saveRawAsync = false;				// tlm 20160221
 
-        public Performance GetRunningFrame(double timeacc)
-        {
-            return GetRunningFrame(timeacc, gVar.PerformanceFlags, ref m_curFrame);
-        }
-        public Performance GetRunningFrame(double timeacc, StatFlags neededFlags)
-        {
-            return GetRunningFrame(timeacc, neededFlags, ref m_curFrame);
-        }
-        public Performance GetRunningFrame(double timeacc, StatFlags neededFlags, ref LinkedListNode<PerfFrame.PerfData> cur)
-        {
-            Performance workPerformance = new Performance();
-            return GetRunningFrame(ref workPerformance, timeacc, neededFlags, ref cur);
-        }
-        public Performance GetRunningFrame(ref Performance performance, double timeacc)
-        {
-            return GetRunningFrame(ref performance, timeacc, gVar.PerformanceFlags, ref m_curFrame);
-        }
-        public Performance GetRunningFrame(ref Performance performance, double timeacc, StatFlags neededFlags)
-        {
-            return GetRunningFrame(ref performance, timeacc, neededFlags, ref m_curFrame);
-        }
+			bool test = true;								// saves perfs in curframes list (RAM)
+			//bool test = false;
 
-        // Get the from the current running frames list
-        public Performance GetRunningFrame(ref Performance performance, double timeacc, StatFlags neededFlags, ref LinkedListNode<PerfFrame.PerfData> cur)
-        {
-            if (timeacc < 0 || CurFrames.Count <= 0)
-                return null;
+#if DEBUG
+			//long snapshotcalls = 0;
+			int bp = 0;
+#endif
 
-            if (cur == null)
-                cur = CurFrames.First;
+			/*************************************************************************************
+				only called once
+			*************************************************************************************/
 
-            LinkedListNode<PerfFrame.PerfData> n = cur;
-            while (cur != null)
-            {
-                if (timeacc < cur.Value.TimeAcc)
-                {
-                    if (cur.Previous != null)
-                    {
-                        cur = cur.Previous;
-                    }
-                }
-                else if (timeacc > cur.Value.TimeAcc)
-                {
-                    if (cur.Next != null && timeacc >= cur.Next.Value.TimeAcc)
-                    {
-                        cur = cur.Next;
-                    }
-                }
-                if(n == cur)
-                    break;
-                n = cur;
-            }
-            if (n == null)
-                return null;
-
-            PerfFrame.PerfData t;
-            PerfFrame.PerfData tprev = n.Value;
-
-            if (n.Next != null && timeacc != n.Value.TimeAcc)
-                t = n.Next.Value;
-            else
-                t = tprev;
-
-            performance.Change(timeacc, ref tprev, ref t, neededFlags);
-            return performance;
-        }
-
-        bool test = true;
-        bool saveRawAsync = true;
-        //bool test = false;
-        //bool saveRawAsync = false;
-        public void SnapShotStartFile(Statistics statistics, Unit thisUnit)
-        {
-            if (saveRawAsync)
-            {
-                try
-                {
+			public void SnapShotStartFile(Statistics statistics, Unit thisUnit) {
+				if (saveRawAsync)  {
+						try   {
                     m_runDate = DateTime.Now;
                     int iRider = thisUnit.Number;
 
@@ -2643,73 +2579,87 @@ namespace RacerMateOne
 
                     // Skip header size in the file
                     m_rawStrm.SetCurRawFieldOutPos(pos);
-                }
+						}			// try
                 catch (Exception exc)
                 {
                     Debug.WriteLine(exc.Message);
                     m_rawStrm.CloseRawFileOut();
-                }
-            }
-        }
+						}			// catch
+				}					// if (saveRawAsync)
+			}						// SnapShotStartFile()
 
-        public void SnapShot(Statistics statistics, Unit thisUnit)
-        {
+
+
+
+			/*************************************************************************************
+				called every 33 ms?
+			*************************************************************************************/
+
+			public void SnapShot(Statistics statistics, Unit thisUnit) {
             SnapShot(statistics, thisUnit, false);
         }
 
-        public void SnapShot(Statistics statistics, Unit thisUnit, bool start)
-        {
-            if (started)
-            {
-                if (test)
-                {
+			/*************************************************************************************
+				called every 33 ms
+			*************************************************************************************/
+
+			public void SnapShot(Statistics statistics, Unit thisUnit, bool start)  {
+				tick++;
+
+				if (tick >= 1800) {
+					tick = 0;									// gets here once per second
+				}
+
+				if (started)  {
+					if (test)  {
+						//xxx
                     int iRider = thisUnit.Number;
 
                     StatFlags sf;
                     // OR options in snap flag with update flag
-                    if (start)
-                    {
+						if (start)  {
                         sf = PerfFlags;
                     }
-                    else
-                    {
+						else  {
                         sf = statistics.PerfChanged & PerfFlags;
                     }
 
                     //sf |= StatFlags.Calibration; // ****test*****
 
                     // gets snapshot of the changed data to be added to the list
-                    PerfFrame.UpdateLastByFlags(ref LastPD, sf, statistics, 1);
+						PerfFrame.UpdateLastByFlags(ref LastPD, sf, statistics, 1);					// <<
 
-                    PerfFrame.PerfData npd = PerfFrame.PerfDataCreate();
+						PerfFrame.PerfData npd = PerfFrame.PerfDataCreate();							// <<<<<<<<<<<<<<<
                     npd = LastPD;
 
-                    if (start)
-                    {
-                        CurFrames.Clear();
-                        m_curFrame = null;
-                        CurFrames.AddLast(new LinkedListNode<PerfFrame.PerfData>(npd));
-
+						if (start)  {
+							framecnt = 1;
                         SnapShotStartFile(statistics, thisUnit);
                     }
-                    else
-                    {
-                        CurFrames.AddLast(npd);
+						else  {
+							framecnt++;
                     }
-                    if (saveRawAsync)
-                    {
+
+						if (saveRawAsync)  {
                         //PerfFrame.PerfDataToPerfRawData(ref LastPRD, ref npd, sf);
                         //m_rawStrm.AddRawField(xtag.PerfRawData, LastPRD);
                         LastCPRD.Convert(ref npd, sf);
                         LastCPRD.Write(m_rawStrm);
                     }
-                }
-            }
-        }
+					}							//if (test)  {
+				}								//if (started)  {
 
-        public PerfFrame.RMX GetRMXHeader(Statistics statistics, Unit thisUnit, float version)
-        {
-            uint cnt = (uint)CurFrames.Count;
+				return;
+			}									// SnapShot
+
+
+
+			/*************************************************************************************
+				called from SavePerformance(void)
+			*************************************************************************************/
+
+			public PerfFrame.RMX GetRMXHeader(Statistics statistics, Unit thisUnit, float version) {
+				uint cnt = framecnt;
             int iRider = thisUnit.Number;
 
             Rider rider = thisUnit.Rider;
@@ -2816,26 +2766,32 @@ namespace RacerMateOne
                 course = statistics.Course
             };
             return rmx;
-        }
+			}														// GetRMXHeader()
 
-        public String SnapShotEnd(Statistics statistics, Unit thisUnit)
-        {
+			/*************************************************************************************
+
+			*************************************************************************************/
+
+			public String SnapShotEnd(Statistics statistics, Unit thisUnit)  {
 			String ans = null;
-            if (started)
-            {
+
+				if (started)  {
                 int iRider = thisUnit.Number;
                 Rider rider = thisUnit.Rider;
 
                 // save last data 
                 SnapShot(statistics, thisUnit);
-                if (test)
-                {
+
+					if (test)  {
+						//xxx
                     //uint cnt = (uint)statistics.PerfRunning.Count;
-                    uint cnt = (uint)CurFrames.Count;
-                    if (cnt > 10)
-                    {
-                        try
-                        {
+						uint cnt = framecnt;
+
+						if (cnt <= 10) {
+							return ans;
+						}
+
+						try  {
                             DateTime start = DateTime.Now;
                             PerfFrame.RMX rmx = GetRMXHeader(statistics, thisUnit, xval.Version);
 
@@ -2845,10 +2801,8 @@ namespace RacerMateOne
                           
                             if (tcourse == null)
 								tcourse = statistics.Course;
-                            PerfFile.CCourse cc = new PerfFile.CCourse
-                            {
-                                cCourse = tcourse
-                            };
+
+								PerfFile.CCourse cc = new PerfFile.CCourse { cCourse = tcourse	};
 
                             string strTime = xval.SecondsToTimeStringLabel(statistics.Time);
                             string name = string.Format(@"{0:yyyy-MM-dd@HH-mm-ss}_{1}-{2}_{3}_{4}_{5}",
@@ -2879,8 +2833,7 @@ namespace RacerMateOne
                             string newrawdataname = string.Format(@"{0}.rmp", name);
                             string newrawdatafilename = RacerMatePaths.PerformancesFullPath + "\\" + newrawdataname;
 
-							if (File.Exists(rawdatafilename))
-							{
+								if (File.Exists(rawdatafilename))  {
 								File.Move(rawdatafilename, newrawdatafilename);
 								ans = newrawdatafilename;
 							}
@@ -2892,16 +2845,20 @@ namespace RacerMateOne
                             //ExportCSVFromFile(null, newrawdatafilename, gVar.PerformanceFlags);
                             //ExportCSVFromFile(null, rawheaderfilename, StatFlags.Mask);
                         }
-                        catch (Exception exc)
-                        {
+						catch (Exception exc)  {
                             Debug.WriteLine(exc.Message);
                             m_rawStrm.CloseRawFileOut();
                         }
-                    }
-                }
-            }
+					}					// if (test)
+				}						// if (started)
 			return ans; // Return the filename.
-        }
+			}							// SnapShotEnd()
+
+
+
+			/*************************************************************************************
+
+			*************************************************************************************/
 
         public void calcValue(ref double accumVal, ref double minVal, ref double maxVal, double n, double timeAcc)
         {
@@ -3087,11 +3044,16 @@ namespace RacerMateOne
             }
         }
 
-        public void SaveReport(BackgroundWorker bw, Statistics statistics, Unit thisUnit, StatFlags exportFlags)
-        {
-            uint cnt = (uint)CurFrames.Count;
-            if (cnt > 10)
-            {
+			/**********************************************************************************************
+
+			**********************************************************************************************/
+
+			public void SaveReport(BackgroundWorker bw, Statistics statistics, Unit thisUnit, StatFlags exportFlags)  {
+				uint cnt = framecnt;
+				//PerfData pd = new PerfData(unit);
+				if (cnt <= 10)  {
+					return;
+				}
 
                 int iRider = thisUnit.Number;
                 Rider rider = thisUnit.Rider;
@@ -3106,48 +3068,17 @@ namespace RacerMateOne
 
                 PerfFrame.PerfData datapd = PerfFrame.PerfDataCreate();
                 bool bStart = true;
-                double lastTimeAcc = 0;
                 float timeElapse = 0;
                 uint reportCnt = 0;
                 m_LapDistance = rmx.course.TotalX;
                 // Initialize
                 CalcReport(ref datapd, ref m_datapdAcc, ref m_datapdMin, ref m_datapdMax, timeElapse, bStart);
                 bStart = false;
-                int i = 0;
-                for (LinkedListNode<PerfFrame.PerfData> n = CurFrames.First; n != null; n = n.Next, i++)
-                {
-                    if (bw != null && bw.CancellationPending)
-                        throw new Exception("BackgroundWorker cancelled.");
 
-                    PerfFrame.UpdateRawLastByFlags(ref datapd, n.Value, (StatFlags)n.Value.StatFlags);
-
-                    // Only process if there are more than 5 seconds worth of data
-                    //if (datapd.TimeAcc > 5.0f)
-                    {
-                        /*
-                        if (bStart)
-                        {
-                            reportCnt = 1;
-                            timeElapse = 0;
-                            lastTimeAcc = datapd.TimeAcc;
-                            CalcReport(ref datapd, ref m_datapdAcc, ref m_datapdMin, ref m_datapdMax, timeElapse, bStart);
-                            bStart = false;
-                        }
-                        else
-                        */
-                        {
-                            reportCnt++;
-                            timeElapse = (float)(datapd.TimeAcc - lastTimeAcc);
-                            CalcReport(ref datapd, ref m_datapdAcc, ref m_datapdMin, ref m_datapdMax, timeElapse, bStart);
-                        }
-                    }
-                }
                 m_datapdAvg = m_datapdAcc;
 
-                if (reportCnt > 1)
-                {
-                    if ((1.0 + datapd.Distance) > (m_LapDistance * m_lastLap))
-                    {
+				if (reportCnt > 1)  {
+					if ((1.0 + datapd.Distance) > (m_LapDistance * m_lastLap))  {
                         float lapTime = (float)(datapd.TimeAcc - m_lastLapTime);
                         m_lastLapTime = datapd.TimeAcc;
                         m_LapTimes.Add(lapTime);
@@ -3165,55 +3096,85 @@ namespace RacerMateOne
 
                 ReportStream reportStrm = null;
                 reportStrm = new ReportStream();
-                try
-                {
+
+				try  {
                     reportStrm.OpenReportFileOut(reportfilename);
                     //reportStrm.DoReport(ref rmx, ref m_datapdAcc, ref m_datapdAvg, ref m_datapdMin, ref m_datapdMax, exportFlags);
                     reportStrm.DoReport(ref rmx, this, exportFlags);
                 }
-                catch (Exception exc)
-                {
+				catch (Exception exc)  {
                     Debug.WriteLine(exc.Message);
                 }
+
                 reportStrm.CloseReportFileOut();
 
                 DateTime end = DateTime.Now;
                 Debug.WriteLine(string.Format(@"Done Report-{0} Calc-{1} SaveReport", end - start, start2 - start3));
-            }
 
+				return;
+			}				// SaveReport()
+
+			/**********************************************************************************************
+
+			**********************************************************************************************/
+			/*
+			public void ExportPWX(BackgroundWorker bw, Statistics statistics, Unit thisUnit, StatFlags exportFlags) {
+				return;
+			}							// void ExportPWX()
+			*/
+
+			/**********************************************************************************************
+
+			**********************************************************************************************/
+			/*
+			public void ExportCSV(BackgroundWorker bw, Statistics statistics, Unit thisUnit, StatFlags exportFlags) {
+				_ExportCSV(bw, statistics, thisUnit, exportFlags, "");
+				return;
         }
+			*/
 
-        public void ExportPWX(BackgroundWorker bw, Statistics statistics, Unit thisUnit, StatFlags exportFlags)
-        {
-            uint cnt = (uint)CurFrames.Count;
-            if (cnt > 10)
-            {
-                int iRider = thisUnit.Number;
-                Rider rider = thisUnit.Rider;
+			/**********************************************************************************************
 
-                exportFlags |= StatFlags.Time; // always include the time
+			**********************************************************************************************/
+			/*
+			void _ExportCSV(BackgroundWorker bw, Statistics statistics, Unit thisUnit, StatFlags exportFlags, string label) {
+				return;
+			}						// void _ExportCSV()
+			*/
 
-                PerfFrame.RMX rmx = GetRMXHeader(statistics, thisUnit, xval.Version);
+			/**********************************************************************************************
 
-                Boolean isgradebased = (rmx.course.YUnits == CourseYUnits.Grade);
+			**********************************************************************************************/
                  
-                DateTime start = DateTime.Now;
-                string ext = Path.GetExtension(m_filename);
-                string name = Path.GetFileNameWithoutExtension(m_filename);
+			public void ExportPWXFromFile(BackgroundWorker bw, string filename, StatFlags exportFlags) {
+				if (LoadRawTemps(bw, filename)) {
+					ExportPWXFromLoadedFile(bw, exportFlags);
+				}
+			}
+
+			/**********************************************************************************************
+
+			**********************************************************************************************/
+
+			public void ExportPWXFromLoadedFile(BackgroundWorker bw, StatFlags exportFlags) {
+				string ext = Path.GetExtension(m_loadedfilename);
+				string name = Path.GetFileNameWithoutExtension(m_loadedfilename);
                 string exportfilename = RacerMatePaths.ExportsFullPath + "\\" + name + ".pwx";
-                //string exportfilename = m_filename.Replace(ext, ".pwx");
+				//string exportfilename = m_loadedfilename.Replace(ext, ".pwx");
 
                 //[#YYYY-MM-DD#]@[#HH-MM-SS#]_ [#LAST#][#FIRST#]_[#MODE#]_[#COURSE32#] _([#HH:MM#]).RMP
                 XmlStream xmlStrm = null;
                 xmlStrm = new XmlStream();
-                try
-                {
-                    double lastTime = LastPD.TimeAcc;
+
+				try  {
+					PerfFrame.PerfData datapd = PerfFrame.PerfDataCreate();
+					datapd = LoadedFrames.Last<PerfFrame.PerfData>();
+					double lastTime = datapd.TimeAcc;
 
                     ulong interval = (ulong)RM1_Settings.General.RateIndex;
                     if (interval == 0)
                         interval = 1;
-                    // round up the duration to next interval of the last entry, to make sure it is higher than the last data entry
+					// round up the duration to next interval, to make sure it is higher than the last data entry
                     ulong duration = (ulong)(((lastTime + interval) * 1000) / (interval * 1000));
                     string atts = "";
 
@@ -3232,14 +3193,12 @@ namespace RacerMateOne
                     xmlStrm.AddXElementStart("workout", 1);
 
                     xmlStrm.AddXElementStart("athlete", 1);
-                    xmlStrm.AddXField("name", rmx.Info.RiderName);
+					xmlStrm.AddXField("name", LoadedRMX.Info.RiderName);
                     xmlStrm.AddXElementEnd("athlete", -1);
 
                     xmlStrm.AddXField("sportType", "Bike");
 
-                    xmlStrm.AddXElementStart("device",
-                        XUtil.XAttr("id", "")
-                        );
+					xmlStrm.AddXElementStart("device", XUtil.XAttr("id", ""));
                     xmlStrm.ModifyXLevel(1);
 
                     xmlStrm.AddXField("make", "RacerMate");
@@ -3248,7 +3207,7 @@ namespace RacerMateOne
 
                     xmlStrm.AddXElementEnd("device", -1);
 
-                    xmlStrm.AddXField("time", string.Format("{0:s}", rmx.Header.Date));
+					xmlStrm.AddXField("time", string.Format("{0:s}", LoadedRMX.Header.Date));
 
                     xmlStrm.AddXElementStart("summarydata", 1);
 
@@ -3261,20 +3220,18 @@ namespace RacerMateOne
                     float lastCadence = 0;
                     double lastDistance = 0;
                     */
-                    PerfFrame.PerfData datapd = PerfFrame.PerfDataCreate();
-                    Performance workPerformance = new Performance();
-                    LinkedListNode<PerfFrame.PerfData> curpd = GetRunningList().First;
                     double ApproxAltitude = 0;
                     double prev_distance = 0;
+					Boolean isgradebased = (LoadedRMX.course.YUnits == CourseYUnits.Grade);
 
-                    for (double timeAcc = 0; timeAcc < (lastTime + interval); timeAcc += interval)
-                    {
+					for (double timeAcc = 0; timeAcc < (lastTime + interval); timeAcc += interval)  {
                         if (bw != null && bw.CancellationPending)
                             throw new Exception("BackgroundWorker cancelled.");
 
-                        Performance t = GetRunningFrame(ref workPerformance, timeAcc, gVar.PerformanceFlags, ref curpd);
+						Performance t = GetLoadedFrame(timeAcc);
                         datapd = t.cur;
                         /*
+						// Added a method to catch bad HeartRate and Cadence by using last valid data
                         double delta = datapd.Distance - lastDistance;
                         lastDistance = datapd.Distance;
                         lastHeartRate = ((datapd.HeartRate < 40) ? lastHeartRate : datapd.HeartRate);
@@ -3288,343 +3245,56 @@ namespace RacerMateOne
                         xmlStrm.AddXField("pwr", (Int32)(0.5f + datapd.Watts));
                         xmlStrm.AddXField("cad", (Byte)(0.5f + datapd.Cadence));
                         xmlStrm.AddXField("dist", string.Format("{0:F5}", datapd.Distance + 0.000005));
-                        
                         double delta_distance = datapd.Distance - prev_distance;
-
-                        if (isgradebased)
-                        {
+						//if (datapd.Grade != null)  //just in case its not initialized
+						if (isgradebased)  {
                             ApproxAltitude += (delta_distance * datapd.Grade / 100);
                             xmlStrm.AddXField("alt", string.Format("{0:F5}", ApproxAltitude + 0.000005));
                         }
-                        prev_distance = datapd.Distance;
 
+						prev_distance = datapd.Distance;
                         xmlStrm.AddXElementEnd("sample", -1);
                     }
 
                     xmlStrm.AddXElementEnd("workout", -1);
-
                     xmlStrm.AddXElementEnd("pwx", -1);
                 }
-                catch (Exception exc)
-                {
-                    Debug.WriteLine(exc.Message);
+				catch (Exception exc)  {
+						Log.WriteLine(exc.Message);
                 }
                 if (xmlStrm != null)
                     xmlStrm.CloseXmlFileOut();
-                DateTime end = DateTime.Now;
-                Log.WriteLine(string.Format(@"Done {0} ExportPWX", end - start));
-                /*
-                // For testing excport to TrainingPeaks
-                end = DateTime.Now;
-                if (BrowserClient.PostPWX("", "", exportfilename))
-                    Debug.WriteLine(string.Format(@"Success {0} PostPWX", end - start));
-                else
-                    Debug.WriteLine(string.Format(@"Failed {0} PostPWX", end - start));
-                 */
-            }
+			}					// ExportPWXFromLoadedFile()
+
+			/**********************************************************************************************
+
+			**********************************************************************************************/
+
+			public void ExportCSVFromFile(BackgroundWorker bw, string filename, StatFlags exportFlags)  {
+				if (LoadRawTemps(bw, filename)) {
+					ExportCSVFromLoadedFile(bw, exportFlags);
+				}
         }
 
-        public void ExportCSV(BackgroundWorker bw, Statistics statistics, Unit thisUnit, StatFlags exportFlags)
-        {
-            _ExportCSV(bw, statistics, thisUnit, exportFlags, "");
-            //_ExportCSV(bw, statistics, thisUnit, exportFlags, "X");
+			/**********************************************************************************************
 
-            //exportFlags = StatFlags.Mask;
-            //_ExportCSV(bw, statistics, thisUnit, exportFlags,"_All");
+			**********************************************************************************************/
 
-            //exportFlags = gVar.PerformanceFlags;
-            //_ExportCSV(bw, statistics, thisUnit, exportFlags,"_Test");
-        }
-
-        void _ExportCSV(BackgroundWorker bw, Statistics statistics, Unit thisUnit, StatFlags exportFlags, string label)
-        {
-            uint cnt = (uint)CurFrames.Count;
-            if (cnt > 10)
-            {
-                int iRider = thisUnit.Number;
-                Rider rider = thisUnit.Rider;
+			public void ExportCSVFromLoadedFile(BackgroundWorker bw, StatFlags exportFlags)  {
+				string ext = Path.GetExtension(m_loadedfilename);
+				string name = Path.GetFileNameWithoutExtension(m_loadedfilename);
+				string exportfilename = RacerMatePaths.ExportsFullPath + "\\" + name + ".csv";
+				//string exportfilename = m_loadedfilename.Replace(ext, ".csv");
 
                 exportFlags |= StatFlags.Time; // always include the time
                 //exportFlags |= StatFlags.Calibration; // **** test *****
 
-                PerfFrame.RMX rmx = GetRMXHeader(statistics, thisUnit, xval.Version);
-
-                DateTime start = DateTime.Now;
-                string ext = Path.GetExtension(m_filename);
-                string name = Path.GetFileNameWithoutExtension(m_filename);
-                string exportfilename = RacerMatePaths.ExportsFullPath + "\\" + name + ".csv";
-                //string exportfilename = m_filename.Replace(ext, label + ".csv");
 
                 //[#YYYY-MM-DD#]@[#HH-MM-SS#]_ [#LAST#][#FIRST#]_[#MODE#]_[#COURSE32#] _([#HH:MM#]).csv
                 CSVStream csvStrm = null;
                 csvStrm = new CSVStream();
-                try
-                {
-                    int interval = RM1_Settings.General.RateIndex;
-                    csvStrm.SetSeparator(RM1_Settings.General.Delimiter.ToString());
 
-                    csvStrm.OpenCSVFileOut(exportfilename);
-
-                    //csvStrm.AddObject(rmx.Header, xtag.Header);
-                    //PerfFrame.PerfInfoWriteCSV(ref csvStrm, ref rmx.Info);
-                    //csvStrm.AddXElementStart(xtag.Data + " " + xtag.Count + "=\"" + cnt + "\" " + xtag.DataFlags + "=\"" + exportFlags + "\" ", 1);
-
-
-                    PerfFrame.PerfData datapd = PerfFrame.PerfDataCreate();
-                    csvStrm.SetHeader(true);
-                    PerfFrame.WriteCSVByFlags(ref csvStrm, exportFlags, ref datapd);
-                    csvStrm.SetHeader(false);
-
-                    if (interval == 0)
-                    {
-                        for (LinkedListNode<PerfFrame.PerfData> n = CurFrames.First; n != null; n = n.Next)
-                        {
-                            if (bw != null && bw.CancellationPending)
-                                throw new Exception("BackgroundWorker cancelled.");
-
-                            datapd = n.Value;
-                            PerfFrame.WriteCSVByFlags(ref csvStrm, exportFlags, ref datapd);
-                        }
-                    }
-                    else
-                    {
-                        Performance workPerformance = new Performance();
-                        LinkedListNode<PerfFrame.PerfData> curpd = GetRunningList().First;
-                        double lastTime = LastPD.TimeAcc;
-                        for (double timeAcc = 0; timeAcc < (lastTime + interval); timeAcc += interval)
-                        {
-                            if (bw != null && bw.CancellationPending)
-                                throw new Exception("BackgroundWorker cancelled.");
-
-                            Performance t = GetRunningFrame(ref workPerformance, timeAcc, exportFlags, ref curpd);
-                            datapd = t.cur;
-                            PerfFrame.WriteCSVByFlags(ref csvStrm, exportFlags, ref datapd);
-                        }
-                    }
-
-                    //if (course != null)
-                    //    PerfFrame.SaveXCourse(ref csvStrm, Path.GetFileName(filename), course);
-                }
-                catch (Exception exc)
-                {
-                    Debug.WriteLine(exc.Message);
-                }
-                csvStrm.CloseCSVFileOut();
-                DateTime end = DateTime.Now;
-                Debug.WriteLine(string.Format(@"Done {0} ExportCSV {1}", end - start, exportfilename));
-            }
-        }
-
-        public void ExportPWXFromFile(BackgroundWorker bw, string filename, StatFlags exportFlags)
-        {
-            if (LoadRawTemps(bw, filename))
-                ExportPWXFromLoadedFile(bw, exportFlags);
-        }
-
-        public void ExportPWXFromLoadedFile(BackgroundWorker bw, StatFlags exportFlags)
-        {
-            string ext = Path.GetExtension(m_loadedfilename);
-            string name = Path.GetFileNameWithoutExtension(m_loadedfilename);
-            string exportfilename = RacerMatePaths.ExportsFullPath + "\\" + name + ".pwx";
-            //string exportfilename = m_loadedfilename.Replace(ext, ".pwx");
-
-            //[#YYYY-MM-DD#]@[#HH-MM-SS#]_ [#LAST#][#FIRST#]_[#MODE#]_[#COURSE32#] _([#HH:MM#]).RMP
-            XmlStream xmlStrm = null;
-            xmlStrm = new XmlStream();
-            try
-            {
-                PerfFrame.PerfData datapd = PerfFrame.PerfDataCreate();
-                datapd = LoadedFrames.Last<PerfFrame.PerfData>();
-                double lastTime = datapd.TimeAcc;
-
-                ulong interval = (ulong)RM1_Settings.General.RateIndex;
-                if (interval == 0)
-                    interval = 1;
-                // round up the duration to next interval, to make sure it is higher than the last data entry
-                ulong duration = (ulong)(((lastTime + interval) * 1000) / (interval * 1000));
-                string atts = "";
-
-                xmlStrm.Format = true;
-                xmlStrm.OpenXmlFileOut(exportfilename);
-
-
-                xmlStrm.AddXAttrib(ref atts, "xmlns", "http://www.peaksware.com/PWX/1/0");
-                xmlStrm.AddXAttrib(ref atts, "xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
-                xmlStrm.AddXAttrib(ref atts, "xsi:schemaLocation", "http://www.peaksware.com/PWX/1/0 http://www.peaksware.com/PWX/1/0/pwx.xsd");
-                xmlStrm.AddXAttrib(ref atts, "version", "1.0");
-                xmlStrm.AddXAttrib(ref atts, "creator", "RacerMateOne");
-
-                xmlStrm.AddXElementStart("pwx", atts, 1);
-
-                xmlStrm.AddXElementStart("workout", 1);
-                
-                xmlStrm.AddXElementStart("athlete", 1);
-                xmlStrm.AddXField("name", LoadedRMX.Info.RiderName);
-                xmlStrm.AddXElementEnd("athlete", -1);
-
-                xmlStrm.AddXField("sportType", "Bike");
-
-                xmlStrm.AddXElementStart("device",
-                    XUtil.XAttr("id", "")
-                    );
-                xmlStrm.ModifyXLevel(1);
-
-                xmlStrm.AddXField("make", "RacerMate");
-                xmlStrm.AddXField("model", "Computrainer");
-                xmlStrm.AddXField("stopdetectionsetting", 1.0f);
-
-                xmlStrm.AddXElementEnd("device", -1);
-
-                xmlStrm.AddXField("time", string.Format("{0:s}", LoadedRMX.Header.Date));
-
-                xmlStrm.AddXElementStart("summarydata", 1);
-
-                xmlStrm.AddXField("beginning", 0);
-                xmlStrm.AddXField("duration", duration);
-
-                xmlStrm.AddXElementEnd("summarydata", -1);
-                /*
-                float lastHeartRate = 0;
-                float lastCadence = 0;
-                double lastDistance = 0;
-                */
-                double ApproxAltitude = 0;
-                double prev_distance = 0;
-                Boolean isgradebased = (LoadedRMX.course.YUnits == CourseYUnits.Grade);
-                
-                for (double timeAcc = 0; timeAcc < (lastTime + interval); timeAcc += interval)
-                {
-                    if (bw != null && bw.CancellationPending)
-                        throw new Exception("BackgroundWorker cancelled.");
-
-                    Performance t = GetLoadedFrame(timeAcc);
-                    datapd = t.cur;
-                    /*
-                    // Added a method to catch bad HeartRate and Cadence by using last valid data
-                    double delta = datapd.Distance - lastDistance;
-                    lastDistance = datapd.Distance;
-                    lastHeartRate = ((datapd.HeartRate < 40) ? lastHeartRate : datapd.HeartRate);
-                    lastCadence = ((datapd.Cadence < 20) ? ((delta > 0 && lastCadence > 20) ? lastCadence : 20) : datapd.Cadence);
-                     */
-
-                    xmlStrm.AddXElementStart("sample", 1);
-
-                    xmlStrm.AddXField("timeoffset", (Int64)(0.5f + datapd.TimeAcc));
-                    xmlStrm.AddXField("hr", (Byte)(0.5f + datapd.HeartRate));
-                    xmlStrm.AddXField("spd", string.Format("{0:F5}", datapd.Speed + 0.000005));
-                    xmlStrm.AddXField("pwr", (Int32)(0.5f + datapd.Watts));
-                    xmlStrm.AddXField("cad", (Byte)(0.5f + datapd.Cadence));
-                    xmlStrm.AddXField("dist", string.Format("{0:F5}", datapd.Distance + 0.000005));
-                    double delta_distance = datapd.Distance - prev_distance;
-                    //if (datapd.Grade != null)  //just in case its not initialized
-                    if (isgradebased)
-                    {
-                        ApproxAltitude += (delta_distance * datapd.Grade/100);
-                        xmlStrm.AddXField("alt", string.Format("{0:F5}", ApproxAltitude + 0.000005));
-                    }
-                    
-                    prev_distance = datapd.Distance;
-                    xmlStrm.AddXElementEnd("sample", -1);
-                }
-
-                xmlStrm.AddXElementEnd("workout", -1);
-
-                xmlStrm.AddXElementEnd("pwx", -1);
-            }
-            catch (Exception exc)
-            {
-                Log.WriteLine(exc.Message);
-            }
-            if (xmlStrm != null)
-                xmlStrm.CloseXmlFileOut();
-        }
-#if EXPORTXML
-        public void ExportXMLFromFile(BackgroundWorker bw, string filename, StatFlags exportFlags)
-        {
-            if (LoadRawTemps(bw, filename))
-                ExportXMLFromLoadedFile(bw, exportFlags);
-        }
-
-        public void ExportXMLFromLoadedFile(BackgroundWorker bw, StatFlags exportFlags)
-        {
-            string ext = Path.GetExtension(m_loadedfilename);
-            string name = Path.GetFileNameWithoutExtension(m_loadedfilename);
-            string exportfilename = RacerMatePaths.ExportsFullPath + "\\" + name + ".xml";
-            //string exportfilename = m_loadedfilename.Replace(ext, ".xml");
-
-            //[#YYYY-MM-DD#]@[#HH-MM-SS#]_ [#LAST#][#FIRST#]_[#MODE#]_[#COURSE32#] _([#HH:MM#]).RMP
-            XmlStream xmlStrm = null;
-            xmlStrm = new XmlStream();
-            try
-            {
-                xmlStrm.Format = true;
-                xmlStrm.OpenXmlFileOut(exportfilename);
-                xmlStrm.AddXElementStart(xtag.RMX, 1);
-                xmlStrm.AddObject(LoadedRMX.Header, xtag.Header);
-
-                PerfFrame.PerfInfoWriteXML(ref xmlStrm, ref LoadedRMX.Info);
-
-                uint cnt = (uint)LoadedRMX.Info.PerfCount;
-                xmlStrm.AddXElementStart(xtag.Data + " " + xtag.Count + "=\"" + cnt + "\" " + xtag.DataFlags + "=\"" + exportFlags + "\" ", 1);
-
-                PerfFrame.PerfData datapd = PerfFrame.PerfDataCreate();
-                int i = 0;
-                foreach (PerfFrame.PerfData n in LoadedFrames)
-                {
-                    if (bw != null && bw.CancellationPending)
-                        throw new Exception("BackgroundWorker cancelled.");
-
-                    PerfFrame.UpdateRawLastByFlags(ref datapd, n, (StatFlags)n.StatFlags);
-                    // keyframe every KeyFrameVal
-                    if (0 == (i % KeyFrameVal))
-                    {
-                        PerfFrame.WriteXMLByFlags(ref xmlStrm, exportFlags, ref datapd, 1, xtag.Val);
-                    }
-                    else
-                    {
-                        PerfFrame.WriteXMLByFlags(ref xmlStrm, exportFlags, ref datapd, 0, xtag.Val);
-                    }
-                    i++;
-                    if (i >= cnt)
-                        break;
-                }
-                xmlStrm.AddXElementEnd(xtag.Data, -1);
-
-                if (LoadedRMX.course != null)
-                    PerfFrame.SaveXCourse(ref xmlStrm, Path.GetFileName(exportfilename), LoadedRMX.course);
-
-                xmlStrm.AddXElementEnd(xtag.RMX, -1);
-            }
-            catch (Exception exc)
-            {
-                Debug.WriteLine(exc.Message);
-            }
-            if(xmlStrm != null)
-                xmlStrm.CloseXmlFileOut();
-        }
-#endif
-        public void ExportCSVFromFile(BackgroundWorker bw, string filename, StatFlags exportFlags)
-        {
-            if (LoadRawTemps(bw, filename))
-                ExportCSVFromLoadedFile(bw, exportFlags);
-        }
-
-        public void ExportCSVFromLoadedFile(BackgroundWorker bw, StatFlags exportFlags)
-        {
-            string ext = Path.GetExtension(m_loadedfilename);
-            string name = Path.GetFileNameWithoutExtension(m_loadedfilename);
-            string exportfilename = RacerMatePaths.ExportsFullPath + "\\" + name + ".csv";
-            //string exportfilename = m_loadedfilename.Replace(ext, ".csv");
-
-            exportFlags |= StatFlags.Time; // always include the time
-            //exportFlags |= StatFlags.Calibration; // **** test *****
-            
-             
-            //[#YYYY-MM-DD#]@[#HH-MM-SS#]_ [#LAST#][#FIRST#]_[#MODE#]_[#COURSE32#] _([#HH:MM#]).csv
-            CSVStream csvStrm = null;
-            csvStrm = new CSVStream();
-            try
-            {
+				try  {
                 int interval = RM1_Settings.General.RateIndex;
                 csvStrm.SetSeparator(RM1_Settings.General.Delimiter.ToString());
 
@@ -3639,10 +3309,8 @@ namespace RacerMateOne
                 PerfFrame.WriteCSVByFlags(ref csvStrm, exportFlags, ref datapd);
                 csvStrm.SetHeader(false);
 
-                if (interval == 0)
-                {
-                    foreach (PerfFrame.PerfData n in LoadedFrames)
-                    {
+					if (interval == 0)  {
+						foreach (PerfFrame.PerfData n in LoadedFrames)  {
                         if (bw != null && bw.CancellationPending)
                             throw new Exception("BackgroundWorker cancelled.");
 
@@ -3650,12 +3318,11 @@ namespace RacerMateOne
                         PerfFrame.WriteCSVByFlags(ref csvStrm, exportFlags, ref datapd);
                     }
                 }
-                else
-                {
+					else  {
                     datapd = LoadedFrames.Last<PerfFrame.PerfData>();
                     double lastTime = datapd.TimeAcc;
-                    for (double timeAcc = 0; timeAcc < (lastTime + interval); timeAcc += interval)
-                    {
+
+						for (double timeAcc = 0; timeAcc < (lastTime + interval); timeAcc += interval)  {
                         if (bw != null && bw.CancellationPending)
                             throw new Exception("BackgroundWorker cancelled.");
 
@@ -3668,21 +3335,27 @@ namespace RacerMateOne
                 //if (course != null)
                 //    PerfFrame.SaveXCourse(ref csvStrm, Path.GetFileName(filename), course);
             }
-            catch (Exception exc)
-            {
+				catch (Exception exc)  {
                 Debug.WriteLine(exc.Message);
             }
             csvStrm.CloseCSVFileOut();
-        }
+			}								// ExportCSVFromLoadedFile()
 
-        public void SaveReportFromFile(BackgroundWorker bw, string filename, StatFlags exportFlags)
-        {
-            if (LoadRawTemps(bw, filename))
+			/**********************************************************************************************
+
+			**********************************************************************************************/
+
+			public void SaveReportFromFile(BackgroundWorker bw, string filename, StatFlags exportFlags)  {
+				if (LoadRawTemps(bw, filename)) {
                 SaveReportFromLoadedFile(bw, exportFlags);
         }
+			}
 
-        public void SaveReportFromLoadedFile(BackgroundWorker bw, StatFlags exportFlags)
-        {
+			/**********************************************************************************************
+
+			**********************************************************************************************/
+
+			public void SaveReportFromLoadedFile(BackgroundWorker bw, StatFlags exportFlags)  {
             //ReportCols = reportCols;
             //ExportFlags = ReportCols.StatFlags;
 
@@ -3695,8 +3368,8 @@ namespace RacerMateOne
             // Initialize
             CalcReport(ref datapd, ref m_datapdAcc, ref m_datapdMin, ref m_datapdMax, timeElapse, bStart);
             bStart = false;
-            foreach (PerfFrame.PerfData n in LoadedFrames)
-            {
+
+				foreach (PerfFrame.PerfData n in LoadedFrames)  {
                 PerfFrame.UpdateRawLastByFlags(ref datapd, n, (StatFlags)n.StatFlags);
                 // Only process if there are more than 5 seconds worth of data
                 //if (datapd.TimeAcc > 5.0f)
@@ -3719,11 +3392,11 @@ namespace RacerMateOne
                     }
                 }
             }
+
             m_datapdAvg = m_datapdAcc;
-            if (reportCnt > 1)
-            {
-                if ((1.0 + datapd.Distance) > (m_LapDistance * m_lastLap))
-                {
+
+				if (reportCnt > 1)  {
+					if ((1.0 + datapd.Distance) > (m_LapDistance * m_lastLap))  {
                     float lapTime = (float)(datapd.TimeAcc - m_lastLapTime);
                     m_lastLapTime = datapd.TimeAcc;
                     m_LapTimes.Add(lapTime);
@@ -3742,28 +3415,32 @@ namespace RacerMateOne
 
             ReportStream reportStrm = null;
             reportStrm = new ReportStream();
-            try
-            {
+
+				try  {
                 Rider rider = new Rider();
                 reportStrm.OpenReportFileOut(reportfilename);
                 //reportStrm.DoReport(ref LoadedRMX, ref m_datapdAcc, ref m_datapdAvg, ref m_datapdMin, ref m_datapdMax, exportFlags);
                 reportStrm.DoReport(ref LoadedRMX, this, exportFlags);
             }
-            catch (Exception exc)
-            {
+				catch (Exception exc)  {
                 Debug.WriteLine(exc.Message);
             }
             reportStrm.CloseReportFileOut();
-        }
+			}									// SaveReportFromLoadedFile()
 
+			/**********************************************************************************************
 
-        public bool LoadRawTemps(string rawhdrfilename)
-        {
+			**********************************************************************************************/
+
+			public bool LoadRawTemps(string rawhdrfilename)  {
             return LoadRawTemps(null, rawhdrfilename);
         }
 
-        public bool LoadRawTemps(BackgroundWorker bw, string filename)
-        {
+			/**********************************************************************************************
+
+			**********************************************************************************************/
+
+			public bool LoadRawTemps(BackgroundWorker bw, string filename)   {
             try
             {
                 m_loadedfilename = filename;
@@ -4163,10 +3840,16 @@ namespace RacerMateOne
             //public bool HardwareStatus;
         };
 
-        static public PerfData PerfDataCreate()
-        {
+			/*************************************************************************************************
+
+			*************************************************************************************************/
+
+			static public PerfData PerfDataCreate()  {
+				//xxx
             return new PerfData { StatFlags = (UInt64)StatFlags.Mask, Bars = new float[24], AverageBars = new float[24] };
-        }
+			}								// PerfDataCreate()
+
+
 		static public void CopyTo(ref PerfData pnew, ref PerfData pold)
 		{
 			float[] bars = pnew.Bars;
@@ -4189,9 +3872,12 @@ namespace RacerMateOne
             public Course course;
         }
         // static Random _r = new Random(); // **** test *****
-        public static void UpdateLastByFlags(ref PerfData pd, StatFlags changedflags, Statistics statistics, Int32 keyframe)
-        {
 
+			/*************************************************************************************************
+
+			*************************************************************************************************/
+
+			public static void UpdateLastByFlags(ref PerfData pd, StatFlags changedflags, Statistics statistics, Int32 keyframe)  {
             double convertSpeed = 1.0;
             //if (!statistics.Metric)
             //    convertSpeed = ConvertConst.MilesToKilometers;
@@ -4248,8 +3934,7 @@ namespace RacerMateOne
             if ((changedflags & StatFlags.IF) != StatFlags.Zero) { pd.IF = statistics.IF; }
             if ((changedflags & StatFlags.NP) != StatFlags.Zero) { pd.NP = statistics.NP; }
             if ((changedflags & StatFlags.Bars_Shown) != StatFlags.Zero) { pd.Bars_Shown = (statistics.Bars_Shown ? 1 : 0); }
-            if ((changedflags & StatFlags.Bars) != StatFlags.Zero) 
-            { 
+				if ((changedflags & StatFlags.Bars) != StatFlags.Zero)  {
                 pd.Bars = statistics.Bars; 
             }
             if ((changedflags & StatFlags.Bars_Avg) != StatFlags.Zero) { 
@@ -4266,7 +3951,9 @@ namespace RacerMateOne
 
             //if ((changedflags & StatFlags.Calibration) != StatFlags.Zero) { pd.RawCalibrationValue = (Int16)_r.Next(500); } // **** test *******
             //if ((changedflags & StatFlags.HardwareStatus) != StatFlags.Zero) { pd.HardwareStatus = statistics.HardwareStatus; }
-        }
+
+				return;
+			}								// UpdateLastByFlags()
 
 #if EXPORTXML
         public static void PerfInfoWriteXML(ref XmlStream xmlStrm, ref PerfFile.CPerfInfo pih)
@@ -5315,11 +5002,13 @@ namespace RacerMateOne
             return sb.ToString();
         }
 
-        public void CloseHashOut()
-        {
+			public void CloseHashOut()  {
             FlushBufferOut();
             //if (bw != null)
             //    bw = null;
+#if DEBUG
+				Debug.WriteLine("PerfFrame.cs CloseHashOut(), GC.Collect()");
+#endif
             GC.Collect();
         }
 
@@ -5430,8 +5119,11 @@ namespace RacerMateOne
             return true;
         }
     }
-    public class RawStream
-    {
+
+
+
+
+		public class RawStream  {
         FileStream outfile = null;
         FileStream infile = null;
         //private BinaryWriter bw = null;
@@ -5440,31 +5132,38 @@ namespace RacerMateOne
         private object _obj = null;
         private System.Type _type = null;
 
-        // replace binarywrite with memorystream
-        MemoryStream bw = null;
-        //MemoryStream br = null;
+#if DEBUG
+			int bp = 0;
+#endif
+			const bool doalloc = true;
+			MemoryStream memstream = null;
+			byte[] ba = null;
 
         IAsyncResult asyncResult = null;
 
         // Maintain state information to be passed to 
         // EndWriteCallback and EndReadCallback.
-        class RawState
-        {
+
+			class RawState  {
             // fStream is used to read and write to the file.
             FileStream fStream;
-            public RawState(FileStream fStream)
-            {
+				public RawState(FileStream fStream)  {
                 this.fStream = fStream;
             }
-            public FileStream FStream
-            { get { return fStream; } }
+				public FileStream FStream  {
+					get {
+						return fStream;
+					}
         }
+			}					// class RawState
 
-        // When BeginWrite is finished writing data to the file, the
-        // EndWriteCallback method is called to end the asynchronous 
-        // write operation 
-        static void EndWriteCallback(IAsyncResult asyncResult)
-        {
+			/******************************************************************************************
+				When BeginWrite is finished writing data to the file, the
+				EndWriteCallback method is called to end the asynchronous
+				write operation
+			******************************************************************************************/
+
+			static void EndWriteCallback(IAsyncResult asyncResult)  {
             //Debug.WriteLine("done a write");
             RawState tempState = (RawState)asyncResult.AsyncState;
             FileStream fStream = tempState.FStream;
@@ -5502,8 +5201,7 @@ namespace RacerMateOne
         }
 
         // default flush
-        public void AddRawField(string tag, object obj)
-        {
+			public void AddRawField(string tag, object obj)  {
             AddRawField(ref tag, ref obj, false);
         }
 
@@ -5513,63 +5211,127 @@ namespace RacerMateOne
             AddRawField(ref tag, ref obj, bflush);
         }
 
-        public void AddRawBytes(string tag, ref byte[] val, int len, bool bFlush)
-        {
+			public void AddRawBytes(string tag, ref byte[] val, int len, bool bFlush)  {
             AddRawBytes(ref val, len, bFlush);
         }
 
-        // 
-        void AddRawField(ref string tag, ref object obj, bool bFlush)
-        {
-            if (bw == null)
-                bw = new MemoryStream();
-            if (bw != null)
-            {
+
+			/*******************************************************************************
+				tags
+
+					news = 0  TimeMilliseconds
+					news = 1  Bars
+					news = 2  Watts
+					news = 3  Watts
+					news = 4  Speed
+					news = 5  Watts_Load
+					news = 6  Bars
+					news = 7  Bars
+					news = 8  Watts
+					news = 9  Watts
+					news = 10  SpinScanRight
+					news = 11  Header
+					news = 12  Data
+					news = 13  Header
+					PerfFrame::CoseRawFileOut(), GC.Collect()
+
+			*******************************************************************************/
+
+			void AddRawField(ref string tag, ref object obj, bool bFlush) {
+				if (memstream == null) {
+					if (doalloc) {
+						memstream = new MemoryStream();
+					}
+					else {
+						memstream = new MemoryStream(4 * 1024);
+					}
+				}
+
+				if (memstream != null)  {
                 byte[] val = StructToByteArray(ref obj);
                 AddRawBytes(ref val, val.Length, bFlush);
             }
+			}							// AddRawField()
+
+
+			/*******************************************************************************
+
+			*******************************************************************************/
+
+			void AddRawBytes(ref byte[] val, int len, bool bFlush)  {
+				if (memstream == null)  {
+					// never gets here
+					memstream = new MemoryStream();
         }
 
-        void AddRawBytes(ref byte[] val, int len, bool bFlush)
-        {
-            if (bw == null)
-                bw = new MemoryStream();
-            if (bw != null)
-            {
-                if (val.Length < len)
-                {
-                    bw.Write(val, 0, val.Length);
+				if (memstream != null)  {
+					if (val.Length < len)  {
+						// never gets here for perf files because len = val.Length
+						memstream.Write(val, 0, val.Length);
                     // pad with zeros
                     byte[] temp = new byte[len - val.Length];
-                    for (int i = val.Length; i < len; i++)
+						for (int i = val.Length; i < len; i++) {
                         temp[i] = 0;
-                    bw.Write(temp, 0, temp.Length);
                 }
-                else
-                {
-                    bw.Write(val, 0, len);
+						memstream.Write(temp, 0, temp.Length);				// write perf to memory
                 }
-                // buffer it until 4k, then write it
-                if (bw.Length > (1024 * 4))
-                    bFlush = true;
+					else  {
+						memstream.Write(val, 0, len);								// write perf to memory
+					}
 
-                if (bFlush && outfile != null)
-                {
-                    asyncResult = outfile.BeginWrite(bw.GetBuffer(), 0, (int)bw.Length, new AsyncCallback(EndWriteCallback), new RawState(outfile));
-                    bw.Close();
-                    bw = null;
-                }
+                // buffer it until 4k, then write it
+
+
+					//if (memstream.Length > (1024 * 4)) {
+					if (memstream.Position > (1024 * 4)) {
+					//if (bw.Length > (1024 * 32)) {
+						bFlush = true;
             }
+
+					if (bFlush && outfile != null)  {
+						if (doalloc) {
+							asyncResult = outfile.BeginWrite(
+													memstream.GetBuffer(),
+													0,
+													(int)memstream.Length,
+													new AsyncCallback(EndWriteCallback),
+													new RawState(outfile)
+												);
+							memstream.Dispose();
+							memstream.Close();
+							memstream = null;
+						}
+						else  {
+							ba = memstream.GetBuffer();
+							int datalen;
+							datalen = ba.Length;							// 8192
+
+							datalen = (int)memstream.Length;			// 4097
+							asyncResult = outfile.BeginWrite(
+													ba,
+													0,
+													datalen,
+													new AsyncCallback(EndWriteCallback),
+													new RawState(outfile)
+								);
+	
+
+							memstream.Position = 0;
+						}						// doalloc
+						//GC.Collect();		// didn't help
+					}								// if (bFlush && outfile != null)  {
         }
+				return;
+			}								// AddRawBytes()
+
 
         // flush the memory buffer to outfile
-        public bool FlushBufferOut()
-        {
-            if (bw != null && outfile != null)
-            {
-                asyncResult = outfile.BeginWrite(bw.GetBuffer(), 0, (int)bw.Length, null, new RawState(outfile));
-                bw.Close();
-                bw = null;
+			public bool FlushBufferOut()  {
+				if (memstream != null && outfile != null)  {
+					asyncResult = outfile.BeginWrite(memstream.GetBuffer(), 0, (int)memstream.Length, null, new RawState(outfile));
+					memstream.Dispose();
+					memstream.Close();
+					memstream = null;
                 outfile.EndWrite(asyncResult);
             }
             return true;
@@ -5585,19 +5347,19 @@ namespace RacerMateOne
             obj = GetNextStructureValue(obj.GetType());
         }
 
-        public void CloseRawFileOut()
-        {
+			public void CloseRawFileOut()  {
             FlushBufferOut();
-            if (outfile != null)
-            {
+				if (outfile != null)  {
                 outfile.Close();
                 outfile = null;
             }
-            GC.Collect();
+#if DEBUG
+				//Debug.WriteLine("PerfFrame::CoseRawFileOut(), GC.Collect()");
+#endif
+				//GC.Collect();														// didn't help
         }
 
-        public bool OpenRawFileOut(string fileName)
-        {
+			public bool OpenRawFileOut(string fileName)  {							// .../Performances/Last-Rider1.tmp
             try
             {
                 CloseRawFileOut();
@@ -5632,15 +5394,12 @@ namespace RacerMateOne
             return true;
         }
 
-        public void CloseRawFileIn()
-        {
-            if (br != null)
-            {
+			public void CloseRawFileIn()  {
+				if (br != null)  {
                 br.Close();
                 br = null;
             }
-            if (infile != null)
-            {
+				if (infile != null)  {
                 infile.Close();
                 infile = null;
             }
@@ -5737,7 +5496,10 @@ namespace RacerMateOne
             }
         }
 
-    }
+		}												// class RawStream
+
+
+
     public class CSVStream
     {
         FileStream outfile = null;

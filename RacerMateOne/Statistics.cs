@@ -1317,15 +1317,18 @@ namespace RacerMateOne
 			m_Mux.ReleaseMutex();
 		}
 
-
-		//============================================================================
+		/********************************************************************************************
 		/// <summary>
 		/// SHOULD ONLY BE CALLED FROM UNIT.
 		/// </summary>
 		/// <param name="istats"></param>
 		/// <param name="splittime"></param>
-		public void UpdateStats( RM1.IStats istats, double splittime )
-		{
+
+			called every 100 ms
+
+		********************************************************************************************/
+
+		public void UpdateStats( RM1.IStats istats, double splittime )  {
 			StatFlags f = StatFlags.Zero;
 			m_Mux.WaitOne();
 			if (Hold)
@@ -1784,8 +1787,7 @@ namespace RacerMateOne
 			AllChanged |= f;
 			LastChanged = f;
 
-            if (m_State == State.Running || (((f & StatFlags.Finished) != StatFlags.Zero) && m_State == State.Stopped))
-            {
+            if (m_State == State.Running || (((f & StatFlags.Finished) != StatFlags.Zero) && m_State == State.Stopped))  {
                 // If snapshot was started, then take a snapshot here
 				// Note - we also need to take one last snapshot if we finished the race
                 Unit thisUnit = null;
@@ -1796,8 +1798,8 @@ namespace RacerMateOne
 
 
                 // Only demo unit or person allowed to save a performance file
-                if (thisUnit != null && (thisUnit.IsActive && (thisUnit.IsDemoUnit || thisUnit.IsPerson)))
-                {
+
+               if (thisUnit != null && (thisUnit.IsActive && (thisUnit.IsDemoUnit || thisUnit.IsPerson)))  {
                     PerfContainer.SnapShot(this, thisUnit);
 					PerfChanged = StatFlags.Zero; // After a snapshot we can clear out the perf flags.
                 }
