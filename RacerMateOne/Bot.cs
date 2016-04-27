@@ -15,6 +15,10 @@ using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.IO;
 
+#if DEBUG
+using System.Diagnostics;				// Needed for process invocation
+#endif
+
 namespace RacerMateOne
 {
 	public interface IBotInfo
@@ -178,6 +182,19 @@ namespace RacerMateOne
 
 		public virtual Int64 Ticks { get { return ms_LastTicks; } }
 		public virtual float SplitTime { get { return ms_SplitTime; } }
+
+		protected float fval = 0.0f;
+
+#if DEBUG
+		/*
+		protected long totdeltas = 0;
+		protected long tickcnt = 0;
+		protected double avgdelta = 0.0;
+		protected long now = 0;
+		protected long delta;
+		protected long lastnow = DateTime.Now.Ticks;
+		*/
+#endif
 
 		protected float m_Speed = 0.0f;
 		public virtual float Speed { get { return m_Speed; } }
@@ -833,8 +850,7 @@ namespace RacerMateOne
 			}
 
 
-			if (perf.GetLoadedList().Count > 0 && (m_Unit.Statistics.Time - m_Delay + m_TimeOffset) > 0)
-			{
+			if (perf.GetLoadedList().Count > 0 && (m_Unit.Statistics.Time - m_Delay + m_TimeOffset) > 0)  {
 				perf.GetLoadedFrame(ref prd, m_Unit.Statistics.Time * m_SpeedAdj - m_Delay + m_TimeOffset, neededFlags);
 
 				m_Speed = prd.Speed * m_SpeedAdj;
@@ -1350,7 +1366,7 @@ namespace RacerMateOne
 		/// <summary>
 		/// How many MPH can this go faster or slower to match the speed
 		/// </summary>
-		protected double m_MaxDiffSpeed = ConvertConst.MPHToMetersPerSecond * 10;
+		protected double m_MaxDiffinput = ConvertConst.MPHToMetersPerSecond * 10;
 
 		/// <summary>
 		/// Maximum MPH change per second.
@@ -1411,8 +1427,8 @@ namespace RacerMateOne
 				orgdestspeed = destspeed = m_ControlUnit.Statistics.Speed; // Max distance
 				if (dif > 0)
 				{
-					catchuptime = dif / (destspeed + m_MaxDiffSpeed); // At max speed how many seconds will it take.
-					double tt = m_MaxDiffSpeed * (catchuptime > m_MaxCatchupTime ? 1 : (catchuptime / m_MaxCatchupTime));
+					catchuptime = dif / (destspeed + m_MaxDiffinput); // At max speed how many seconds will it take.
+					double tt = m_MaxDiffinput * (catchuptime > m_MaxCatchupTime ? 1 : (catchuptime / m_MaxCatchupTime));
 					destspeed += tt < m_MinCatchupSpeedDiff ? m_MinCatchupSpeedDiff : tt;
 				}
 				else if (dif < 0)
@@ -2277,42 +2293,41 @@ namespace RacerMateOne
 	}
 
 
-	public class DelayBot : MatchBot
-	{
+	public class DelayBot : MatchBot  {
 		const int c_MinSeconds = 1;
 		const int c_MaxSeconds = 6;
 		int m_Delay;
-		public int Delay
-		{
-			get { return m_Delay; }
-			set
-			{
+		double old_rider_mps = 0.0;
+
+		public int Delay  {
+			get {
+				return m_Delay;
+			}
+			set  {
 				m_Delay = value < c_MinSeconds ? c_MinSeconds: value > c_MaxSeconds ? c_MaxSeconds : value;
 				m_MaxCatchupTime = m_Delay;
 			}
 		}
-		DelayBot(int delay)
-		{
+
+		DelayBot(int delay)  {
 			m_MaxAcc = ConvertConst.MPHToMetersPerSecond * 10;
-			m_MaxDiffSpeed = ConvertConst.MPHToMetersPerSecond * 20;
+			m_MaxDiffinput = ConvertConst.MPHToMetersPerSecond * 20;
 			Delay = delay;
 			UpdateNames();
 		}
-		void UpdateNames()
-		{
+
+		void UpdateNames()  {
 			BaseName = String.Format("Smart Pacer - Delay, {0}s", m_Delay);
 			Key = String.Format("DelayBot,{0}", m_Delay);
 			UpdateDisplayName();
 		}
 
-		protected override void UpdateDisplayName()
-		{
+		protected override void UpdateDisplayName()  {
 			m_DisplayName = String.Format("Delay {0}s", m_Delay );
 			base.UpdateDisplayName();
 		}
 
-		public override void Adjust(int dir)
-		{
+		public override void Adjust(int dir)  {
 			Delay += dir;
 			UpdateNames();
 		}
@@ -2322,45 +2337,111 @@ namespace RacerMateOne
 		double m_Time = 0.0;
 		const double c_MinRange = ConvertConst.MPHToMetersPerSecond * -1;
 		const double c_MaxRange = ConvertConst.MPHToMetersPerSecond * 1;
-		protected override void Update()
-		{
-			if (m_ControlUnit == null)
-				Diff = 0;
-			else
-			{
+
+		// tlm+++
+		//float a = 0.0f;							// experimenting
+		//float speed = 0.0f;						// experimenting
+		// tlm---
+
+
+		/*****************************************************************
+			xxx
+			copy saved in bot1.cs
+			called every 33 ms = 30 hz
+		*****************************************************************/
+
+
+		protected override void Update()  {
+			if (m_ControlUnit == null)  {
+				Diff = 0;				// sets m_RelativeDest
+				return;
+			}
+
+#if SAVE_IN_RAM
+//#if xSAVE_IN_RAM
 				RM1.IStats t = m_ControlUnit.Statistics.PerfContainer.GetRunningFrame(ref m_workPerformance, m_ControlUnit.Statistics.Time - m_Delay, m_neededFlags);
-				if (t == null)
-				{
+				if (t == null) {
 					// Until we get t values we need to move this to zero.
 					m_Diff = 0;
 					m_RelativeDest = 0.0;
 					base.Update();	// Just deal with the bot.
 					return;
 				}
+
 				double diff = t.Speed - m_ControlUnit.Statistics.Speed;
 				double distdif = (m_ControlUnit.Statistics.Distance + m_RelativeDest) - m_Unit.Statistics.Distance;
-				if (diff < c_MinRange || diff > c_MaxRange)
-				{
+
+				if (diff < c_MinRange || diff > c_MaxRange) {
 					m_Time = m_Delay;
 					m_Speed = t.Speed; // We are done... the bot takes over.
 					return;
 				}
+
 				m_Time -= ms_SplitTime;
-				if (m_Time > 0)
-				{
+
+				if (m_Time > 0) {
 					m_Speed = t.Speed; // We are done... the bot takes over.
 					return;
 				}
+
 				Diff = diff / (10 * ConvertConst.MPHToMetersPerSecond);
 				base.Update();	// Bot acks like a smart pacer... when at the same speed.
+#else
+
+			float rider_mps = (float)m_ControlUnit.Statistics.Speed;						// in meters per second
+
+			if (m_ControlUnit.Statistics.Distance < 0.000001f) {
+				m_Diff = 0.0;
+				//m_RelativeDest = 0.0;
+				old_rider_mps = rider_mps;
+				base.Update();					// Just deal with the bot
+				return;
 			}
+
+
+#if DEBUG
+			int bp = 0;
+			float fmph = rider_mps * (float)ConvertConst.MetersPerSecondToMPH;
+			float fmeters = (float)m_Unit.Statistics.Distance;								// in meters
+			float ffeet = fmeters * (float)ConvertConst.MetersToFeet;
+			float fmiles = fmeters * (float)ConvertConst.MetersToMiles;
+#endif
+			
+			if (m_Delay <= 0) {
+				m_Speed = rider_mps;
+				return;
 		}
 
-		//================
-		class BotInfo : IBotInfo
-		{
-			public Bot Create(String key)
-			{
+			old_rider_mps += (rider_mps - old_rider_mps) / (m_Delay * 30.0f * 0.66f);					// old_speed = low pass filtered (current rider speed)
+			double mps_diff = old_rider_mps - rider_mps;															// old rider speed - current rider speed (in meters per second)
+
+			if (mps_diff < c_MinRange || mps_diff > c_MaxRange) {							// < 1 mph or > 1 mph?
+				m_Time = m_Delay;
+				m_Speed = (float)old_rider_mps;						// We are done... the bot takes over.
+				return;
+			}
+
+			m_Time -= ms_SplitTime;
+
+			if (m_Time > 0) {
+				m_Speed = (float)old_rider_mps;							// We are done... the bot takes over.
+				return;
+			}
+
+			Diff = mps_diff / (10 * ConvertConst.MPHToMetersPerSecond);				// normalized difference, sets m_RelativeDest
+
+			base.Update();																			// call matchbot, "Bot acks like a smart pacer... when at the same speed"
+#endif
+
+		}										// Update()
+
+
+		/*****************************************************************
+
+		*****************************************************************/
+
+		class BotInfo : IBotInfo  {
+			public Bot Create(String key)  {
 				String[] ss = Bot.PreParse(key);
 				Bot bot = null;
 				if (ss.Length < 1 || ss[0] != "DelayBot")
