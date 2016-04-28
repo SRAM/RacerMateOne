@@ -1523,18 +1523,7 @@ namespace RacerMateOne  {
 						IsStarted = false;
 						if (!bFake)
 							#if DEBUG
-								#if OBFUSCATE
-												//RM1.DLL.x3a7d4fd38f0687e5896e1d50efeb698e(PortNumber);
 												RM1.DLL.stopTrainer(PortNumber);
-								#else
-											//Debug.WriteLine("RM1.cs   calling DLL.stopTrainer()");
-											//RM1.DLL.stopTrainer(PortNumber);
-								#endif
-							#else
-								#if OBFUSCATE
-											RM1.DLL.x3a7d4fd38f0687e5896e1d50efeb698e(PortNumber);
-								#else
-								#endif
 							#endif
 						ms_StartedList.Remove(this);
 					}
