@@ -194,7 +194,7 @@ namespace RacerMateOne.Pages.Modes
 
         void Staging_Loaded(object sender, RoutedEventArgs e)
         {
-           // Debug.WriteLine("Staging loaded handling edit visibility");
+            // Debug.WriteLine("Staging loaded handling edit visibility");
             Type t = m_StagingInfo.GetType();
             if (SelectedFileCanBeEdited && t.Name == "StagingInfo_PowerTraining" || t.Name == "StagingInfo_Ride3D" || t.Name == "StagingInfo_SpinScan")
             {
@@ -399,11 +399,11 @@ namespace RacerMateOne.Pages.Modes
             {
                 fnameextension = System.IO.Path.GetExtension(bestfilename).ToUpper();
             }
-           // Debug.WriteLine("Rideroptions_loaded handling edit button visibility" + fnameextension);
+            // Debug.WriteLine("Rideroptions_loaded handling edit button visibility" + fnameextension);
             if (fnameextension == ".RMC")
             {
-               SelectedFileCanBeEdited = true;
-                
+                SelectedFileCanBeEdited = true;
+
             }
             else
             {
@@ -518,7 +518,8 @@ namespace RacerMateOne.Pages.Modes
             }
         }
 
-       void UpdateFilter()  {
+        void UpdateFilter()
+        {
             CourseFilter f = m_Filter;
             if (f == null)
                 f = CourseFilter.F_DistanceGrade;
@@ -665,6 +666,54 @@ namespace RacerMateOne.Pages.Modes
                 }
                 if (filter == null)
                     return;
+            }
+
+            // Validate rider settings
+
+            // Error if no riders (not sure why anybody would want to do this...)
+            if (t_UnitsList.ActiveUnits == 0) {
+                // display message about 0 active trainers
+                RacerMateOne.Dialogs.Ask ask = new RacerMateOne.Dialogs.Ask("You must have at least 1 active rider.", null, "OK");
+                ask.ShowDialog();
+                return;
+            }
+
+            // Make sure all enabled riders have a trainer associated with their rider position.
+            bool bDemoMode = false;
+            if (RM1.HardwareList.Count() == 0) {
+                // There are no trainers, so assuming "demo mode"
+                RacerMateOne.Dialogs.Ask itsokay = new RacerMateOne.Dialogs.Ask("There are 0 trainers connected, so no trainer interaction will occur.", null, "OK");
+                itsokay.ShowDialog();
+                bDemoMode = true;
+            }
+
+            foreach (Unit unit in Unit.Active) {
+                int riderPosition = unit.Number + 1;
+
+                bool isNamedRider = (unit.IsRiderUnit && unit.Rider != null && ((t_UnitsList.ActiveUnits & (ActiveUnits)(1 << unit.Number)) > 0));
+
+                bool foundTrainer = false;
+                foreach (TrainerUserConfigurable trainer in RM1_Settings.ActiveTrainerList)
+                {
+                    if (trainer.PositionIndex == riderPosition &&
+                        (trainer.DeviceType == RM1.DeviceType.COMPUTRAINER ||
+                         trainer.DeviceType == RM1.DeviceType.VELOTRON ||
+                         trainer.DeviceType == RM1.DeviceType.PERF_FILE ||
+                         trainer.DeviceType == RM1.DeviceType.SIMULATOR))
+                    {
+                        foundTrainer = true;
+                    }
+                }
+
+                if (isNamedRider == true && foundTrainer == false) {
+                    RacerMateOne.Dialogs.Ask ask = new RacerMateOne.Dialogs.Ask("You have enabled a rider on position " + riderPosition + ", but there is no trainer associated with it.", null, "OK");
+                    ask.ShowDialog();
+
+                    if (bDemoMode == false) {
+                        // There are trainers connected, so the user must fix the issue.
+                        return;
+                    }
+                }
             }
 
             if (m_StagingInfo == Staging_PowerTraining)
@@ -912,7 +961,7 @@ namespace RacerMateOne.Pages.Modes
 
         private void t_Filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           // t_Edit.Visibility = Visibility.Visible;
+            // t_Edit.Visibility = Visibility.Visible;
             CourseFilter f = t_Filter.SelectedItem as CourseFilter;
             //Debug.WriteLine("the course filter has changed");
             if (f == CourseFilter.F_PerformanceWatts || f == CourseFilter.F_PerformanceGrade)
@@ -983,7 +1032,7 @@ namespace RacerMateOne.Pages.Modes
                     if (m_StagingInfo.ShowVideo)
                     {
                         Course c = cvalue;
-                        Dispatcher.BeginInvoke(DispatcherPriority.Render, (ThreadStart)delegate()
+                        Dispatcher.BeginInvoke(DispatcherPriority.Render, (ThreadStart)delegate ()
                         {
                             t_RCVPreview.Course = null;
                             t_RCVPreview.Course = c == null ? null : c.VideoCourse;
@@ -1006,7 +1055,7 @@ namespace RacerMateOne.Pages.Modes
                     t_CourseDirection.SelectedIndex = 0;
                     if (m_StagingInfo.ShowVideo)
                     {
-                        Dispatcher.BeginInvoke(DispatcherPriority.Render, (ThreadStart)delegate()
+                        Dispatcher.BeginInvoke(DispatcherPriority.Render, (ThreadStart)delegate ()
                         {
                             t_RCVPreview.Course = null;
                         });
@@ -1026,13 +1075,13 @@ namespace RacerMateOne.Pages.Modes
         private Boolean m_AsCoursePickerSelection = false;
         private void t_CoursePicker_CourseSelected(object sender, RoutedEventArgs e)
         {
-           // Debug.WriteLine("a course has been selected by a selection event");
+            // Debug.WriteLine("a course has been selected by a selection event");
             m_AsCoursePickerSelection = true;
             //now I should actually read the file and use it for the StagingCurrent course
 
             string fname = t_CoursePicker.SelectedCourse.FileName;
             string fnameextension = System.IO.Path.GetExtension(fname);
-           // Debug.WriteLine("the extension in toupper is " + fnameextension.ToUpper());
+            // Debug.WriteLine("the extension in toupper is " + fnameextension.ToUpper());
             if (fnameextension.ToUpper() == ".RMC")
             {
                 SelectedFileCanBeEdited = true;
