@@ -173,6 +173,26 @@ namespace RacerMateOne.Pages  {
 
 		private void Start_Click(object sender, RoutedEventArgs e)
 		{
+			// Make sure a smart pacer isn't before any live riders
+			bool bFoundRider = false;
+			foreach (Node node in m_Nodes)
+			{
+				if (node.Unit.IsPerson && node.Unit.IsBot == false)
+				{
+					bFoundRider = true;
+				}
+				if (node.Unit.IsBot && node.RiderName.ToString().Contains("Smart Pacer"))
+				{
+					// make sure we already found a rider.
+					if (bFoundRider == false)
+					{
+						RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Smart Pacers must come after a live rider.", null, "OK");
+						info.ShowDialog();
+						return;
+					}
+				}
+			}
+
 			m_ActiveSave.Restore();
 			Unit.SaveToSettings();
 			if (Mode != null) {
