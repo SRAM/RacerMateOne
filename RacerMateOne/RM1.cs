@@ -690,7 +690,7 @@ namespace RacerMateOne  {
 					trainer = RM1.Trainer.Get(i);
 					if (!ms_InitList.Contains(trainer)) {
 						ms_InitList.AddLast(trainer);
-				}
+					}
 				}
 
 				if (RM1_Settings.General.DemoDevice) {
@@ -1592,14 +1592,24 @@ namespace RacerMateOne  {
 			protected String m_CBLine = null;
 			public String CBLine {
 				get {
+                    String comName;
+                    if (PortNumber < 221)
+                    {
+                        comName = "COM" + (PortNumber + 1);
+                    }
+                    else
+                    {
+                        comName = "UDP" + (PortNumber);
+                    }
+
 					if (!IsConnected) {
 						if (ShouldBe == DeviceType.COMPUTRAINER || ShouldBe == DeviceType.VELOTRON) {
-							return "COM" + (PortNumber + 1) + ": /" + DeviceNames[(int)Type] + " - Not detected";
+							return comName + ": / " + DeviceNames[(int)Type] + " - Not detected";
 						}
-						return "COM" + (PortNumber + 1) + ": /Unknown";
+						return comName + ": / Unknown";
 					}
 
-					m_CBLine = "COM" + (PortNumber + 1) + ": / v" + Version + " /" + DeviceNames[(int)Type] + " / " + (Type == DeviceType.COMPUTRAINER ? "RRC = " : "Accuwatt = ") + CalibrationString;
+					m_CBLine = comName + ": / v" + Version + " / " + DeviceNames[(int)Type] + " / " + (Type == DeviceType.COMPUTRAINER ? "RRC = " : "Accuwatt = ") + CalibrationString;
 					return m_CBLine;
 				}
 			}									// String CBLine
