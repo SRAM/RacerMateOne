@@ -58,7 +58,7 @@ namespace RacerMateOne
 		{
             Bots.Add(WattsBot.gInfo);
 			Bots.Add(FixedSpeedBot.gInfo);
-			Bots.Add(DelayBot.gInfo);
+//			Bots.Add(DelayBot.gInfo);
 			Bots.Add(SpeedBot.gInfo);
 			Bots.Add(StdWattsBot.gInfo);
 			Bots.Add(HRBot.gInfo);
