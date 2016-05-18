@@ -1,0 +1,69 @@
+﻿<Window x:Class="RacerMateOne.Dialogs.HardwareWifiConfig"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dw="clr-namespace:RacerMateOne"
+    xmlns:c="clr-namespace:RacerMateOne.Controls"
+    Title="Configure Wifi Controllers"
+	WindowStyle="None" Background="Transparent" AllowsTransparency="True"
+    HorizontalAlignment="Center" VerticalAlignment="Center"
+    FontFamily="Arial"
+	Loaded="Window_Loaded" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+    </Window.Resources>
+    <Grid>
+        <Border Margin="0,0,7,7" VerticalAlignment="Top" HorizontalAlignment="Left" Width="450" Style="{DynamicResource PopupBox}" x:Name="CannotFind" Opacity="1">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" Direction="315" Opacity=".45"/>
+            </Border.Effect>
+            <StackPanel Margin="20,10,20,0">
+                <Label Name="TopText" Style="{StaticResource HeaderLabel}" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" VerticalAlignment="Top">
+                    Configure Wifi Controllers
+                </Label>
+                <TextBlock Name="Step1" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
+                    Step 1: Change your computer's wireless settings to connect to the Access Point of the CompuTrainer controller.
+                </TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,10,0,0">
+                    <TextBlock Name="DeviceNumberLabel" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,2,0,0" VerticalAlignment="Top">
+                        Device Number:
+                    </TextBlock>
+                    <TextBlock Name="DeviceNumberText" FontFamily="Arial" FontSize="20" Foreground="Red" MinHeight="20" Width="100" TextWrapping="Wrap" Margin="10,4,0,0" VerticalAlignment="Top">
+                        0
+                    </TextBlock>
+                    <c:Pillbox x:Name="RefreshButton" Text="Refresh" Width="110" VerticalAlignment="Bottom" Height="31" Margin="10,0,0,0" HorizontalAlignment="Left" Click="Refresh_Click"></c:Pillbox>
+                </StackPanel>
+                <TextBlock Name="Step2" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
+                    Step 2: Provide the SSID and password to your home wireless network.
+                </TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="20,5,0,0">
+                    <TextBlock Name="SSIDLabel" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,0,10,0" VerticalAlignment="Top">
+                    SSID:
+                    </TextBlock>
+                    <TextBox Name="SSIDText" Width="255" Margin="59,0,0,0"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="20,5,0,0">
+                    <TextBlock Name="PasswordLabel" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,0,10,0" VerticalAlignment="Top">
+                    Password:
+                    </TextBlock>
+                    <PasswordBox Name="PasswordText" Width="255" Margin="17,0,0,0"></PasswordBox>
+                </StackPanel>
+                <TextBlock Name="Step3" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
+                    Step 3: Send configuration to controller.
+                </TextBlock>
+                <c:Pillbox x:Name="Send" Text="Send Configuration" Width="220" VerticalAlignment="Bottom" Height="31" Margin="0,5,0,0" HorizontalAlignment="Center" Click="SendConfiguration_Click"></c:Pillbox>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0">
+                    <TextBlock Name="Step4" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
+                        Step 4: Status?
+                    </TextBlock>
+                    <TextBlock Name="StatusText" FontFamily="Arial" FontSize="20" Foreground="Red" MinHeight="20" TextWrapping="Wrap" Margin="10,20,0,0" VerticalAlignment="Top">
+                        Not Connected
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,20,19,19">
+                    <c:Pillbox x:Name="OK" Text="OK" Width="110" VerticalAlignment="Bottom" Height="31" Margin="0,0,0,0" HorizontalAlignment="Right" Click="OK_Click"></c:Pillbox>
+                    <c:Pillbox x:Name="Cancel" Text="Cancel" Width="110" VerticalAlignment="Bottom" Height="31" Margin="19,0,0,0" HorizontalAlignment="Right" Click="Cancel_Click"></c:Pillbox>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
