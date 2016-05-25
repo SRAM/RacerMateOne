@@ -1,27 +1,17 @@
 ﻿
-//#define OBFUSCATE
-
-// ctrl-m ctrl-o collapses everything, ctrl-m ctrl-l uncollapses
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
-//using System.Text;
 using System.Runtime.InteropServices;
-
 using System.Diagnostics;       // Needed for process invocation
-//using Microsoft.Win32;
 using System.ComponentModel; // CancelEventArgs
 using System.Threading;
 using System.Text.RegularExpressions;
 using System.Windows.Threading;
-//using System.Runtime.CompilerServices;
 using System.Reflection;
-//using System.Security.Permissions;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-//using System.Timers;
+using System.Windows.Forms;
 
 /************************************************************************************************
 
@@ -30,15 +20,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace RacerMateOne  {
 	public class RM1  {
 
-		/******************************************************************************************************************
+		/************************************************************************
 
-		******************************************************************************************************************/
-
+		************************************************************************/
 
 		static RM1() {
 			#if DEBUG
 			Log.WriteLine("RM1() static constructor");
 			Debug.WriteLine("RM1.cs   RM1() static constructor");
+			//FILE* stream = fopen("x.x", "wt");
+			//fclose(stream);
 			#endif
 
 			BarRadians = new Double[RM1.BarCount];
@@ -58,27 +49,42 @@ namespace RacerMateOne  {
 #if DEBUG
 			Debug.WriteLine("RM1.cs   calling DLL.racermate_init()");
 #endif
+			//int bp = 1;
 
+			//try {
 			DLL.racermate_init();                                    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+				//bp++;
 
 			if (!network_started) {
 				int status;
 #if DEBUG
 				Debug.WriteLine("RM1.cs   calling DLL.set_network_parameters()");
 #endif
+					int debug_level = 2;
+
 				status = DLL.set_network_parameters(
 							9071,
 							9072,
 							false,
 							true,
-							220);
+								220,
+								debug_level
+								);
 				//assert(status == 0);
 				//Thread.Sleep(3000);				// gotta give server time to start up. maybe move this earlier in the program.
 				network_started = true;
-
-				//status = DLL.start_network_server();							// does nothing
-				//assert(status == ALL_OK);
+					//bp++;
+				}												// if (!network_started)
+			/*
 			}
+			catch (Exception e) {
+				string s = e.ToString() + " bp = " + bp.ToString();
+				Log.WriteLine(s);
+
+				MessageBox.Show(s);
+			}
+			*/
 
 			#if DEBUG
 				System.IO.File.Delete("client.log");
@@ -101,17 +107,15 @@ namespace RacerMateOne  {
 		}											// static RM1() constructor
 
 
+		/************************************************************************
+
+		************************************************************************/
+
 		RM1() {
 			IntPtr pfullpath = Marshal.StringToHGlobalAnsi(RacerMatePaths.DebugFullPath);
-			#if !OBFUSCATE
 				_status_logpath = DLL.Setlogfilepath(pfullpath);
 				Marshal.FreeBSTR(pfullpath);
 				DLL.Enablelogs(true, true, true, true, true, true);
-			#else
-				_status_logpath = DLL.x2e5184f2acbfbf02e412b63f9c437a2b(pfullpath);
-				Marshal.FreeBSTR(pfullpath);
-				DLL.xf3caa7adf283cef08bf50e2817dbd1fa(true, true, true, true, true, true);
-			#endif
 		}											// RM1() constructor
 
 
@@ -158,15 +162,6 @@ namespace RacerMateOne  {
 			TRAINER_IS_SERVER,									// trainer is a server
 			TRAINER_IS_CLIENT									// trainer is a client
 		};
-
-		/*
-		public struct PORT_INFO  {
-			public byte[] name;
-			public int namelen;
-			public TRAINER_COMMUNICATION_TYPE type;
-			public int portnum;								// only for windows, 1-256, -1 for linux/mac
-		};
-		*/
 
 		public struct SSD {								// SpinScanData
 			public float ss;
@@ -228,29 +223,9 @@ namespace RacerMateOne  {
 			float SSRightATA { get; }
 			float SSLeft_Avg { get; }
 			float SSRight_Avg { get; }
-			//float SSLeftSplit { get; }
-			//float SSRightSplit { get; }
 			float SS_Avg { get; }
 			String GearingString { get; }
 		}
-
-		/*
-		enum EnumDeviceType {
-			DEVICE_NOT_SCANNED,					// unknown, not scanned
-			DEVICE_DOES_NOT_EXIST,				// serial port does not exist
-			DEVICE_EXISTS,							// exists, openable, but no RM device on it
-			DEVICE_COMPUTRAINER,
-			DEVICE_VELOTRON,
-			DEVICE_SIMULATOR,
-			DEVICE_RMP,
-			//DEVICE_WIFI,
-			DEVICE_ACCESS_DENIED,				// port present but can't open it because something else has it open
-			DEVICE_OPEN_ERROR,					// port present, unable to open port
-			DEVICE_NO_URL_AND_OR_TCP_PORT,
-			DEVICE_SERVER_NOT_RUNNING,
-			DEVICE_OTHER_ERROR					// prt present, error, none of the above
-		};
-		*/
 
 		public enum DeviceType  {
 			NOT_SCANNED = 0,				// unknown, not scanned
@@ -422,11 +397,7 @@ namespace RacerMateOne  {
 		public static String DLLVersion  {
 			get  {
 				if (ms_DLLVersion == null)  {
-					#if !OBFUSCATE
 						IntPtr iptr = DLL.get_dll_version();
-					#else
-						IntPtr iptr = DLL.x57d4e6345c7eca5164a0ed125b0a7947();
-					#endif
 					ms_DLLVersion = Marshal.PtrToStringAnsi(iptr);
 				}
 				return ms_DLLVersion;
@@ -441,11 +412,7 @@ namespace RacerMateOne  {
 		public static String APIVersion {
 			get  {
 				if (ms_APIVersion == null) {
-					#if !OBFUSCATE
 						IntPtr iptr = DLL.GetAPIVersion();										// <<<<<<<<<<<<<<<<<<<<<<
-					#else
-						IntPtr iptr = DLL.x77ae24db08410418b007f2f78197b12f();
-					#endif
 					ms_APIVersion = Marshal.PtrToStringAnsi(iptr);
 				}
 				return ms_APIVersion;
@@ -483,16 +450,10 @@ namespace RacerMateOne  {
 			string[] s;
 
 			try {
-		#if !OBFUSCATE
 				string cwd = Directory.GetCurrentDirectory();						// in .../bin/Debug!!
 				IntPtr iptr = DLL.GetPortNames();
 				string s2 = Marshal.PtrToStringAnsi(iptr);
 				s = s2.Split(' ');
-		#else
-				IntPtr iptr = DLL.x7a3f1a877cbf4ac500ff32a493d9ef51();
-				string s2 = Marshal.PtrToStringAnsi(iptr);
-				s = s2.Split(' ');
-		#endif
 			}
 			catch (Exception e) {
 				s = null;
@@ -521,11 +482,7 @@ namespace RacerMateOne  {
 			DeviceType id;
 			try  {
 				if (portnum >= 0 && portnum <= 254)  {
-					#if !OBFUSCATE
 					id = (DeviceType)DLL.GetRacerMateDeviceID(portnum, 1);
-					#else
-					id = (DeviceType)DLL.xe44f5940639d19c7d75af4cc50f52627(portnum);
-					#endif
 				}
 				else  {
 					id = DeviceType.DOES_NOT_EXIST;
@@ -673,6 +630,9 @@ namespace RacerMateOne  {
 			if (portnames == null) {
 				return 0;
 			}
+#if DEBUG
+		Log.WriteLine("RM1.cs, StartFullScan(), ports = " + portnames.ToString());
+#endif
 
 				Regex r = new Regex("^COM([0-9]+)$", RegexOptions.IgnoreCase);
 				// Make sure the other in the lit don't exit before we leave this.  Assures a final will 
@@ -685,47 +645,9 @@ namespace RacerMateOne  {
 					foreach (String n in portnames)  {
 						Log.WriteLine(string.Format("Scanning {0}", n));
 						Match m = r.Match(n);
-
-
-
-
 						if (m.Success)  {
 							int port = Convert.ToInt32(m.Groups[1].Value) - 1;
-
-
-							if (port >= 230 && port <= 245)  {						// trainer is server
-								//int tcp_port;
-                                //int status;
-								//IntPtr url;
-								//String surl;
-
-#if DEBUG
-								//tcp_port = 9072;
-								//surl = "miney2.mselectron.net";
-#else
-								//tcp_port = 8899;
-								//tcp_port = 9072;
-								//surl = "10.10.100.254";
-#endif
-
-								/*
-								try {
-									url = Marshal.StringToHGlobalAnsi(surl);
-									status = DLL.set_client_network(port, url, tcp_port);
-									Marshal.FreeHGlobal(url);								// also, you need to make sure to free the unmanaged memory:
-								}
-								finally {
-#if DEBUG
-									bp = 2;
-#endif
-								}
-								*/
-
-							}								// if (port >= 230 && port <= 245)  {						// trainer is server
-
-
 							Trainer trainer = Trainer.Get(port);
-
 							if (!ms_InitList.Contains(trainer)) {
 								ms_InitList.AddLast(trainer);
 							}
@@ -746,45 +668,42 @@ namespace RacerMateOne  {
 		}											// public static int StartFullScan()  {
 
 		/**********************************************************************************************************
-
+			refresh button gets here
 		**********************************************************************************************************/
 
 		public static int StartSpecificScan(List<int> ports) {													// 20141113
 			Trainer trainer;
-			Log.WriteLine("Scanning ports " + ports.ToString());
+
+#if DEBUG
+			Log.WriteLine("RM1.cs, StartSpecificScan(), ports = " + ports.ToString());
+#endif
+
 			int cnt;
 			ms_Mux.WaitOne();
-			try
-			{
+			try  {
 				foreach (int i in ports)  {
 					Log.WriteLine(string.Format("Scanning port {0}", i));
 
 					if (i >= 220 && i <= 245)  {
-						/*
-						if (!network_started) {
-							int status;
-							status = DLL.set_network(
-										9071,
-										9072,
-										false,
-										true,
-										220);
-							//assert(status == 0);
-							//Thread.Sleep(3000);				// gotta give server time to start up. maybe move this earlier in the program.
-							network_started = true;
-						}
-						*/
 					}
 
 					trainer = RM1.Trainer.Get(i);
-					if (!ms_InitList.Contains(trainer))
+					if (!ms_InitList.Contains(trainer)) {
 						ms_InitList.AddLast(trainer);
+					}
 				}
-				if (RM1_Settings.General.DemoDevice)
+
+				if (RM1_Settings.General.DemoDevice) {
 					AddFake();
+				}
+
 				cnt = ms_InitList.Count();
 			}
-			catch (Exception ex) { MutexException(ex); cnt = 0; }
+			catch (Exception ex) {
+				MutexException(ex);
+				cnt = 0;
+			}
+
 			ms_Mux.ReleaseMutex();
 			return cnt;
 		}
@@ -840,6 +759,7 @@ namespace RacerMateOne  {
 
 		#if DEBUG
 			string cwd = Directory.GetCurrentDirectory();						// in .../bin/Debug!!
+			Log.WriteLine("RM1.cs, StartSettingsScan()");
 		#endif
 
 			foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList) {
@@ -851,14 +771,17 @@ namespace RacerMateOne  {
 			}
 			else {
 				ans = RM1.StartSpecificScan(tlist);
+				//bp = 1;
+
 				foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList) {
 					Trainer t = RM1.Trainer.Get(tc.SavedSerialPortNum);
 					t.ShouldBe = tc.DeviceType;
 					ms_HardwareListVersion = 0;	// Redo the hardware list next time it is requested.
 				}
 			}
+
 			return ans;
-		}
+		}									// StartSettingsScan()
 
 		/**********************************************************************************************************
 
@@ -888,136 +811,6 @@ namespace RacerMateOne  {
 		/// </summary>
 		protected static class DLL {
 
-#if OBFUSCATE
-					//[DllImport("racermate.dll")] public static extern int Setlogfilepat_h(IntPtr pathtosafefolder);
-					[DllImport("racermate.dll")] public static extern int x2e5184f2acbfbf02e412b63f9c437a2b(IntPtr psf);
-
-					//[DllImport("racermate.dll")] public static extern int Enablelog_s(bool bikelog, bool courselog, bool decoder, bool ds, bool gears, bool physics);
-					[DllImport("racermate.dll")] public static extern int xf3caa7adf283cef08bf50e2817dbd1fa(bool bg, bool cg, bool dr, bool ds, bool gs, bool ps);
-					//[DllImport("racermate.dll")] public static extern int GetRacerMateDeviceI_D(Int32 portnum);  //returned is enum DeviceType
-					[DllImport("racermate.dll")] public static extern int xe44f5940639d19c7d75af4cc50f52627(Int32 pn);  //returned is enum DeviceType
-					//[DllImport("racermate.dll")] public static extern int GetFirmWareVersio_n(Int32 portnum);
-					[DllImport("racermate.dll")] public static extern int xf6ff6978145da30507d7273b30d57048(Int32 pn);
-					//[DllImport("racermate.dll")] public static extern byte GetIsCalibrate_d(int ix, int FirmwareVersion);
-					[DllImport("racermate.dll")] public static extern byte xead20f21bf8a0c75768469ae3c81899f(int ix, int abc_123);
-					// [DllImport("racermate.dll")] public static extern int GetCalibratio_n(int ix);
-					[DllImport("racermate.dll")] public static extern int x52eb2146582e00a11868691a63684ce8(int ix);
-					//[DllImport("racermate.dll")] public static extern uint startTraine_r(int ix, IntPtr course);
-					[DllImport("racermate.dll")] public static extern uint xcb05602f8585015d427f8bc21aa04dd2(int ix, IntPtr cse, int b);
-					// Formally has optionals: int xcb05602f8585015d427f8bc21aa04dd2(int ix, Course *_course=NULL, LoggingType _logging_type=NO_LOGGING); //
-					//[DllImport("racermate.dll")] public static extern int start_traine_r(int ix, bool _b);
-					[DllImport("racermate.dll")] public static extern int x40557f2e2f33d3fbcbbf35d798d09a75(int ix, bool _b); // NEW
-					//[DllImport("racermate.dll")] public static extern uint stopTraine_r(int ix);
-					[DllImport("racermate.dll")] public static extern uint x3a7d4fd38f0687e5896e1d50efeb698e(int ix);
-					//[DllImport("racermate.dll")] public static extern TrainerData GetTrainerDat_a(int ix, int FirmwareVersion);
-					[DllImport("racermate.dll")] public static extern TD xdd0a789ee158e3f3cc2af3a6c2c27bfa(int ix, int abc_123);
-					//[DllImport("racermate.dll")] public static extern int SetErgModeLoa_d(int ix, int FirmwareVersion, int RRC, float Load);
-					[DllImport("racermate.dll")] public static extern int x07d4ba4cbf768356c8e7a487c0ac8620(int ix, int abc_123, int R, float L);
-					// [DllImport("racermate.dll")] public static extern int resetTraine_r(int ix, int FirmwareVersion, int RRC); // V
-					[DllImport("racermate.dll")] public static extern int xdc58940a269093ef4f3b24b198d4f5cd(int ix, int abc_123, int R); // V
-					//[DllImport("racermate.dll")] public static extern int SetSlop_e(int ix, int FirmwareVersion, int RRC, float bike_kgs, float person_kgs, int DragFactor, float slope);
-					[DllImport("racermate.dll")] public static extern int x95a11b34b4272974c3080293ceb2d706(int ix, int abc_123, int R, float bs, float ps, int DFr, float se);
-					//[DllImport("racermate.dll")] public static extern int SetHRBeepBound_s(int ix, int FirmwareVersion, int LowBound, int HighBound, bool BeepEnabled);
-					[DllImport("racermate.dll")] public static extern int xb87a4e56c4cd11a1c169ffacb57a4953(int ix, int abc_123, int LB, int HB, bool BE);
-					//[DllImport("racermate.dll")] public static extern int GetHandleBarButton_s(int ix, int FirmwareVersion);
-					[DllImport("racermate.dll")] public static extern int xbe6cdadfa51b89ea48e8847cb65682a0(int ix, int abc_123);
-					//[DllImport("racermate.dll")] public static extern int SetRecalibrationMod_e(int ix, int FirmwareVersion);
-					[DllImport("racermate.dll")] public static extern int x6b7fe11c2bdf03a307fc4b89f0aa6849(int ix, int abc_123);
-					//[DllImport("racermate.dll")] public static extern int EndRecalibrationMod_e(int ix, int FirmwareVersion);
-					[DllImport("racermate.dll")] public static extern int xc1f918211cf81d12231e306ec1a3401e(int ix, int abc_123);
-					// [DllImport("racermate.dll")] public static extern int setPaus_e(int ix, bool _paused);
-					[DllImport("racermate.dll")] public static extern int xeef3cffd0410c6adf570e602cc190497(int ix, bool _pa);
-					// [DllImport("racermate.dll")] public static extern IntPtr GetAPIVersio_n();
-					[DllImport("racermate.dll")] public static extern IntPtr x77ae24db08410418b007f2f78197b12f();
-					// [DllImport("racermate.dll")] public static extern int ResettoIdl_e(int ix);
-					[DllImport("racermate.dll")] public static extern int x4cd79449513da2a2d6cc6d7261ea71ff(int ix);
-					//[DllImport("racermate.dll")] public static extern int ResetAlltoIdl_e();
-					[DllImport("racermate.dll")]public static extern int x3a0cc8753af246b4ec9fb77804fd7d32();
-					// [DllImport("racermate.dll")] public static extern IntPtr get_errst_r(int err);
-					[DllImport("racermate.dll")] public static extern IntPtr x7e4b8460b7f70589b12fe02c7727033a(int err);
-					//[DllImport("racermate.dll")] public static extern int get_accum_td_c(int ix, int FirmwareVersion);
-					[DllImport("racermate.dll")] public static extern int x167d2cc41bbfd4e4eb4f29f73869c852(int ix, int abc_123);
-					//[DllImport("racermate.dll")] public static extern int get_td_c(int idx, int FirmwareVersion);
-					[DllImport("racermate.dll")] public static extern int x8a326e1d103407af651b7ec507e43a2f(int idx, int abc_123);
-
-					/* [DllImport("racermate.dll")] public static extern uint SetVelotronParameter_s(int ix,
-						int FWVersion,
-						int nfront,
-						int nrear,
-						IntPtr Chainrings,
-						IntPtr cogset,
-						float wheeldiameter_mm,            // mm
-						int ActualChainring,
-						int Actualcog,
-						float bike_kgs,
-					//float person_kgs,
-					int front_index,
-					int rear_index
-					); */
-
-					[DllImport("racermate.dll")] public static extern uint x720de7788bf90a8cff74e683633c97e3(
-							int ix,
-							int abc_123,
-							int nf,
-							int nr,
-							IntPtr Chgs,
-							IntPtr cgst,
-							float wd_mm,            // mm
-							int ACh,
-							int Acg,
-							float bgs,
-							//float person_kgs,
-							int f_i,
-							int r_i
-							);
-					//[DllImport("racermate.dll")] public static extern GearPair GetCurrentVTGea_r(int ix, int FWVersion);
-					[DllImport("racermate.dll")] public static extern GP x7223a05782894100c28046fe70e8f80d(int ix, int abc_123);
-					//[DllImport("racermate.dll")] public static extern int setGea_r(int ix, int FWVersion, int front_index, int rear_index);
-					[DllImport("racermate.dll")] public static extern int xf2dcb410127d9fb73f8d7ece38f484d3(int ix, int abc_123, int f_i, int r_i);
-
-					//[DllImport("racermate.dll")] public static extern IntPtr get_bar_s(int ix, int FWVersion);
-					[DllImport("racermate.dll")] public static extern IntPtr xc5d2185cd957432a236590dff37b698f(int ix, int abc_123);
-					// [DllImport("racermate.dll")] public static extern IntPtr get_average_bar_s(int ix, int FWVersion);
-					[DllImport("racermate.dll")] public static extern IntPtr xf03c385eb37d7ec91949d131f8151067(int ix, int abc_123);
-					//[DllImport("racermate.dll")] public static extern SpinScanData get_ss_dat_a(int ix, int fw);
-					[DllImport("racermate.dll")] public static extern SSD x11e0d99d8b3db35c8c9c143c7e4604eb(int ix, int qwt);
-
-					//[DllImport("racermate.dll")] public static extern IntPtr get_dll_versio_n();
-					[DllImport("racermate.dll")] public static extern IntPtr x57d4e6345c7eca5164a0ed125b0a7947();
-
-					// [DllImport("racermate.dll")] public static extern float get_calorie_s(int ix, int fw);
-					[DllImport("racermate.dll")] public static extern float x0dd479c3e31ab52d4f13d06b644f2a48(int ix, int qwt);
-					//[DllImport("racermate.dll")] public static extern float get_n_p(int ix, int fw);
-					[DllImport("racermate.dll")] public static extern float x11dc7bf26c2ca00e3bcd7126c9e8b8a3(int ix, int qwt);						// returns -1.0f if device not initialized
-					//[DllImport("racermate.dll")] public static extern float get_i_f(int ix, int fw);
-					[DllImport("racermate.dll")] public static extern float x9032a834c819d779f850ca0409ec4e99(int ix, int qwt);						// returns -1.0f if device not initialized
-					//[DllImport("racermate.dll")] public static extern float get_ts_s(int ix, int fw);
-					[DllImport("racermate.dll")] public static extern float xfe6e1722bc406f7036c42d24f8c9ac5d(int ix, int qwt);					// returns -1.0f if device not initialized
-					//[DllImport("racermate.dll")] public static extern float get_p_p(int ix, int fw);
-					[DllImport("racermate.dll")] public static extern float xe346d590c0b0742ef18a9b1e2c540769(int ix, int qwt);
-					//[DllImport("racermate.dll")] public static extern int set_ft_p(int ix, int fw, float ftp);
-					[DllImport("racermate.dll")] public static extern int x3d32f489c08b5fbb1d8987d798be96ee(int ix, int qwt, float fp);
-
-					//[DllImport("racermate.dll")] public static extern int ResetAverage_s(int ix, int fw);
-					[DllImport("racermate.dll")] public static extern int xd88900273b45f82781a39d724d6a0155(int ix, int qwt);
-					// [DllImport("racermate.dll")] public static extern int set_win_d(int ix, int fw, float _wind_kph);
-					[DllImport("racermate.dll")] public static extern int x93fe436d52bee5eb1c4f760618a86f1d(int ix, int qwt, float _w_k);
-					//[DllImport("racermate.dll")] public static extern int set_draftwin_d(int ix, int fw, float _draft_wind_kph);
-					[DllImport("racermate.dll")] public static extern int x4c7ff5b24822d1b052932681e21078c8(int ix, int qwt, float _d_w_k);
-
-					//[DllImport("racermate.dll")] public static extern int update_velotron_curren_t(int ix, ushort pic_current);
-					[DllImport("racermate.dll")] public static extern int xe815ad58306a19844849ee0cf9f3423e(int ix, ushort p_ct);
-					//[DllImport("racermate.dll")] public static extern int set_velotron_calibratio_n(int ix, int fw, int _cal);
-					[DllImport("racermate.dll")] public static extern int xe86b1d45fea29400e685ca372e6b3df2(int ix, int qwt, int _c);
-
-					//[DllImport("racermate.dll")] public static extern int check_for_trainer_s(int _ix); 
-					[DllImport("racermate.dll")] public static extern int x010fb505c40bbb260c9bf6a981018cfb(int _ix);                       //returned is enum DeviceType
-					//[DllImport("racermate.dll")] public static extern int velotron_calibration_spindow_n(int _ix, int _fw);
-					[DllImport("racermate.dll")] public static extern int x912cedc9091a9a97d83000156d70dbb1(int _ix, int _fw);
-
-					//[DllImport("racermate.dll")] public static extern int get_status_bit_s(int ix, int fw);
-					[DllImport("racermate.dll")] public static extern int xbea472536fcf1f4128b1c870a71c0fb6(int ix, int qwt);
-#else
 
 			// [DllImport("racermate.dll")] public static extern IntPtr get_errst_r(int err);
 			[DllImport("racermate.dll")]
@@ -1212,7 +1005,7 @@ namespace RacerMateOne  {
 			//public static extern int set_client_network(int _ix, IntPtr _url, int _tcp_port);
 
 			[DllImport("racermate.dll")]
-			public static extern int set_network_parameters(int _broadcast_port, int _listen_port, bool _discover, bool _udp, int _ix);
+			public static extern int set_network_parameters(int _broadcast_port, int _listen_port, bool _discover, bool _udp, int _ix, int _debug_level);
 			[DllImport("racermate.dll")]
 			public static extern int start_network_server();
 
@@ -1224,7 +1017,6 @@ namespace RacerMateOne  {
 
 			[DllImport("racermate.dll")]
 			public static extern int set_port_info(int _ix, IntPtr _name, int _type, int _portnum);
-#endif
 		}												// class DLL
 
 
@@ -1409,6 +1201,11 @@ namespace RacerMateOne  {
 			public void SetPaused(bool paused, bool force) {
 				if (force || paused != m_Paused) {
 					m_Paused = paused;
+#if DEBUG
+					if (m_Paused) {
+						bp = 3;
+					}
+#endif
 					SetUpdateFlags(UpdateFlags.Pause);
 				}
 			}
@@ -1660,7 +1457,6 @@ namespace RacerMateOne  {
 					ms_Mux.WaitOne();
 					try {
 						if (Type == DeviceType.VELOTRON) {
-		#if !OBFUSCATE
 							DLLError derr = (DLLError)DLL.SetVelotronParameters(PortNumber, Ver,
 									m_VelotronData.ChainringsCount,
 									m_VelotronData.CogsetCount,
@@ -1673,21 +1469,6 @@ namespace RacerMateOne  {
 									m_VelotronData.FrontGear,
 									m_VelotronData.RearGear
 									);
-		#else
-							DLLError derr = (DLLError)DLL.x720de7788bf90a8cff74e683633c97e3(PortNumber, Ver,
-									m_VelotronData.ChainringsCount,
-									m_VelotronData.CogsetCount,
-									ms_ip_chainrings,
-									ms_ip_cogset,
-									m_VelotronData.WheelDiameter_mm,
-									m_VelotronData.ActualChainring,
-									m_VelotronData.ActualCog,
-									m_VelotronData.Bike_Kg,
-									m_VelotronData.FrontGear,
-									m_VelotronData.RearGear
-									);
-		#endif
-
 							m_CurVelotron = m_VelotronData;
 						}
 						DLLError ans;
@@ -1696,13 +1477,8 @@ namespace RacerMateOne  {
 						else {
 							try {
 
-		#if !OBFUSCATE
 								ans = (DLLError)RM1.DLL.startTrainer(PortNumber, IntPtr.Zero, 0);
 								DLL.start_trainer(PortNumber, true);
-		#else
-								ans = (DLLError)RM1.DLL.xcb05602f8585015d427f8bc21aa04dd2(PortNumber, IntPtr.Zero, 0);
-								DLL.x40557f2e2f33d3fbcbbf35d798d09a75(PortNumber, true);
-		#endif
 							}
 							catch (Exception exc) {
 								Debug.WriteLine("ERROR IN STARTING Trainer: " + exc.ToString());
@@ -1714,11 +1490,7 @@ namespace RacerMateOne  {
 							IsStarted = true;
 							if (!ms_StartedList.Contains(this))
 								ms_StartedList.AddLast(this);
-		#if !OBFUSCATE
 							m_Buttons = DLL.GetHandleBarButtons(PortNumber, Ver) & 0x3f;
-		#else
-							m_Buttons = DLL.xbe6cdadfa51b89ea48e8847cb65682a0(PortNumber, Ver) & 0x3f;
-		#endif
 							if (m_Buttons != 0)
 								m_bButtonsStart = true;
 						}
@@ -1751,18 +1523,7 @@ namespace RacerMateOne  {
 						IsStarted = false;
 						if (!bFake)
 							#if DEBUG
-								#if OBFUSCATE
-												//RM1.DLL.x3a7d4fd38f0687e5896e1d50efeb698e(PortNumber);
 												RM1.DLL.stopTrainer(PortNumber);
-								#else
-											//Debug.WriteLine("RM1.cs   calling DLL.stopTrainer()");
-											//RM1.DLL.stopTrainer(PortNumber);
-								#endif
-							#else
-								#if OBFUSCATE
-											RM1.DLL.x3a7d4fd38f0687e5896e1d50efeb698e(PortNumber);
-								#else
-								#endif
 							#endif
 						ms_StartedList.Remove(this);
 					}
@@ -1831,14 +1592,24 @@ namespace RacerMateOne  {
 			protected String m_CBLine = null;
 			public String CBLine {
 				get {
+                    String comName;
+                    if (PortNumber < 221)
+                    {
+                        comName = "COM" + (PortNumber + 1);
+                    }
+                    else
+                    {
+                        comName = "UDP" + (PortNumber);
+                    }
+
 					if (!IsConnected) {
 						if (ShouldBe == DeviceType.COMPUTRAINER || ShouldBe == DeviceType.VELOTRON) {
-							return "COM" + (PortNumber + 1) + ": /" + DeviceNames[(int)Type] + " - Not detected";
+							return comName + ": / " + DeviceNames[(int)Type] + " - Not detected";
 						}
-						return "COM" + (PortNumber + 1) + ": /Unknown";
+						return comName + ": / Unknown";
 					}
 
-					m_CBLine = "COM" + (PortNumber + 1) + ": / v" + Version + " /" + DeviceNames[(int)Type] + " / " + (Type == DeviceType.COMPUTRAINER ? "RRC = " : "Accuwatt = ") + CalibrationString;
+					m_CBLine = comName + ": / v" + Version + " / " + DeviceNames[(int)Type] + " / " + (Type == DeviceType.COMPUTRAINER ? "RRC = " : "Accuwatt = ") + CalibrationString;
 					return m_CBLine;
 				}
 			}									// String CBLine
@@ -1872,11 +1643,6 @@ namespace RacerMateOne  {
 
 			public float Speed {
 				get {
-		#if DEBUG					// tlm2014
-					if (m_TrainerData.Speed > 22.5f) {				// m_TrainerData.Speed is in KPH!
-						bp = 1;
-					}
-		#endif
 					return (float)(m_TrainerData.Speed * ConvertConst.KPHToMetersPerSecond);
 				}
 			}
@@ -2088,8 +1854,14 @@ namespace RacerMateOne  {
 			 *******************************************************************************************************/
 
 			protected void Update() {
-				if (!IsStarted)
+				if (!IsStarted) {
 					return;
+				}
+
+#if DEBUG
+				
+#endif
+
 				m_IntervalCount++;
 				bool paused;
 				UpdateFlags uflags = ClearUpdateFlags(out paused);
@@ -2099,48 +1871,40 @@ namespace RacerMateOne  {
 
 				if (uflags != UpdateFlags.Zero) {
 					if ((uflags & UpdateFlags.Pause) != UpdateFlags.Zero && !paused) {
-		#if !OBFUSCATE
-						DLL.setPause(PortNumber, paused);
-		#else
-						DLL.xeef3cffd0410c6adf570e602cc190497(PortNumber, paused);
+#if DEBUG
+						if ( (uflags & UpdateFlags.Pause) != UpdateFlags.Zero) {
+							bp = 3;
+						}
+
+						if (paused) {
+							bp = 1;
+						}
 		#endif
+						DLL.setPause(PortNumber, paused);
 						m_CurPaused = paused;
 					}
 
 					if ((uflags & UpdateFlags.ResetAverages) != UpdateFlags.Zero) {
-		#if !OBFUSCATE
 						DLL.ResetAverages(PortNumber, Ver);
 						DLL.start_trainer(PortNumber, true);
-		#else
-						DLL.xd88900273b45f82781a39d724d6a0155(PortNumber, Ver);
-						DLL.x40557f2e2f33d3fbcbbf35d798d09a75(PortNumber, true);
-		#endif
 						uflags |= UpdateFlags.Grade | UpdateFlags.Watts | UpdateFlags.Drag | UpdateFlags.Pause | UpdateFlags.FTP | UpdateFlags.Pause;
 					}
 
 					if ((uflags & UpdateFlags.FTP) != UpdateFlags.Zero) {
-		#if !OBFUSCATE
 						DLL.set_ftp(PortNumber, Ver, m_FTP);
-		#else
-						DLL.x3d32f489c08b5fbb1d8987d798be96ee(PortNumber, Ver, m_FTP);
-		#endif
 					}
 					if ((uflags & UpdateFlags.Pause) != UpdateFlags.Zero && paused) {
-		#if !OBFUSCATE
-						DLL.setPause(PortNumber, paused);
-		#else
-						DLL.xeef3cffd0410c6adf570e602cc190497(PortNumber, paused);
+#if DEBUG
+						if (paused) {
+							bp = 9;
+						}
 		#endif
+						int status = DLL.setPause(PortNumber, paused);
 						m_CurPaused = paused;
 					}
 
 					if ((uflags & UpdateFlags.Drafting) != UpdateFlags.Zero) {
-		#if !OBFUSCATE
 						DLL.set_draftwind(PortNumber, Ver, m_Drafting ? RM1.DraftWind : 0.0f);
-		#else
-						DLL.x4c7ff5b24822d1b052932681e21078c8(PortNumber, Ver, m_Drafting ? RM1.DraftWind : 0.0f);
-
-		#endif
 					}
 
 					if ((uflags & UpdateFlags.Wind) != UpdateFlags.Zero) {
@@ -2151,11 +1915,7 @@ namespace RacerMateOne  {
 							Log.WriteLine(String.Format("Wind changed to {0}", m_Wind));
 							}
 						 */
-		#if !OBFUSCATE
 						DLL.set_wind(PortNumber, Ver, m_Wind);// + (m_Drafting ? RM1.DraftWind : 0.0f));
-		#else
-						DLL.x93fe436d52bee5eb1c4f760618a86f1d(PortNumber, Ver, m_Wind);// + (m_Drafting ? RM1.DraftWind : 0.0f));
-		#endif
 					}
 
 
@@ -2164,29 +1924,17 @@ namespace RacerMateOne  {
 					if ((uflags & (UpdateFlags.Grade | UpdateFlags.Watts | UpdateFlags.Drag)) != UpdateFlags.Zero) {
 						if (m_bERG) {
 							m_bSetErg = true;
-		#if !OBFUSCATE
 							DLL.SetErgModeLoad(PortNumber, Ver, CalibrationValue, AppWin.PreviewMode ? 0 : m_Watts_Load);
-		#else
-							DLL.x07d4ba4cbf768356c8e7a487c0ac8620(PortNumber, Ver, CalibrationValue, AppWin.PreviewMode ? 0 : m_Watts_Load);
-		#endif
 						}
 						else {											// windload mode update
 							if (m_Rider == null) {
 								if (m_bSetErg) {
 									if (m_Grade == 0) {
-		#if !OBFUSCATE
 										DLL.SetSlope(PortNumber, Ver, CalibrationValue, 0.0f, 0.0f, 100, 1);
-		#else
-										DLL.x95a11b34b4272974c3080293ceb2d706(PortNumber, Ver, CalibrationValue, 0.0f, 0.0f, 100, 1);
-		#endif
 									}
 									m_bSetErg = false;
 								}
-		#if !OBFUSCATE
 								DLL.SetSlope(PortNumber, Ver, CalibrationValue, 0.0f, 0.0f, 100, AppWin.PreviewMode ? 0 : m_Grade);
-		#else
-								DLL.x95a11b34b4272974c3080293ceb2d706(PortNumber, Ver, CalibrationValue, 0.0f, 0.0f, 100, AppWin.PreviewMode ? 0 : m_Grade);
-		#endif
 							}
 							else {
 								float bw = m_Rider.WeightBikeKGS;
@@ -2197,19 +1945,11 @@ namespace RacerMateOne  {
 								}
 								if (m_bSetErg) {
 									if (m_Grade == 0) {
-		#if !OBFUSCATE
 										DLL.SetSlope(PortNumber, Ver, CalibrationValue, 0.0f, 0.0f, 100, 1);
-		#else
-										DLL.x95a11b34b4272974c3080293ceb2d706(PortNumber, Ver, CalibrationValue, 0.0f, 0.0f, 100, 1);
-		#endif
 									}
 									m_bSetErg = false;
 								}
-		#if !OBFUSCATE
 								DLL.SetSlope(PortNumber, Ver, CalibrationValue, bw, rw, m_CurDragFactor, AppWin.PreviewMode ? 0 : m_Grade);
-		#else
-								DLL.x95a11b34b4272974c3080293ceb2d706(PortNumber, Ver, CalibrationValue, bw, rw, m_CurDragFactor, AppWin.PreviewMode ? 0 : m_Grade);
-		#endif
 							}
 						}
 					}								// if ((uflags & (UpdateFlags.Grade | UpdateFlags.Watts | UpdateFlags.Drag)) != UpdateFlags.Zero)  {
@@ -2219,7 +1959,6 @@ namespace RacerMateOne  {
 				int raw=0;
 
 
-				#if !OBFUSCATE
 					#if DEBUG
 						try {
 					#endif
@@ -2232,9 +1971,6 @@ namespace RacerMateOne  {
 							bp = 3;
 						}
 					#endif
-				#else					// obfuscate
-					raw = (bFake ? FakeKeys : DLL.xbe6cdadfa51b89ea48e8847cb65682a0(PortNumber, VersionNum));
-				#endif
 
 				if (AppWin.PreviewMode)
 					raw &= 0x7fffff80;
@@ -2266,28 +2002,38 @@ namespace RacerMateOne  {
 
 					bool fn = (b & 1) != 0;
 					RM1.PadKeys key;
+
 					if (down != 0) {
-						if ((down & 2) != 0) {
+						if ((down & 1) != 0) {										// 0x01, ct reset
+							// apparently not implemented
+						}
+
+						if ((down & 2) != 0) {										// 0x02, ct f1
 							key = fn ? RM1.PadKeys.F4 : RM1.PadKeys.F1;
 							m_Keys[(int)key].Down();
 						}
-						if ((down & 4) != 0) {
+
+						if ((down & 4) != 0)  {										// 0x04, ct f2
 							key = fn ? RM1.PadKeys.F5 : RM1.PadKeys.F2;
 							m_Keys[(int)key].Down();
 						}
-						if ((down & 8) != 0) {
+
+						if ((down & 8) != 0) {										// 0x08, ct f3
 							key = fn ? RM1.PadKeys.F6 : RM1.PadKeys.F3;
 							m_Keys[(int)key].Down();
 						}
-						if ((down & 16) != 0) {
+
+						if ((down & 16) != 0) {										// 0x10, ct +
 							key = fn ? RM1.PadKeys.FN_UP : RM1.PadKeys.UP;
 							m_Keys[(int)key].Down();
 						}
-						if ((down & 32) != 0) {
+
+						if ((down & 32) != 0) {										// 0x20, ct -
 							key = fn ? RM1.PadKeys.FN_DOWN : RM1.PadKeys.DOWN;
 							m_Keys[(int)key].Down();
 						}
-						if ((down & 64) != 0) {
+
+						if ((down & 64) != 0)  {									// 0x40
 							Debug.WriteLine("no communication");
 
 							key = RM1.PadKeys.NO_COMMUNICATION;
@@ -2369,22 +2115,14 @@ namespace RacerMateOne  {
 									//Debug.WriteLine("RM1.cs::Entering calibration mode...");
 									//Debug.WriteLine("stack trace : '{0}'" , Environment.StackTrace ); 
 									Thread.Sleep(100);
-		#if !OBFUSCATE
 									DLL.SetRecalibrationMode(PortNumber, Ver);
-		#else
-									DLL.x6b7fe11c2bdf03a307fc4b89f0aa6849(PortNumber, Ver);
-		#endif
 									Thread.Sleep(100);
 									//  Debug.WriteLine("RM1.cs::...Calibration mode entered.\n");
 								}
 								else {
 									//  Debug.WriteLine("RM1.cs::Exiting calibration mode...");
 									Thread.Sleep(100);
-		#if !OBFUSCATE
 									DLL.EndRecalibrationMode(PortNumber, Ver);
-		#else
-									DLL.xc1f918211cf81d12231e306ec1a3401e(PortNumber, Ver);
-		#endif
 									Thread.Sleep(100);
 									SetCalibrationValue(true);
 									// Debug.WriteLine("RM1.cs::...Calibration mode exited.\n");
@@ -2398,12 +2136,8 @@ namespace RacerMateOne  {
 
 						if (!m_CurCalibrationMode) {
 							if (!AppWin.PreviewMode) {
-		#if !OBFUSCATE
 								m_TrainerData = DLL.GetTrainerData(PortNumber, Ver);
-		#else
-								m_TrainerData = DLL.xdd0a789ee158e3f3cc2af3a6c2c27bfa(PortNumber, Ver);
-		#endif
-
+								// speed is in kph = m_TrainerData.Speed
 
 		#if DEBUG
 								if (m_TrainerData.HR > 0.0f) {
@@ -2422,7 +2156,6 @@ namespace RacerMateOne  {
 
 
 
-		#if !OBFUSCATE
 								m_SpinScanData = DLL.get_ss_data(PortNumber, Ver);
 								#if DEBUG
 									try {
@@ -2471,21 +2204,6 @@ namespace RacerMateOne  {
 								m_NP = DLL.get_np(PortNumber, Ver);
 								m_TSS = DLL.get_tss(PortNumber, Ver);
 								StatusFlags sf = (StatusFlags)DLL.get_status_bits(PortNumber, Ver);				// not implemented!
-		#else
-								m_SpinScanData = DLL.x11e0d99d8b3db35c8c9c143c7e4604eb(PortNumber, Ver);
-								ip = DLL.xc5d2185cd957432a236590dff37b698f(PortNumber, Ver);
-								Marshal.Copy(ip, m_Bars, 0, 24);
-
-								ip = DLL.xf03c385eb37d7ec91949d131f8151067(PortNumber, Ver);
-								Marshal.Copy(ip, m_AverageBars, 0, 24);
-
-								m_PulsePower = DLL.xe346d590c0b0742ef18a9b1e2c540769(PortNumber, Ver);
-								m_Calories = DLL.x0dd479c3e31ab52d4f13d06b644f2a48(PortNumber, Ver);
-								m_IF = DLL.x9032a834c819d779f850ca0409ec4e99(PortNumber, Ver);
-								m_NP = DLL.x11dc7bf26c2ca00e3bcd7126c9e8b8a3(PortNumber, Ver);
-								m_TSS = DLL.xfe6e1722bc406f7036c42d24f8c9ac5d(PortNumber, Ver);
-								StatusFlags sf = (StatusFlags)DLL.xbea472536fcf1f4128b1c870a71c0fb6(PortNumber, Ver);		// not implemented!
-		#endif
 
 								if (m_StatusFlags != sf) {
 									m_StatusFlags = sf;
@@ -2493,7 +2211,6 @@ namespace RacerMateOne  {
 								}
 
 								if (Type == DeviceType.VELOTRON) {
-		#if !OBFUSCATE
 									m_GearPair = DLL.GetCurrentVTGear(PortNumber, Ver);
 		#if DEBUG
 									if (m_GearPair.Front == 56) {
@@ -2501,18 +2218,11 @@ namespace RacerMateOne  {
 									}
 		#endif
 
-		#else
-									m_GearPair = DLL.x7223a05782894100c28046fe70e8f80d(PortNumber, Ver);
-		#endif
 								}
 							}												//	if (!m_CurCalibrationMode)   {
 							else {										// if (AppWin.PreviewMode)
 								// calibrating:
-		#if !OBFUSCATE
 								m_TrainerData = DLL.GetTrainerData(PortNumber, Ver); // Keep this live, even through we are going to write fake data in there.
-		#else
-								m_TrainerData = DLL.xdd0a789ee158e3f3cc2af3a6c2c27bfa(PortNumber, Ver);
-		#endif
 								m_TrainerData.Cadence = 75.91368f;
 								m_TrainerData.HR = 0.0f;
 								m_TrainerData.Power = 640.7542f;
@@ -2599,11 +2309,7 @@ namespace RacerMateOne  {
 
 			void SetVelotronGears() {
 				if (Type == DeviceType.VELOTRON && IsStarted)
-		#if !OBFUSCATE
 					DLL.setGear(PortNumber, Ver, m_FrontGearNumber, m_RearGearNumber);
-		#else
-						DLL.xf2dcb410127d9fb73f8d7ece38f484d3(PortNumber, Ver, m_FrontGearNumber, m_RearGearNumber);
-		#endif
 			}
 
 			/**********************************************************************************************************
@@ -2613,21 +2319,11 @@ namespace RacerMateOne  {
 			void SetCalibrationValue(bool notify) {
 				ms_Mux.WaitOne();
 				try {
-		#if !OBFUSCATE
 					int orgv = DLL.GetFirmWareVersion(PortNumber);
 					int v = (orgv == 4095 ? 4543 : orgv);
 
 					bool c = (DLL.GetIsCalibrated(PortNumber, orgv) & 0xff) == 0 ? false : true;
-					int cnum = DLL.GetCalibration(PortNumber);
-
-		#else   
-							int orgv = DLL.xf6ff6978145da30507d7273b30d57048(PortNumber);
-							int v = (orgv == 4095 ? 4543 : orgv);
-							bool c = (DLL.xead20f21bf8a0c75768469ae3c81899f(PortNumber, orgv) & 0xff) == 0 ? false : true;
-							int cnum = DLL.x52eb2146582e00a11868691a63684ce8(PortNumber);
-
-		#endif
-
+					int cnum = DLL.GetCalibration(PortNumber);				// wifi = 3, serial = 200
 
 					//Paul enabled feb 5
 					//Log.WriteLine (String.Format("Found {0} on port {1}, Version {2}", Type, PortNumber + 1, v) +
@@ -2836,7 +2532,7 @@ namespace RacerMateOne  {
 			private static void ThreadLoop() {
 		#if DEBUG
 				Log.WriteLine("RM1.cs, ThreadLoop() beginning");
-            int bp = 0;
+            //int bp = 0;
 
 				//using System.Diagnostics;
 
@@ -2853,15 +2549,27 @@ namespace RacerMateOne  {
 				Debug.WriteLine("RM1.cs   mem = " + mem.ToString());
 
 		#endif
-                int cnt = 0;
-                int cnt2 = 0;
+
+				#if DEBUG
+					long cnt = -1;
+					 long cnt2 = 0;
+					 long lastticks2 = DateTime.Now.Ticks;
+				#endif
+
+				/*
+						long cnt2 = 0;
+						long tot = 0L;
+					#endif
+				*/
 
 				App.SetDefaultCulture();
 
 				Trainer trainer;
 				Int64 wait = 1, nextframe = 0, ticks, afterticks;
 
-				// ok here 5, Riders.RiderList[11] valid
+				//------------------------------------------
+				// mainloop
+				//------------------------------------------
 
 				for (; !ms_WaitEvent.WaitOne(new TimeSpan(wait)) && !ms_bShutdown; ) {
 					if (nextframe <= 0) {
@@ -2952,16 +2660,19 @@ namespace RacerMateOne  {
 							}
 							else {
 								nextframe += ms_TargetTicks;
-								cnt = (cnt+1)%1600;		// about 1 minute?
-								if (cnt == 0) {
-									GC.Collect();
 
+								/*
 									#if DEBUG
+								cnt = (cnt+1)%30;
+								if (cnt == 0) {
 										cnt2++;
-										Debug.WriteLine("GC" + cnt2.ToString());
-									#endif
+									long xxx = DateTime.Now.Ticks;
+									uint delta = (uint) ((xxx - lastticks2) & 0x0000ffff);
+									lastticks2 = xxx;
+									Debug.WriteLine("tick " + cnt2.ToString() + ", delta = " + delta.ToString());
 								}
-
+								#endif
+								*/
 							}
 						}
 					}
@@ -2969,7 +2680,7 @@ namespace RacerMateOne  {
 						MutexException(ex);
                         string s = ex.ToString();
 						#if DEBUG
-                        bp = 1;
+							//bp = 1;
 						#endif
 					}
 					ms_Mux.ReleaseMutex();
@@ -2978,7 +2689,7 @@ namespace RacerMateOne  {
 						mem = proc.PrivateMemorySize64;
 						long diff = mem - startmem;
 						if (diff > 0) {
-							bp = 2;
+							//bp = 2;
 						}
                     #endif
 				}																// for (; !ms_WaitEvent.WaitOne(new TimeSpan(wait)) && !ms_bShutdown; )  {

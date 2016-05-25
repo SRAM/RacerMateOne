@@ -801,14 +801,13 @@ namespace RacerMateOne
 
 		// NOTE RM1.ms_Mux is locked here 
 		/**************************************************************************************************
-
+			called every 33 ms
 		**************************************************************************************************/
 
-		public static void IntervalUpdate(Int64 lasttime, double splittime)
-		{
+		public static void IntervalUpdate(Int64 lasttime, double splittime)  {
 			LastTime = lasttime;
-			foreach (Unit unit in Active)
-			{
+
+			foreach (Unit unit in Active)  {
 				if (unit.m_Bot != null)
 					unit.Statistics.UpdateStats(unit.m_Bot, splittime);
 				else if (unit.m_Trainer != null)

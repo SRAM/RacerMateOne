@@ -629,7 +629,10 @@ namespace RacerMateOne  {
 				return;
 			switch (s)
 			{
-				case 'G': m_OnDirectKey(RM1.PadKeys.F1); break;
+				case 'G':
+					m_OnDirectKey(RM1.PadKeys.F1);
+					break;
+
 				case 'S': m_OnDirectKey(RM1.PadKeys.F2); break;
 				case 'A': m_OnDirectKey(RM1.PadKeys.F3); break;
 				case 'u': m_OnDirectKey(RM1.PadKeys.UP); break;
@@ -965,12 +968,13 @@ namespace RacerMateOne  {
 			#if DEBUG
 				// The "#if DEBUG" is to protect it, just in case someone forgets to uncomment it, but should be commented out unless absollutly nessary.
 				return true;
-			#endif
-			string hardwareid = App.GetHardwareID();
+			#else
+				string hardwareid = App.GetHardwareID();
             IntPtr p_hardwareid = Marshal.StringToHGlobalAnsi(hardwareid);
             RegisterType registered = CheckRegisteredType(p_hardwareid);
             Marshal.FreeHGlobal(p_hardwareid);
             return (registered == RegisterType.DELUXE);
+			#endif
 		}
 
         /// <summary>

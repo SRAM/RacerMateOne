@@ -282,8 +282,6 @@ namespace RacerMateOne.CourseEditorDev
 
         }
 
-			// tlm: crashes here?
-
         void CourseEditor_Loaded(object sender, RoutedEventArgs e)
         {
             MessageBoxImage stop = MessageBoxImage.Stop;

@@ -163,8 +163,11 @@ namespace RacerMateOne.Dialogs
             }
         }
 
-        private void bw_DoSaveWork(object sender, DoWorkEventArgs e)
-        {
+		  /**********************************************************************************************
+
+		  **********************************************************************************************/
+
+		  private void bw_DoSaveWork(object sender, DoWorkEventArgs e) {
             App.SetDefaultCulture();
 
             // Do not access the form's BackgroundWorker reference directly.
@@ -187,10 +190,13 @@ namespace RacerMateOne.Dialogs
             }
         }
 
-        private void ProcessSave(BackgroundWorker bw, string filename)
-        {
-            if (0 < filename.Length)
-            {
+		  /**********************************************************************************************
+
+		  **********************************************************************************************/
+
+		  private void ProcessSave(BackgroundWorker bw, string filename) {
+
+            if (0 < filename.Length)  {
                 int numFiles = 1;
                 if (RM1_Settings.General.ExportSave)
                     numFiles += 2;
@@ -214,8 +220,8 @@ namespace RacerMateOne.Dialogs
                 StatFlags ExportFlags = reportCols.StatFlags;
 
                 // Export here 
-                if (RM1_Settings.General.ExportSave)
-                {
+
+                if (RM1_Settings.General.ExportSave)  {
                     perf.ExportPWXFromLoadedFile(bw, ExportFlags);
                     ProgressPercent += ProgressUnits;
                     UpdateProgressBar(ProgressPercent);
@@ -237,8 +243,7 @@ namespace RacerMateOne.Dialogs
                     UpdateProgressBar(ProgressPercent);
                 }
             }
-            else
-            {
+            else  {
                 List<Unit> saveUnits = Unit.Active;
                 if (saveUnits.Count > 0)
                 {
@@ -280,8 +285,8 @@ namespace RacerMateOne.Dialogs
                             StatFlags ExportFlags = reportCols.StatFlags;
 
                             // Export here 
-                            if (RM1_Settings.General.ExportSave)
-                            {
+#if SAVE_IN_RAM
+									if (RM1_Settings.General.ExportSave)  {
                                 PerfContainer.ExportPWX(bw, stats, unit, ExportFlags);
                                 ProgressPercent += ProgressUnits;
                                 UpdateProgressBar(ProgressPercent);
@@ -290,6 +295,7 @@ namespace RacerMateOne.Dialogs
                                 ProgressPercent += ProgressUnits;
                                 UpdateProgressBar(ProgressPercent);
                             }
+#endif
 
                             // periodically checks if the work is cancelled
                             if (bw.CancellationPending)

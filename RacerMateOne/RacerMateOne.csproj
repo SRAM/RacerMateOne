@@ -26,6 +26,7 @@
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <ExpressionBlendVersion>5.2.30810.0</ExpressionBlendVersion>
     <PublishUrl>\\EDGARCT-PC\Shared\RacerMate\Publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
@@ -43,7 +44,6 @@
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <ExpressionBlendVersion>5.2.30810.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <IntermediateOutputPath>c:\temp\</IntermediateOutputPath>
@@ -51,7 +51,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;xSAVE_IN_RAM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -62,7 +62,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;xSAVE_IN_RAM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -208,6 +208,10 @@
     <Page Include="CourseEditorDev\SplashWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\HardwareWifiConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\_Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1136,6 +1140,9 @@
     </Compile>
     <Compile Include="Dialogs\Ask.xaml.cs">
       <DependentUpon>Ask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\HardwareWifiConfig.xaml.cs">
+      <DependentUpon>HardwareWifiConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\JustInfo.xaml.cs">
       <DependentUpon>JustInfo.xaml</DependentUpon>

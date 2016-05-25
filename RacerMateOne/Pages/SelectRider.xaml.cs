@@ -582,6 +582,7 @@ namespace RacerMateOne.Pages  {
 
 		void UpdateFilter()  {
 
+			try {
 			// tlm20140923:
 			// made changes here so that the realtime rider search would work
 
@@ -694,6 +695,14 @@ namespace RacerMateOne.Pages  {
 #if DEBUG
 				bp = 3;
 #endif
+			}
+			}
+			catch (Exception e) {
+				// tlm20160218
+				//#if DEBUG
+				System.Console.WriteLine("SelectRider.xaml.cs.UpdateFilter error: '{0}'\n", e.ToString());
+				//#endif
+				Log.WriteLine(e.ToString());
 			}
 
 
