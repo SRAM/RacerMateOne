@@ -55,13 +55,21 @@ namespace RacerMateOne  {
 			DLL.racermate_init();                                    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 				//bp++;
+			int status;
+			int debug_level = 2;
 
+			status = DLL.start_server2(
+							9072,									// int listen_port
+							9071,									// int broadcast_port
+							"",									// override ip adress
+							debug_level);
+
+
+			/*
 			if (!network_started) {
-				int status;
 #if DEBUG
 				Debug.WriteLine("RM1.cs   calling DLL.set_network_parameters()");
 #endif
-					int debug_level = 2;
 
 				status = DLL.set_network_parameters(
 							9071,
@@ -76,6 +84,8 @@ namespace RacerMateOne  {
 				network_started = true;
 					//bp++;
 				}												// if (!network_started)
+			 */
+
 			/*
 			}
 			catch (Exception e) {
@@ -1004,10 +1014,12 @@ namespace RacerMateOne  {
 			//[DllImport("racermate.dll")]
 			//public static extern int set_client_network(int _ix, IntPtr _url, int _tcp_port);
 
+			//[DllImport("racermate.dll")]
+			//public static extern int set_network_parameters(int _broadcast_port, int _listen_port, bool _discover, bool _udp, int _ix, int _debug_level);
+			//[DllImport("racermate.dll")]
+			//public static extern int start_network_server();
 			[DllImport("racermate.dll")]
-			public static extern int set_network_parameters(int _broadcast_port, int _listen_port, bool _discover, bool _udp, int _ix, int _debug_level);
-			[DllImport("racermate.dll")]
-			public static extern int start_network_server();
+			public static extern int start_server2(int _listen_port, int _broadcast_port, const char *_myip, int _debug_level);
 
 			[DllImport("racermate.dll")]
 			public static extern int racermate_init();
