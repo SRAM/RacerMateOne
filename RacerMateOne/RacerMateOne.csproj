@@ -209,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Dialogs\HardwareWifiConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\_Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1136,6 +1140,9 @@
     </Compile>
     <Compile Include="Dialogs\Ask.xaml.cs">
       <DependentUpon>Ask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\HardwareWifiConfig.xaml.cs">
+      <DependentUpon>HardwareWifiConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\JustInfo.xaml.cs">
       <DependentUpon>JustInfo.xaml</DependentUpon>
