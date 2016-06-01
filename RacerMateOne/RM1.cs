@@ -486,24 +486,19 @@ namespace RacerMateOne  {
 
 	*****************************************************************************************************/
 
-		public static DeviceType GetRacerMateDeviceID(int portnum)  {
+		public static DeviceType GetRacerMateDeviceID(string portName)  {
 			//if (portnum == 6)
 			//	return DeviceType.OPEN_ERROR;
 			DeviceType id;
 			try  {
-				if (portnum >= 0 && portnum <= 254)  {
-					id = (DeviceType)DLL.GetRacerMateDeviceID(portnum, 1);
-				}
-				else  {
-					id = DeviceType.DOES_NOT_EXIST;
-				}
+				id = (DeviceType)DLL.GetRacerMateDeviceID(portName, 1);
 			}
 			catch (Exception e)  {
 				Log.WriteLine(e.ToString());
 				id = DeviceType.OPEN_ERROR;
 			}
-			//Log.WriteLine("opened " + portnum + "  got " + id.ToString());
-			return id;
+            //Log.WriteLine("opened " + PortName + " got " + id.ToString());
+            return id;
 		}
 
 		public delegate void TrainerEvent(Trainer trainer, object arguments);	// Depends on the event.
@@ -517,14 +512,16 @@ namespace RacerMateOne  {
 		public static event TrainerPadKey OnPadKey;
 		public delegate void UpdateEvent(double splittime);
 		public static event UpdateEvent OnUpdate;
-		/// <summary>
-		/// All the trainers comm ports.  Not thread safe.   Only  add/remove from main thread.
-		/// </summary>
-		protected static Dictionary<int, Trainer> ms_Trainers = new Dictionary<int, Trainer>();
-		/// <summary>
-		/// Trainers that need to be initizlized  Uses the ms_mux to add and remove from.
-		/// </summary>
-		protected static LinkedList<Trainer> ms_InitList = new LinkedList<Trainer>();
+        /// <summary>
+        /// All the trainers comm ports.  Not thread safe.   Only  add/remove from main thread.
+        /// </summary>
+//		protected static Dictionary<int, Trainer> ms_Trainers = new Dictionary<int, Trainer>();
+        protected static Dictionary<string, Trainer> ms_Trainers = new Dictionary<string, Trainer>();
+
+        /// <summary>
+        /// Trainers that need to be initizlized  Uses the ms_mux to add and remove from.
+        /// </summary>
+        protected static LinkedList<Trainer> ms_InitList = new LinkedList<Trainer>();
 		/// <summary>
 		/// When a trainer needs to be started add it here.
 		/// </summary>
@@ -547,7 +544,7 @@ namespace RacerMateOne  {
 				if (ms_ActiveListVersion != ms_HardwareListVersion)
 				{
 					ms_HardwareList.Clear();
-					foreach (KeyValuePair<int, RM1.Trainer> kp in ms_Trainers)
+					foreach (KeyValuePair<string, RM1.Trainer> kp in ms_Trainers)
 					{
 						RM1.Trainer t = kp.Value;
 						if (t.IsConnected || t.ShouldBe != DeviceType.DOES_NOT_EXIST)
@@ -644,25 +641,20 @@ namespace RacerMateOne  {
 		Log.WriteLine("RM1.cs, StartFullScan(), ports = " + portnames.ToString());
 #endif
 
-				Regex r = new Regex("^COM([0-9]+)$", RegexOptions.IgnoreCase);
-				// Make sure the other in the lit don't exit before we leave this.  Assures a final will 
-				int cnt;
-				ms_Mux.WaitOne();
+			// Make sure the others in the list don't exit before we leave this.
+			int cnt;
+			ms_Mux.WaitOne();
 
-				try  {
-					List<int> list = new List<int>();
+			try  {
+				List<string> list = new List<string>();
 
-					foreach (String n in portnames)  {
-						Log.WriteLine(string.Format("Scanning {0}", n));
-						Match m = r.Match(n);
-						if (m.Success)  {
-							int port = Convert.ToInt32(m.Groups[1].Value) - 1;
-							Trainer trainer = Trainer.Get(port);
-							if (!ms_InitList.Contains(trainer)) {
-								ms_InitList.AddLast(trainer);
-							}
+				foreach (String n in portnames)  {
+					Log.WriteLine(string.Format("Scanning {0}", n));
+                    Trainer trainer = Trainer.Get(n);
+					if (!ms_InitList.Contains(trainer)) {
+						ms_InitList.AddLast(trainer);
 					}
-				}
+			    }
 
 				if (RM1_Settings.General.DemoDevice) {
 					AddFake();
@@ -675,13 +667,13 @@ namespace RacerMateOne  {
 
 			ms_Mux.ReleaseMutex();
 			return cnt;
-		}											// public static int StartFullScan()  {
+		}
 
 		/**********************************************************************************************************
 			refresh button gets here
 		**********************************************************************************************************/
 
-		public static int StartSpecificScan(List<int> ports) {													// 20141113
+		public static int StartSpecificScan(List<string> ports) {													// 20141113
 			Trainer trainer;
 
 #if DEBUG
@@ -691,16 +683,13 @@ namespace RacerMateOne  {
 			int cnt;
 			ms_Mux.WaitOne();
 			try  {
-				foreach (int i in ports)  {
-					Log.WriteLine(string.Format("Scanning port {0}", i));
+				foreach (string portName in ports)  {
+					Log.WriteLine(string.Format("Scanning port {0}", portName));
 
-					if (i >= 220 && i <= 245)  {
-					}
-
-					trainer = RM1.Trainer.Get(i);
+					trainer = RM1.Trainer.Get(portName);
 					if (!ms_InitList.Contains(trainer)) {
 						ms_InitList.AddLast(trainer);
-				}
+				    }
 				}
 
 				if (RM1_Settings.General.DemoDevice) {
@@ -722,35 +711,8 @@ namespace RacerMateOne  {
 
 		**********************************************************************************************************/
 
-		public static int StartCompleteScan() {								// 20141113
-			Log.WriteLine("Starting complete scan");
-			int cnt;
-			ms_Mux.WaitOne();
-			try  {
-				for (int i = 0; i < 255; i++)   {
-					Trainer trainer = RM1.Trainer.Get(i);
-					if (!ms_InitList.Contains(trainer))
-						ms_InitList.AddLast(trainer);
-				}
-
-				if (RM1_Settings.General.DemoDevice)
-					AddFake();
-				cnt = ms_InitList.Count();
-			}
-			catch (Exception ex) {
-				MutexException(ex); cnt = 0;
-			}
-
-			ms_Mux.ReleaseMutex();
-			return cnt;
-		}
-
-		/**********************************************************************************************************
-
-		**********************************************************************************************************/
-
 		public static void ClearAllTrainers()  {
-			foreach (KeyValuePair<int, Trainer> entry in ms_Trainers)  {
+			foreach (KeyValuePair<string, Trainer> entry in ms_Trainers)  {
 				entry.Value.Close();
 			}
 			ms_Trainers.Clear();
@@ -764,7 +726,7 @@ namespace RacerMateOne  {
 		**********************************************************************************************************/
 
 		public static int StartSettingsScan()  {
-			List<int> tlist = new List<int>();
+			List<string> portNameList = new List<string>();
 			int ans;
 
 		#if DEBUG
@@ -773,18 +735,18 @@ namespace RacerMateOne  {
 		#endif
 
 			foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList) {
-				tlist.Add(tc.SavedSerialPortNum);
+                portNameList.Add(tc.SavedPortName);
 			}
 
-			if (tlist.Count() == 0) {
+			if (portNameList.Count() == 0) {
 				ans = RM1.StartFullScan();
 			}
 			else {
-				ans = RM1.StartSpecificScan(tlist);
+				ans = RM1.StartSpecificScan(portNameList);
 				//bp = 1;
 
 				foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList) {
-					Trainer t = RM1.Trainer.Get(tc.SavedSerialPortNum);
+					Trainer t = RM1.Trainer.Get(tc.SavedPortName);
 					t.ShouldBe = tc.DeviceType;
 					ms_HardwareListVersion = 0;	// Redo the hardware list next time it is requested.
 				}
@@ -798,7 +760,7 @@ namespace RacerMateOne  {
 		**********************************************************************************************************/
 
 		public static void AddFake()  {
-			RM1.Trainer.Get(-1);
+			RM1.Trainer.Get("Fake");
 		}
 
 		/////////////////////////////// C L A S S E S /////////////////////////////
@@ -821,12 +783,10 @@ namespace RacerMateOne  {
 		/// </summary>
 		protected static class DLL {
 
-
 			// [DllImport("racermate.dll")] public static extern IntPtr get_errst_r(int err);
 			[DllImport("racermate.dll")]
 			public static extern IntPtr get_errstr(int err);
-
-
+            
 			//[DllImport("racermate.dll")] public static extern int Setlogfilepat_h(IntPtr pathtosafefolder);
 			[DllImport("racermate.dll")]
 			public static extern int Setlogfilepath(IntPtr psf);
@@ -844,68 +804,68 @@ namespace RacerMateOne  {
 			public static extern IntPtr get_build_date();
 
 			//[DllImport("racermate.dll")] public static extern int GetRacerMateDeviceI_D(Int32 portnum);  //returned is enum DeviceType
-			[DllImport("racermate.dll")]
-			public static extern int GetRacerMateDeviceID(Int32 pn, Int32 dummy);  //returned is enum DeviceType
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int GetRacerMateDeviceID([MarshalAs(UnmanagedType.LPStr)] string portName, Int32 dummy);  //returned is enum DeviceType
 			//[DllImport("racermate.dll")] public static extern int GetFirmWareVersio_n(Int32 portnum);
-			[DllImport("racermate.dll")]
-			public static extern int GetFirmWareVersion(Int32 pn);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int GetFirmWareVersion([MarshalAs(UnmanagedType.LPStr)] string portName);
 			//[DllImport("racermate.dll")] public static extern byte GetIsCalibrate_d(int ix, int FirmwareVersion);
-			[DllImport("racermate.dll")]
-			public static extern byte GetIsCalibrated(int ix, int abc_123);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern byte GetIsCalibrated([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123);
 			// [DllImport("racermate.dll")] public static extern int GetCalibratio_n(int ix);
-			[DllImport("racermate.dll")]
-			public static extern int GetCalibration(int ix);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int GetCalibration([MarshalAs(UnmanagedType.LPStr)] string portName);
 			//[DllImport("racermate.dll")] public static extern uint startTraine_r(int ix, IntPtr course);
-			[DllImport("racermate.dll")]
-			public static extern uint startTrainer(int ix, IntPtr cse, int b);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern uint startTrainer([MarshalAs(UnmanagedType.LPStr)] string portName, IntPtr cse, int b);
 			// Formally has optionals: int startTrainer(int ix, Course *_course=NULL, LoggingType _logging_type=NO_LOGGING); //
 			//[DllImport("racermate.dll")] public static extern int start_traine_r(int ix, bool _b);
-			[DllImport("racermate.dll")]
-			public static extern int start_trainer(int ix, bool _b); // NEW
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int start_trainer([MarshalAs(UnmanagedType.LPStr)] string portName, bool _b); // NEW
 			//[DllImport("racermate.dll")] public static extern uint stopTraine_r(int ix);
-			[DllImport("racermate.dll")]
-			public static extern uint stopTrainer(int ix);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern uint stopTrainer([MarshalAs(UnmanagedType.LPStr)] string portName);
 			//[DllImport("racermate.dll")] public static extern TrainerData GetTrainerDat_a(int ix, int FirmwareVersion);
-			[DllImport("racermate.dll")]
-			public static extern TD GetTrainerData(int ix, int abc_123);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern TD GetTrainerData([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123);
 			//[DllImport("racermate.dll")] public static extern int SetErgModeLoa_d(int ix, int FirmwareVersion, int RRC, float Load);
-			[DllImport("racermate.dll")]
-			public static extern int SetErgModeLoad(int ix, int abc_123, int R, float L);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int SetErgModeLoad([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123, int R, float L);
 			// [DllImport("racermate.dll")] public static extern int resetTraine_r(int ix, int FirmwareVersion, int RRC); // V
-			[DllImport("racermate.dll")]
-			public static extern int resetTrainer(int ix, int abc_123, int R); // V
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int resetTrainer([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123, int R); // V
 			//[DllImport("racermate.dll")] public static extern int SetSlop_e(int ix, int FirmwareVersion, int RRC, float bike_kgs, float person_kgs, int DragFactor, float slope);
-			[DllImport("racermate.dll")]
-			public static extern int SetSlope(int ix, int abc_123, int R, float bs, float ps, int DFr, float se);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int SetSlope([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123, int R, float bs, float ps, int DFr, float se);
 			//[DllImport("racermate.dll")] public static extern int SetHRBeepBound_s(int ix, int FirmwareVersion, int LowBound, int HighBound, bool BeepEnabled);
-			[DllImport("racermate.dll")]
-			public static extern int SetHRBeepBounds(int ix, int abc_123, int LB, int HB, bool BE);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int SetHRBeepBounds([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123, int LB, int HB, bool BE);
 			//[DllImport("racermate.dll")] public static extern int GetHandleBarButton_s(int ix, int FirmwareVersion);
-			[DllImport("racermate.dll")]
-			public static extern int GetHandleBarButtons(int ix, int abc_123);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int GetHandleBarButtons([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123);
 			//[DllImport("racermate.dll")] public static extern int SetRecalibrationMod_e(int ix, int FirmwareVersion);
-			[DllImport("racermate.dll")]
-			public static extern int SetRecalibrationMode(int ix, int abc_123);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int SetRecalibrationMode([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123);
 			//[DllImport("racermate.dll")] public static extern int EndRecalibrationMod_e(int ix, int FirmwareVersion);
-			[DllImport("racermate.dll")]
-			public static extern int EndRecalibrationMode(int ix, int abc_123);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int EndRecalibrationMode([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123);
 			// [DllImport("racermate.dll")] public static extern int setPaus_e(int ix, bool _paused);
-			[DllImport("racermate.dll")]
-			public static extern int setPause(int ix, bool _pa);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int setPause([MarshalAs(UnmanagedType.LPStr)] string portName, bool _pa);
 
 			// [DllImport("racermate.dll")] public static extern int ResettoIdl_e(int ix);
-			[DllImport("racermate.dll")]
-			public static extern int ResettoIdle(int ix);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int ResettoIdle([MarshalAs(UnmanagedType.LPStr)] string portName);
 			//[DllImport("racermate.dll")] public static extern int ResetAlltoIdl_e();
 			[DllImport("racermate.dll")]
 			public static extern int ResetAlltoIdle();
 
 			//[DllImport("racermate.dll")] public static extern int get_accum_td_c(int ix, int FirmwareVersion);
-			[DllImport("racermate.dll")]
-			public static extern int get_accum_tdc(int ix, int abc_123);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int get_accum_tdc([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123);
 			//[DllImport("racermate.dll")] public static extern int get_td_c(int idx, int FirmwareVersion);
-			[DllImport("racermate.dll")]
-			public static extern int get_tdc(int idx, int abc_123);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int get_tdc([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123);
 			/* [DllImport("racermate.dll")] public static extern uint SetVelotronParameter_s(int ix,
 				int FWVersion,
 				int nfront,
@@ -920,9 +880,9 @@ namespace RacerMateOne  {
 			int front_index,
 			int rear_index
 			); */
-			[DllImport("racermate.dll")]
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
 			public static extern uint SetVelotronParameters(
-					int ix,
+                    [MarshalAs(UnmanagedType.LPStr)] string portName,
 					int abc_123,
 					int nf,
 					int nr,
@@ -937,72 +897,74 @@ namespace RacerMateOne  {
 					int r_i
 					);
 			//[DllImport("racermate.dll")] public static extern GearPair GetCurrentVTGea_r(int ix, int FWVersion);
-			[DllImport("racermate.dll")]
-			public static extern GP GetCurrentVTGear(int ix, int abc_123);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern GP GetCurrentVTGear([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123);
 			//[DllImport("racermate.dll")] public static extern int setGea_r(int ix, int FWVersion, int front_index, int rear_index);
-			[DllImport("racermate.dll")]
-			public static extern int setGear(int ix, int abc_123, int f_i, int r_i);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int setGear([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123, int f_i, int r_i);
 
 			//[DllImport("racermate.dll")] public static extern IntPtr get_bar_s(int ix, int FWVersion);
-			[DllImport("racermate.dll")]
-			public static extern IntPtr get_bars(int ix, int abc_123);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern IntPtr get_bars([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123);
 			// [DllImport("racermate.dll")] public static extern IntPtr get_average_bar_s(int ix, int FWVersion);
-			[DllImport("racermate.dll")]
-			public static extern IntPtr get_average_bars(int ix, int abc_123);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern IntPtr get_average_bars([MarshalAs(UnmanagedType.LPStr)] string portName, int abc_123);
 			//[DllImport("racermate.dll")] public static extern SpinScanData get_ss_dat_a(int ix, int fw);
-			[DllImport("racermate.dll")]
-			public static extern SSD get_ss_data(int ix, int qwt);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern SSD get_ss_data([MarshalAs(UnmanagedType.LPStr)] string portName, int qwt);
 
 			//[DllImport("racermate.dll")] public static extern IntPtr get_dll_versio_n();
 			[DllImport("racermate.dll")]
 			public static extern IntPtr get_dll_version();
 
 			// [DllImport("racermate.dll")] public static extern float get_calorie_s(int ix, int fw);
-			[DllImport("racermate.dll")]
-			public static extern float get_calories(int ix, int qwt);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern float get_calories([MarshalAs(UnmanagedType.LPStr)] string portName, int qwt);
 			//[DllImport("racermate.dll")] public static extern float get_n_p(int ix, int fw);
-			[DllImport("racermate.dll")]
-			public static extern float get_np(int ix, int qwt);						// returns -1.0f if device not initialized
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern float get_np([MarshalAs(UnmanagedType.LPStr)] string portName, int qwt);						// returns -1.0f if device not initialized
 			//[DllImport("racermate.dll")] public static extern float get_i_f(int ix, int fw);
-			[DllImport("racermate.dll")]
-			public static extern float get_if(int ix, int qwt);						// returns -1.0f if device not initialized
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern float get_if([MarshalAs(UnmanagedType.LPStr)] string portName, int qwt);						// returns -1.0f if device not initialized
 			//[DllImport("racermate.dll")] public static extern float get_ts_s(int ix, int fw);
-			[DllImport("racermate.dll")]
-			public static extern float get_tss(int ix, int qwt);					// returns -1.0f if device not initialized
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern float get_tss([MarshalAs(UnmanagedType.LPStr)] string portName, int qwt);					// returns -1.0f if device not initialized
 			//[DllImport("racermate.dll")] public static extern float get_p_p(int ix, int fw);
-			[DllImport("racermate.dll")]
-			public static extern float get_pp(int ix, int qwt);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern float get_pp([MarshalAs(UnmanagedType.LPStr)] string portName, int qwt);
 			//[DllImport("racermate.dll")] public static extern int set_ft_p(int ix, int fw, float ftp);
-			[DllImport("racermate.dll")]
-			public static extern int set_ftp(int ix, int qwt, float fp);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int set_ftp([MarshalAs(UnmanagedType.LPStr)] string portName, int qwt, float fp);
 
 			//[DllImport("racermate.dll")] public static extern int ResetAverage_s(int ix, int fw);
-			[DllImport("racermate.dll")]
-			public static extern int ResetAverages(int ix, int qwt);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int ResetAverages([MarshalAs(UnmanagedType.LPStr)] string portName, int qwt);
 			// [DllImport("racermate.dll")] public static extern int set_win_d(int ix, int fw, float _wind_kph);
-			[DllImport("racermate.dll")]
-			public static extern int set_wind(int ix, int qwt, float _w_k);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int set_wind([MarshalAs(UnmanagedType.LPStr)] string portName, int qwt, float _w_k);
 			//[DllImport("racermate.dll")] public static extern int set_draftwin_d(int ix, int fw, float _draft_wind_kph);
-			[DllImport("racermate.dll")]
-			public static extern int set_draftwind(int ix, int qwt, float _d_w_k);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int set_draftwind([MarshalAs(UnmanagedType.LPStr)] string portName, int qwt, float _d_w_k);
 
 			//[DllImport("racermate.dll")] public static extern int update_velotron_curren_t(int ix, ushort pic_current);
-			[DllImport("racermate.dll")]
-			public static extern int update_velotron_current(int ix, ushort p_ct);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int update_velotron_current([MarshalAs(UnmanagedType.LPStr)] string portName, ushort p_ct);
+
 			//[DllImport("racermate.dll")] public static extern int set_velotron_calibratio_n(int ix, int fw, int _cal);
-			[DllImport("racermate.dll")]
-			public static extern int set_velotron_calibration(int ix, int qwt, int _c);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int set_velotron_calibration([MarshalAs(UnmanagedType.LPStr)] string portName, int qwt, int _c);
 
 			//[DllImport("racermate.dll")] public static extern int check_for_trainer_s(int _ix); 
-			[DllImport("racermate.dll")]
-			public static extern int check_for_trainers(int _ix);                       //returned is enum DeviceType
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int check_for_trainers([MarshalAs(UnmanagedType.LPStr)] string portName);                       //returned is enum DeviceType
+
 			//[DllImport("racermate.dll")] public static extern int velotron_calibration_spindow_n(int _ix, int _fw);
-			[DllImport("racermate.dll")]
-			public static extern int velotron_calibration_spindown(int _ix, int _fw);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int velotron_calibration_spindown([MarshalAs(UnmanagedType.LPStr)] string portName, int _fw);
 
 			//[DllImport("racermate.dll")] public static extern int get_status_bit_s(int ix, int fw);
-			[DllImport("racermate.dll")]
-			public static extern int get_status_bits(int ix, int qwt);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int get_status_bits([MarshalAs(UnmanagedType.LPStr)] string portName, int qwt);
 
 			//////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1018,8 +980,8 @@ namespace RacerMateOne  {
 			//public static extern int set_network_parameters(int _broadcast_port, int _listen_port, bool _discover, bool _udp, int _ix, int _debug_level);
 			//[DllImport("racermate.dll")]
 			//public static extern int start_network_server();
-			[DllImport("racermate.dll")]
-			public static extern int start_server2(int _listen_port, int _broadcast_port, const char *_myip, int _debug_level);
+			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
+			public static extern int start_server2(int _listen_port, int _broadcast_port, [MarshalAs(UnmanagedType.LPStr)] string _myip, int _debug_level);
 
 			[DllImport("racermate.dll")]
 			public static extern int racermate_init();
@@ -1040,7 +1002,7 @@ namespace RacerMateOne  {
 		**********************************************************************************************************/
 
 		/// <summary>
-		/// Represents one comm port - (PortNumber) 
+		/// Represents one comm port - (PortName) 
 		/// </summary>
 		public class Trainer : DispatcherObject, INotifyPropertyChanged, IStats {
 			[Flags]
@@ -1075,11 +1037,11 @@ namespace RacerMateOne  {
 			}
 
 			public TrainerChangedFlags m_Changed = TrainerChangedFlags.Zero;
-			public static int FakePort = 258;
+			public static string FakePort = "Demo258";
 			public static Trainer Fake;
 			public RM1.State State { get; protected set; }
 			public bool Closed { get; protected set; }
-			public readonly int PortNumber;
+            public readonly string PortName;
 			public DeviceType Type { get; protected set; }
 
 			protected bool bFake = false;
@@ -1352,8 +1314,7 @@ namespace RacerMateOne  {
 			/// <summary>
 			/// 
 			/// </summary>
-			/// <param name="portnum">0 Based portnumber. COMM1 = 0</param>
-			Trainer(int portnum) {
+			Trainer(string portName) {
 				InitKeys();
 				Closed = false;
 				LastError = DLLError.ALL_OK;
@@ -1365,28 +1326,23 @@ namespace RacerMateOne  {
 				IsConnected = false;
 				m_Buttons = 0;
 
-#if DEBUG
-				if (portnum == 230) {
-					bp = 2;
-				}
-#endif
-				ms_Trainers[portnum] = this;
-				PortNumber = portnum;
+				ms_Trainers[portName] = this;
+                PortName = portName;
 				bFake = false;
-				//if (portnum == FakePort)
-				//{
-				//    bFake = true;
-				//    PortNumber = 99;
-				//    VersionNum = 4543;
-				//    Ver = 4095;
-				//    //I want to kill the com 100 fake case in release
-				//   // IsConnected = true;
-				//   // Type = DeviceType.COMPUTRAINER;
-				//    Type = DeviceType.NOT_SCANNED;
+                //if (portName == FakePort)
+                //{
+                //    bFake = true;
+                //    PortNumber = 99;
+                //    VersionNum = 4543;
+                //    Ver = 4095;
+                //    //I want to kill the com 100 fake case in release
+                //   // IsConnected = true;
+                //   // Type = DeviceType.COMPUTRAINER;
+                //    Type = DeviceType.NOT_SCANNED;
 
-				//    IsConnected = false;
-				//}
-				ms_Mux.WaitOne();
+                //    IsConnected = false;
+                //}
+                ms_Mux.WaitOne();
 				try {
 					ms_InitList.AddLast(this);
 				}
@@ -1408,24 +1364,18 @@ namespace RacerMateOne  {
 					RM1.OnClosed(this, null);
 			}
 
-			public static Trainer Get(int portnum) {
+			public static Trainer Get(string portName) {
 				Trainer t;
-				if (portnum < 0) {
-					portnum = FakePort;
-					Debug.WriteLine("the fake port");
-				}
-				if (ms_Trainers.ContainsKey(portnum))
-					t = ms_Trainers[portnum];
+                if (ms_Trainers.ContainsKey(portName))
+					t = ms_Trainers[portName];
 				else {
-					t = new Trainer(portnum);
-					if (portnum == FakePort)
-						Fake = t;
+					t = new Trainer(portName);
 				}
 				return t;
 			}
 
-			public static Trainer Find(int portnum) {
-				return (ms_Trainers.ContainsKey(portnum) ? ms_Trainers[portnum] : null);
+			public static Trainer Find(string portName) {
+				return (ms_Trainers.ContainsKey(portName) ? ms_Trainers[portName] : null);
 			}
 
 
@@ -1469,7 +1419,7 @@ namespace RacerMateOne  {
 					ms_Mux.WaitOne();
 					try {
 						if (Type == DeviceType.VELOTRON) {
-							DLLError derr = (DLLError)DLL.SetVelotronParameters(PortNumber, Ver,
+							DLLError derr = (DLLError)DLL.SetVelotronParameters(PortName, Ver,
 									m_VelotronData.ChainringsCount,
 									m_VelotronData.CogsetCount,
 									ms_ip_chainrings,
@@ -1489,8 +1439,8 @@ namespace RacerMateOne  {
 						else {
 							try {
 
-								ans = (DLLError)RM1.DLL.startTrainer(PortNumber, IntPtr.Zero, 0);
-								DLL.start_trainer(PortNumber, true);
+								ans = (DLLError)RM1.DLL.startTrainer(PortName, IntPtr.Zero, 0);
+								DLL.start_trainer(PortName, true);
 							}
 							catch (Exception exc) {
 								Debug.WriteLine("ERROR IN STARTING Trainer: " + exc.ToString());
@@ -1502,7 +1452,7 @@ namespace RacerMateOne  {
 							IsStarted = true;
 							if (!ms_StartedList.Contains(this))
 								ms_StartedList.AddLast(this);
-							m_Buttons = DLL.GetHandleBarButtons(PortNumber, Ver) & 0x3f;
+							m_Buttons = DLL.GetHandleBarButtons(PortName, Ver) & 0x3f;
 							if (m_Buttons != 0)
 								m_bButtonsStart = true;
 						}
@@ -1535,7 +1485,7 @@ namespace RacerMateOne  {
 						IsStarted = false;
 						if (!bFake)
 							#if DEBUG
-												RM1.DLL.stopTrainer(PortNumber);
+								RM1.DLL.stopTrainer(PortName);
 							#endif
 						ms_StartedList.Remove(this);
 					}
@@ -1606,12 +1556,12 @@ namespace RacerMateOne  {
 				get {
 					if (!IsConnected) {
 						if (ShouldBe == DeviceType.COMPUTRAINER || ShouldBe == DeviceType.VELOTRON) {
-							return "COM" + (PortNumber + 1) + ": /" + DeviceNames[(int)Type] + " - Not detected";
+							return PortName + ": / " + DeviceNames[(int)Type] + " - Not detected";
 						}
-						return "COM" + (PortNumber + 1) + ": /Unknown";
+						return PortName + ": / Unknown";
 					}
 
-					m_CBLine = "COM" + (PortNumber + 1) + ": / v" + Version + " /" + DeviceNames[(int)Type] + " / " + (Type == DeviceType.COMPUTRAINER ? "RRC = " : "Accuwatt = ") + CalibrationString;
+					m_CBLine = PortName + ": / v" + Version + " / " + DeviceNames[(int)Type] + " / " + (Type == DeviceType.COMPUTRAINER ? "RRC = " : "Accuwatt = ") + CalibrationString;
 					return m_CBLine;
 				}
 			}									// String CBLine
@@ -1882,18 +1832,18 @@ namespace RacerMateOne  {
 							bp = 1;
 						}
 		#endif
-						DLL.setPause(PortNumber, paused);
+						DLL.setPause(PortName, paused);
 						m_CurPaused = paused;
 					}
 
 					if ((uflags & UpdateFlags.ResetAverages) != UpdateFlags.Zero) {
-						DLL.ResetAverages(PortNumber, Ver);
-						DLL.start_trainer(PortNumber, true);
+						DLL.ResetAverages(PortName, Ver);
+						DLL.start_trainer(PortName, true);
 						uflags |= UpdateFlags.Grade | UpdateFlags.Watts | UpdateFlags.Drag | UpdateFlags.Pause | UpdateFlags.FTP | UpdateFlags.Pause;
 					}
 
 					if ((uflags & UpdateFlags.FTP) != UpdateFlags.Zero) {
-						DLL.set_ftp(PortNumber, Ver, m_FTP);
+						DLL.set_ftp(PortName, Ver, m_FTP);
 					}
 					if ((uflags & UpdateFlags.Pause) != UpdateFlags.Zero && paused) {
 #if DEBUG
@@ -1901,12 +1851,12 @@ namespace RacerMateOne  {
 							bp = 9;
 						}
 		#endif
-						int status = DLL.setPause(PortNumber, paused);
+						int status = DLL.setPause(PortName, paused);
 						m_CurPaused = paused;
 					}
 
 					if ((uflags & UpdateFlags.Drafting) != UpdateFlags.Zero) {
-						DLL.set_draftwind(PortNumber, Ver, m_Drafting ? RM1.DraftWind : 0.0f);
+						DLL.set_draftwind(PortName, Ver, m_Drafting ? RM1.DraftWind : 0.0f);
 					}
 
 					if ((uflags & UpdateFlags.Wind) != UpdateFlags.Zero) {
@@ -1917,7 +1867,7 @@ namespace RacerMateOne  {
 							Log.WriteLine(String.Format("Wind changed to {0}", m_Wind));
 							}
 						 */
-						DLL.set_wind(PortNumber, Ver, m_Wind);// + (m_Drafting ? RM1.DraftWind : 0.0f));
+						DLL.set_wind(PortName, Ver, m_Wind);// + (m_Drafting ? RM1.DraftWind : 0.0f));
 					}
 
 
@@ -1926,17 +1876,17 @@ namespace RacerMateOne  {
 					if ((uflags & (UpdateFlags.Grade | UpdateFlags.Watts | UpdateFlags.Drag)) != UpdateFlags.Zero) {
 						if (m_bERG) {
 							m_bSetErg = true;
-							DLL.SetErgModeLoad(PortNumber, Ver, CalibrationValue, AppWin.PreviewMode ? 0 : m_Watts_Load);
+							DLL.SetErgModeLoad(PortName, Ver, CalibrationValue, AppWin.PreviewMode ? 0 : m_Watts_Load);
 						}
 						else {											// windload mode update
 							if (m_Rider == null) {
 								if (m_bSetErg) {
 									if (m_Grade == 0) {
-										DLL.SetSlope(PortNumber, Ver, CalibrationValue, 0.0f, 0.0f, 100, 1);
+										DLL.SetSlope(PortName, Ver, CalibrationValue, 0.0f, 0.0f, 100, 1);
 									}
 									m_bSetErg = false;
 								}
-								DLL.SetSlope(PortNumber, Ver, CalibrationValue, 0.0f, 0.0f, 100, AppWin.PreviewMode ? 0 : m_Grade);
+								DLL.SetSlope(PortName, Ver, CalibrationValue, 0.0f, 0.0f, 100, AppWin.PreviewMode ? 0 : m_Grade);
 							}
 							else {
 								float bw = m_Rider.WeightBikeKGS;
@@ -1947,11 +1897,11 @@ namespace RacerMateOne  {
 								}
 								if (m_bSetErg) {
 									if (m_Grade == 0) {
-										DLL.SetSlope(PortNumber, Ver, CalibrationValue, 0.0f, 0.0f, 100, 1);
+										DLL.SetSlope(PortName, Ver, CalibrationValue, 0.0f, 0.0f, 100, 1);
 									}
 									m_bSetErg = false;
 								}
-								DLL.SetSlope(PortNumber, Ver, CalibrationValue, bw, rw, m_CurDragFactor, AppWin.PreviewMode ? 0 : m_Grade);
+								DLL.SetSlope(PortName, Ver, CalibrationValue, bw, rw, m_CurDragFactor, AppWin.PreviewMode ? 0 : m_Grade);
 							}
 						}
 					}								// if ((uflags & (UpdateFlags.Grade | UpdateFlags.Watts | UpdateFlags.Drag)) != UpdateFlags.Zero)  {
@@ -1965,7 +1915,7 @@ namespace RacerMateOne  {
 						try {
 					#endif
 							//xxx
-							raw = (bFake ? FakeKeys : DLL.GetHandleBarButtons(PortNumber, VersionNum));
+							raw = (bFake ? FakeKeys : DLL.GetHandleBarButtons(PortName, VersionNum));
 					#if DEBUG
 						}
 						catch (Exception ex) {
@@ -2117,14 +2067,14 @@ namespace RacerMateOne  {
 									//Debug.WriteLine("RM1.cs::Entering calibration mode...");
 									//Debug.WriteLine("stack trace : '{0}'" , Environment.StackTrace ); 
 									Thread.Sleep(100);
-									DLL.SetRecalibrationMode(PortNumber, Ver);
+									DLL.SetRecalibrationMode(PortName, Ver);
 									Thread.Sleep(100);
 									//  Debug.WriteLine("RM1.cs::...Calibration mode entered.\n");
 								}
 								else {
 									//  Debug.WriteLine("RM1.cs::Exiting calibration mode...");
 									Thread.Sleep(100);
-									DLL.EndRecalibrationMode(PortNumber, Ver);
+									DLL.EndRecalibrationMode(PortName, Ver);
 									Thread.Sleep(100);
 									SetCalibrationValue(true);
 									// Debug.WriteLine("RM1.cs::...Calibration mode exited.\n");
@@ -2138,7 +2088,7 @@ namespace RacerMateOne  {
 
 						if (!m_CurCalibrationMode) {
 							if (!AppWin.PreviewMode) {
-								m_TrainerData = DLL.GetTrainerData(PortNumber, Ver);
+								m_TrainerData = DLL.GetTrainerData(PortName, Ver);
 								// speed is in kph = m_TrainerData.Speed
 
 		#if DEBUG
@@ -2158,12 +2108,12 @@ namespace RacerMateOne  {
 
 
 
-								m_SpinScanData = DLL.get_ss_data(PortNumber, Ver);
+								m_SpinScanData = DLL.get_ss_data(PortName, Ver);
 								#if DEBUG
 									try {
 								#endif
 										//xxx
-										ip = DLL.get_bars(PortNumber, Ver);
+										ip = DLL.get_bars(PortName, Ver);
 										if (ip != IntPtr.Zero) {
 											Marshal.Copy(ip, m_Bars, 0, 24);
 										}
@@ -2179,7 +2129,7 @@ namespace RacerMateOne  {
 								try {
 								#endif
 
-								ip = DLL.get_average_bars(PortNumber, Ver);
+								ip = DLL.get_average_bars(PortName, Ver);
 								if (ip != IntPtr.Zero) {
 									Marshal.Copy(ip, m_AverageBars, 0, 24);
 								}
@@ -2200,20 +2150,21 @@ namespace RacerMateOne  {
 								}
 #endif
 
-								m_PulsePower = DLL.get_pp(PortNumber, Ver);
-								m_Calories = DLL.get_calories(PortNumber, Ver);
-								m_IF = DLL.get_if(PortNumber, Ver);
-								m_NP = DLL.get_np(PortNumber, Ver);
-								m_TSS = DLL.get_tss(PortNumber, Ver);
-								StatusFlags sf = (StatusFlags)DLL.get_status_bits(PortNumber, Ver);				// not implemented!
+								m_PulsePower = DLL.get_pp(PortName, Ver);
+								m_Calories = DLL.get_calories(PortName, Ver);
+								m_IF = DLL.get_if(PortName, Ver);
+								m_NP = DLL.get_np(PortName, Ver);
+								m_TSS = DLL.get_tss(PortName, Ver);
+                                // TODO: revisit if we need the status bits
+								//StatusFlags sf = (StatusFlags)DLL.get_status_bits(PortName, Ver);				// not implemented!
 
-								if (m_StatusFlags != sf) {
-									m_StatusFlags = sf;
-									Log.WriteLine(String.Format("Trainer Port {0}, Status Bit changed (0x{1:X4},{2})", PortNumber + 1, (Int32)sf, sf.ToString(), sf.ToString()));
-								}
+								//if (m_StatusFlags != sf) {
+								//	m_StatusFlags = sf;
+								//	Log.WriteLine(String.Format("Trainer Port {0}, Status Bit changed (0x{1:X4},{2})", PortName, (Int32)sf, sf.ToString(), sf.ToString()));
+								//}
 
 								if (Type == DeviceType.VELOTRON) {
-									m_GearPair = DLL.GetCurrentVTGear(PortNumber, Ver);
+									m_GearPair = DLL.GetCurrentVTGear(PortName, Ver);
 		#if DEBUG
 									if (m_GearPair.Front == 56) {
 										bp = 5;
@@ -2224,7 +2175,7 @@ namespace RacerMateOne  {
 							}												//	if (!m_CurCalibrationMode)   {
 							else {										// if (AppWin.PreviewMode)
 								// calibrating:
-								m_TrainerData = DLL.GetTrainerData(PortNumber, Ver); // Keep this live, even through we are going to write fake data in there.
+								m_TrainerData = DLL.GetTrainerData(PortName, Ver); // Keep this live, even through we are going to write fake data in there.
 								m_TrainerData.Cadence = 75.91368f;
 								m_TrainerData.HR = 0.0f;
 								m_TrainerData.Power = 640.7542f;
@@ -2311,7 +2262,7 @@ namespace RacerMateOne  {
 
 			void SetVelotronGears() {
 				if (Type == DeviceType.VELOTRON && IsStarted)
-					DLL.setGear(PortNumber, Ver, m_FrontGearNumber, m_RearGearNumber);
+					DLL.setGear(PortName, Ver, m_FrontGearNumber, m_RearGearNumber);
 			}
 
 			/**********************************************************************************************************
@@ -2321,17 +2272,17 @@ namespace RacerMateOne  {
 			void SetCalibrationValue(bool notify) {
 				ms_Mux.WaitOne();
 				try {
-					int orgv = DLL.GetFirmWareVersion(PortNumber);
+					int orgv = DLL.GetFirmWareVersion(PortName);
 					int v = (orgv == 4095 ? 4543 : orgv);
 
-					bool c = (DLL.GetIsCalibrated(PortNumber, orgv) & 0xff) == 0 ? false : true;
-					int cnum = DLL.GetCalibration(PortNumber);				// wifi = 3, serial = 200
+					bool c = (DLL.GetIsCalibrated(PortName, orgv) & 0xff) == 0 ? false : true;
+					int cnum = DLL.GetCalibration(PortName);                // wifi = 3, serial = 200
 
-					//Paul enabled feb 5
-					//Log.WriteLine (String.Format("Found {0} on port {1}, Version {2}", Type, PortNumber + 1, v) +
-					//	(c ? "" : " Not calibrated")+ " calnum is " + cnum);
-					//end Paul enabled feb 5
-					Ver = orgv;
+                    //Paul enabled feb 5
+                    //Log.WriteLine (String.Format("Found {0} on port {1}, Version {2}", Type, PortName, v) +
+                    //	(c ? "" : " Not calibrated")+ " calnum is " + cnum);
+                    //end Paul enabled feb 5
+                    Ver = orgv;
 					VersionNum = v;
 					if (!notify)
 						notify = (c != IsCalibrated || CalibrationValue != cnum);
@@ -2363,66 +2314,66 @@ namespace RacerMateOne  {
 				//int status;
 
 				if (IsStarted) {
-					Log.WriteLine(String.Format("Stopping Trainer {0}", PortNumber + 1));
+					Log.WriteLine(String.Format("Stopping Trainer {0}", PortName));
 					Stop(); // Stop the device if started.
 				}
-				Log.WriteLine(String.Format("Getting Trainer {0}", PortNumber + 1));
+				Log.WriteLine(String.Format("Getting Trainer {0}", PortName));
 
-				if (PortNumber >= 220 && PortNumber <= 235) {                  // trainer is a udp client
-					/*
-					if (!network_started) {
-						status = DLL.set_network(
-									9071,
-									9072,
-									false,
-									true,
-									PortNumber + 1);
-						//assert(status == 0);
-						//Thread.Sleep(3000);				// gotta give server time to start up. maybe move this earlier in the program.
-						network_started = true;
-					}
-					*/
+//				if (PortNumber >= 220 && PortNumber <= 235) {                  // trainer is a udp client
+//					/*
+//					if (!network_started) {
+//						status = DLL.set_network(
+//									9071,
+//									9072,
+//									false,
+//									true,
+//									PortNumber + 1);
+//						//assert(status == 0);
+//						//Thread.Sleep(3000);				// gotta give server time to start up. maybe move this earlier in the program.
+//						network_started = true;
+//					}
+//					*/
 
-				}
-				else if (PortNumber >= 200 && PortNumber <= 215) {                // trainer is a client
-					/*
-					status = set_server_network(
-						broadcast_port,				// 9071
-						listen_port,					// 9099
-						//false,								// ip_discover
-						true,
-						false								// udp flag
-					);				// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   creates server AND STARTS it
-					assert(status == ALL_OK);
-					*/
-				}
-				else if (PortNumber >= 230 && PortNumber <= 245) {                // trainer is a server
-					/*
-					int tcp_port;
-					IntPtr url;
-					String surl;
+//				}
+//				else if (PortNumber >= 200 && PortNumber <= 215) {                // trainer is a client
+//					/*
+//					status = set_server_network(
+//						broadcast_port,				// 9071
+//						listen_port,					// 9099
+//						//false,								// ip_discover
+//						true,
+//						false								// udp flag
+//					);				// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   creates server AND STARTS it
+//					assert(status == ALL_OK);
+//					*/
+//				}
+//				else if (PortNumber >= 230 && PortNumber <= 245) {                // trainer is a server
+//					/*
+//					int tcp_port;
+//					IntPtr url;
+//					String surl;
 
-#if DEBUG
-					tcp_port = 9072;
-					surl = "miney2.mselectron.net";
-#else
-					//tcp_port = 8899;
-					tcp_port = 9072;
-					surl = "10.10.100.254";
-#endif
+//#if DEBUG
+//					tcp_port = 9072;
+//					surl = "miney2.mselectron.net";
+//#else
+//					//tcp_port = 8899;
+//					tcp_port = 9072;
+//					surl = "10.10.100.254";
+//#endif
 
-					try {
-						url = Marshal.StringToHGlobalAnsi(surl);
-						status = DLL.set_client_network(PortNumber, url, tcp_port);          // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-						Marshal.FreeHGlobal(url);                       // also, you need to make sure to free the unmanaged memory:
-					}
-					finally {
-#if DEBUG
-						bp = 2;
-#endif
-					}
-					*/
-				}
+//					try {
+//						url = Marshal.StringToHGlobalAnsi(surl);
+//						status = DLL.set_client_network(PortNumber, url, tcp_port);          // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//						Marshal.FreeHGlobal(url);                       // also, you need to make sure to free the unmanaged memory:
+//					}
+//					finally {
+//#if DEBUG
+//						bp = 2;
+//#endif
+//					}
+//					*/
+//				}
 
 
 				DeviceType t;
@@ -2430,7 +2381,7 @@ namespace RacerMateOne  {
 					t = Type;
 				}
 				else {
-					t = GetRacerMateDeviceID(PortNumber);
+					t = GetRacerMateDeviceID(PortName);
 #if DEBUG
 					Log.WriteLine("RM1.cs, back from GetRacerMateDeviceID");
 					Debug.WriteLine("RM1.cs, back from GetRacerMateDeviceID");			// outputdebugstring
@@ -2451,7 +2402,7 @@ namespace RacerMateOne  {
 						Debug.WriteLine("RM1.cs, no trainer found");
 #endif
 						IsConnected = false;
-						Log.WriteLine(String.Format("{0} on port {1}", RM1.DeviceNames[(int)t], PortNumber + 1));
+						Log.WriteLine(String.Format("{0} on port {1}", RM1.DeviceNames[(int)t], PortName));
 					}
 					//Feb 5 2012 Paul Smeulders end of add
 				}
@@ -2462,17 +2413,17 @@ namespace RacerMateOne  {
 
 				// OK Now before we start lets see if we can fill in the initial rider.
 				foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList) {
-					if (PortNumber == tc.SavedSerialPortNum) {
+					if (PortName == tc.SavedPortName) {
 						// We got it.
 						Rider = Riders.FindRiderByKey(tc.PreviousRiderKey);
 					}
 				}
 			}
 
-
-			private static int orderByNum(Trainer a, Trainer b) {
-				return a.PortNumber - b.PortNumber;
+            private static int orderByNum(Trainer a, Trainer b) {
+                return a.PortName.CompareTo(b.PortName);
 			}
+
 			/// <summary>
 			/// Should be on the main thread... add it to the proper location and raise the proper events.
 			/// </summary>
@@ -2553,8 +2504,8 @@ namespace RacerMateOne  {
 		#endif
 
 				#if DEBUG
-					long cnt = -1;
-					 long cnt2 = 0;
+					 //long cnt = -1;
+					 //long cnt2 = 0;
 					 long lastticks2 = DateTime.Now.Ticks;
 				#endif
 
@@ -2878,7 +2829,7 @@ namespace RacerMateOne  {
 					trainer.initDevice();
 				}
 				catch {
-					Log.WriteLine(String.Format("Error in initializing trainer {0}", trainer.PortNumber + 1));
+					Log.WriteLine(String.Format("Error in initializing trainer {0}", trainer.PortName));
 				}
 				args.Result = trainer;
 			}

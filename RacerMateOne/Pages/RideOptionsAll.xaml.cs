@@ -1121,9 +1121,9 @@ namespace RacerMateOne.Pages
 			m_bFullScan = false;
 			RM1.OnTrainerInitialized += new RM1.TrainerInitialized(ScanDone);
 
-			List<int> tlist = new List<int>();
+			List<string> tlist = new List<string>();
 			foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList)
-				tlist.Add(tc.SavedSerialPortNum);
+				tlist.Add(tc.SavedPortName);
 
 			if (tlist.Count() == 0)  {
 				m_bFullScan = true;

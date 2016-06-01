@@ -47,7 +47,7 @@ namespace RacerMateOne
 			}
 
 			foreach (TrainerUserConfigurable t in ActiveTrainerList)  {
-				if (t.SavedSerialPortNum == trainer.PortNumber)  {
+				if (t.SavedPortName == trainer.PortName)  {
 					if (trainer.Type == RM1.DeviceType.VELOTRON)  {
 						if (trainer.VelotronData != null)  {
 							trainer.VelotronData.ActualChainring = t.VelotronChainring;
@@ -1345,8 +1345,8 @@ namespace RacerMateOne
 						new XAttribute("Active",aaa.Active),
                         new XElement("VelotronChainring", aaa.VelotronChainring),
                         new XElement("PreviousRiderKey", aaa.PreviousRiderKey));
-					if (aaa.SavedSerialPortNum >= 0)
-						thisXTrainer.Add(new XElement("Port", aaa.SavedSerialPortNum + 1));
+					if (aaa.SavedPortName != string.Empty)
+						thisXTrainer.Add(new XElement("PortName", aaa.SavedPortName));
 
 					if (aaa.BotKey != "")
 					{
@@ -1355,7 +1355,7 @@ namespace RacerMateOne
                     Trainers.Add(thisXTrainer);
 
                 }
-                rootSettings.Add(Trainers); //complet Trainers
+                rootSettings.Add(Trainers); //complete Trainers
 
                 //Add System
                 XElement SystemEle = new XElement("System");
@@ -1573,26 +1573,36 @@ namespace RacerMateOne
 						thisTrainer.Active = Convert.ToBoolean(att.Value);
 
 					thisTrainer.RememberedDeviceType = ele.Attribute("DeviceType").Value;
-					XElement elem;
-					elem = ele.Element("Port");
-					if (elem == null) {
-						elem = ele.Element("SerialPort");
-						if (elem == null)
-							thisTrainer.SavedSerialPortNum = -1;
-						else {
-							int val = Convert.ToInt32(elem.Value);
-							if (val == 0)
-								val = -1;
-							thisTrainer.SavedSerialPortNum = val;
-						}
-					}
-					else {
-						thisTrainer.SavedSerialPortNum = Convert.ToInt32(elem.Value) - 1;
-					}
-					thisTrainer.PreviousRiderKey = (string)ele.Element("PreviousRiderKey").Value;
+                    XElement portNameElement;
+                    portNameElement = ele.Element("PortName");
+                    if (portNameElement == null) {
+                        // no PortName, so the setting needs to be converted.
+                        // look for "Port" or "SerialPort"
+                        int savedSerialPortNum = -1;
+                        XElement tmpElement;
+                        tmpElement = ele.Element("Port");
+                        if (tmpElement == null) {
+                            tmpElement = ele.Element("SerialPort");
+                            if (tmpElement != null) {
+                                savedSerialPortNum = Convert.ToInt32(tmpElement.Value);
+                                if (savedSerialPortNum == 0)
+                                    savedSerialPortNum = -1;
+                            }
+                        }
+                        else {
+                            savedSerialPortNum = Convert.ToInt32(tmpElement.Value);
+                        }
+
+                        thisTrainer.SavedPortName = "COM" + savedSerialPortNum;
+                    }
+                    else {
+                        thisTrainer.SavedPortName = portNameElement.Value;
+                    }
+
+                    thisTrainer.PreviousRiderKey = (string)ele.Element("PreviousRiderKey").Value;
 					thisTrainer.VelotronChainring = Convert.ToInt32(ele.Element("VelotronChainring").Value);
 
-					elem = ele.Element("Pacer");
+					XElement elem = ele.Element("Pacer");
 					if (elem != null)
 						thisTrainer.BotKey = elem.Value.ToString();
 					else
@@ -1600,8 +1610,8 @@ namespace RacerMateOne
 
 					SavedTrainersList.Add(thisTrainer);
 
-					// If it is a velotron or a co
-					if (thisTrainer.SavedSerialPortNum >= 0)  {
+					// If it is a velotron or a ct
+					if (thisTrainer.SavedPortName != string.Empty)  {
 						ActiveTrainerList.Add(thisTrainer);
 					}
 
@@ -1678,18 +1688,18 @@ namespace RacerMateOne
         }
 		 */
 
-		private static bool IsSameCommAssigned(TrainerUserConfigurable inTrainertoTest, TrainerUserConfigurable[] ArraytoCheckforComConflicts)
-        {
-            int CommPortToTest = inTrainertoTest.SavedSerialPortNum;
-            if (CommPortToTest < 0) return true; // send back on 0 so this case is benign
-            for (int i = 0; i < RM1Constants.maxtrainersGeneral; i++)
-            {
-                if (ArraytoCheckforComConflicts[i] != null && ArraytoCheckforComConflicts[i].SavedSerialPortNum == CommPortToTest)
-                    return true;
-            }
-            return false;
+		//private static bool IsSameCommAssigned(TrainerUserConfigurable inTrainertoTest, TrainerUserConfigurable[] ArraytoCheckforComConflicts)
+  //      {
+  //          int CommPortToTest = inTrainertoTest.SavedSerialPortNum;
+  //          if (CommPortToTest < 0) return true; // send back on 0 so this case is benign
+  //          for (int i = 0; i < RM1Constants.maxtrainersGeneral; i++)
+  //          {
+  //              if (ArraytoCheckforComConflicts[i] != null && ArraytoCheckforComConflicts[i].SavedSerialPortNum == CommPortToTest)
+  //                  return true;
+  //          }
+  //          return false;
             
-        }
+  //      }
 
 		/// <summary>
 		/// Resets all the trainers to unknown, Makes sure there is at least 8 entries.
@@ -1700,9 +1710,9 @@ namespace RacerMateOne
 			{
 				tc.PreviouslyDiscovered = 0;
 				tc.RememberedDeviceType = "Unknown";
-				tc.SavedSerialPortNum = -1;
+				tc.SavedPortName = string.Empty;
 			}
-			while( SavedTrainersList.Count < 8)
+			while( SavedTrainersList.Count < RM1Constants.maxtrainersGeneral)
 				SavedTrainersList.Add( new TrainerUserConfigurable(SavedTrainersList.Count) );
 		}
 		public static bool NoTrainersAssigned()

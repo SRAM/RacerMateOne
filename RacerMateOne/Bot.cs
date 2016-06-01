@@ -2400,7 +2400,6 @@ namespace RacerMateOne
 
 
 #if DEBUG
-			int bp = 0;
 			float fmph = rider_mps * (float)ConvertConst.MetersPerSecondToMPH;
 			float fmeters = (float)m_Unit.Statistics.Distance;								// in meters
 			float ffeet = fmeters * (float)ConvertConst.MetersToFeet;

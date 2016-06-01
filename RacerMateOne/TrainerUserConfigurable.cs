@@ -114,28 +114,24 @@ namespace RacerMateOne
 			}
 		}
 
-		private int savedSerialPortNum = -1;
-		/// <summary>
-		/// SerialPortNum is now aligned with actual port numbering as 1...256
-		/// And is Read/Write due to loading  from RM1_Settings
-		/// </summary>
-		public int SavedSerialPortNum
-		{
-			get { return savedSerialPortNum; }
-			set 
-			{ 
-				if (value >= -1 && value <= 256) 
-					savedSerialPortNum = value;
-			}
-		}
+        private string savedPortName = string.Empty;
+        /// <summary>
+        /// SavedPortName is now string-based to support serial and wifi devices from RM1_Settings
+        /// </summary>
+        public string SavedPortName
+        {
+            get { return savedPortName; }
+            set
+            {
+                savedPortName = value;
+            }
+        }
 
-
-
-		/// <summary>
-		/// Trainer Constructor
-		/// </summary>
-		/// <param name="PositionIndex">Position index 1-8</param>
-		public TrainerUserConfigurable(int PositionInd)
+        /// <summary>
+        /// Trainer Constructor
+        /// </summary>
+        /// <param name="PositionIndex">Position index 1-8</param>
+        public TrainerUserConfigurable(int PositionInd)
 		{
 			RESETtoDefault(PositionInd);
 			// all other properties will be set to defaults
@@ -148,7 +144,7 @@ namespace RacerMateOne
 			this.ShiftingInverted = 0;
 			this.PreviouslyDiscovered = 0;
 			this.PreviousRiderKey = RM1Constants.NoRiderKey;
-			this.SavedSerialPortNum = -1;
+            this.savedPortName = string.Empty;
 
 
 		}
@@ -165,7 +161,7 @@ namespace RacerMateOne
 			newObject.ShiftingInverted = this.ShiftingInverted;
 			newObject.PreviouslyDiscovered = this.PreviouslyDiscovered;
 			newObject.PreviousRiderKey = this.PreviousRiderKey;
-			newObject.SavedSerialPortNum = this.SavedSerialPortNum;
+			newObject.savedPortName = this.savedPortName;
 			return newObject;
 		}
 
@@ -174,7 +170,7 @@ namespace RacerMateOne
 			get
 			{
 				RM1.Trainer trainer;
-				if (SavedSerialPortNum >= 0 && (trainer = RM1.Trainer.Find(SavedSerialPortNum)) != null)
+				if ((trainer = RM1.Trainer.Find(SavedPortName)) != null)
 				{
 					if (trainer.IsConnected)
 						return trainer;
@@ -183,13 +179,12 @@ namespace RacerMateOne
 			}
 		}
 
-
-		public RM1.Trainer CurrentTrainer
+        public RM1.Trainer CurrentTrainer
 		{
 			get
 			{
 				RM1.Trainer trainer;
-				if (SavedSerialPortNum >= 0 && (trainer = RM1.Trainer.Find(SavedSerialPortNum)) != null)
+				if ((trainer = RM1.Trainer.Find(SavedPortName)) != null)
 				{
 					return trainer;
 				}
