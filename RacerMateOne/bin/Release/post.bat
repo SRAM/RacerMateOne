@@ -1,7 +1,11 @@
 @echo ************************** RM1 release post.bat ********************************
 ::@dir
 
-@copy ..\..\..\..\racermate\release\racermate.dll
+::nca+++ get this from the local stash
+::@copy ..\..\..\..\racermate\release\racermate.dll
+@copy ..\..\racermate.dll
+::nca---
+
 
 
 
