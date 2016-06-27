@@ -56,5 +56,5 @@ RacerMateOne/bin/Release/WPFMediaKit.pdb
 *.user
 
 #nca: ignore Larry's post.bat files
-RacerMateOne/bin/Debug/post.bat
-RacerMateOne/bin/Release/post.bat
+#RacerMateOne/bin/Debug/post.bat
+#RacerMateOne/bin/Release/post.bat

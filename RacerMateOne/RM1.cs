@@ -58,7 +58,7 @@ namespace RacerMateOne  {
 			int status;
 			int debug_level = 2;
 
-			status = DLL.start_server2(
+			status = DLL.start_server(
 							9072,									// int listen_port
 							9071,									// int broadcast_port
 							"",									// override ip adress
@@ -981,7 +981,7 @@ namespace RacerMateOne  {
 			//[DllImport("racermate.dll")]
 			//public static extern int start_network_server();
 			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
-			public static extern int start_server2(int _listen_port, int _broadcast_port, [MarshalAs(UnmanagedType.LPStr)] string _myip, int _debug_level);
+			public static extern int start_server(int _listen_port, int _broadcast_port, [MarshalAs(UnmanagedType.LPStr)] string _myip, int _debug_level);
 
 			[DllImport("racermate.dll")]
 			public static extern int racermate_init();
