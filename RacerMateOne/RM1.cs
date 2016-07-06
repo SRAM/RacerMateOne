@@ -70,8 +70,7 @@ namespace RacerMateOne  {
 							debug_level);
 			}
 			catch (Exception e) {
-				string errorString = e.ToString() + "\nbp = " + bp.ToString();
-				Log.WriteLine(errorString);
+				Log.WriteLine(e.ToString());
                 RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start trainer server.\n RacerMate will not work correctly without a network connection.\n\n" + e.ToString(), "OK", "Cancel");
                 info.ShowDialog();
             }

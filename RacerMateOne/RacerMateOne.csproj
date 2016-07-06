@@ -2356,6 +2356,7 @@
   </Target> -->
   <PropertyGroup>
     <PostBuildEvent>post.bat</PostBuildEvent>
-    <PreBuildEvent>pre.bat</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
 </Project>
