@@ -90,7 +90,10 @@ namespace RacerMateOne  {
 				s = APIVersion;											// "1.1.0"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				s = DLLVersion;											// "1.0.13"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 				s = ms_DLLVersion;										// "1.0.13"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-				s = dll_build_date;										// "Apr 14 2015 11:39:59"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+				s = dll_build_date;                             // "Apr 14 2015 11:39:59"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+				//Log.WriteLine("RM1() static constructor");
+				Debug.WriteLine(s, "build date");
+
 				bp = 0;
 			#endif
 
@@ -604,10 +607,12 @@ namespace RacerMateOne  {
 
 
 
-
 		/**********************************************************************************************************
+			called from 'Rescan All Hardware' at beginning of program load
+				and 'Scan For New Devices'
 
 		**********************************************************************************************************/
+
 
 		public static int StartFullScan()  {
 			Log.WriteLine("Starting full scan");
@@ -630,7 +635,7 @@ namespace RacerMateOne  {
 
 				foreach (String n in portnames)  {
 					Log.WriteLine(string.Format("Scanning {0}", n));
-                    Trainer trainer = Trainer.Get(n);
+              Trainer trainer = Trainer.Get(n);
 					if (!ms_InitList.Contains(trainer)) {
 						ms_InitList.AddLast(trainer);
 					}
@@ -648,6 +653,7 @@ namespace RacerMateOne  {
 			ms_Mux.ReleaseMutex();
 			return cnt;
 		}
+
 
 		/**********************************************************************************************************
 			refresh button gets here
@@ -2065,6 +2071,7 @@ namespace RacerMateOne  {
 							m_Changed = TrainerChangedFlags.Zero;
 						}
 						IntPtr ip;
+
 
 						if (!m_CurCalibrationMode) {
 							if (!AppWin.PreviewMode) {
