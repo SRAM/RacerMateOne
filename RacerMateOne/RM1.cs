@@ -49,55 +49,35 @@ namespace RacerMateOne  {
 #if DEBUG
 			Debug.WriteLine("RM1.cs   calling DLL.racermate_init()");
 #endif
-			//int bp = 1;
+			try {
+			    DLL.racermate_init();
+            }
+            catch (Exception e)
+            {
+                Log.WriteLine(e.ToString());
+                RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to Initialize RacerMate.\nYour installation may have incorrect files.\n\n" + e.ToString(), "OK", "Cancel");
+                info.ShowDialog();
+            }
 
-			//try {
-			DLL.racermate_init();                                    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-				//bp++;
-			int status;
+            int status;
 			int debug_level = 2;
 
+            try { 
 			status = DLL.start_server(
-							9072,									// int listen_port
-							9071,									// int broadcast_port
+							9072,								// int listen_port
+							9071,								// int broadcast_port
 							"",									// override ip adress
 							debug_level);
-
-
-			/*
-			if (!network_started) {
-#if DEBUG
-				Debug.WriteLine("RM1.cs   calling DLL.set_network_parameters()");
-#endif
-
-				status = DLL.set_network_parameters(
-							9071,
-							9072,
-							false,
-							true,
-								220,
-								debug_level
-								);
-				//assert(status == 0);
-				//Thread.Sleep(3000);				// gotta give server time to start up. maybe move this earlier in the program.
-				network_started = true;
-					//bp++;
-				}												// if (!network_started)
-			 */
-
-			/*
 			}
 			catch (Exception e) {
-				string s = e.ToString() + " bp = " + bp.ToString();
-				Log.WriteLine(s);
+				string errorString = e.ToString() + "\nbp = " + bp.ToString();
+				Log.WriteLine(errorString);
+                RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start trainer server.\n RacerMate will not work correctly without a network connection.\n\n" + e.ToString(), "OK", "Cancel");
+                info.ShowDialog();
+            }
 
-				MessageBox.Show(s);
-			}
-			*/
-
-			#if DEBUG
-				System.IO.File.Delete("client.log");
+#if DEBUG
+            System.IO.File.Delete("client.log");
 				String s;
 				//IntPtr pfullpath = Marshal.StringToHGlobalAnsi(RacerMatePaths.DebugFullPath);
 				s = ".";
