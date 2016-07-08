@@ -39,11 +39,11 @@ namespace RacerMateOne  {
 				BarRadians[i + RM1.HalfBarCount] = BarRadians[i] = step * i + (step * 0.5);
 			}
 
-			#if DEBUG
-				String dir = Directory.GetCurrentDirectory();            // "D:\\_fs\\rm1\\RacerMateOne_Source\\RacerMateOne\\bin\\Debug"
+#if DEBUG
+			String dir = Directory.GetCurrentDirectory();            // "D:\\_fs\\rm1\\RacerMateOne_Source\\RacerMateOne\\bin\\Debug"
 #else
-				//String dir = Directory.GetCurrentDirectory();				// "D:\\_fs\\rm1\\RacerMateOne_Source\\RacerMateOne\\bin\\Release"
-				//System.Console.WriteLine(dir);
+			//String dir = Directory.GetCurrentDirectory();				// "D:\\_fs\\rm1\\RacerMateOne_Source\\RacerMateOne\\bin\\Release"
+			//System.Console.WriteLine(dir);
 #endif
 
 #if DEBUG
@@ -59,7 +59,7 @@ namespace RacerMateOne  {
                 info.ShowDialog();
             }
 
-            int status;
+            int status = 0;
 			int debug_level = 2;
 
             try { 
@@ -71,30 +71,49 @@ namespace RacerMateOne  {
 			}
 			catch (Exception e) {
 				Log.WriteLine(e.ToString());
-                RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start trainer server.\n RacerMate will not work correctly without a network connection.\n\n" + e.ToString(), "OK", "Cancel");
+                RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start trainer server.\nRacerMate will not work correctly without a network connection.\n\n" + e.ToString(), "OK", "Cancel");
                 info.ShowDialog();
             }
 
+			switch (status)
+			{
+				case 0:
+					// no error
+					break;
+				case 1:
+					// no network
+					Log.WriteLine("Server Started, but no network is available.");
+					break;
+				case 2:
+					// can't compute broadcast address
+					Log.WriteLine("Server Started, but an error occurred while computing the broadcast address, so wireless controllers will not work.");
+					break;
+				default:
+					// unknown error
+					Log.WriteLine("Server did not start! An unknown error occurred.");
+					break;
+			}
+
 #if DEBUG
-            System.IO.File.Delete("client.log");
-				String s;
-				//IntPtr pfullpath = Marshal.StringToHGlobalAnsi(RacerMatePaths.DebugFullPath);
-				s = ".";
-				IntPtr pfullpath = Marshal.StringToHGlobalAnsi(s);
-				int _status_logpath = DLL.Setlogfilepath(pfullpath);
-				//Marshal.FreeBSTR(pfullpath);
-				//DLL.Enablelogs(false, false, false, false, false, false);			// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-				DLL.Enablelogs(true, true, true, true, true, true);
+			System.IO.File.Delete("client.log");
+			String s;
+			//IntPtr pfullpath = Marshal.StringToHGlobalAnsi(RacerMatePaths.DebugFullPath);
+			s = ".";
+			IntPtr pfullpath = Marshal.StringToHGlobalAnsi(s);
+			int _status_logpath = DLL.Setlogfilepath(pfullpath);
+			//Marshal.FreeBSTR(pfullpath);
+			//DLL.Enablelogs(false, false, false, false, false, false);			// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			DLL.Enablelogs(true, true, true, true, true, true);
 
-				s = APIVersion;											// "1.1.0"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-				s = DLLVersion;											// "1.0.13"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-				s = ms_DLLVersion;										// "1.0.13"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-				s = dll_build_date;                             // "Apr 14 2015 11:39:59"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-				//Log.WriteLine("RM1() static constructor");
-				Debug.WriteLine(s, "build date");
+			s = APIVersion;											// "1.1.0"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			s = DLLVersion;											// "1.0.13"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			s = ms_DLLVersion;										// "1.0.13"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			s = dll_build_date;                             // "Apr 14 2015 11:39:59"			<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			//Log.WriteLine("RM1() static constructor");
+			Debug.WriteLine(s, "build date");
 
-				bp = 0;
-			#endif
+			bp = 0;
+#endif
 
 		}											// static RM1() constructor
 
