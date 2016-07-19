@@ -553,11 +553,17 @@ namespace RacerMateOne
 						break;
 
 					case NavigationMode.Back:
-						NavigationService.GoBack();
+						if (NavigationService.CanGoBack)
+						{
+							NavigationService.GoBack();
+						}
 						break;
 
 					case NavigationMode.Forward:
-						NavigationService.GoForward();
+						if (NavigationService.CanGoForward)
+						{
+							NavigationService.GoForward();
+						}
 						break;
 
 					case NavigationMode.Refresh:
