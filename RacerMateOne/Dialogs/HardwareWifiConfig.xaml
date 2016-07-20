@@ -16,41 +16,42 @@
                 <DropShadowEffect Color="Black" Direction="315" Opacity=".45"/>
             </Border.Effect>
             <StackPanel Margin="20,10,20,0">
-                <Label Name="TopText" Style="{StaticResource HeaderLabel}" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" VerticalAlignment="Top">
-                    Configure Wifi Controllers
-                </Label>
-                <TextBlock Name="Step1" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
-                    Step 1: Change your computer's wireless settings to connect to the Access Point of the CompuTrainer controller.
-                </TextBlock>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,10,0,0">
-                    <TextBlock Name="DeviceNumberLabel" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,2,0,0" VerticalAlignment="Top">
-                        Device Number:
-                    </TextBlock>
-                    <TextBlock Name="DeviceNumberText" FontFamily="Arial" FontSize="20" Foreground="Red" MinHeight="20" Width="100" TextWrapping="Wrap" Margin="10,4,0,0" VerticalAlignment="Top">
-                        0
-                    </TextBlock>
-                    <c:Pillbox x:Name="RefreshButton" Text="Refresh" Width="110" VerticalAlignment="Bottom" Height="31" Margin="10,0,0,0" HorizontalAlignment="Left" Click="Refresh_Click"></c:Pillbox>
+                    <Label Name="TopText" Style="{StaticResource HeaderLabel}" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" VerticalAlignment="Top">
+                        Configure Wifi Controllers
+                    </Label>
+                    <c:Pillbox x:Name="RefreshButton" Text="Refresh" Width="110" VerticalAlignment="Bottom" Height="31" Margin="30,0,0,0" HorizontalAlignment="Left" Click="Refresh_Click"></c:Pillbox>
                 </StackPanel>
-                <TextBlock Name="Step2" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
-                    Step 2: Provide the SSID and password to your home wireless network.
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,10,0,0">
+                    <TextBlock Name="CurrentSSIDLabel" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,2,0,0" VerticalAlignment="Top">
+                        Current SSID:
+                    </TextBlock>
+                    <TextBlock Name="CurrentSSIDText" FontFamily="Arial" FontSize="20" Foreground="Red" MinHeight="20" Width="240" TextWrapping="Wrap" Margin="10,4,0,0" VerticalAlignment="Top">
+                        Unavailable
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Name="Step" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,10,0,0" VerticalAlignment="Top">
+                    Step 1: Select the SSID of your home wireless network and enter its password.
                 </TextBlock>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="20,5,0,0">
-                    <TextBlock Name="SSIDLabel" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,0,10,0" VerticalAlignment="Top">
-                    SSID:
+                    <TextBlock Name="SSIDLabel" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,0,8,0" VerticalAlignment="Top">
+                    Home SSID:
                     </TextBlock>
-                    <TextBox Name="SSIDText" Width="255" Margin="59,0,0,0"></TextBox>
+                    <ComboBox Name="HomeNetworkNameDropDrop" Width="255" Margin="0,0,0,0" SelectionChanged="HomeNetworkNameDropDrop_SelectionChanged"></ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="20,5,0,0">
                     <TextBlock Name="PasswordLabel" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,0,10,0" VerticalAlignment="Top">
                     Password:
                     </TextBlock>
                     <PasswordBox Name="PasswordText" Width="255" Margin="17,0,0,0"></PasswordBox>
-                </StackPanel>
+                </StackPanel>                <TextBlock Name="Step1" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
+                    Step 2: Change your computer's wireless settings to connect to one of the CompuTrainers' Access Points:
+                </TextBlock>
+                <ComboBox Name="RacerMateAccessPointsDropDown" Margin="20,10,10,0" SelectionChanged="RMAccessPoint_SelectionChanged"></ComboBox>
                 <TextBlock Name="Step3" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
                     Step 3: Send configuration to controller.
                 </TextBlock>
                 <c:Pillbox x:Name="Send" Text="Send Configuration" Width="220" VerticalAlignment="Bottom" Height="31" Margin="0,5,0,0" HorizontalAlignment="Center" Click="SendConfiguration_Click"></c:Pillbox>
-
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0">
                     <TextBlock Name="Step4" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
                         Step 4: Status?
