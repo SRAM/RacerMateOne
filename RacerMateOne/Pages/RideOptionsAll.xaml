@@ -437,7 +437,7 @@
                             Hardware
                         </Label>
 
-                        <c:PlainButton x:Name="HardwareWifiSetup" Margin="50,0,15,0" HorizontalAlignment="Right" Text="One-Time Wifi Setup" Click="HardwareWifiSetup_Click" />
+                        <c:PlainButton x:Name="HardwareWifiSetup" Margin="50,0,15,0" HorizontalAlignment="Right" Text="Configure Wifi Trainers" Click="HardwareWifiSetup_Click" />
 <!--                        <c:PlainButton x:Name="HardwareRescan2" Text="Scan for new devices" Margin="50,0,15,0" Click="HardwareRescan_Click" />
     -->
 <!--                        <c:PlainButton x:Name="HardwareRefresh2" Margin="300,0,15,0" HorizontalAlignment="Right" Text="One Time Wifi Setup" Click="HardwareRefresh_Click" />

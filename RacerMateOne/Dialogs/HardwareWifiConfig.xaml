@@ -18,9 +18,9 @@
             <StackPanel Margin="20,10,20,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,10,0,0">
                     <Label Name="TopText" Style="{StaticResource HeaderLabel}" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" VerticalAlignment="Top">
-                        Configure Wifi Controllers
+                        Configure Wifi Trainers
                     </Label>
-                    <c:Pillbox x:Name="RefreshButton" Text="Refresh" Width="110" VerticalAlignment="Bottom" Height="31" Margin="30,0,0,0" HorizontalAlignment="Left" Click="Refresh_Click"></c:Pillbox>
+                    <c:Pillbox x:Name="RefreshButton" Text="Refresh" Width="110" VerticalAlignment="Bottom" Height="31" Margin="60,0,0,0" HorizontalAlignment="Left" Click="Refresh_Click"></c:Pillbox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,10,0,0">
                     <TextBlock Name="CurrentSSIDLabel" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,2,0,0" VerticalAlignment="Top">

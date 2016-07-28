@@ -409,8 +409,11 @@ namespace NativeWifi
 										switch ((Wlan.WlanNotificationCodeAcm)wlanConnectionData.notifyData.notificationCode)
 										{
 											case Wlan.WlanNotificationCodeAcm.ConnectionComplete:
-												if (wlanConnectionData.connNotifyData.profileName == profile)
-													return true;
+                                                if (wlanConnectionData.connNotifyData.profileName == profile)
+                                                    return true;
+                                                else if (connectionMode == Wlan.WlanConnectionMode.TemporaryProfile &&
+                                                         profile.Contains("<name>" + wlanConnectionData.connNotifyData.profileName + "</name>"))
+                                                    return true;
 												break;
 										}
 									}

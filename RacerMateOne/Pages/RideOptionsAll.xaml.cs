@@ -1111,7 +1111,21 @@ namespace RacerMateOne.Pages
             // Show confirmation info
             RacerMateOne.Dialogs.HardwareWifiConfig wifiDialog = new RacerMateOne.Dialogs.HardwareWifiConfig();
             wifiDialog.Owner = AppWin.Instance;
-            wifiDialog.ShowDialog();
+            bool bRefreshTrainers = false;
+
+            try
+            {
+                bRefreshTrainers = (bool)wifiDialog.ShowDialog();
+            }
+            catch
+            {
+                // ignore the error
+            }
+
+            if (bRefreshTrainers)
+            {
+                HardwareRescan_Click(sender, e);
+            }
         }
 
         private void HardwareRefresh_Click(object sender, RoutedEventArgs e)  {

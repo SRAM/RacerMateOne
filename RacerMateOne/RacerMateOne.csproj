@@ -1184,6 +1184,8 @@
       <DependentUpon>TextLine.xaml</DependentUpon>
     </Compile>
     <Compile Include="Log.cs" />
+    <Compile Include="managedwifi\Interop.cs" />
+    <Compile Include="managedwifi\WlanApi.cs" />
     <Compile Include="Pages\Basic.xaml.cs">
       <DependentUpon>Basic.xaml</DependentUpon>
     </Compile>
