@@ -192,9 +192,40 @@ namespace RacerMateOne
 				}
 			}
 
+            private int m_wifiBroadcastPort = 9071;
+            public int WifiBroadcastPort
+            {
+                get { return m_wifiBroadcastPort; }
+                set
+                {
+                    m_wifiBroadcastPort = value < 0 ? 0 : value;
+                    OnPropertyChanged("WifiBroadcastPort");
+                }
+            }
 
+            private int m_wifiListenPort = 9072;
+            public int WifiListenPort
+            {
+                get { return m_wifiListenPort; }
+                set
+                {
+                    m_wifiListenPort = value < 0 ? 0 : value;
+                    OnPropertyChanged("WifiListenPort");
+                }
+            }
 
-			private bool m_SelectWatts = false;
+            private string m_wifiOverrideIPAddress = "";
+            public string WifiOverrideIPAddress
+            {
+                get { return m_wifiOverrideIPAddress; }
+                set
+                {
+                    m_wifiOverrideIPAddress = value;
+                    OnPropertyChanged("WifiOverrideIPAddress");
+                }
+            }
+
+            private bool m_SelectWatts = false;
 			public bool SelectWatts { get { return m_SelectWatts; } set { m_SelectWatts = value; OnPropertyChanged("SelectWatts"); } }
 
 			private bool m_ManualControl = false;
@@ -686,7 +717,24 @@ namespace RacerMateOne
 						XPath_RCV = sub.Value;
 				}
 
-				if ((elem = root.Element("AllowDrafting")) != null)
+                if ((elem = root.Element("WifiBroadcastPort")) != null)
+                {
+                    WifiBroadcastPort = Convert.ToInt32(elem.Value);
+                }
+                if ((elem = root.Element("WifiListenPort")) != null)
+                {
+                    WifiListenPort = Convert.ToInt32(elem.Value);
+                }
+                if ((elem = root.Element("WifiOverrideIPAddress")) != null)
+                {
+                    System.Net.IPAddress tmpAddress;
+                    if (System.Net.IPAddress.TryParse(elem.Value, out tmpAddress))
+                    {
+                        WifiOverrideIPAddress = elem.Value;
+                    }
+                }
+
+                if ((elem = root.Element("AllowDrafting")) != null)
 					AllowDrafting = Convert.ToBoolean(elem.Value);
 				if ((elem = root.Element("ShowKeypadPresses")) != null)
 					ShowKeypadPresses = Convert.ToBoolean(elem.Value);
@@ -969,7 +1017,10 @@ namespace RacerMateOne
 				root.Add(new XElement("Metric", Metric));
 				root.Add(new XElement("Paths",
 					new XElement("RCV",Path_RCV)));
-				root.Add(new XElement("Ask",
+                root.Add(new XElement("WifiBroadcastPort", m_wifiBroadcastPort));
+                root.Add(new XElement("WifiListenPort", m_wifiListenPort));
+                root.Add(new XElement("WifiOverrideIPAddress", m_wifiOverrideIPAddress));
+                root.Add(new XElement("Ask",
 					new XAttribute("Calibration",m_CalibrationCheck)));
 				root.Add(new XElement("ManualControl",
 					new XAttribute("SpinScan",m_SS_ManualControl),

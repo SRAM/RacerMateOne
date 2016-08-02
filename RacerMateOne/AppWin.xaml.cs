@@ -244,7 +244,7 @@ namespace RacerMateOne  {
 			Debug.WriteLine("\nAppWin.xaml.cs   AppWin::Initialize()");
 #endif
 
-         Log.WriteLine("Loading settings");
+			Log.WriteLine("Loading settings");
 
 			// Locate the user settings file, load it.
 			// The file is in a fixed location "<Environment.SpecialFolder.MyDocuments>\RacerMate\Settings\RM1_Settings.xml"
@@ -258,6 +258,12 @@ namespace RacerMateOne  {
 			if (RM1_Settings.LoadSettings() == false)  {
 				AppWin.Exit();
 			}
+
+			if (RM1.Initialize_Server() == false)
+			{
+				AppWin.Exit();
+			}
+
 			Log.WriteLine("Loading Rider Database");
 
 

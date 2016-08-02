@@ -24,12 +24,12 @@ namespace RacerMateOne  {
 		************************************************************************/
 
 		static RM1() {
-			#if DEBUG
+#if DEBUG
 			Log.WriteLine("RM1() static constructor");
 			Debug.WriteLine("RM1.cs   RM1() static constructor");
 			//FILE* stream = fopen("x.x", "wt");
 			//fclose(stream);
-			#endif
+#endif
 
 			BarRadians = new Double[RM1.BarCount];
 			double step = Math.PI / RM1.HalfBarCount;
@@ -37,55 +37,75 @@ namespace RacerMateOne  {
 			for (int i = 0; i < RM1.HalfBarCount; i++) {
 				BarRadians[i + RM1.HalfBarCount] = BarRadians[i] = step * i + (step * 0.5);
 			}
+		}
 
+		/************************************************************************
+
+		************************************************************************/
+
+		RM1()
+		{
+			IntPtr pfullpath = Marshal.StringToHGlobalAnsi(RacerMatePaths.DebugFullPath);
+			_status_logpath = DLL.Setlogfilepath(pfullpath);
+			Marshal.FreeBSTR(pfullpath);
+			DLL.Enablelogs(true, true, true, true, true, true);
+		}											// RM1() constructor
+		
+		/************************************************************************
+
+		************************************************************************/
+		public static bool Initialize_Server()
+		{
+			Log.WriteLine("Initializing Racermate Server.");
 #if DEBUG
 			String dir = Directory.GetCurrentDirectory();            // "D:\\_fs\\rm1\\RacerMateOne_Source\\RacerMateOne\\bin\\Debug"
-#else
-			//String dir = Directory.GetCurrentDirectory();				// "D:\\_fs\\rm1\\RacerMateOne_Source\\RacerMateOne\\bin\\Release"
-			//System.Console.WriteLine(dir);
+			System.Console.WriteLine(dir);
 #endif
 
 #if DEBUG
 			Debug.WriteLine("RM1.cs   calling DLL.racermate_init()");
 #endif
 			try {
-			    DLL.racermate_init();
-            }
-            catch (Exception e)
-            {
-                Log.WriteLine(e.ToString());
-                RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to Initialize RacerMate.\nYour installation may have incorrect files.\n\n" + e.ToString(), "OK", "Cancel");
-                info.ShowDialog();
-            }
+				DLL.racermate_init();
+			}
+			catch (Exception e)
+			{
+				Log.WriteLine(e.ToString());
+				RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to Initialize RacerMate.\nYour installation may have incorrect files.\n\n" + e.ToString(), "OK", "Cancel");
+				info.ShowDialog();
+				return false;
+			}
 
-            int status = 0;
+			int status = 0;
 			int debug_level = 2;
 
-            try { 
+			try { 
 			status = DLL.start_server(
-							9072,								// int listen_port
-							9071,								// int broadcast_port
-							"",									// override ip adress
+							RM1_Settings.General.WifiListenPort,        // int listen_port
+							RM1_Settings.General.WifiBroadcastPort,     // int broadcast_port
+							RM1_Settings.General.WifiOverrideIPAddress, // override ip adress
 							debug_level);
 			}
 			catch (Exception e) {
 				Log.WriteLine(e.ToString());
-                RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start trainer server.\nRacerMate will not work correctly without a network connection.\n\n" + e.ToString(), "OK", "Cancel");
-                info.ShowDialog();
-            }
+				RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start trainer server.\nRacerMate will not work correctly without a network connection.\n\n" + e.ToString(), "OK", "Cancel");
+				info.ShowDialog();
+				return false;
+			}
 
 			switch (status)
 			{
 				case 0:
 					// no error
+					Log.WriteLine("Server started successfully.");
 					break;
 				case 1:
 					// no network
-					Log.WriteLine("Server Started, but no network is available.");
+					Log.WriteLine("Server started, but no network is available.");
 					break;
 				case 2:
 					// can't compute broadcast address
-					Log.WriteLine("Server Started, but an error occurred while computing the broadcast address, so wireless controllers will not work.");
+					Log.WriteLine("Server started, but an error occurred while computing the broadcast address, so wireless controllers will not work.");
 					break;
 				default:
 					// unknown error
@@ -113,26 +133,13 @@ namespace RacerMateOne  {
 
 			bp = 0;
 #endif
-
+			return true;
 		}											// static RM1() constructor
-
-
-		/************************************************************************
-
-		************************************************************************/
-
-		RM1() {
-			IntPtr pfullpath = Marshal.StringToHGlobalAnsi(RacerMatePaths.DebugFullPath);
-				_status_logpath = DLL.Setlogfilepath(pfullpath);
-				Marshal.FreeBSTR(pfullpath);
-				DLL.Enablelogs(true, true, true, true, true, true);
-		}											// RM1() constructor
 
 
 #if DEBUG
 		static private int bp = 0;
 #endif
-		static private bool network_started = false;
 		static public int MAX_FRONT_GEARS = 3;
 		static public int MAX_REAR_GEARS = 10;
 		static public int MAX_FRONT_GEARS_SPACE = 5;
@@ -497,8 +504,8 @@ namespace RacerMateOne  {
 				Log.WriteLine(e.ToString());
 				id = DeviceType.OPEN_ERROR;
 			}
-            //Log.WriteLine("opened " + PortName + " got " + id.ToString());
-            return id;
+			//Log.WriteLine("opened " + PortName + " got " + id.ToString());
+			return id;
 		}
 
 		public delegate void TrainerEvent(Trainer trainer, object arguments);	// Depends on the event.
@@ -512,16 +519,16 @@ namespace RacerMateOne  {
 		public static event TrainerPadKey OnPadKey;
 		public delegate void UpdateEvent(double splittime);
 		public static event UpdateEvent OnUpdate;
-        /// <summary>
-        /// All the trainers comm ports.  Not thread safe.   Only  add/remove from main thread.
-        /// </summary>
+		/// <summary>
+		/// All the trainers comm ports.  Not thread safe.   Only  add/remove from main thread.
+		/// </summary>
 //		protected static Dictionary<int, Trainer> ms_Trainers = new Dictionary<int, Trainer>();
-        protected static Dictionary<string, Trainer> ms_Trainers = new Dictionary<string, Trainer>();
+		protected static Dictionary<string, Trainer> ms_Trainers = new Dictionary<string, Trainer>();
 
-        /// <summary>
-        /// Trainers that need to be initizlized  Uses the ms_mux to add and remove from.
-        /// </summary>
-        protected static LinkedList<Trainer> ms_InitList = new LinkedList<Trainer>();
+		/// <summary>
+		/// Trainers that need to be initizlized  Uses the ms_mux to add and remove from.
+		/// </summary>
+		protected static LinkedList<Trainer> ms_InitList = new LinkedList<Trainer>();
 		/// <summary>
 		/// When a trainer needs to be started add it here.
 		/// </summary>
@@ -656,7 +663,7 @@ namespace RacerMateOne  {
 					if (!ms_InitList.Contains(trainer)) {
 						ms_InitList.AddLast(trainer);
 					}
-			    }
+				}
 
 				if (RM1_Settings.General.DemoDevice) {
 					AddFake();
@@ -692,7 +699,7 @@ namespace RacerMateOne  {
 					trainer = RM1.Trainer.Get(portName);
 					if (!ms_InitList.Contains(trainer)) {
 						ms_InitList.AddLast(trainer);
-				    }
+					}
 				}
 
 				if (RM1_Settings.General.DemoDevice) {
@@ -738,7 +745,7 @@ namespace RacerMateOne  {
 		#endif
 
 			foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList) {
-                portNameList.Add(tc.SavedPortName);
+				portNameList.Add(tc.SavedPortName);
 			}
 
 			if (portNameList.Count() == 0) {
@@ -789,7 +796,7 @@ namespace RacerMateOne  {
 			// [DllImport("racermate.dll")] public static extern IntPtr get_errst_r(int err);
 			[DllImport("racermate.dll")]
 			public static extern IntPtr get_errstr(int err);
-            
+			
 			//[DllImport("racermate.dll")] public static extern int Setlogfilepat_h(IntPtr pathtosafefolder);
 			[DllImport("racermate.dll")]
 			public static extern int Setlogfilepath(IntPtr psf);
@@ -885,7 +892,7 @@ namespace RacerMateOne  {
 			); */
 			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
 			public static extern uint SetVelotronParameters(
-                    [MarshalAs(UnmanagedType.LPStr)] string portName,
+					[MarshalAs(UnmanagedType.LPStr)] string portName,
 					int abc_123,
 					int nf,
 					int nr,
@@ -1044,7 +1051,7 @@ namespace RacerMateOne  {
 			public static Trainer Fake;
 			public RM1.State State { get; protected set; }
 			public bool Closed { get; protected set; }
-            public readonly string PortName;
+			public readonly string PortName;
 			public DeviceType Type { get; protected set; }
 
 			protected bool bFake = false;
@@ -1330,22 +1337,22 @@ namespace RacerMateOne  {
 				m_Buttons = 0;
 
 				ms_Trainers[portName] = this;
-                PortName = portName;
+				PortName = portName;
 				bFake = false;
-                //if (portName == FakePort)
-                //{
-                //    bFake = true;
-                //    PortNumber = 99;
-                //    VersionNum = 4543;
-                //    Ver = 4095;
-                //    //I want to kill the com 100 fake case in release
-                //   // IsConnected = true;
-                //   // Type = DeviceType.COMPUTRAINER;
-                //    Type = DeviceType.NOT_SCANNED;
+				//if (portName == FakePort)
+				//{
+				//    bFake = true;
+				//    PortNumber = 99;
+				//    VersionNum = 4543;
+				//    Ver = 4095;
+				//    //I want to kill the com 100 fake case in release
+				//   // IsConnected = true;
+				//   // Type = DeviceType.COMPUTRAINER;
+				//    Type = DeviceType.NOT_SCANNED;
 
-                //    IsConnected = false;
-                //}
-                ms_Mux.WaitOne();
+				//    IsConnected = false;
+				//}
+				ms_Mux.WaitOne();
 				try {
 					ms_InitList.AddLast(this);
 				}
@@ -1369,7 +1376,7 @@ namespace RacerMateOne  {
 
 			public static Trainer Get(string portName) {
 				Trainer t;
-                if (ms_Trainers.ContainsKey(portName))
+				if (ms_Trainers.ContainsKey(portName))
 					t = ms_Trainers[portName];
 				else {
 					t = new Trainer(portName);
@@ -2159,7 +2166,7 @@ namespace RacerMateOne  {
 								m_IF = DLL.get_if(PortName, Ver);
 								m_NP = DLL.get_np(PortName, Ver);
 								m_TSS = DLL.get_tss(PortName, Ver);
-                                // TODO: revisit if we need the status bits
+								// TODO: revisit if we need the status bits
 								//StatusFlags sf = (StatusFlags)DLL.get_status_bits(PortName, Ver);				// not implemented!
 
 								//if (m_StatusFlags != sf) {
@@ -2282,11 +2289,11 @@ namespace RacerMateOne  {
 					bool c = (DLL.GetIsCalibrated(PortName, orgv) & 0xff) == 0 ? false : true;
 					int cnum = DLL.GetCalibration(PortName);                // wifi = 3, serial = 200
 
-                    //Paul enabled feb 5
-                    //Log.WriteLine (String.Format("Found {0} on port {1}, Version {2}", Type, PortName, v) +
-                    //	(c ? "" : " Not calibrated")+ " calnum is " + cnum);
-                    //end Paul enabled feb 5
-                    Ver = orgv;
+					//Paul enabled feb 5
+					//Log.WriteLine (String.Format("Found {0} on port {1}, Version {2}", Type, PortName, v) +
+					//	(c ? "" : " Not calibrated")+ " calnum is " + cnum);
+					//end Paul enabled feb 5
+					Ver = orgv;
 					VersionNum = v;
 					if (!notify)
 						notify = (c != IsCalibrated || CalibrationValue != cnum);
@@ -2322,63 +2329,6 @@ namespace RacerMateOne  {
 					Stop(); // Stop the device if started.
 				}
 				Log.WriteLine(String.Format("Getting Trainer {0}", PortName));
-
-//				if (PortNumber >= 220 && PortNumber <= 235) {                  // trainer is a udp client
-//					/*
-//					if (!network_started) {
-//						status = DLL.set_network(
-//									9071,
-//									9072,
-//									false,
-//									true,
-//									PortNumber + 1);
-//						//assert(status == 0);
-//						//Thread.Sleep(3000);				// gotta give server time to start up. maybe move this earlier in the program.
-//						network_started = true;
-//					}
-//					*/
-
-//				}
-//				else if (PortNumber >= 200 && PortNumber <= 215) {                // trainer is a client
-//					/*
-//					status = set_server_network(
-//						broadcast_port,				// 9071
-//						listen_port,					// 9099
-//						//false,								// ip_discover
-//						true,
-//						false								// udp flag
-//					);				// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   creates server AND STARTS it
-//					assert(status == ALL_OK);
-//					*/
-//				}
-//				else if (PortNumber >= 230 && PortNumber <= 245) {                // trainer is a server
-//					/*
-//					int tcp_port;
-//					IntPtr url;
-//					String surl;
-
-//#if DEBUG
-//					tcp_port = 9072;
-//					surl = "miney2.mselectron.net";
-//#else
-//					//tcp_port = 8899;
-//					tcp_port = 9072;
-//					surl = "10.10.100.254";
-//#endif
-
-//					try {
-//						url = Marshal.StringToHGlobalAnsi(surl);
-//						status = DLL.set_client_network(PortNumber, url, tcp_port);          // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-//						Marshal.FreeHGlobal(url);                       // also, you need to make sure to free the unmanaged memory:
-//					}
-//					finally {
-//#if DEBUG
-//						bp = 2;
-//#endif
-//					}
-//					*/
-//				}
-
 
 				DeviceType t;
 				if (bFake) {
@@ -2424,8 +2374,8 @@ namespace RacerMateOne  {
 				}
 			}
 
-            private static int orderByNum(Trainer a, Trainer b) {
-                return a.PortName.CompareTo(b.PortName);
+			private static int orderByNum(Trainer a, Trainer b) {
+				return a.PortName.CompareTo(b.PortName);
 			}
 
 			/// <summary>
@@ -2489,7 +2439,7 @@ namespace RacerMateOne  {
 			private static void ThreadLoop() {
 		#if DEBUG
 				Log.WriteLine("RM1.cs, ThreadLoop() beginning");
-            //int bp = 0;
+			//int bp = 0;
 
 				//using System.Diagnostics;
 
@@ -2635,7 +2585,7 @@ namespace RacerMateOne  {
 					}
 					catch (Exception ex)  {
 						MutexException(ex);
-                        string s = ex.ToString();
+						string s = ex.ToString();
 						#if DEBUG
 							//bp = 1;
 						#endif
@@ -2648,7 +2598,7 @@ namespace RacerMateOne  {
 						if (diff > 0) {
 							//bp = 2;
 						}
-                    #endif
+					#endif
 				}																// for (; !ms_WaitEvent.WaitOne(new TimeSpan(wait)) && !ms_bShutdown; )  {
 
 		#if DEBUG
