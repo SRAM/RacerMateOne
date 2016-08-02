@@ -653,7 +653,7 @@ namespace RacerMateOne  {
 
 				foreach (String n in portnames)  {
 					Log.WriteLine(string.Format("Scanning {0}", n));
-              Trainer trainer = Trainer.Get(n);
+					Trainer trainer = Trainer.Get(n);
 					if (!ms_InitList.Contains(trainer)) {
 						ms_InitList.AddLast(trainer);
 					}
