@@ -1111,7 +1111,21 @@ namespace RacerMateOne.Pages
             // Show confirmation info
             RacerMateOne.Dialogs.HardwareWifiConfig wifiDialog = new RacerMateOne.Dialogs.HardwareWifiConfig();
             wifiDialog.Owner = AppWin.Instance;
-            wifiDialog.ShowDialog();
+            bool bRefreshTrainers = false;
+
+            try
+            {
+                bRefreshTrainers = (bool)wifiDialog.ShowDialog();
+            }
+            catch
+            {
+                // ignore the error
+            }
+
+            if (bRefreshTrainers)
+            {
+                HardwareRescan_Click(sender, e);
+            }
         }
 
         private void HardwareRefresh_Click(object sender, RoutedEventArgs e)  {
@@ -1121,9 +1135,9 @@ namespace RacerMateOne.Pages
 			m_bFullScan = false;
 			RM1.OnTrainerInitialized += new RM1.TrainerInitialized(ScanDone);
 
-			List<int> tlist = new List<int>();
+			List<string> tlist = new List<string>();
 			foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList)
-				tlist.Add(tc.SavedSerialPortNum);
+				tlist.Add(tc.SavedPortName);
 
 			if (tlist.Count() == 0)  {
 				m_bFullScan = true;

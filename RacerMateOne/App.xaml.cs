@@ -443,7 +443,7 @@ namespace RacerMateOne
 					{
 						Unit unit = Unit.TrainerUnit(trainer);
 						sw.WriteLine("\tPort: {0}, Type {1}, Version: {2}, Unit: {3}", 
-							trainer.PortNumber + 1, trainer.TypeString, trainer.Version, unit == null ? "-":(unit.Number).ToString() );
+							trainer.PortName, trainer.TypeString, trainer.Version, unit == null ? "-":(unit.Number).ToString() );
 					}
 				}
 				catch { }

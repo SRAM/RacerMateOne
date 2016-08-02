@@ -99,24 +99,6 @@ namespace RacerMateOne.Pages
 			Unit.AllocateHardware(true);
 			Unit.SaveToSettings();
 			Unit.UpdateTrainerData(true); // Clear out the training data.
-			
-			/*
-			TrainerUserConfigurable tc;
-			RM1_Settings.ResetSavedTrainers();
-			int n = 0;
-			foreach (RM1.Trainer t in RM1.ValidTrainers)
-			{
-				if (n > RM1_Settings.SavedTrainersList.Count)
-					break;
-				tc = RM1_Settings.SavedTrainersList[n];
-				if (tc == null)
-					break;
-				tc.PreviouslyDiscovered = 1;
-				tc.RememberedDeviceType = t.TypeString;
-				tc.SavedSerialPortNum = t.PortNumber;
-				n++;
-			}
-			 */
 		}
 
 		public void Continue_FirstRun(RM1.Trainer trainer, int left)

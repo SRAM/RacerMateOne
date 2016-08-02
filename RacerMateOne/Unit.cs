@@ -763,7 +763,7 @@ namespace RacerMateOne
 					TrainerUserConfigurable tc = unit.TC;
 					tc.Active = unit.IsActive;
 					tc.PreviouslyDiscovered = unit.Trainer == null ? 0 : 1;
-					tc.SavedSerialPortNum = unit.Trainer == null ? -1:unit.Trainer.PortNumber;
+					tc.SavedPortName = unit.Trainer == null ? string.Empty : unit.Trainer.PortName;
 					tc.PreviousRiderKey = unit.Rider == null ? "" : unit.Rider.DatabaseKey;
 					tc.BotKey = unit.Bot == null ? "" : unit.Bot.Key;
 				}
@@ -1533,13 +1533,13 @@ namespace RacerMateOne
 						(unit.TC.RememberedDeviceType == "Unknown" ? "Computrainer" : unit.TC.RememberedDeviceType) :
 						unit.Trainer.TypeString;
 					unit.TC.Active = true;
-					unit.TC.SavedSerialPortNum = unit.Trainer.PortNumber;
+					unit.TC.SavedPortName = unit.Trainer.PortName;
 				}
 				else
 				{
 					unit.TC.RememberedDeviceType = "Unknown";
 					if (clearserial)
-						unit.TC.SavedSerialPortNum = -1;
+						unit.TC.SavedPortName = string.Empty;
 				}
 			}
 		}
