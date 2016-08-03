@@ -449,7 +449,7 @@
 						<c:HardwareLine x:Name="bike_7" Number="7" Changed="OnBikeChanged" CalibrateClick="bike_CalibrateClick"></c:HardwareLine>
 						<c:HardwareLine x:Name="bike_8" Number="8" Changed="OnBikeChanged" CalibrateClick="bike_CalibrateClick"></c:HardwareLine>
 						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="63,10,0,10">
-                            <c:PlainButton x:Name="HardwareRescan" Margin="66,0,15,0" Text="Scan for new devices" Click="HardwareRescan_Click" />
+                            <c:PlainButton x:Name="HardwareRescan" Margin="66,0,15,0" Text="Scan For New Devices" Click="HardwareRescan_Click" />
                         </StackPanel>
 					</StackPanel>
 				</Grid>

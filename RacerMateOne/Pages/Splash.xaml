@@ -73,7 +73,7 @@
 		<Border Name="LoadingBox" Height="55" Margin="188,192,188,0" VerticalAlignment="Top" Background="#FF8FB7D3" CornerRadius="27.5,27.5,27.5,27.5" Grid.RowSpan="2">
 			<Grid>
 				<TextBlock Foreground="White" FontFamily="Arial" FontSize="30" Margin="0,10,90,6" HorizontalAlignment="Right" Width="421">
-					Looking for RacerMate devices
+					Looking for RacerMate Devices
 				</TextBlock>
 				<c:Busy x:Name="busy" Width="39" HorizontalAlignment="Right" Margin="0,6.5,29,6.5" Active="True" />
 			</Grid>
