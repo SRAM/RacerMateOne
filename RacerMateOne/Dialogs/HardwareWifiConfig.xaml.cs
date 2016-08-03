@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using NativeWifi;
 using System.Diagnostics;
+using System.Net.NetworkInformation;
 
 namespace RacerMateOne.Dialogs
 {
@@ -160,7 +161,34 @@ namespace RacerMateOne.Dialogs
         private void SendConfiguration_Click(object sender, RoutedEventArgs e)
         {
             Mouse.SetCursor(Cursors.Wait);
+
+            // Determine which IP address the wifi handlebar controller should talk to:
+            string ipAddress = RM1_Settings.General.WifiOverrideIPAddress;
+            if (ipAddress.Length == 0)
+            {
+                // if there wasn't an override IP address in the settings, 
+                // then get the user's current IP address (which we assume 
+                // is assigned by their home network and prefered network interface - wifi vs ethernet).
+                // There are probably many better ways to do this, but this was the easiest solution I found
+                foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+                {
+                    if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 &&
+                        ipAddress.Length == 0)
+                    {
+                        foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
+                        {
+                            if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                            {
+                                ipAddress = ip.Address.ToString();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
             // Attempt to connect to the wifi Access Point
+            bool bConnectedToHandlebarAccessPoint = false;
             WlanClient.WlanInterface wlanIface = client.Interfaces[0];
             try
             {
@@ -178,16 +206,30 @@ namespace RacerMateOne.Dialogs
                 {
                     StatusText.Text = "Failed to connect.";
                     Mouse.SetCursor(Cursors.Arrow);
-                    return;
                 }
                 else
                 {
-                    StatusText.Text = "Connected!";
+                    StatusText.Text = "Connected...";
+                    bConnectedToHandlebarAccessPoint = true;
+                }
+            }
+            catch (Exception exception)
+            {
+                StatusText.Text = exception.Message;
+                Mouse.SetCursor(Cursors.Arrow);
+            }
 
+            // if we were able to connect to the handlebar access point,
+            // then try to configure the wifi settings in the handlebar
+            bool bConfiguredWifiSettings = false;
+            if (bConnectedToHandlebarAccessPoint)
+            {
+                try
+                {
                     // Run external exe
                     ProcessStartInfo startInfo = new ProcessStartInfo();
                     startInfo.FileName = @"console.exe";
-                    startInfo.Arguments = "\"" + SSID + "\" \"" + PasswordText.Password + "\" false";
+                    startInfo.Arguments = "\"" + SSID + "\" \"" + PasswordText.Password + "\" false \"" + RM1_Settings.General.WifiListenPort + "\" \"" + ipAddress + "\"";
                     startInfo.CreateNoWindow = true;
                     startInfo.ErrorDialog = true;
                     startInfo.UseShellExecute = false;
@@ -195,8 +237,8 @@ namespace RacerMateOne.Dialogs
                     startInfo.RedirectStandardError = true;
                     Process console = Process.Start(startInfo);
 
-                    // wait 10 seconds for it to complete, although it should be very quick
-                    if (console.WaitForExit(10 * 1000) == false)
+                    // wait 60 seconds for it to complete, if successful it will be quick, but console.exe can take up to 45 seconds to timeout.
+                    if (console.WaitForExit(60 * 1000) == false)
                     {
                         StatusText.Foreground = Brushes.Red;
                         StatusText.Text = "Timed out.";
@@ -209,31 +251,41 @@ namespace RacerMateOne.Dialogs
                         System.IO.StreamReader stdErr = console.StandardError;
 
                         // parse result
-                        string error = stdErr.ReadToEnd();
-                        string output = stdOut.ReadToEnd();
+                        string error = stdErr.ReadToEnd().Trim();
+                        string output = stdOut.ReadToEnd().Trim();
+
+                        bool isOutputOK = output.StartsWith("OK");
 
                         // update status
-                        if (error.Length == 0 && output.StartsWith("OK"))
+                        if (error.Length > 0 && !isOutputOK)
+                        {
+                            StatusText.Foreground = Brushes.Red;
+                            StatusText.Text = error.Trim();
+                        }
+                        else if (!isOutputOK)
+                        {
+                            StatusText.Foreground = Brushes.Red;
+                            StatusText.Text = output.Trim();
+                        }
+                        else if (isOutputOK)
                         {
                             StatusText.Foreground = Brushes.Green;
-                            StatusText.Text = "Configured!";
+                            StatusText.Text = "Configured...";
+                            bConfiguredWifiSettings = true;
                             m_numConfiguredTrainers++;
                         }
                         else
                         {
                             StatusText.Foreground = Brushes.Red;
-                            StatusText.Text = error;
-                            Mouse.SetCursor(Cursors.Arrow);
-                            return;
+                            StatusText.Text = "Failed to configure.";
                         }
                     }
                 }
-            }
-            catch(Exception exception)
-            {
-                StatusText.Text = exception.Message;
-                Mouse.SetCursor(Cursors.Arrow);
-                return;
+                catch (Exception exception)
+                {
+                    StatusText.Foreground = Brushes.Red;
+                    StatusText.Text = exception.Message;
+                }
             }
 
             // If the code got this far, then we connected to a RacerMate Access Point above, and now need to reconnect to the user's home network.
@@ -241,74 +293,82 @@ namespace RacerMateOne.Dialogs
 
             // first attempt to connect using the stored profile name, which is likely going to work for a user's home network
             bool bReconnected = false;
-            try
+            if (bConnectedToHandlebarAccessPoint)
             {
-                bReconnected = wlanIface.ConnectSynchronously(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, homeNetworkSSID, 10 * 1000);
-            }
-            catch
-            {
-                bReconnected = false;
-            }
-
-            if (bReconnected == false)
-            {
-                string authentication = "open";
-                string encryption = "none";
-                string sharedKeyXml = "";
-                bool bSupported = true;
-
-                // if it didn't work, then attempt to generate a temporary profile xml so that we can connect.
-                // NOTE: These profiles may not be correct for all configurations, so if any of these don't work, we simply prompt the user to reconnect to their network manually.
-                switch(m_connectedNetwork.dot11DefaultAuthAlgorithm)
+                try
                 {
-                    case Wlan.Dot11AuthAlgorithm.IEEE80211_Open:
-                        authentication = "open";
-                        encryption = "none";
-                        sharedKeyXml = "";
-                        break;
-                    case Wlan.Dot11AuthAlgorithm.IEEE80211_SharedKey:
-                        authentication = "shared";
-                        encryption = "WEP";
-                        sharedKeyXml = string.Format("<sharedKey><keyType>networkKey</keyType><protected>false</protected><keyMaterial>{0}</keyMaterial></sharedKey>", PasswordText.Password);
-                        break;
-                    case Wlan.Dot11AuthAlgorithm.RSNA_PSK:
-                        authentication = "WPA2PSK";
-                        encryption = "AES";
-                        sharedKeyXml = string.Format("<sharedKey><keyType>networkKey</keyType><protected>false</protected><keyMaterial>{0}</keyMaterial></sharedKey>", PasswordText.Password);
-                        break;
-                    case Wlan.Dot11AuthAlgorithm.WPA_PSK:
-                        authentication = "WPAPSK";
-                        encryption = "AES";
-                        sharedKeyXml = string.Format("<sharedKey><keyType>networkKey</keyType><protected>false</protected><keyMaterial>{0}</keyMaterial></sharedKey>", PasswordText.Password);
-                        break;
-                    case Wlan.Dot11AuthAlgorithm.RSNA:
-                    case Wlan.Dot11AuthAlgorithm.WPA:
-                    default:
-                        bSupported = false;
-                        break;
+                    bReconnected = wlanIface.ConnectSynchronously(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, homeNetworkSSID, 10 * 1000);
+                }
+                catch
+                {
+                    bReconnected = false;
                 }
 
-                if (bSupported)
+                if (bReconnected == false)
                 {
-                    string homeProfileXml = string.Format("<?xml version=\"1.0\"?><WLANProfile xmlns=\"http://www.microsoft.com/networking/WLAN/profile/v1\"><name>{0}</name><SSIDConfig><SSID><hex>{1}</hex><name>{0}</name></SSID></SSIDConfig><connectionType>ESS</connectionType><MSM><security><authEncryption><authentication>{2}</authentication><encryption>{3}</encryption><useOneX>false</useOneX></authEncryption>{4}<keyIndex>0</keyIndex></security></MSM></WLANProfile>", homeNetworkSSID, ConvertToHex(homeNetworkSSID), authentication, encryption, sharedKeyXml);
-                    try {
-                        bReconnected = wlanIface.ConnectSynchronously(Wlan.WlanConnectionMode.TemporaryProfile, Wlan.Dot11BssType.Any, homeProfileXml, 10 * 1000);
-                    }
-                    catch
+                    string authentication = "open";
+                    string encryption = "none";
+                    string sharedKeyXml = "";
+                    bool bSupported = true;
+
+                    // if it didn't work, then attempt to generate a temporary profile xml so that we can connect.
+                    // NOTE: These profiles may not be correct for all configurations, so if any of these don't work, we simply prompt the user to reconnect to their network manually.
+                    switch (m_connectedNetwork.dot11DefaultAuthAlgorithm)
                     {
-                        bReconnected = false;
+                        case Wlan.Dot11AuthAlgorithm.IEEE80211_Open:
+                            authentication = "open";
+                            encryption = "none";
+                            sharedKeyXml = "";
+                            break;
+                        case Wlan.Dot11AuthAlgorithm.IEEE80211_SharedKey:
+                            authentication = "shared";
+                            encryption = "WEP";
+                            sharedKeyXml = string.Format("<sharedKey><keyType>networkKey</keyType><protected>false</protected><keyMaterial>{0}</keyMaterial></sharedKey>", PasswordText.Password);
+                            break;
+                        case Wlan.Dot11AuthAlgorithm.RSNA_PSK:
+                            authentication = "WPA2PSK";
+                            encryption = "AES";
+                            sharedKeyXml = string.Format("<sharedKey><keyType>networkKey</keyType><protected>false</protected><keyMaterial>{0}</keyMaterial></sharedKey>", PasswordText.Password);
+                            break;
+                        case Wlan.Dot11AuthAlgorithm.WPA_PSK:
+                            authentication = "WPAPSK";
+                            encryption = "AES";
+                            sharedKeyXml = string.Format("<sharedKey><keyType>networkKey</keyType><protected>false</protected><keyMaterial>{0}</keyMaterial></sharedKey>", PasswordText.Password);
+                            break;
+                        case Wlan.Dot11AuthAlgorithm.RSNA:
+                        case Wlan.Dot11AuthAlgorithm.WPA:
+                        default:
+                            bSupported = false;
+                            break;
                     }
+
+                    if (bSupported)
+                    {
+                        string homeProfileXml = string.Format("<?xml version=\"1.0\"?><WLANProfile xmlns=\"http://www.microsoft.com/networking/WLAN/profile/v1\"><name>{0}</name><SSIDConfig><SSID><hex>{1}</hex><name>{0}</name></SSID></SSIDConfig><connectionType>ESS</connectionType><MSM><security><authEncryption><authentication>{2}</authentication><encryption>{3}</encryption><useOneX>false</useOneX></authEncryption>{4}<keyIndex>0</keyIndex></security></MSM></WLANProfile>", homeNetworkSSID, ConvertToHex(homeNetworkSSID), authentication, encryption, sharedKeyXml);
+                        try {
+                            bReconnected = wlanIface.ConnectSynchronously(Wlan.WlanConnectionMode.TemporaryProfile, Wlan.Dot11BssType.Any, homeProfileXml, 10 * 1000);
+                        }
+                        catch
+                        {
+                            bReconnected = false;
+                        }
+                    }
+                }
+
+                // see if either the first or second attempt to connect was successful
+                if (bReconnected == false)
+                {
+                    // there was an error, so display a message to the user telling them they'll have to reconnect to their own home network.
+                    Ask msgbox = new Ask("RacerMateOne is unable to reconnect to your home wireless network, please manually reconnect to '" + homeNetworkSSID + "'.", "OK", "Cancel");
+                    msgbox.ShowDialog();
                 }
             }
 
-            // see if either the first or second attempt to connect was successful
-            if (bReconnected == false)
+            if (bConfiguredWifiSettings)
             {
-                // there was an error, so display a message to the user telling them they'll have to reconnect to their own home network.
-                Ask msgbox = new Ask("RacerMateOne is unable to reconnect to your home wireless network, please manually reconnect to '" + homeNetworkSSID + "'.", "OK", "Cancel");
-                msgbox.ShowDialog();
+                StatusText.Foreground = Brushes.Green;
+                StatusText.Text = "Complete!";
             }
-            StatusText.Text = "Complete!";
 
             Mouse.SetCursor(Cursors.Arrow);
         }
