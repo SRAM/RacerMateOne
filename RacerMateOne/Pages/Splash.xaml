@@ -104,7 +104,6 @@
 					<StackPanel Margin="0,0,20,10" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
 						<c:PlainButton x:Name="NoHardware" Margin="0,0,15,0" Text="Continue without hardware" Click="NoHardware_Click" />
 						<c:PlainButton x:Name="HardwareRescan" Margin="0,0,15,0" Text="Rescan all hardware" Click="HardwareRescan_Click" />
-						<c:PlainButton x:Name="HardwareRefresh" Text="Retry" Click="HardwareRefresh_Click" />
 					</StackPanel>
 				</Grid>
 			</Border>

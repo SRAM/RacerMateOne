@@ -202,28 +202,6 @@ namespace RacerMateOne.Pages
 			Log.WriteLine("============================================");
 		}
 
-		private void HardwareRefresh_Click(object sender, RoutedEventArgs e)
-		{
-			if (m_bRetry)
-				return;
-			m_bRetry = true;
-			FadeInRetry.Stop();
-			FadeOutRetry.Begin();
-			RM1.ClearAllTrainers();
-			m_RetryCount++;
-			Debug.WriteLine("HardwareRefresh_Click");
-			Log.WriteLine("============================================");
-			if (RM1.StartSettingsScan() == 0)
-			{
-				Debug.WriteLine("Quick");
-				Continue_Init(null, 0);
-			}
-			Log.WriteLine("============================================");
-			Debug.WriteLine("HardwareRefresh_Done");
-
-		}
-
-
 		private void Continue_Click(object sender, RoutedEventArgs e)
 		{
 			if (RM1_Settings.gFirstRun)

@@ -1128,29 +1128,6 @@ namespace RacerMateOne.Pages
             }
         }
 
-        private void HardwareRefresh_Click(object sender, RoutedEventArgs e)  {
-			if (m_Scanning != null)	// Make sure we have only one.
-				return;
-
-			m_bFullScan = false;
-			RM1.OnTrainerInitialized += new RM1.TrainerInitialized(ScanDone);
-
-			List<string> tlist = new List<string>();
-			foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList)
-				tlist.Add(tc.SavedPortName);
-
-			if (tlist.Count() == 0)  {
-				m_bFullScan = true;
-				if (RM1.StartFullScan() == 0)
-					return;
-			}
-			else if (RM1.StartSpecificScan(tlist) == 0)
-				return;
-
-			m_Scanning = new Pages.Modes.Scanning();
-			AppWin.Instance.MainFrame.Navigate(m_Scanning);
-		}
-
 		/**********************************************************************************************************
 
 		**********************************************************************************************************/

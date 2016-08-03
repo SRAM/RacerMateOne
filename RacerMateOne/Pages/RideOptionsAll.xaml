@@ -438,15 +438,7 @@
                         </Label>
 
                         <c:PlainButton x:Name="HardwareWifiSetup" Margin="50,0,15,0" HorizontalAlignment="Right" Text="Configure Wifi Trainers" Click="HardwareWifiSetup_Click" />
-<!--                        <c:PlainButton x:Name="HardwareRescan2" Text="Scan for new devices" Margin="50,0,15,0" Click="HardwareRescan_Click" />
-    -->
-<!--                        <c:PlainButton x:Name="HardwareRefresh2" Margin="300,0,15,0" HorizontalAlignment="Right" Text="One Time Wifi Setup" Click="HardwareRefresh_Click" />
-    -->
                     </StackPanel>
-<!--                    <Label Style="{StaticResource HeaderLabel}" HorizontalAlignment="Left" Margin="12,20,0,0" VerticalAlignment="Top" Height="22.997" Width="93.35">
-                        Hardware
-                    </Label>
-    -->                
                     <StackPanel Margin="5,50,5,0" HorizontalAlignment="Center" VerticalAlignment="Top" >
                         <c:HardwareLine x:Name="bike_1" Number="1" Changed="OnBikeChanged" CalibrateClick="bike_CalibrateClick"></c:HardwareLine>
 						<c:HardwareLine x:Name="bike_2" Number="2" Changed="OnBikeChanged" CalibrateClick="bike_CalibrateClick"></c:HardwareLine>
@@ -457,8 +449,6 @@
 						<c:HardwareLine x:Name="bike_7" Number="7" Changed="OnBikeChanged" CalibrateClick="bike_CalibrateClick"></c:HardwareLine>
 						<c:HardwareLine x:Name="bike_8" Number="8" Changed="OnBikeChanged" CalibrateClick="bike_CalibrateClick"></c:HardwareLine>
 						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="63,10,0,10">
-<!--							<c:PlainButton x:Name="HardwareRefresh" Margin="0,0,15,0" Text="Refresh" Click="HardwareRefresh_Click" />
-    -->
                             <c:PlainButton x:Name="HardwareRescan" Margin="66,0,15,0" Text="Scan for new devices" Click="HardwareRescan_Click" />
                         </StackPanel>
 					</StackPanel>
