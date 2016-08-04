@@ -20,6 +20,8 @@ RacerMateOne/bin/Debug/RacerMateOne.application
 RacerMateOne/bin/Debug/RacerMateOne.exe
 RacerMateOne/bin/Debug/RacerMateOne.exe.manifest
 RacerMateOne/bin/Debug/RacerMateOne.pdb
+RacerMateOne/bin/Debug/racermate.dll
+RacerMateOne/bin/Debug/console.exe
 RacerMateOne/bin/Debug/RM1_DefaultSettings.xml
 RacerMateOne/bin/Debug/WPFMediaKit.dll
 RacerMateOne/bin/Debug/WPFMediaKit.pdb
@@ -38,6 +40,8 @@ RacerMateOne/bin/Release/RacerMateOne.exe
 RacerMateOne/bin/Release/RacerMateOne.exe.manifest
 RacerMateOne/bin/Release/RacerMateOne.vshost.exe
 RacerMateOne/bin/Release/RacerMateOne.pdb
+RacerMateOne/bin/Release/racermate.dll
+RacerMateOne/bin/Release/console.exe
 RacerMateOne/bin/Release/RM1_DefaultSettings.xml
 RacerMateOne/bin/Release/WPFMediaKit.dll
 RacerMateOne/bin/Release/WPFMediaKit.pdb
