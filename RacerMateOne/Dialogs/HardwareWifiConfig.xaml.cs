@@ -326,7 +326,7 @@ namespace RacerMateOne.Dialogs
                         StatusText.Foreground = Brushes.Red;
                         StatusText.Text = "Timed out.";
                         console.Kill();
-						Log.WriteLine("Console.exe timed out, so RM1 killed it.")
+						Log.WriteLine("Console.exe timed out, so RM1 killed it.");
                     }
                     else
                     {

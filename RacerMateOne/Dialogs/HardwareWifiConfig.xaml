@@ -46,7 +46,7 @@
                     <TextBlock Name="SSIDLabel" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,0,8,0" VerticalAlignment="Top">
                     Home SSID:
                     </TextBlock>
-                    <ComboBox Name="HomeNetworkNameDropDrop" Width="265" Margin="0,0,0,0" SelectionChanged="HomeNetworkNameDropDrop_SelectionChanged"></ComboBox>
+                    <ComboBox Name="HomeNetworkNameDropDrop" Width="265" Margin="0,0,0,0"></ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="10,5,0,0">
                     <TextBlock Name="PasswordLabel" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,0,10,0" VerticalAlignment="Top">
