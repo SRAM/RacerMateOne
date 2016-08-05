@@ -21,14 +21,14 @@ namespace RacerMateOne.Dialogs
     /// </summary>
     public partial class HardwareWifiConfig : Window
     {
-        public String SSID = string.Empty;
-        public String Password = string.Empty;
         private string m_selectedRacerMateAccessPointSSID = string.Empty;
-        private WlanClient client = new WlanClient();
+        private WlanClient m_client = new WlanClient();
+		bool m_hasInitialConnectedNetwork = false;
         Wlan.WlanAvailableNetwork m_connectedNetwork;
         List<Wlan.WlanAvailableNetwork> m_racermateNetworks = new List<Wlan.WlanAvailableNetwork>();
         List<Wlan.WlanAvailableNetwork> m_otherNetworks = new List<Wlan.WlanAvailableNetwork>();
         int m_numConfiguredTrainers = 0;
+		List<string> m_detectedIPAddresses = new List<string>();
 
         public HardwareWifiConfig()
         {
@@ -37,8 +37,7 @@ namespace RacerMateOne.Dialogs
 
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            VerifyWifiSupport();
-            Refresh_Click(sender, e);
+			Refresh_Click(sender, e);
         }
 
         /// <summary>
@@ -49,24 +48,51 @@ namespace RacerMateOne.Dialogs
             return Encoding.ASCII.GetString(ssid.SSID, 0, (int)ssid.SSIDLength);
         }
 
-        private void VerifyWifiSupport()
+        public static bool VerifyWifiSupport()
         {
-            if (client.Interfaces.Length == 0)
+			WlanClient client = new WlanClient();
+			bool wifiSupported = (client.Interfaces.Length > 0);
+            if (!wifiSupported)
             {
                 Ask dialog = new Ask("Your computer MUST have wireless network access to use this setup wizard.", "OK", "Cancel");
                 dialog.ShowDialog();
             }
-        }
+			return wifiSupported;
+		}
 
         private void UpdateDialogState()
         {
-            bool hasWifiSupport = client.Interfaces.Length > 0;
-            bool hasHomeSSID = HomeNetworkNameDropDrop.SelectedItem != null;
+            bool hasWifiSupport = m_client.Interfaces.Length > 0;
 
-            HomeNetworkNameDropDrop.IsEnabled = hasWifiSupport;
-            PasswordText.IsEnabled = hasWifiSupport;
+			HomeNetworkNameDropDrop.IsEnabled = hasWifiSupport;
+			PasswordTextPlain.IsEnabled = hasWifiSupport;
+			PasswordText.IsEnabled = hasWifiSupport;
+			ShowPasswordCheckBox.IsEnabled = hasWifiSupport;
+			Send.IsEnabled = hasWifiSupport;
+			OK.IsEnabled = hasWifiSupport;
 
-            if (hasWifiSupport)
+			if (CurrentIPAddressBox.Items.Count == 0)
+			{
+				CurrentIPAddressBox.Items.Add("<None found>");
+				CurrentIPAddressBox.SelectedIndex = 0;
+				CurrentIPAddressBox.IsEnabled = false;
+			}
+
+			if (HomeNetworkNameDropDrop.Items.Count == 0)
+			{
+				HomeNetworkNameDropDrop.Items.Add("<None found>");
+				HomeNetworkNameDropDrop.SelectedIndex = 0;
+				HomeNetworkNameDropDrop.IsEnabled = false;
+			}
+
+			if (RacerMateAccessPointsDropDown.Items.Count == 0)
+			{
+				RacerMateAccessPointsDropDown.Items.Add("<None found>");
+				RacerMateAccessPointsDropDown.SelectedIndex = 0;
+				RacerMateAccessPointsDropDown.IsEnabled = false;
+			}
+
+			if (hasWifiSupport)
             {
                 HomeNetworkNameDropDrop.Focus();
             }
@@ -82,8 +108,47 @@ namespace RacerMateOne.Dialogs
             HomeNetworkNameDropDrop.Items.Clear();
             CurrentSSIDText.Foreground = Brushes.Red;
             CurrentSSIDText.Text = "Unavailable";
+			m_hasInitialConnectedNetwork = false;
 
-            foreach (WlanClient.WlanInterface wlanIface in client.Interfaces)
+			m_detectedIPAddresses.Clear();
+			CurrentIPAddressBox.Items.Clear();
+			if (RM1_Settings.General.WifiOverrideIPAddress != string.Empty)
+			{
+				CurrentIPAddressBox.Items.Add(RM1_Settings.General.WifiOverrideIPAddress + " (WifiOverrideIPAddress)");
+				m_detectedIPAddresses.Add(RM1_Settings.General.WifiOverrideIPAddress);
+			}
+
+			// if there wasn't an override IP address in the settings, 
+			// then get the user's current IP address (which we assume 
+			// is assigned by their home network and prefered network interface - wifi vs ethernet).
+			// There are probably many better ways to do this, but this was the easiest solution I found
+			foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+			{
+				if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 ||
+					ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
+					ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet3Megabit ||
+					ni.NetworkInterfaceType == NetworkInterfaceType.FastEthernetFx ||
+					ni.NetworkInterfaceType == NetworkInterfaceType.FastEthernetT ||
+					ni.NetworkInterfaceType == NetworkInterfaceType.GigabitEthernet)
+				{
+					foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
+					{
+						if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+						{
+							m_detectedIPAddresses.Add(ip.Address.ToString());
+							CurrentIPAddressBox.Items.Add(ip.Address.ToString() + " (" + ni.Description + ")");
+						}
+					}
+				}
+			}
+
+			if (CurrentIPAddressBox.HasItems)
+			{
+				CurrentIPAddressBox.SelectedIndex = 0;
+			}
+
+			// Sort the available wireless networks into "home" networks and "RacerMate" networks.
+			foreach (WlanClient.WlanInterface wlanIface in m_client.Interfaces)
             {
                 // Lists all networks with WEP security
                 Wlan.WlanAvailableNetwork[] networks = wlanIface.GetAvailableNetworkList(0);
@@ -99,7 +164,8 @@ namespace RacerMateOne.Dialogs
                     string availableSSID = GetStringForSSID(network.dot11Ssid);
                     if ((network.flags & Wlan.WlanAvailableNetworkFlags.Connected) == Wlan.WlanAvailableNetworkFlags.Connected)
                     {
-                        m_connectedNetwork = network;
+						m_hasInitialConnectedNetwork = true;
+						m_connectedNetwork = network;
                         CurrentSSIDText.Foreground = Brushes.Green;
                         CurrentSSIDText.Text = availableSSID;
                     }
@@ -160,36 +226,47 @@ namespace RacerMateOne.Dialogs
 
         private void SendConfiguration_Click(object sender, RoutedEventArgs e)
         {
-            Mouse.SetCursor(Cursors.Wait);
+			// validate state:
+			if (m_detectedIPAddresses.Count == 0 ||
+				CurrentIPAddressBox.HasItems == false ||
+				CurrentIPAddressBox.SelectedItem.ToString().Contains("Not found") ||
+				CurrentIPAddressBox.IsEnabled == false)
+			{
+				StatusText.Foreground = Brushes.Red;
+				StatusText.Text = "Missing IP Address";
+				return;
+			}
 
-            // Determine which IP address the wifi handlebar controller should talk to:
-            string ipAddress = RM1_Settings.General.WifiOverrideIPAddress;
-            if (ipAddress.Length == 0)
-            {
-                // if there wasn't an override IP address in the settings, 
-                // then get the user's current IP address (which we assume 
-                // is assigned by their home network and prefered network interface - wifi vs ethernet).
-                // There are probably many better ways to do this, but this was the easiest solution I found
-                foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
-                {
-                    if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 &&
-                        ipAddress.Length == 0)
-                    {
-                        foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
-                        {
-                            if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                            {
-                                ipAddress = ip.Address.ToString();
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
+			if (HomeNetworkNameDropDrop.HasItems == false ||
+				HomeNetworkNameDropDrop.SelectedItem.ToString().Contains("Not found") || 
+				HomeNetworkNameDropDrop.IsEnabled == false)
+			{
+				StatusText.Foreground = Brushes.Red;
+				StatusText.Text = "Missing Home SSID";
+				return;
+			}
+
+			if ((PasswordText.Password.Length == 0 && PasswordTextPlain.Text.Length == 0))
+			{
+				StatusText.Foreground = Brushes.Red;
+				StatusText.Text = "Missing SSID Password";
+				return;
+			}
+
+			if (RacerMateAccessPointsDropDown.HasItems == false ||
+				RacerMateAccessPointsDropDown.SelectedItem.ToString().Contains("Not found") ||
+				RacerMateAccessPointsDropDown.IsEnabled == false)
+			{
+				StatusText.Foreground = Brushes.Red;
+				StatusText.Text = "Missing Home SSID";
+				return;
+			}
+
+			Mouse.SetCursor(Cursors.Wait);
 
             // Attempt to connect to the wifi Access Point
             bool bConnectedToHandlebarAccessPoint = false;
-            WlanClient.WlanInterface wlanIface = client.Interfaces[0];
+            WlanClient.WlanInterface wlanIface = m_client.Interfaces[0];
             try
             {
                 string profileName = m_selectedRacerMateAccessPointSSID;
@@ -226,10 +303,16 @@ namespace RacerMateOne.Dialogs
             {
                 try
                 {
-                    // Run external exe
-                    ProcessStartInfo startInfo = new ProcessStartInfo();
+					string SSID = HomeNetworkNameDropDrop.SelectedItem.ToString();
+					string password = (ShowPasswordCheckBox.IsChecked == true) ? PasswordTextPlain.Text : PasswordText.Password;
+					string ipAddress = m_detectedIPAddresses[CurrentIPAddressBox.SelectedIndex];
+
+					Log.WriteLine("Launching: console.exe \"" + SSID + "\" \"<password>\" false \"" + RM1_Settings.General.WifiListenPort + "\" \"" + ipAddress + "\"");
+
+					// Run external exe
+					ProcessStartInfo startInfo = new ProcessStartInfo();
                     startInfo.FileName = @"console.exe";
-                    startInfo.Arguments = "\"" + SSID + "\" \"" + PasswordText.Password + "\" false \"" + RM1_Settings.General.WifiListenPort + "\" \"" + ipAddress + "\"";
+                    startInfo.Arguments = "\"" + HomeNetworkNameDropDrop.SelectedItem.ToString() + "\" \"" + password + "\" false \"" + RM1_Settings.General.WifiListenPort + "\" \"" + ipAddress + "\"";
                     startInfo.CreateNoWindow = true;
                     startInfo.ErrorDialog = true;
                     startInfo.UseShellExecute = false;
@@ -243,6 +326,7 @@ namespace RacerMateOne.Dialogs
                         StatusText.Foreground = Brushes.Red;
                         StatusText.Text = "Timed out.";
                         console.Kill();
+						Log.WriteLine("Console.exe timed out, so RM1 killed it.")
                     }
                     else
                     {
@@ -253,50 +337,58 @@ namespace RacerMateOne.Dialogs
                         // parse result
                         string error = stdErr.ReadToEnd().Trim();
                         string output = stdOut.ReadToEnd().Trim();
+						Log.WriteLine("Console.exe stderr = '" + error + "'");
+						Log.WriteLine("Console.exe stdout = '" + output + "'");
 
-                        bool isOutputOK = output.StartsWith("OK");
+						bool isOutputOK = output.StartsWith("OK");
 
                         // update status
                         if (error.Length > 0 && !isOutputOK)
                         {
                             StatusText.Foreground = Brushes.Red;
                             StatusText.Text = error.Trim();
-                        }
-                        else if (!isOutputOK)
+							Log.WriteLine("Console.exe considered an error.");
+						}
+						else if (!isOutputOK)
                         {
                             StatusText.Foreground = Brushes.Red;
                             StatusText.Text = output.Trim();
-                        }
-                        else if (isOutputOK)
+							Log.WriteLine("Console.exe considered not good.");
+						}
+						else if (isOutputOK)
                         {
                             StatusText.Foreground = Brushes.Green;
-                            StatusText.Text = "Configured...";
+                            StatusText.Text = "Configured!";
                             bConfiguredWifiSettings = true;
                             m_numConfiguredTrainers++;
+							Log.WriteLine("Console.exe considered Success!");
                         }
                         else
                         {
                             StatusText.Foreground = Brushes.Red;
                             StatusText.Text = "Failed to configure.";
-                        }
-                    }
+							Log.WriteLine("Console.exe did something unexpected.");
+						}
+					}
                 }
                 catch (Exception exception)
                 {
                     StatusText.Foreground = Brushes.Red;
                     StatusText.Text = exception.Message;
-                }
-            }
+					Log.WriteLine("Caught Exception while trying to run console.exe.");
+				}
+			}
 
             // If the code got this far, then we connected to a RacerMate Access Point above, and now need to reconnect to the user's home network.
             string homeNetworkSSID = HomeNetworkNameDropDrop.SelectedItem.ToString();
 
             // first attempt to connect using the stored profile name, which is likely going to work for a user's home network
             bool bReconnected = false;
-            if (bConnectedToHandlebarAccessPoint)
+            if (bConnectedToHandlebarAccessPoint && m_hasInitialConnectedNetwork)
             {
-                try
-                {
+				Log.WriteLine("Trying to reconnect to the user's home network.");
+				try
+				{
                     bReconnected = wlanIface.ConnectSynchronously(Wlan.WlanConnectionMode.Profile, Wlan.Dot11BssType.Any, homeNetworkSSID, 10 * 1000);
                 }
                 catch
@@ -306,7 +398,8 @@ namespace RacerMateOne.Dialogs
 
                 if (bReconnected == false)
                 {
-                    string authentication = "open";
+					Log.WriteLine("Reconnecting based on network profile didn't work, trying the complicated way.");
+					string authentication = "open";
                     string encryption = "none";
                     string sharedKeyXml = "";
                     bool bSupported = true;
@@ -348,11 +441,12 @@ namespace RacerMateOne.Dialogs
                         try {
                             bReconnected = wlanIface.ConnectSynchronously(Wlan.WlanConnectionMode.TemporaryProfile, Wlan.Dot11BssType.Any, homeProfileXml, 10 * 1000);
                         }
-                        catch
+                        catch(Exception e2)
                         {
                             bReconnected = false;
-                        }
-                    }
+							Log.WriteLine("Reconnecting failed using the complicated way: '" + e2.Message + "'.");
+						}
+					}
                 }
 
                 // see if either the first or second attempt to connect was successful
@@ -364,19 +458,22 @@ namespace RacerMateOne.Dialogs
                 }
             }
 
-            if (bConfiguredWifiSettings)
-            {
-                StatusText.Foreground = Brushes.Green;
-                StatusText.Text = "Complete!";
-            }
+			if (bConfiguredWifiSettings)
+			{
+				StatusText.Foreground = Brushes.Green;
+				StatusText.Text = "Complete!";
+				Log.WriteLine("The wifi settings were configured, so this was a success!");
+			}
+			else
+			{
+				Log.WriteLine("The wifi settings were NOT configured, this was a failure!");
+			}
 
-            Mouse.SetCursor(Cursors.Arrow);
+			Mouse.SetCursor(Cursors.Arrow);
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            SSID = null;
-            Password = null;
             Close();
         }
 
@@ -392,16 +489,20 @@ namespace RacerMateOne.Dialogs
             }
         }
 
-        private void HomeNetworkNameDropDrop_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (HomeNetworkNameDropDrop.SelectedItem != null)
-            {
-                SSID = HomeNetworkNameDropDrop.SelectedItem.ToString();
-            }
-            else
-            {
-                SSID = string.Empty;
-            }
-        }
-    }
+		private void ShowPasswordCheckBox_Click(object sender, RoutedEventArgs e)
+		{
+			if (ShowPasswordCheckBox.IsChecked == true)
+			{
+				PasswordTextPlain.Text = PasswordText.Password;
+				PasswordText.Visibility = Visibility.Collapsed;
+				PasswordTextPlain.Visibility = Visibility.Visible;
+			}
+			else
+			{
+				PasswordText.Password = PasswordTextPlain.Text;
+				PasswordTextPlain.Visibility = Visibility.Collapsed;
+				PasswordText.Visibility = Visibility.Visible;
+			}
+		}
+	}
 }

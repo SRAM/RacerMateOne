@@ -1104,28 +1104,29 @@ namespace RacerMateOne.Pages
 		Page m_Scanning = null;
 
         private void HardwareWifiSetup_Click(object sender, RoutedEventArgs e) {
-            // display a dialog
-            // 1) connect to the wireless access point from one of the controllers
-            // 2) Enter SSID + Password of your home wireless router
-            // 3) Go! Press button to configure the controller
-            // Show confirmation info
-            RacerMateOne.Dialogs.HardwareWifiConfig wifiDialog = new RacerMateOne.Dialogs.HardwareWifiConfig();
-            wifiDialog.Owner = AppWin.Instance;
-            bool bRefreshTrainers = false;
 
-            try
-            {
-                bRefreshTrainers = (bool)wifiDialog.ShowDialog();
-            }
-            catch
-            {
-                // ignore the error
-            }
+			if (RacerMateOne.Dialogs.HardwareWifiConfig.VerifyWifiSupport() == false)
+			{
+				return;
+			}
 
-            if (bRefreshTrainers)
-            {
-                HardwareRescan_Click(sender, e);
-            }
+			RacerMateOne.Dialogs.HardwareWifiConfig wifiDialog = new RacerMateOne.Dialogs.HardwareWifiConfig();
+			wifiDialog.Owner = AppWin.Instance;
+			bool bRefreshTrainers = false;
+
+			try
+			{
+				bRefreshTrainers = (bool)wifiDialog.ShowDialog();
+			}
+			catch
+			{
+				// ignore the error
+			}
+
+			if (bRefreshTrainers)
+			{
+				HardwareRescan_Click(sender, e);
+			}
         }
 
 		/**********************************************************************************************************
