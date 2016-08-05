@@ -77,6 +77,10 @@ namespace RacerMateOne.Dialogs
 				CurrentIPAddressBox.SelectedIndex = 0;
 				CurrentIPAddressBox.IsEnabled = false;
 			}
+            else
+            {
+                CurrentIPAddressBox.IsEnabled = true;
+            }
 
 			if (HomeNetworkNameDropDrop.Items.Count == 0)
 			{
@@ -84,15 +88,23 @@ namespace RacerMateOne.Dialogs
 				HomeNetworkNameDropDrop.SelectedIndex = 0;
 				HomeNetworkNameDropDrop.IsEnabled = false;
 			}
+            else
+            {
+                HomeNetworkNameDropDrop.IsEnabled = true;
+            }
 
-			if (RacerMateAccessPointsDropDown.Items.Count == 0)
+            if (RacerMateAccessPointsDropDown.Items.Count == 0)
 			{
 				RacerMateAccessPointsDropDown.Items.Add("<None found>");
 				RacerMateAccessPointsDropDown.SelectedIndex = 0;
 				RacerMateAccessPointsDropDown.IsEnabled = false;
 			}
+            else
+            {
+                RacerMateAccessPointsDropDown.IsEnabled = true;
+            }
 
-			if (hasWifiSupport)
+            if (hasWifiSupport)
             {
                 HomeNetworkNameDropDrop.Focus();
             }
