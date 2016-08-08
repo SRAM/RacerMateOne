@@ -1,6 +1,6 @@
 @echo ************************** RM2 debug post.bat ********************************
 @copy ..\..\racermate.dll
-@copy ..\..\racermate.lib
+::@copy ..\..\racermate.lib
 @copy ..\..\console.exe
 @echo ********************************************************************************
 
