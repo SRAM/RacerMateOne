@@ -813,8 +813,8 @@ namespace RacerMateOne.CourseEditorDev
             double MaxWind = double.NegativeInfinity;
             double MinWind = double.PositiveInfinity;
 
-            double AvargeGrade = 0.0;
-            double AvargeWind = 0.0;
+            double AverageGrade = 0.0;
+            double AverageWind = 0.0;
 
 
             foreach (CourseUnits cu in CourceEditorVM.CourceUnitCollection)
@@ -903,8 +903,8 @@ namespace RacerMateOne.CourseEditorDev
                 if (MinWind > cu.Wind)
                     MinWind = cu.Wind;
 
-                AvargeGrade += cu.Grade;
-                AvargeWind += cu.Wind;
+                AverageGrade += cu.Grade;
+                AverageWind += cu.Wind;
 
                 if (PolygonData.MaxValue < cu.StartGrade)
                     PolygonData.MaxValue = cu.StartGrade;
@@ -928,10 +928,10 @@ namespace RacerMateOne.CourseEditorDev
                 PolygonData.MinValue = 0;
             }
 
-            CourceEditorVM.MinMaxGrade = string.Format("{0} / {1}", Ulilities.Round(MinGrade, 2), Ulilities.Round(MaxGrade, 2));
-            CourceEditorVM.AvargeGrade = string.Format("{0}", Ulilities.Round(AvargeGrade / CourceEditorVM.CourceUnitCollection.Count(), 2));
-            CourceEditorVM.MinMaxWind = string.Format("{0} / {1}", Ulilities.Round(MinWind, 2), Ulilities.Round(MaxWind, 2));
-            CourceEditorVM.AvargeWind = string.Format("{0}", Ulilities.Round(AvargeWind, 2));
+            CourceEditorVM.MinMaxGrade = string.Format("{0} / {1}", Ulilities.Round(MinGrade, 3), Ulilities.Round(MaxGrade, 3));
+            CourceEditorVM.AvargeGrade = string.Format("{0}", Ulilities.Round(AverageGrade / CourceEditorVM.CourceUnitCollection.Count(), 3));
+            CourceEditorVM.MinMaxWind = string.Format("{0} / {1}", Ulilities.Round(MinWind, 3), Ulilities.Round(MaxWind, 3));
+            CourceEditorVM.AvargeWind = string.Format("{0}", Ulilities.Round(AverageWind, 3));
 
             if (CourceEditorVM.CourceUnitCollection.Count > 0)
             {

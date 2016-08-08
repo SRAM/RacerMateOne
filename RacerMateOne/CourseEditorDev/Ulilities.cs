@@ -9,8 +9,9 @@ namespace RacerMateOne.CourseEditorDev
     {
         static public double Round(double OrgValue, int RoundTo)
         {
-            OrgValue = Math.Round(OrgValue, RoundTo);
-            string strValue = string.Format("{0:0.00}", OrgValue);
+            double newValue = Math.Round(OrgValue, RoundTo);
+            string format = "{0:F" + RoundTo + "}";
+            string strValue = string.Format(format, newValue);
             double dValue = System.Convert.ToDouble(strValue);
             return dValue;
         }
