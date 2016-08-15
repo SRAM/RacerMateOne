@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -487,11 +487,42 @@ namespace RacerMateOne  {
 		#endif
 			}
 			return s;
-		}								// GetPortNames()
+		}                       // GetPortNames()
 
-	/*****************************************************************************************************
+		/*****************************************************************************************************
 
-	*****************************************************************************************************/
+		*****************************************************************************************************/
+
+		public static string[] get_udp_clients()  {
+			string[] s;
+
+			try
+			{
+				string cwd = Directory.GetCurrentDirectory();                  // in .../bin/Debug!!
+				IntPtr iptr = DLL.GetPortNames();
+				string s2 = Marshal.PtrToStringAnsi(iptr);
+				s = s2.Split(' ');
+			}
+			catch (Exception e)   {
+				s = null;
+#if DEBUG
+				//string s2 = e.ToString();
+				//s2 += "\n\ncwd = ";
+				//s2 += Directory.GetCurrentDirectory();
+				//s2 += "\n";
+				//s2 += e.ToString();
+				//Log.WriteLine(s2);
+				//System.Console.WriteLine("'{0}'\n", s2);
+#else
+				//Log.WriteLine(e.ToString());
+#endif
+			}
+			return s;
+		}                       // GetPortNames()
+
+		/*****************************************************************************************************
+
+		*****************************************************************************************************/
 
 		public static DeviceType GetRacerMateDeviceID(string portName)  {
 			//if (portnum == 6)
@@ -647,7 +678,8 @@ namespace RacerMateOne  {
 				return 0;
 			}
 #if DEBUG
-		Log.WriteLine("RM1.cs, StartFullScan(), ports = " + portnames.ToString());
+			//string[] s = get_udp_clients();
+			//Log.WriteLine("RM1.cs, StartFullScan(), s = " +s.ToString());
 #endif
 
 			// Make sure the others in the list don't exit before we leave this.
@@ -981,6 +1013,9 @@ namespace RacerMateOne  {
 			// 20150109
 			[DllImport("racermate.dll")]
 			public static extern IntPtr GetPortNames();
+
+			[DllImport("racermate.dll")]
+			public static extern IntPtr get_udp_clients();
 
 			//zzzz[zzzzzDllImport("racermate.dll")] zzzzzzzzzzzzzzzz public static extern int set_network(int ix, int fw);
 			//[DllImport("racermate.dll")]
