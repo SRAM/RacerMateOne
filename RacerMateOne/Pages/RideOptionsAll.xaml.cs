@@ -1139,7 +1139,9 @@ namespace RacerMateOne.Pages
 			m_bFullScan = true;
 			RM1.OnTrainerInitialized += new RM1.TrainerInitialized(ScanDone);
 			if (RM1.StartFullScan() == 0)
+			{
 				return;
+			}
 			m_Scanning = new Pages.Modes.Scanning();
 			AppWin.Instance.MainFrame.Navigate(m_Scanning);
 		}

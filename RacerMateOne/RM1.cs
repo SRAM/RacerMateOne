@@ -493,15 +493,18 @@ namespace RacerMateOne  {
 
 		*****************************************************************************************************/
 
-		public static string[] get_udp_clients()  {
-			string[] s;
+		public static string[] get_udp_trainers()  {
+			string[] s = null;
 
 			try
 			{
 				string cwd = Directory.GetCurrentDirectory();                  // in .../bin/Debug!!
-				IntPtr iptr = DLL.GetPortNames();
+				IntPtr iptr = DLL.get_udp_trainers();
 				string s2 = Marshal.PtrToStringAnsi(iptr);
-				s = s2.Split(' ');
+				if (s2 != null)
+				{
+					s = s2.Trim().Split(' ');
+				}
 			}
 			catch (Exception e)   {
 				s = null;
@@ -518,13 +521,13 @@ namespace RacerMateOne  {
 #endif
 			}
 			return s;
-		}                       // GetPortNames()
+        }                       // get_udp_trainers()
 
-		/*****************************************************************************************************
+        /*****************************************************************************************************
 
 		*****************************************************************************************************/
 
-		public static DeviceType GetRacerMateDeviceID(string portName)  {
+        public static DeviceType GetRacerMateDeviceID(string portName)  {
 			//if (portnum == 6)
 			//	return DeviceType.OPEN_ERROR;
 			DeviceType id;
@@ -665,22 +668,22 @@ namespace RacerMateOne  {
 		/**********************************************************************************************************
 			called from 'Rescan All Hardware' at beginning of program load
 				and 'Scan For New Devices'
-
 		**********************************************************************************************************/
-
-
 		public static int StartFullScan()  {
 			Log.WriteLine("Starting full scan");
-			// 20150109
-			//string[] portnames = System.IO.Ports.SerialPort.GetPortNames();			// 20141113
-			string[] portnames = GetPortNames();												// 20141113
-			if (portnames == null) {
+
+#if DEBUG
+			string[] udpNames = get_udp_trainers();
+			if (udpNames != null)
+			{
+				Log.WriteLine("RM1.cs, StartFullScan(), s = " + udpNames.ToString());
+			}
+#endif
+
+			string[] portnames = GetPortNames();
+			if (portnames == null && udpNames == null) {
 				return 0;
 			}
-#if DEBUG
-			//string[] s = get_udp_clients();
-			//Log.WriteLine("RM1.cs, StartFullScan(), s = " +s.ToString());
-#endif
 
 			// Make sure the others in the list don't exit before we leave this.
 			int cnt;
@@ -689,10 +692,22 @@ namespace RacerMateOne  {
 			try  {
 				List<string> list = new List<string>();
 
+				// add results of GetPortNames
 				foreach (String n in portnames)  {
 					Log.WriteLine(string.Format("Scanning {0}", n));
 					Trainer trainer = Trainer.Get(n);
 					if (!ms_InitList.Contains(trainer)) {
+						ms_InitList.AddLast(trainer);
+					}
+				}
+
+				// add results of get_udp_trainers
+				foreach (String n in udpNames)
+				{
+					Log.WriteLine(string.Format("Scanning {0}", n));
+					Trainer trainer = Trainer.Get(n);
+					if (!ms_InitList.Contains(trainer))
+					{
 						ms_InitList.AddLast(trainer);
 					}
 				}
@@ -1015,7 +1030,7 @@ namespace RacerMateOne  {
 			public static extern IntPtr GetPortNames();
 
 			[DllImport("racermate.dll")]
-			public static extern IntPtr get_udp_clients();
+			public static extern IntPtr get_udp_trainers();
 
 			//zzzz[zzzzzDllImport("racermate.dll")] zzzzzzzzzzzzzzzz public static extern int set_network(int ix, int fw);
 			//[DllImport("racermate.dll")]

@@ -116,6 +116,16 @@ namespace RacerMateOne.Dialogs
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
+            Mouse.SetCursor(Cursors.Wait);
+            foreach (WlanClient.WlanInterface wlanIface in m_client.Interfaces)
+            {
+                // returns immediately, but may take up to 4 seconds for the scan to complete in the background
+                wlanIface.Scan();
+            }
+
+            // sleep for 4 seconds to let the scan complete
+            System.Threading.Thread.Sleep(4000);
+
             RacerMateAccessPointsDropDown.Items.Clear();
             HomeNetworkNameDropDrop.Items.Clear();
             CurrentSSIDText.Foreground = Brushes.Red;
@@ -216,6 +226,7 @@ namespace RacerMateOne.Dialogs
             }
 
             UpdateDialogState();
+            Mouse.SetCursor(Cursors.Arrow);
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)
@@ -270,7 +281,7 @@ namespace RacerMateOne.Dialogs
 				RacerMateAccessPointsDropDown.IsEnabled == false)
 			{
 				StatusText.Foreground = Brushes.Red;
-				StatusText.Text = "Missing Home SSID";
+				StatusText.Text = "Missing Access Point";
 				return;
 			}
 
@@ -472,8 +483,13 @@ namespace RacerMateOne.Dialogs
 
 			if (bConfiguredWifiSettings)
 			{
+				// racermate.dll will scan for new hardware every 5 seconds,
+				// so wait 5 seconds so that it can update with the new trainer
+				System.Threading.Thread.Sleep(5000);
+
 				StatusText.Foreground = Brushes.Green;
 				StatusText.Text = "Complete!";
+
 				Log.WriteLine("The wifi settings were configured, so this was a success!");
 			}
 			else
