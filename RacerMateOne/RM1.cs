@@ -672,13 +672,11 @@ namespace RacerMateOne  {
 		public static int StartFullScan()  {
 			Log.WriteLine("Starting full scan");
 
-#if DEBUG
 			string[] udpNames = get_udp_trainers();
 			if (udpNames != null)
 			{
 				Log.WriteLine("RM1.cs, StartFullScan(), s = " + udpNames.ToString());
 			}
-#endif
 
 			string[] portnames = GetPortNames();
 			if (portnames == null && udpNames == null) {
@@ -718,7 +716,8 @@ namespace RacerMateOne  {
 				cnt = ms_InitList.Count();
 			}
 			catch (Exception ex) {
-				MutexException(ex); cnt = 0;
+				MutexException(ex);
+				cnt = 0;
 			}
 
 			ms_Mux.ReleaseMutex();
