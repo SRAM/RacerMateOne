@@ -24,45 +24,33 @@ namespace RacerMateOne.Pages.Dialogs {
 	/// Interaction logic for SetGearTeeth1.xaml
 	/// </summary>
 	public partial class SetGearTeeth1 : Page  {
-		//public Rider CurRider;
 		public Rider rider;
+
+        // These will store the number of teeth the user has entered for each gear
 		public int[] front_gears = new int[RM1.MAX_FRONT_GEARS];
 		public int[] rear_gears = new int[RM1.MAX_REAR_GEARS];
 
+        // These are the actual UI elements that get displayed
 		public Controls.Gear[] ChainGear_controls = new Controls.Gear[RM1.MAX_FRONT_GEARS];
 		public Controls.Gear[] CogGear_controls = new Controls.Gear[RM1.MAX_REAR_GEARS];
 
-		public int MaxChainring;
-		public int MaxCogset;
+        // These are the number of gears the user has selected
+        private int m_numChainrings;
+        private int m_numCogs;
+
 		public int MaxTeeth = -1;
-
-#if DEBUG
-		private int bp = 0;
-#endif
-		private bool dosave = false;
-
-
-
-		/*****************************************************************************************************************************
+        
+        /*****************************************************************************************************************************
 			constructor
 		*****************************************************************************************************************************/
 
-		/*
+        /*
 		public SetGearTeeth1() {
 			InitializeComponent();
 		}
 		*/
 
-		/*
-		public SetGearTeeth2(Rider rider) {
-			CurRider = new RiderExtended2(rider);
-			CurRider.RiderType = rider.RiderType;					// Sad: previous programmer did not include in Contactor 
-			InitializeComponent();
-			this.DataContext = CurRider;
-		}
-		*/
-
-		public SetGearTeeth1(Rider _rider) {
+        public SetGearTeeth1(Rider _rider) {
 			//CurRider = new RiderExtended1(rider);
 			//CurRider = new Rider(rider);
 			rider = _rider;
@@ -76,16 +64,13 @@ namespace RacerMateOne.Pages.Dialogs {
 		*****************************************************************************************************************************/
 
 		void RedoMaxTeeth() {
-#if DEBUG
-			bp = 2;
-#endif
 
-			int maxTeeth = 0;
-			for (int i = 0; i < MaxCogset; i++) {
+            int maxTeeth = 0;
+			for (int i = 0; i < m_numCogs; i++) {
 				if (rear_gears[i] > maxTeeth)
 					maxTeeth = rear_gears[i];
 			}
-			for (int i = 0; i < MaxChainring; i++) {
+			for (int i = 0; i < m_numChainrings; i++) {
 				if (front_gears[i] > maxTeeth)
 					maxTeeth = front_gears[i];
 			}
@@ -116,15 +101,15 @@ namespace RacerMateOne.Pages.Dialogs {
 #endif
 			
 			foreach (Controls.Gear gear in ChainGear_controls) {
-				gear.Teeth = gear.Number >= MaxChainring ? 0 : front_gears[gear.Number];
+				gear.Teeth = gear.Number >= m_numChainrings ? 0 : front_gears[gear.Number];
 			}
 
 			foreach (Controls.Gear gear in CogGear_controls) {
-				gear.Teeth = gear.Number >= MaxCogset ? 0 : rear_gears[gear.Number];
+				gear.Teeth = gear.Number >= m_numCogs ? 0 : rear_gears[gear.Number];
 			}
 
-			Cog_Gear_Count.Content = "" + MaxCogset;
-			Crank_Gear_Count.Content = "" + MaxChainring;
+			Cog_Gear_Count.Content = "" + m_numCogs;
+			Crank_Gear_Count.Content = "" + m_numChainrings;
 
 			return;
 		}									// RedoTeeth()
@@ -134,20 +119,21 @@ namespace RacerMateOne.Pages.Dialogs {
 		*****************************************************************************************************************************/
 
 		private void RiderOptions_Loaded(object sender, RoutedEventArgs e)  {
-			MaxCogset = rider.GearingCogset.Length;
-			MaxChainring = rider.GearingCrankset.Length;
-			Cog_Gear_Count.Content = "" + MaxCogset;
-			Crank_Gear_Count.Content = "" + MaxChainring;
+            m_numCogs = rider.GearingCogset.Length;
+            m_numChainrings = rider.GearingCrankset.Length;
+            
+            Cog_Gear_Count.Content = "" + m_numCogs;
+			Crank_Gear_Count.Content = "" + m_numChainrings;
 
 			Controls.Gear.NoUpdate = true;
 
 			for (int i = 0; i < rear_gears.Length; i++) {
-				rear_gears[i] = i < MaxCogset ? rider.GearingCogset[i] : 0;
+				rear_gears[i] = i < m_numCogs ? rider.GearingCogset[i] : 0;
 				((TextBox)FindName("Cogset_" + i)).Text = rear_gears[i].ToString();
 				TextBox t = (TextBox)FindName("Cogset_" + i);
 				t.Text = rear_gears[i].ToString();
 
-				if (i >= MaxCogset) {
+				if (i >= m_numCogs) {
 					t.Visibility = Visibility.Collapsed;
 				}
 
@@ -159,10 +145,10 @@ namespace RacerMateOne.Pages.Dialogs {
 			}
 
 			for (int i = 0; i < front_gears.Length; i++) {
-				front_gears[i] = i < MaxChainring ? rider.GearingCrankset[i] : 0;
+				front_gears[i] = i < m_numChainrings ? rider.GearingCrankset[i] : 0;
 				TextBox t = (TextBox)FindName("Chainring_" + i);
 				t.Text = front_gears[i].ToString();
-				if (i >= MaxChainring) {
+				if (i >= m_numChainrings) {
 					t.Visibility = Visibility.Collapsed;
 				}
 
@@ -184,9 +170,9 @@ namespace RacerMateOne.Pages.Dialogs {
 		*****************************************************************************************************************************/
 
 		private void Cogset_Minus_Click(object sender, RoutedEventArgs e) {
-			if (MaxCogset >= 2) {
-				MaxCogset--;
-				((TextBox)FindName("Cogset_" + MaxCogset)).Visibility = Visibility.Collapsed;
+			if (m_numCogs > 1) {
+                m_numCogs--;
+				((TextBox)FindName("Cogset_" + m_numCogs)).Visibility = Visibility.Collapsed;
 				RedoTeeth();
 			}
 		}
@@ -196,9 +182,9 @@ namespace RacerMateOne.Pages.Dialogs {
 		*****************************************************************************************************************************/
 
 		private void Cogset_Plus_Click(object sender, RoutedEventArgs e) {
-			if (MaxCogset < rear_gears.Length) {
-				((TextBox)FindName("Cogset_" + MaxCogset)).Visibility = Visibility.Visible;
-				MaxCogset++;
+			if (m_numCogs < RM1.MAX_REAR_GEARS) {
+				((TextBox)FindName("Cogset_" + m_numCogs)).Visibility = Visibility.Visible;
+                m_numCogs++;
 				RedoTeeth();
 			}
 		}
@@ -208,17 +194,16 @@ namespace RacerMateOne.Pages.Dialogs {
 		*****************************************************************************************************************************/
 
 		private void Chainring_Minus_Click(object sender, RoutedEventArgs e) {
-			if (MaxChainring >= 2) {
-				MaxChainring--;				// eliminate the lowest gear
+			if (m_numChainrings > 1) {
+                m_numChainrings--;				// eliminate the lowest gear
 #if DEBUG
-				String s = "SetGearTeeth1.xaml.cs, making invisible: Chainring_" + MaxChainring;
+				String s = "SetGearTeeth1.xaml.cs, making invisible: Chainring_" + m_numChainrings;
 				Debug.WriteLine(s);
-
 #endif
-				((TextBox)FindName("Chainring_" + MaxChainring)).Visibility = Visibility.Collapsed;
+
+				((TextBox)FindName("Chainring_" + m_numChainrings)).Visibility = Visibility.Collapsed;
 				RedoTeeth();
 			}
-
 		}
 
 		/*****************************************************************************************************************************
@@ -226,19 +211,16 @@ namespace RacerMateOne.Pages.Dialogs {
 		*****************************************************************************************************************************/
 
 		private void Chainring_Plus_Click(object sender, RoutedEventArgs e) {
-			if (MaxChainring < front_gears.Length) {
-				((TextBox)FindName("Chainring_" + MaxChainring)).Visibility = Visibility.Visible;
-				MaxChainring++;
+			if (m_numChainrings < RM1.MAX_FRONT_GEARS) {
+				((TextBox)FindName("Chainring_" + m_numChainrings)).Visibility = Visibility.Visible;
+                m_numChainrings++;
 				RedoTeeth();
 			}
 		}
 
-
-
 		/*****************************************************************************************************************************
 
 		*****************************************************************************************************************************/
-
 		private void Back_Click(object sender, RoutedEventArgs e) {
 			//save()?
 #if DEBUG
@@ -247,12 +229,11 @@ namespace RacerMateOne.Pages.Dialogs {
 
 			AppWin.Instance.MainFrame.NavigationService.GoBack();
 			return;
-
 		}
 
-		/*****************************************************************************************************************************
+        /*****************************************************************************************************************************
 			foreach (Controls.Gear gear in ChainGear_controls) {
-				gear.Teeth = gear.Number >= MaxChainring ? 0 : front_gears[gear.Number];
+				gear.Teeth = gear.Number >= m_numChainrings ? 0 : front_gears[gear.Number];
 				s = "   " + gear.Number.ToString() + "   " + gear.Teeth.ToString() + "   " + front_gears[i++].ToString();
 				Debug.WriteLine(s);
 			}
@@ -261,7 +242,7 @@ namespace RacerMateOne.Pages.Dialogs {
 			i = 0;
 
 			foreach (Controls.Gear gear in CogGear_controls) {
-				gear.Teeth = gear.Number >= MaxCogset ? 0 : rear_gears[gear.Number];
+				gear.Teeth = gear.Number >= m_numCogs ? 0 : rear_gears[gear.Number];
 				s = "   " + gear.Number.ToString() + "   " + gear.Teeth.ToString() + "   " + rear_gears[i++].ToString();
 				Debug.WriteLine(s);
 			}
@@ -269,36 +250,11 @@ namespace RacerMateOne.Pages.Dialogs {
 
 		*****************************************************************************************************************************/
 
-		private void RiderOptions_Unloaded(object sender, RoutedEventArgs e) {
-
+        private void RiderOptions_Unloaded(object sender, RoutedEventArgs e)
+        {
 #if DEBUG
 			Debug.WriteLine("SetGearTeeth1.xaml.cs, RiderOptions_Unloaded()");
 #endif
-			if (!dosave) {
-				return;
-			}
-
-			int i;
-
-			i = 0;
-			foreach (Controls.Gear gear in ChainGear_controls) {
-				rider.GearingCrankset[i] = front_gears[i] = gear.Number >= MaxChainring ? 0 : front_gears[gear.Number];
-				i++;
-			}
-
-			i = 0;
-			foreach (Controls.Gear gear in CogGear_controls) {
-				rider.GearingCogset[i] = rear_gears[i] = gear.Number >= MaxCogset ? 0 : rear_gears[gear.Number];
-				i++;
-			}
-
-			//rider.GearingCrankset = front_gears;
-			//rider.GearingCogset = rear_gears;
-
-#if DEBUG
-			dump("RiderOptions_Unloaded");
-#endif
-
 			return;
 		}
 
@@ -332,7 +288,6 @@ namespace RacerMateOne.Pages.Dialogs {
 				RedoMaxTeeth();
 				gear.Teeth = num;
 			}
-
 		}
 
 		/*****************************************************************************************************************************
@@ -365,12 +320,6 @@ namespace RacerMateOne.Pages.Dialogs {
 				RedoMaxTeeth();
 				gear.Teeth = num;
 			}
-
-#if DEBUG
-			if (num == 55) {
-				bp = 4;
-			}
-#endif
 		}										// Chainset_TextChanged()
 
 		/*****************************************************************************************************************************
@@ -385,49 +334,29 @@ namespace RacerMateOne.Pages.Dialogs {
 
 		*****************************************************************************************************************************/
 
-		private void save(object sender, RoutedEventArgs e) {
+		private void save(object sender, RoutedEventArgs e)
+        {
+            // update the rider's chainrings
+            int[] newCrankset = new int[m_numChainrings];
+            for (int g = 0; g < m_numChainrings; g++)
+            {
+                newCrankset[g] = front_gears[g];
+            }
+            rider.GearingCrankset = newCrankset;
+
+            // update the riders cogs
+            int[] newCogset = new int[m_numCogs];
+            for (int g = 0; g < m_numCogs; g++)
+            {
+                newCogset[g] = rear_gears[g];
+            }
+            rider.GearingCogset = newCogset;
 
 #if DEBUG
-			dump("save()");
+            dump("save()");
 #endif
-			dosave = true;
-
-			//AppWin.Instance.MainFrame.NavigationService.GoBack();
-
-			bool b = true;
-
-			if (b) {
-				// Documents and Settings\user\My Documents\RacerMate\Settings\RM1_RiderDB.xml
-				string strDir = @"\RacerMate\Settings\RM1_RiderDB.xml";
-				string DocumentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-				string FilePath = DocumentDir + strDir;
-
-				/*
-				XDocument rdoc = XDocument.Load(FilePath);
-				string xmlDeclaration = rdoc.Declaration.ToString();
-				string stylesheetDeclaration = rdoc.FirstNode.ToString();
-				XNode Root = rdoc.Root;
-				*/
-
-#if DEBUG
-				//Debug.WriteLine("\n\nSAVE:");
-				//dump("SAVE");
-#endif
-
-				string FileName = System.IO.Path.GetFileName(FilePath);
-				string strMessage = string.Format("{0} has been saved", FileName);
-
-				/*
-				//InfoDialog infoDialog = new InfoDialog(strMessage, ShowIcon.OK, FilePath);
-				InfoDialog infoDialog = new InfoDialog(strMessage, 2, FilePath);
-				infoDialog.Owner = Application.Current.MainWindow;
-				infoDialog.ShowDialog();
-				*/
-
-				//AppWin.Instance.MainFrame.NavigationService.GoBack();
-			}						// if (b)
-
-			return;
+            AppWin.Instance.MainFrame.NavigationService.GoBack();
+            return;
 		}							// save()
 
 #if DEBUG
@@ -444,7 +373,7 @@ namespace RacerMateOne.Pages.Dialogs {
 			i = 0;
 
 			foreach (Controls.Gear gear in ChainGear_controls) {
-				gear.Teeth = gear.Number >= MaxChainring ? 0 : front_gears[gear.Number];
+				gear.Teeth = gear.Number >= m_numChainrings ? 0 : front_gears[gear.Number];
 				s = "   " + gear.Number.ToString() + "   " + gear.Teeth.ToString() + "   " + front_gears[i++].ToString();
 				Debug.WriteLine(s);
 			}
@@ -453,7 +382,7 @@ namespace RacerMateOne.Pages.Dialogs {
 			i = 0;
 
 			foreach (Controls.Gear gear in CogGear_controls) {
-				gear.Teeth = gear.Number >= MaxCogset ? 0 : rear_gears[gear.Number];
+				gear.Teeth = gear.Number >= m_numCogs ? 0 : rear_gears[gear.Number];
 				s = "   " + gear.Number.ToString() + "   " + gear.Teeth.ToString() + "   " + rear_gears[i++].ToString();
 				Debug.WriteLine(s);
 			}

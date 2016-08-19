@@ -141,7 +141,7 @@ namespace RacerMateOne  {
 		static private int bp = 0;
 #endif
 		static public int MAX_FRONT_GEARS = 3;
-		static public int MAX_REAR_GEARS = 10;
+		static public int MAX_REAR_GEARS = 11;
 		static public int MAX_FRONT_GEARS_SPACE = 5;
 		static public int MAX_REAR_GEARS_SPACE = 20;
 		public const int BarCount = 24;

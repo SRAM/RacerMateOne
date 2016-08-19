@@ -57,8 +57,8 @@
 							<c:Gear x:Name="Cog_Teeth_7" Teeth="29" MaxTeeth="53"/>
 							<c:Gear x:Name="Cog_Teeth_8" Teeth="29" MaxTeeth="53"/>
 							<c:Gear x:Name="Cog_Teeth_9" Teeth="29" MaxTeeth="53"/>
-							<!--
-							<c:Gear x:Name="Cog_Teeth_10" Teeth="29" MaxTeeth="53"/>
+                            <c:Gear x:Name="Cog_Teeth_10" Teeth="29" MaxTeeth="53"/>
+                            <!--
 							<c:Gear x:Name="Cog_Teeth_11" Teeth="29" MaxTeeth="53"/>
 							<c:Gear x:Name="Cog_Teeth_12" Teeth="29" MaxTeeth="53"/>
 							<c:Gear x:Name="Cog_Teeth_13" Teeth="29" MaxTeeth="53"/>
@@ -83,10 +83,10 @@
 								<TextBox VerticalAlignment="Center" Name="Cogset_7" Padding="0" dw:TextBoxMaskBehavior.Mask="Integer" Width="33" Text="99" TextChanged="Cogset_TextChanged"/>
 								<TextBox VerticalAlignment="Center" Name="Cogset_8" Padding="0" dw:TextBoxMaskBehavior.Mask="Integer" Width="33" Text="99" TextChanged="Cogset_TextChanged"/>
 								<TextBox VerticalAlignment="Center" Name="Cogset_9" Padding="0" dw:TextBoxMaskBehavior.Mask="Integer" Width="33" Text="99" TextChanged="Cogset_TextChanged"/>
-							</StackPanel>
+                                <TextBox VerticalAlignment="Center" Name="Cogset_10" Padding="0" dw:TextBoxMaskBehavior.Mask="Integer" Width="33" Text="99" TextChanged="Cogset_TextChanged"/>
+                            </StackPanel>
 							<!--
 							<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
-								<TextBox VerticalAlignment="Center" Name="Cogset_10" Padding="0" dw:TextBoxMaskBehavior.Mask="Integer" Width="33" Text="99" Margin="0,0,0,4" TextChanged="Cogset_TextChanged"/>
 								<TextBox VerticalAlignment="Center" Name="Cogset_11" Padding="0" dw:TextBoxMaskBehavior.Mask="Integer" Width="33" Text="99" Margin="0,0,0,4" TextChanged="Cogset_TextChanged"/>
 								<TextBox VerticalAlignment="Center" Name="Cogset_12" Padding="0" dw:TextBoxMaskBehavior.Mask="Integer" Width="33" Text="99" Margin="0,0,0,4" TextChanged="Cogset_TextChanged"/>
 								<TextBox VerticalAlignment="Center" Name="Cogset_13" Padding="0" dw:TextBoxMaskBehavior.Mask="Integer" Width="33" Text="99" Margin="0,0,0,4" TextChanged="Cogset_TextChanged"/>
