@@ -289,9 +289,9 @@ namespace RacerMateOne  {
 				AppWin.Exit();
 			}
 
-         Courses.InitOtherThread();
+            Courses.InitOtherThread();
 
-         m_BBOff.Add(p8);
+            m_BBOff.Add(p8);
 			m_BBOff.Add(p7);
 			m_BBOff.Add(p6);
 			m_BBOff.Add(p5);
@@ -303,9 +303,9 @@ namespace RacerMateOne  {
 			RM1.OnTrainerInitialized += new RM1.TrainerInitialized(OnTrainerInitialized);
 			RM1.OnClosed += new RM1.TrainerEvent(OnTrainerClosed);
 
-         // this appears to be for some preview function with fake trainer.
-         //PreviewKeyDown += Window_PreviewKeyDown;
-         //PreviewKeyUp += Window_PreviewKeyUp;
+            // this appears to be for some preview function with fake trainer.
+            //PreviewKeyDown += Window_PreviewKeyDown;
+            //PreviewKeyUp += Window_PreviewKeyUp;
 
 			//Course c = new Course();
 			//if (c.Load(@"C:\Real Course Video\IMCanada\IMCanada.avi"))
@@ -313,7 +313,6 @@ namespace RacerMateOne  {
 
 			FixDirectKeyboard();
         }
-
 
 		/*******************************************************************************************************************
 
@@ -389,7 +388,7 @@ namespace RacerMateOne  {
 
 		public static void Exit()
 		{
-			RM1.Trainer.Exit();
+            RM1.Exit();
 			Instance.Close();		
 			System.Environment.Exit(0);
 		}

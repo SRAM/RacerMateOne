@@ -1137,13 +1137,20 @@ namespace RacerMateOne.Pages
 			if (m_Scanning != null)	// Make sure we have only one.
 				return;
 			m_bFullScan = true;
-			RM1.OnTrainerInitialized += new RM1.TrainerInitialized(ScanDone);
+
+            // This just puts up a simple scanning dialog to keep the user entertained 
+            // while the real work happens in other threads.
+            m_Scanning = new Pages.Modes.Scanning();
+            AppWin.Instance.MainFrame.Navigate(m_Scanning);
+            
+            RM1.OnTrainerInitialized += new RM1.TrainerInitialized(ScanDone);
 			if (RM1.StartFullScan() == 0)
 			{
+                // No trainers were found, so take down the scanning dialog
+                AppWin.Instance.MainFrame.GoBack();
+                m_Scanning = null;
 				return;
 			}
-			m_Scanning = new Pages.Modes.Scanning();
-			AppWin.Instance.MainFrame.Navigate(m_Scanning);
 		}
 
 		/**********************************************************************************************************
