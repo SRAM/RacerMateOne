@@ -182,8 +182,6 @@ namespace RacerMateOne  {
 				Pages.StyleSheet ps = new Pages.StyleSheet();
 				MainFrame.Navigate(ps);
 			}
-
-
             else if (!IsRegistered())  {
 				FixDirectKeyboard();
 				Page_Splash = new Pages.Splash();

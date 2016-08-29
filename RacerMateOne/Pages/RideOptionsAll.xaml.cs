@@ -1142,32 +1142,40 @@ namespace RacerMateOne.Pages
             // while the real work happens in other threads.
             m_Scanning = new Pages.Modes.Scanning();
             AppWin.Instance.MainFrame.Navigate(m_Scanning);
-            
-            RM1.OnTrainerInitialized += new RM1.TrainerInitialized(ScanDone);
-			if (RM1.StartFullScan() == 0)
-			{
-                // No trainers were found, so take down the scanning dialog
-                AppWin.Instance.MainFrame.GoBack();
-                m_Scanning = null;
-				return;
-			}
+
+			//RM1.OnTrainerInitialized += new RM1.TrainerInitialized(ScanDoneOrig);
+			RM1.ScanningThread_Reset();
+			//RM1.OnTrainerInitializationComplete += ScanDone;
+
+			// This is an async call, which will call ScanDone when complete.
+			RM1.StartFullScan(ScanDone);
+
+			//if (RM1.StartFullScan() == 0)
+			//{
+   //             // No trainers were found, so take down the scanning dialog
+   //             AppWin.Instance.MainFrame.GoBack();
+   //             m_Scanning = null;
+			//	//RM1.OnTrainerInitialized -= new RM1.TrainerInitialized(ScanDoneOrig);
+			//	RM1.OnTrainerInitializationComplete -= ScanDone;
+			//	return;
+			//}
 		}
 
 		/**********************************************************************************************************
 
 		**********************************************************************************************************/
 
-		private void ScanDone(RM1.Trainer trainer, int left) {					// 20141113
-			// 20150109
-			if (left > 0)
-				return;
-			if (AppWin.Instance.MainFrame.NavigationService.Content == m_Scanning)  {
+		private void ScanDone()
+		{
+			if (AppWin.Instance.MainFrame.NavigationService.Content == m_Scanning)
+			{
 				if (DemoBike.IsVisible)
 					DemoBike.ViewOffFade();
 
 				AppWin.Instance.MainFrame.NavigationService.GoBack();
 
-				if (m_bFullScan)  {
+				if (m_bFullScan)
+				{
 					// OK... We are done. Lets allocate any trainers that are not allocated to empty slots.
 					//Unit.LoadFromSettings();
 					Unit.AllocateHardware(false);
@@ -1176,11 +1184,36 @@ namespace RacerMateOne.Pages
 				m_Scanning = null;
 			}
 
-			RM1.Trainer.WaitToScan(10);
-			RM1.OnTrainerInitialized -= new RM1.TrainerInitialized(ScanDone);
+			//RM1.Trainer.WaitToScan(10);
+			//RM1.OnTrainerInitializationComplete -= ScanDone;
 			Unit.UpdateTrainerData(m_bFullScan);
 			RedoHardwareLines();
 		}
+			
+		//	private void ScanDoneOrig(RM1.Trainer trainer, int left) {					// 20141113
+		//	// 20150109
+		//	if (left > 0)
+		//		return;
+		//	if (AppWin.Instance.MainFrame.NavigationService.Content == m_Scanning)  {
+		//		if (DemoBike.IsVisible)
+		//			DemoBike.ViewOffFade();
+
+		//		AppWin.Instance.MainFrame.NavigationService.GoBack();
+
+		//		if (m_bFullScan)  {
+		//			// OK... We are done. Lets allocate any trainers that are not allocated to empty slots.
+		//			//Unit.LoadFromSettings();
+		//			Unit.AllocateHardware(false);
+		//			Unit.SaveToSettings();
+		//		}
+		//		m_Scanning = null;
+		//	}
+
+		//	RM1.Trainer.WaitToScan(10);
+		//	RM1.OnTrainerInitialized -= new RM1.TrainerInitialized(ScanDoneOrig);
+		//	Unit.UpdateTrainerData(m_bFullScan);
+		//	RedoHardwareLines();
+		//}
 
 		//===========================================================================================
 
