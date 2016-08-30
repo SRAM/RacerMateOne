@@ -168,9 +168,42 @@ namespace RacerMateOne.Pages
             c_SpinScanValuesBox.Visibility = System.Windows.Visibility.Collapsed;
 #endif
 
+            RM1.TrainersAvailableChanged += new RM1.TrainersAvailableChangedEventHandler(OnTrainersAvailableChanged);
+
             MetricChanged();
             //UpdateKeyControls();
 		}
+
+        private void OnTrainersAvailableChanged(object sender, RM1.TrainersAvailableChangedEventArgs e)
+        {
+            HardwareAvailableLabel.Dispatcher.Invoke((ThreadStart)delegate () {
+                if (e.NumFound == 0 && e.NumLost == 0)
+                {
+                    HardwareAvailableLabel.Content = String.Empty;
+                }
+                else
+                {
+                    if (e.NumFound > 0 && e.NumLost == 0)
+                    {
+                        HardwareAvailableLabel.Content = "* " + e.NumFound + " new trainer(s) available.";
+                    }
+                    else if (e.NumFound == 0 && e.NumLost > 0)
+                    {
+                        HardwareAvailableLabel.Content = "* " + e.NumLost + " trainer(s) were lost.";
+                    }
+                    else
+                    {
+                        HardwareAvailableLabel.Content = "* " + e.NumFound + " new trainer(s) available; " + e.NumLost + " was lost.";
+                    }
+                }
+            });
+
+            C_Hardware.Dispatcher.Invoke((ThreadStart)delegate ()
+            {
+                Unit.UpdateTrainerData(false);
+                RedoHardwareLines();
+            });
+        }
 
         private void riderOptionsAll_Unloaded(object sender, RoutedEventArgs e)  {
             //KeyControls = null;
@@ -1143,22 +1176,12 @@ namespace RacerMateOne.Pages
             m_Scanning = new Pages.Modes.Scanning();
             AppWin.Instance.MainFrame.Navigate(m_Scanning);
 
-			//RM1.OnTrainerInitialized += new RM1.TrainerInitialized(ScanDoneOrig);
-			RM1.ScanningThread_Reset();
-			//RM1.OnTrainerInitializationComplete += ScanDone;
+            // this will be re-enabled when the scan is complete
+            HardwareRescan.Enabled = false;
 
-			// This is an async call, which will call ScanDone when complete.
-			RM1.StartFullScan(ScanDone);
-
-			//if (RM1.StartFullScan() == 0)
-			//{
-   //             // No trainers were found, so take down the scanning dialog
-   //             AppWin.Instance.MainFrame.GoBack();
-   //             m_Scanning = null;
-			//	//RM1.OnTrainerInitialized -= new RM1.TrainerInitialized(ScanDoneOrig);
-			//	RM1.OnTrainerInitializationComplete -= ScanDone;
-			//	return;
-			//}
+            // This is an async call, which will call ScanDone when complete.
+            RM1.ScanningThread_Reset();
+            RM1.StartFullScan(true, ScanDone);
 		}
 
 		/**********************************************************************************************************
@@ -1167,7 +1190,7 @@ namespace RacerMateOne.Pages
 
 		private void ScanDone()
 		{
-			if (AppWin.Instance.MainFrame.NavigationService.Content == m_Scanning)
+            if (AppWin.Instance.MainFrame.NavigationService.Content == m_Scanning)
 			{
 				if (DemoBike.IsVisible)
 					DemoBike.ViewOffFade();
@@ -1181,40 +1204,14 @@ namespace RacerMateOne.Pages
 					Unit.AllocateHardware(false);
 					Unit.SaveToSettings();
 				}
-				m_Scanning = null;
 			}
+            m_Scanning = null;
+            HardwareRescan.Enabled = true;
 
-			//RM1.Trainer.WaitToScan(10);
-			//RM1.OnTrainerInitializationComplete -= ScanDone;
-			Unit.UpdateTrainerData(m_bFullScan);
+            Unit.UpdateTrainerData(m_bFullScan);
 			RedoHardwareLines();
 		}
 			
-		//	private void ScanDoneOrig(RM1.Trainer trainer, int left) {					// 20141113
-		//	// 20150109
-		//	if (left > 0)
-		//		return;
-		//	if (AppWin.Instance.MainFrame.NavigationService.Content == m_Scanning)  {
-		//		if (DemoBike.IsVisible)
-		//			DemoBike.ViewOffFade();
-
-		//		AppWin.Instance.MainFrame.NavigationService.GoBack();
-
-		//		if (m_bFullScan)  {
-		//			// OK... We are done. Lets allocate any trainers that are not allocated to empty slots.
-		//			//Unit.LoadFromSettings();
-		//			Unit.AllocateHardware(false);
-		//			Unit.SaveToSettings();
-		//		}
-		//		m_Scanning = null;
-		//	}
-
-		//	RM1.Trainer.WaitToScan(10);
-		//	RM1.OnTrainerInitialized -= new RM1.TrainerInitialized(ScanDoneOrig);
-		//	Unit.UpdateTrainerData(m_bFullScan);
-		//	RedoHardwareLines();
-		//}
-
 		//===========================================================================================
 
         //private RadioButton[,] m_ZoneRB = new RadioButton[5,2];

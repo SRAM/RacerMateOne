@@ -20,7 +20,6 @@ namespace RacerMateOne.Pages
 	/// </summary>
 	public partial class Splash : Page
 	{
-		bool m_bDone = false;
 		bool m_bRetry = false;
 		int m_RetryCount = 0;
 		public Splash()
@@ -53,41 +52,17 @@ namespace RacerMateOne.Pages
 			    Thread.Sleep(100);
 			AppWin.Instance.Initialize2();
 
-			m_bFullScan = true;
 			if (RM1_Settings.gFirstRun)
 			{
-				//RM1.OnTrainerInitialized += new RM1.TrainerInitialized(Continue_FirstRun);
-				RM1.StartFullScan(Continue_FirstRun);
+                TopLine.Content = "Setup";
+                m_bFullScan = true;
+                RM1.StartFullScan(false, Continue_FirstRun);
 			}
 			else
 			{
-				//RM1.OnTrainerInitialized += new RM1.TrainerInitialized(Continue_Init);
-				RM1.StartFullScan(Continue_Init);
+                RM1.StartFullScan(true, Continue_Init);
 			}
 
-			//if (RM1.StartFullScan() == 0) {
-			//	Continue_Init(null, 0);
-			//}
-
-			//            // Now wait for the initial detection to go.  If it is a first run this will be everything.
-			//			if (RM1_Settings.gFirstRun)
-			//			{
-			//				RM1.OnTrainerInitialized += new RM1.TrainerInitialized(Continue_FirstRun);
-			//				TopLine.Content = "Setup";
-			//				m_bFullScan = true;
-			//				if (RM1.StartFullScan() == 0)
-			//					Continue_Init(null, 0);
-			//			}
-			//			else
-			//			{
-			//				RM1.OnTrainerInitialized += new RM1.TrainerInitialized(Continue_Init);
-			//				// Second and later runs 
-			//#if DEBUG
-			//				Debug.WriteLine("splash.xaml.cs   calling RM1.StartSettingsScan()");
-			//#endif
-			//				if (RM1.StartSettingsScan() == 0)
-			//					Continue_Init(null, 0);
-			//			}
 			//Checking.Visibility = Visibility.Visible;
 			//CheckingAnim.Begin();
 			Log.Debug(string.Format("{0} - Hardware Scanning end", DateTime.Now));
@@ -151,49 +126,12 @@ namespace RacerMateOne.Pages
 			Log.Debug(string.Format("{0} - Continue_FirstRun", DateTime.Now));
 		}
 		
-		//public void Continue_FirstRun(RM1.Trainer trainer, int left)
-				//{
-				//	Log.WriteLine("Left - "+left);
-				//	if (left > 0 || m_bDone)
-				//		return;
-
-		//	Log.WriteLine(RM1.ValidTrainerCount <= 0 ? "Didn't find any trainers":
-		//		RM1.ValidTrainerCount > 1 ? "Found "+RM1.ValidTrainerCount+" trainers":"Found 1 trainers");
-
-		//          // added check for m_bContinue so we can get pass this 
-		//          if (RM1.ValidTrainerCount <= 0 && !m_bContinue)
-		//	{
-		//		DoRetry();
-		//		return;
-		//	}
-		//	m_bDone = true;
-		//	RM1.OnTrainerInitialized -= new RM1.TrainerInitialized(Continue_FirstRun);
-		//	AutoAssign(); // On first run get everthing into slots
-
-		//	Log.WriteLine("More than 3+ present?", true);
-		//	// < 2 and both of one type will get the welcome screen.... otherwise we are in commercial mode.
-		//	if (RM1.ValidTrainerCount <= 2 && (RM1.Computrainers == RM1.ValidTrainerCount || RM1.Velotrons == RM1.ValidTrainerCount))
-		//	{
-		//		Log.WriteLine("User Type?", true);
-		//		// Hand control over to the welcome page.
-		//		NavigationService.Navigate(new Pages.Start.Welcome());
-		//	}
-		//	else
-		//	{
-		//		RM1_Settings.General.Commercial = true;
-		//		NavigationService.Navigate(new Pages.Start.ImportCSV());
-		//	}
-		//          Log.Debug(string.Format("{0} - Continue_FirstRun", DateTime.Now));
-		//      }
-
 		void DoRetry()
 		{
-//			RM1.Trainer.WaitToScan(10);
 			ErrorB.Visibility = Visibility.Visible;
 			CannotFind.Visibility = RM1_Settings.gFirstRun ? Visibility.Visible : Visibility.Hidden;
 			NoneFound.Visibility = RM1_Settings.gFirstRun ? Visibility.Hidden : Visibility.Visible;
 				
-			m_bDone = false;
 			m_bRetry = false;
 			FadeInRetry.Begin();
 		}
@@ -210,8 +148,6 @@ namespace RacerMateOne.Pages
 			if (m_bFullScan)
 				RM1_Settings.SaveToFile();
 			//CheckingAnim.Stop();
-			m_bDone = true;
-			//RM1.OnTrainerInitialized -= new RM1.TrainerInitialized(Continue_Init);  // Won't be calling this again
 
 			Unit.LoadFromSettings();    // Load up all the units.
 
@@ -226,40 +162,9 @@ namespace RacerMateOne.Pages
 			Log.Debug(string.Format("{0} - Continue_Init", DateTime.Now));
 		}
 
-		//public void Continue_Init(RM1.Trainer trainer, int left)
-		//{
-		//	if (left > 0 || m_bDone)
-		//		return;
-
-		//	if (RM1.ValidTrainerCount <= 0 && !RM1_Settings.General.Commercial && !m_bContinue)
-		//	{
-		//		DoRetry();
-		//		return;
-		//	}
-
-		//	if (m_bFullScan)
-		//		RM1_Settings.SaveToFile();
-		//	//CheckingAnim.Stop();
-		//	m_bDone = true;
-		//	RM1.OnTrainerInitialized -= new RM1.TrainerInitialized(Continue_Init);	// Won't be calling this again
-
-		//	Unit.LoadFromSettings();	// Load up all the units.
-
-		//	if (RM1_Settings.General.Commercial)
-		//		NavigationService.Navigate(new Pages.Selection());
-		//	else if (AppWin.style_sheet && AppWin.style_sheet_after_splash)
-		//		NavigationService.Navigate(new Pages.StyleSheet()); 
-		//	else if (Pages.Modes.Calibrate.PreUse() || Pages.Modes.Calibrate2.OkToUse())
-		//		NavigationService.Navigate(new Pages.Start.RunCalibration());
-		//	else
-		//		NavigationService.Navigate(new Pages.Selection());
-		//          Log.Debug(string.Format("{0} - Continue_Init", DateTime.Now));
-		//      }
-
 		private void NoHardware_Click(object sender, RoutedEventArgs e)
 		{
 			m_bContinue = true;
-			//			Continue_Init(null, 0);
 			Continue_Init();
 		}
 
@@ -275,9 +180,7 @@ namespace RacerMateOne.Pages
 			m_RetryCount++;
 			Log.WriteLine("============================================");
 			m_bFullScan = true;
-			RM1.StartFullScan(Continue_FirstRun);
-			//if (RM1.StartFullScan() == 0)
-			//	Continue_FirstRun(null, 0);
+			RM1.StartFullScan(false, Continue_FirstRun);
 			Log.WriteLine("============================================");
 		}
 
@@ -285,18 +188,13 @@ namespace RacerMateOne.Pages
 		{
 			if (RM1_Settings.gFirstRun)
 			{
-				//RM1.AddFake();
-				//RM1_Settings.General.DemoDevice = true;
 				m_bContinue = true;
-
-				Continue_FirstRun(/*null, 0*/); 
-                // ECT - to let it keep going when ask to continue without hardware - Will, Check this
-                //Continue_Init(null, 0);
-            }
+				Continue_FirstRun(); 
+			}
 			else
 			{
 				m_bContinue = true;
-				Continue_Init(/*null, 0*/);
+				Continue_Init();
 			}
 		}
 
@@ -311,31 +209,16 @@ namespace RacerMateOne.Pages
 			RM1.ClearAllTrainers();
 			m_RetryCount++;
 			Log.WriteLine("============================================");
-
-			m_bFullScan = true;
-			
 			if (RM1_Settings.gFirstRun)
 			{
-				RM1.StartFullScan(Continue_FirstRun);
+				m_bFullScan = true;
+				RM1.StartFullScan(false, Continue_FirstRun);
 			}
 			else
 			{
-				RM1.StartFullScan(Continue_Init);
+				RM1.StartFullScan(true, Continue_Init);
 			}
-
-			//if (RM1_Settings.gFirstRun)
-			//{
-			//	m_bFullScan = true;
-			//	if (RM1.StartFullScan() == 0)
-			//		Continue_FirstRun(null, 0);
-			//}
-			//else
-			//{
-			//	if (RM1.StartSettingsScan() == 0)
-			//		Continue_Init(null, 0);
-			//}
 			Log.WriteLine("============================================");
-
 		}
 
 		private void Exit_Click(object sender, RoutedEventArgs e)
@@ -346,7 +229,5 @@ namespace RacerMateOne.Pages
 		{
 			AppWin.Help("Hardware_Detect.htm");
 		}
-
-
 	}
 }

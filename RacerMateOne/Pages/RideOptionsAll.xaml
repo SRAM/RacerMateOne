@@ -451,7 +451,11 @@
 						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="63,10,0,10">
                             <c:PlainButton x:Name="HardwareRescan" Margin="66,0,15,0" Text="Scan For New Devices" Click="HardwareRescan_Click" />
                         </StackPanel>
-					</StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,20,0,0">
+                            <Label Name="HardwareAvailableLabel" Style="{StaticResource DisplayLabel}" HorizontalAlignment="Left" Margin="0,2,15,0" VerticalAlignment="Top">
+                            </Label>
+                        </StackPanel>
+                    </StackPanel>
 				</Grid>
 				<!-- ************************************************************************************ -->
 				<!-- Display -->

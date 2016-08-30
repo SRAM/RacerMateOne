@@ -576,10 +576,9 @@ namespace RacerMateOne  {
 		public static event TrainerPadKey OnPadKey;
 		public delegate void UpdateEvent(double splittime);
 		public static event UpdateEvent OnUpdate;
-		/// <summary>
-		/// All the trainers comm ports.  Not thread safe.   Only  add/remove from main thread.
+		/// <summary> 
+		/// All the trainers' COM / UDP ports.  Not thread safe.   Only  add/remove from main thread.
 		/// </summary>
-//		protected static Dictionary<int, Trainer> ms_Trainers = new Dictionary<int, Trainer>();
 		protected static Dictionary<string, Trainer> ms_Trainers = new Dictionary<string, Trainer>();
 
 		/// <summary>
@@ -699,26 +698,39 @@ namespace RacerMateOne  {
         private static bool ms_bShutdownScanningThread = false;
         private static readonly AutoResetEvent ms_ScanningThreadWaitEvent = new AutoResetEvent(false);
 
+        // Event to tell the app if the available trainers have changed, so that the user can rescan if desired.
+        public class TrainersAvailableChangedEventArgs : EventArgs
+        {
+            int nFound;
+            int nLost;
+            public TrainersAvailableChangedEventArgs(int nFound, int nLost)
+            { this.nFound = nFound; this.nLost = nLost; }
+            public int NumFound { get { return nFound; } }
+            public int NumLost { get { return nLost; } }
+        }
+        public delegate void TrainersAvailableChangedEventHandler(object sender, TrainersAvailableChangedEventArgs e);
+        public static event TrainersAvailableChangedEventHandler TrainersAvailableChanged;
+
         public delegate void OnTrainerFoundEvent(string trainerName);
         public static event OnTrainerFoundEvent OnTrainerFound;
 
         public delegate void OnTrainerLostEvent(string trainerName);
         public static event OnTrainerLostEvent OnTrainerLost;
 
-		//// Called when all found trainers have had notifications sent
-		//public delegate void OnTrainerFoundNotificationsCompleteEvent();
-		//public static event OnTrainerFoundNotificationsCompleteEvent OnTrainerLostCompleted;
+        //// Called when all found trainers have had notifications sent
+        //public delegate void OnTrainerFoundNotificationsCompleteEvent();
+        //public static event OnTrainerFoundNotificationsCompleteEvent OnTrainerLostCompleted;
 
-		//// Called when all lost trainers have had notifications sent
-		//public delegate void OnTrainerLostNotificationsCompleteEvent();
-		//public static event OnTrainerLostNotificationsCompleteEvent OnTrainerLostCompleted;
+        //// Called when all lost trainers have had notifications sent
+        //public delegate void OnTrainerLostNotificationsCompleteEvent();
+        //public static event OnTrainerLostNotificationsCompleteEvent OnTrainerLostCompleted;
 
-		// MAYBE not needed?
-		//public delegate void OnTrainerLostAndRefoundEvent(string );
-		//public static event OnTrainerLostAndRefoundEvent OnTrainerLostAndRefound;
+        // MAYBE not needed?
+        //public delegate void OnTrainerLostAndRefoundEvent(string );
+        //public static event OnTrainerLostAndRefoundEvent OnTrainerLostAndRefound;
 
-		// Protects against multiple threads interacting with the ScanningThread's trainer lists.
-		private static Mutex ms_scanningThread_ListMutex = new Mutex(false, "ScanningThread_ListMutex");
+        // Protects against multiple threads interacting with the ScanningThread's trainer lists.
+        private static Mutex ms_scanningThread_ListMutex = new Mutex(false);
 
 		// List of newly found trainers that have NOT yet had a notification sent
 		private static List<string> ms_scanningThread_UnnotifiedTrainers = new List<string>();
@@ -746,6 +758,9 @@ namespace RacerMateOne  {
 
         private static void ScanningThreadFunc()
         {
+            int previousLostCount = 0;
+            int previousFoundCount = 0;
+
             // Enter the loop every 1 second(s)
             while(!ms_ScanningThreadWaitEvent.WaitOne(1 * 1000) && !ms_bShutdownScanningThread)
             {
@@ -763,24 +778,24 @@ namespace RacerMateOne  {
                 Log.WriteLine("ScanningThread: Found: " + foundTrainers.ToString());
 #endif
 
-				// protect the lists
-				ms_scanningThread_ListMutex.WaitOne();
+                // protect the lists
+                ms_scanningThread_ListMutex.WaitOne();
 
-				// Order of operations (adding / removing from lists) is VERY important here!
+                // Order of operations (adding / removing from lists) is VERY important here!
 
-				// First, remove things that are MISSING from the list.
-				// The found trainer names may be MISSING some trainers that we've previously found and possibly notified 
-				// in the past (so remove them from the notified list and add to the lost list)
-				// TODO? if a trainer was in the lost list (ie, it was previously notified and existed to the higher level app, and has since been lost and we haven't informed the app of the loss)
-				// but has been found again, we need to tell the UI of this because it may need a 'bigger' refresh of higher level data structures.
-				List<string> prevNotifiedList = ms_scanningThread_NotifiedTrainers;
+                // First, remove things that are MISSING from the list.
+                // The found trainer names may be MISSING some trainers that we've previously found and possibly notified 
+                // in the past (so remove them from the notified list and add to the lost list)
+                // TODO? if a trainer was in the lost list (ie, it was previously notified and existed to the higher level app, and has since been lost and we haven't informed the app of the loss)
+                // but has been found again, we need to tell the UI of this because it may need a 'bigger' refresh of higher level data structures.
+                List<string> prevNotifiedList = new List<string>(ms_scanningThread_NotifiedTrainers);
                 foreach (string notifiedTrainer in prevNotifiedList)
                 {
                     if (foundTrainers.Contains(notifiedTrainer) == false)
                     {
-						ms_scanningThread_NotifiedTrainers.Remove(notifiedTrainer);
+                        ms_scanningThread_NotifiedTrainers.Remove(notifiedTrainer);
 						ms_scanningThread_LostTrainers.Add(notifiedTrainer);
-					}
+                    }
                 }
 				
 				// Sort through the found trainer names:
@@ -793,6 +808,16 @@ namespace RacerMateOne  {
                     {
                         ms_scanningThread_UnnotifiedTrainers.Add(trainerName);
                     }
+                }
+
+                // Alert if there are either newly found or lost trainers
+                if (TrainersAvailableChanged != null &&
+                    (ms_scanningThread_UnnotifiedTrainers.Count != previousFoundCount ||
+                     ms_scanningThread_LostTrainers.Count != previousLostCount))
+                {
+                    previousFoundCount = ms_scanningThread_UnnotifiedTrainers.Count;
+                    previousLostCount = ms_scanningThread_LostTrainers.Count;
+                    TrainersAvailableChanged(null, new TrainersAvailableChangedEventArgs(ms_scanningThread_UnnotifiedTrainers.Count, ms_scanningThread_LostTrainers.Count));
                 }
 
                 // If we have event handlers, then send notifications as necessary and update the lists!
@@ -812,7 +837,7 @@ namespace RacerMateOne  {
                 {
                     foreach (string unnotifiedTrainer in ms_scanningThread_UnnotifiedTrainers)
                     {
-                        OnTrainerLost(unnotifiedTrainer);
+                        OnTrainerFound(unnotifiedTrainer);
                         ms_scanningThread_NotifiedTrainers.Add(unnotifiedTrainer);
                     }
 
@@ -867,20 +892,8 @@ namespace RacerMateOne  {
 		private static System.Windows.Forms.Timer ms_fullScanTimer;
 		public delegate void ScanCompleteEventHandler();
 		public static event ScanCompleteEventHandler OnScanCompleteEvent;
-		public static void StartFullScan(ScanCompleteEventHandler scanCompleteEventHandler)  {
-
-			//int pendingTrainers = ms_scanningThread_UnnotifiedTrainers.Count;
-			//if (pendingTrainers == 0)
-			//{
-			//	Log.WriteLine("Skipping full scan, No trainers pending.");
-			//	if (scanCompleteEventHandler != null)
-			//	{
-			//		scanCompleteEventHandler();
-			//	}
-			//	return;
-			//}
-
-			Log.WriteLine("Starting full scan");
+		public static void StartFullScan(bool bIncludeSettings, ScanCompleteEventHandler scanCompleteEventHandler)  {
+			Log.WriteLine("Starting full scan...");
 
 			if (scanCompleteEventHandler != null)
 			{
@@ -890,8 +903,24 @@ namespace RacerMateOne  {
 			OnTrainerLost += trainerLostEventHandler_notSureWhatToDoYet;
 			OnTrainerFound += trainerFoundEventHandler_addTrainerToInitList;
 
-			// Enable the timer to signal the FullScanComplete call after 10 seconds.
-			ms_fullScanTimer = new System.Windows.Forms.Timer();
+            if (bIncludeSettings)
+            {
+                foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList)
+                {
+                    // NOTE: getting the trainer will also put it in the InitList if it's a new trainer
+                    Trainer t = RM1.Trainer.Get(tc.SavedPortName);
+                    t.ShouldBe = tc.DeviceType;
+                    ms_HardwareListVersion = 0; // Redo the hardware list next time it is requested.
+                }
+
+                if (RM1_Settings.General.DemoDevice)
+                {
+                    AddFake();
+                }
+            }
+
+            // Enable the timer to signal the FullScanComplete call after 10 seconds.
+            ms_fullScanTimer = new System.Windows.Forms.Timer();
 			ms_fullScanTimer.Interval = 10 * 1000;
 			ms_fullScanTimer.Tick += FullScanComplete;
 			ms_fullScanTimer.Start();
@@ -899,24 +928,18 @@ namespace RacerMateOne  {
 
 		private static void FullScanComplete(object sender, EventArgs args)
 		{
+			Log.WriteLine("...Checking full scan");
 			ms_Mux.WaitOne();
 			int numTrainersInitializing = RM1.ms_InitList.Count;
 			ms_Mux.ReleaseMutex();
 			if (numTrainersInitializing == 0)
 			{
+				Log.WriteLine("...Completed full scan!");
 				ms_fullScanTimer.Stop();
 				ms_fullScanTimer.Dispose();
 
 				OnTrainerLost -= trainerLostEventHandler_notSureWhatToDoYet;
 				OnTrainerFound -= trainerFoundEventHandler_addTrainerToInitList;
-
-				//// I think this is to help confirm what type of hardware is connected
-				//// and what is expected when compared with the settings file
-				//foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList) {
-				//	Trainer t = RM1.Trainer.Get(tc.SavedPortName);
-				//	t.ShouldBe = tc.DeviceType;
-				//	ms_HardwareListVersion = 0;	// Redo the hardware list next time it is requested.
-				//}
 
 				if (RM1.OnScanCompleteEvent != null)
 				{
@@ -926,42 +949,6 @@ namespace RacerMateOne  {
 			}
 		}
 
-//		/**********************************************************************************************************
-//			refresh button gets here
-//		**********************************************************************************************************/
-//		public static int StartSpecificScan(List<string> ports) {													// 20141113
-//			Trainer trainer;
-
-//#if DEBUG
-//			Log.WriteLine("RM1.cs, StartSpecificScan(), ports = " + ports.ToString());
-//#endif
-
-//			int cnt;
-//			ms_Mux.WaitOne();
-//			try  {
-//				foreach (string portName in ports)  {
-//					Log.WriteLine(string.Format("Scanning port {0}", portName));
-
-//					trainer = RM1.Trainer.Get(portName);
-//					if (!ms_InitList.Contains(trainer)) {
-//						ms_InitList.AddLast(trainer);
-//					}
-//				}
-
-//				if (RM1_Settings.General.DemoDevice) {
-//					AddFake();
-//				}
-
-//				cnt = ms_InitList.Count();
-//			}
-//			catch (Exception ex) {
-//				MutexException(ex);
-//				cnt = 0;
-//			}
-
-//			ms_Mux.ReleaseMutex();
-//			return cnt;
-//		}
 
 		/**********************************************************************************************************
 
@@ -977,48 +964,12 @@ namespace RacerMateOne  {
 			}
 		}
 
-		///**********************************************************************************************************
-		//  called FormFadeIn_Completed in Splash.xaml.cs
-		//**********************************************************************************************************/
-
-		//public static int StartSettingsScan()  {
-		//	//List<string> portNameList = new List<string>();
-		//	int ans;
-
-		//#if DEBUG
-		//	string cwd = Directory.GetCurrentDirectory();						// in .../bin/Debug!!
-		//	Log.WriteLine("RM1.cs, StartSettingsScan()");
-		//#endif
-
-		//	foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList) {
-		//		portNameList.Add(tc.SavedPortName);
-		//	}
-
-		//	ans = RM1.StartFullScan();
-
-
-		//	//if (portNameList.Count() == 0) {
-		//	//	ans = RM1.StartFullScan();
-		//	//}
-		//	//else {
-		//	//	ans = RM1.StartSpecificScan(portNameList);
-		//	//	//bp = 1;
-
-		//	//	foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList) {
-		//	//		Trainer t = RM1.Trainer.Get(tc.SavedPortName);
-		//	//		t.ShouldBe = tc.DeviceType;
-		//	//		ms_HardwareListVersion = 0;	// Redo the hardware list next time it is requested.
-		//	//	}
-		//	//}
-
-		//	return ans;
-		//}									// StartSettingsScan()
-
 		/**********************************************************************************************************
 
 		**********************************************************************************************************/
 
-		public static void AddFake()  {
+		public static void AddFake()
+		{
 			RM1.Trainer.Get("Fake");
 		}
 
@@ -2887,9 +2838,11 @@ namespace RacerMateOne  {
             **********************************************************************************************************/
 			public static void Exit() {
 				Log.WriteLine("rm1.cs, RM1::Exit()");
-				DLL.racermate_close();
-				ms_bShutdown = true;
-				ms_Thread.Join();
+                ms_bShutdownScanningThread = true;
+                ms_BackgroundScanningThread.Join();
+                ms_bShutdown = true;
+                ms_Thread.Join();
+                DLL.racermate_close();
 			}
 
 			/******************************************************************************************************************
