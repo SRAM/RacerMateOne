@@ -25,6 +25,7 @@ namespace RacerMateOne.Dialogs
         private WlanClient m_client = new WlanClient();
 		bool m_hasInitialConnectedNetwork = false;
         Wlan.WlanAvailableNetwork m_connectedNetwork;
+        string m_connectedSSID = string.Empty;
         List<Wlan.WlanAvailableNetwork> m_racermateNetworks = new List<Wlan.WlanAvailableNetwork>();
         List<Wlan.WlanAvailableNetwork> m_otherNetworks = new List<Wlan.WlanAvailableNetwork>();
         int m_numConfiguredTrainers = 0;
@@ -71,18 +72,18 @@ namespace RacerMateOne.Dialogs
 			Send.IsEnabled = hasWifiSupport;
 			OK.IsEnabled = hasWifiSupport;
 
-			if (CurrentIPAddressBox.Items.Count == 0)
-			{
-				CurrentIPAddressBox.Items.Add("<None found>");
-				CurrentIPAddressBox.SelectedIndex = 0;
-				CurrentIPAddressBox.IsEnabled = false;
-			}
+            if (CurrentIPAddressBox.Items.Count == 0)
+            {
+                CurrentIPAddressBox.Items.Add("<None found>");
+                CurrentIPAddressBox.SelectedIndex = 0;
+                CurrentIPAddressBox.IsEnabled = false;
+            }
             else
             {
                 CurrentIPAddressBox.IsEnabled = true;
             }
 
-			if (HomeNetworkNameDropDrop.Items.Count == 0)
+            if (HomeNetworkNameDropDrop.Items.Count == 0)
 			{
 				HomeNetworkNameDropDrop.Items.Add("<None found>");
 				HomeNetworkNameDropDrop.SelectedIndex = 0;
@@ -128,11 +129,11 @@ namespace RacerMateOne.Dialogs
 
             RacerMateAccessPointsDropDown.Items.Clear();
             HomeNetworkNameDropDrop.Items.Clear();
-            CurrentSSIDText.Foreground = Brushes.Red;
-            CurrentSSIDText.Text = "Unavailable";
 			m_hasInitialConnectedNetwork = false;
+            m_connectedSSID = string.Empty;
+            m_connectedNetwork = new Wlan.WlanAvailableNetwork();
 
-			m_detectedIPAddresses.Clear();
+            m_detectedIPAddresses.Clear();
 			CurrentIPAddressBox.Items.Clear();
 			if (RM1_Settings.General.WifiOverrideIPAddress != string.Empty)
 			{
@@ -140,37 +141,37 @@ namespace RacerMateOne.Dialogs
 				m_detectedIPAddresses.Add(RM1_Settings.General.WifiOverrideIPAddress);
 			}
 
-			// if there wasn't an override IP address in the settings, 
-			// then get the user's current IP address (which we assume 
-			// is assigned by their home network and prefered network interface - wifi vs ethernet).
-			// There are probably many better ways to do this, but this was the easiest solution I found
-			foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
-			{
-				if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 ||
-					ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
-					ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet3Megabit ||
-					ni.NetworkInterfaceType == NetworkInterfaceType.FastEthernetFx ||
-					ni.NetworkInterfaceType == NetworkInterfaceType.FastEthernetT ||
-					ni.NetworkInterfaceType == NetworkInterfaceType.GigabitEthernet)
-				{
-					foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
-					{
-						if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-						{
-							m_detectedIPAddresses.Add(ip.Address.ToString());
-							CurrentIPAddressBox.Items.Add(ip.Address.ToString() + " (" + ni.Description + ")");
-						}
-					}
-				}
-			}
+            // if there wasn't an override IP address in the settings, 
+            // then get the user's current IP address (which we assume 
+            // is assigned by their home network and prefered network interface - wifi vs ethernet).
+            // There are probably many better ways to do this, but this was the easiest solution I found
+            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 ||
+                    ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
+                    ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet3Megabit ||
+                    ni.NetworkInterfaceType == NetworkInterfaceType.FastEthernetFx ||
+                    ni.NetworkInterfaceType == NetworkInterfaceType.FastEthernetT ||
+                    ni.NetworkInterfaceType == NetworkInterfaceType.GigabitEthernet)
+                {
+                    foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
+                    {
+                        if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                        {
+                            m_detectedIPAddresses.Add(ip.Address.ToString());
+                            CurrentIPAddressBox.Items.Add(ip.Address.ToString() + " (" + ni.Description + ")");
+                        }
+                    }
+                }
+            }
 
-			if (CurrentIPAddressBox.HasItems)
-			{
-				CurrentIPAddressBox.SelectedIndex = 0;
-			}
+            if (CurrentIPAddressBox.HasItems)
+            {
+                CurrentIPAddressBox.SelectedIndex = 0;
+            }
 
-			// Sort the available wireless networks into "home" networks and "RacerMate" networks.
-			foreach (WlanClient.WlanInterface wlanIface in m_client.Interfaces)
+            // Sort the available wireless networks into "home" networks and "RacerMate" networks.
+            foreach (WlanClient.WlanInterface wlanIface in m_client.Interfaces)
             {
                 // Lists all networks with WEP security
                 Wlan.WlanAvailableNetwork[] networks = wlanIface.GetAvailableNetworkList(0);
@@ -184,20 +185,25 @@ namespace RacerMateOne.Dialogs
                     }
 
                     string availableSSID = GetStringForSSID(network.dot11Ssid);
+                    if (m_connectedSSID == availableSSID)
+                    {
+                        // we're already connected to this network and have added it to our dropdown lists, so skip it
+                        continue;
+                    }
+
                     if ((network.flags & Wlan.WlanAvailableNetworkFlags.Connected) == Wlan.WlanAvailableNetworkFlags.Connected)
                     {
 						m_hasInitialConnectedNetwork = true;
 						m_connectedNetwork = network;
-                        CurrentSSIDText.Foreground = Brushes.Green;
-                        CurrentSSIDText.Text = availableSSID;
+                        m_connectedSSID = availableSSID;
                     }
 
-                    if (availableSSID.StartsWith("RacerMateCT") && network.flags == 0)
+                    if (availableSSID.StartsWith("RacerMateCT"))
                     {
                         m_racermateNetworks.Add(network);
                         RacerMateAccessPointsDropDown.Items.Add(availableSSID);
                     }
-                    else if (network.flags == 0)
+                    else
                     {
                         // tells us that the network is available
                         m_otherNetworks.Add(network);
@@ -207,9 +213,9 @@ namespace RacerMateOne.Dialogs
             }
 
             // Auto-select the network that we think is their home network
-            if (HomeNetworkNameDropDrop.Items.Contains(CurrentSSIDText.Text))
+            if (HomeNetworkNameDropDrop.Items.Contains(m_connectedSSID))
             {
-                HomeNetworkNameDropDrop.SelectedItem = CurrentSSIDText.Text;
+                HomeNetworkNameDropDrop.SelectedItem = m_connectedSSID;
             }
             else
             {
@@ -249,18 +255,18 @@ namespace RacerMateOne.Dialogs
 
         private void SendConfiguration_Click(object sender, RoutedEventArgs e)
         {
-			// validate state:
-			if (m_detectedIPAddresses.Count == 0 ||
-				CurrentIPAddressBox.HasItems == false ||
-				CurrentIPAddressBox.SelectedItem.ToString().Contains("Not found") ||
-				CurrentIPAddressBox.IsEnabled == false)
-			{
-				StatusText.Foreground = Brushes.Red;
-				StatusText.Text = "Missing IP Address";
-				return;
-			}
+            // validate state:
+            if (m_detectedIPAddresses.Count == 0 ||
+                CurrentIPAddressBox.HasItems == false ||
+                CurrentIPAddressBox.SelectedItem.ToString().Contains("Not found") ||
+                CurrentIPAddressBox.IsEnabled == false)
+            {
+                StatusText.Foreground = Brushes.Red;
+                StatusText.Text = "Missing IP Address";
+                return;
+            }
 
-			if (HomeNetworkNameDropDrop.HasItems == false ||
+            if (HomeNetworkNameDropDrop.HasItems == false ||
 				HomeNetworkNameDropDrop.SelectedItem.ToString().Contains("Not found") || 
 				HomeNetworkNameDropDrop.IsEnabled == false)
 			{
@@ -328,7 +334,7 @@ namespace RacerMateOne.Dialogs
                 {
 					string SSID = HomeNetworkNameDropDrop.SelectedItem.ToString();
 					string password = (ShowPasswordCheckBox.IsChecked == true) ? PasswordTextPlain.Text : PasswordText.Password;
-					string ipAddress = m_detectedIPAddresses[CurrentIPAddressBox.SelectedIndex];
+					string ipAddress = (m_detectedIPAddresses.Count == 0) ? "10.10.100.150" : m_detectedIPAddresses[CurrentIPAddressBox.SelectedIndex];
 
 					Log.WriteLine("Launching: console.exe \"" + SSID + "\" \"<password>\" false \"" + RM1_Settings.General.WifiListenPort + "\" \"" + ipAddress + "\"");
 

@@ -177,32 +177,31 @@ namespace RacerMateOne.Pages
         private void OnTrainersAvailableChanged(object sender, RM1.TrainersAvailableChangedEventArgs e)
         {
             HardwareAvailableLabel.Dispatcher.Invoke((ThreadStart)delegate () {
-                if (e.NumFound == 0 && e.NumLost == 0)
+                if (e.FoundTrainers.Count == 0 && e.LostTrainers.Count == 0)
                 {
                     HardwareAvailableLabel.Content = String.Empty;
                 }
                 else
                 {
-                    if (e.NumFound > 0 && e.NumLost == 0)
+                    if (e.FoundTrainers.Count > 0 && e.LostTrainers.Count == 0)
                     {
-                        HardwareAvailableLabel.Content = "* " + e.NumFound + " new trainer(s) available.";
+                        HardwareAvailableLabel.Content = "* " + e.FoundTrainers.Count + " new trainer(s) available.";
                     }
-                    else if (e.NumFound == 0 && e.NumLost > 0)
+                    else if (e.FoundTrainers.Count == 0 && e.LostTrainers.Count > 0)
                     {
-                        HardwareAvailableLabel.Content = "* " + e.NumLost + " trainer(s) were lost.";
+                        HardwareAvailableLabel.Content = "* " + e.LostTrainers.Count + " trainer(s) were lost.";
                     }
                     else
                     {
-                        HardwareAvailableLabel.Content = "* " + e.NumFound + " new trainer(s) available; " + e.NumLost + " was lost.";
+                        HardwareAvailableLabel.Content = "* " + e.FoundTrainers.Count + " new trainer(s) available; " + e.LostTrainers.Count + " was lost.";
                     }
                 }
             });
 
             C_Hardware.Dispatcher.Invoke((ThreadStart)delegate ()
-            {
-                Unit.UpdateTrainerData(false);
-                RedoHardwareLines();
-            });
+                {
+                    RM1.StartQuickScan();
+                });
         }
 
         private void riderOptionsAll_Unloaded(object sender, RoutedEventArgs e)  {

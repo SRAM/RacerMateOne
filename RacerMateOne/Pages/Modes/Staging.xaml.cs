@@ -680,7 +680,7 @@ namespace RacerMateOne.Pages.Modes
 
             // Make sure all enabled riders have a trainer associated with their rider position.
             bool bDemoMode = false;
-            if (RM1.HardwareList.Count() == 0) {
+            if (RM1.ValidTrainers.Count() == 0) {
                 // There are no trainers, so assuming "demo mode"
                 RacerMateOne.Dialogs.Ask itsokay = new RacerMateOne.Dialogs.Ask("There are 0 trainers connected, so no trainer interaction will occur.", null, "OK");
                 itsokay.ShowDialog();
