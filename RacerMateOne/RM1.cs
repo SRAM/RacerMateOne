@@ -701,12 +701,12 @@ namespace RacerMateOne  {
         // Event to tell the app if the available trainers have changed, so that the user can rescan if desired.
         public class TrainersAvailableChangedEventArgs : EventArgs
         {
-            int nFound;
-            int nLost;
-            public TrainersAvailableChangedEventArgs(int nFound, int nLost)
-            { this.nFound = nFound; this.nLost = nLost; }
-            public int NumFound { get { return nFound; } }
-            public int NumLost { get { return nLost; } }
+            List<string> m_foundTrainers;
+            List<string> m_lostTrainers;
+            public TrainersAvailableChangedEventArgs(List<string> foundTrainers, List<string> lostTrainers)
+            { this.m_foundTrainers = foundTrainers; this.m_lostTrainers = lostTrainers; }
+            public List<string> FoundTrainers { get { return m_foundTrainers; } }
+            public List<string> LostTrainers { get { return m_lostTrainers; } }
         }
         public delegate void TrainersAvailableChangedEventHandler(object sender, TrainersAvailableChangedEventArgs e);
         public static event TrainersAvailableChangedEventHandler TrainersAvailableChanged;
@@ -817,7 +817,7 @@ namespace RacerMateOne  {
                 {
                     previousFoundCount = ms_scanningThread_UnnotifiedTrainers.Count;
                     previousLostCount = ms_scanningThread_LostTrainers.Count;
-                    TrainersAvailableChanged(null, new TrainersAvailableChangedEventArgs(ms_scanningThread_UnnotifiedTrainers.Count, ms_scanningThread_LostTrainers.Count));
+                    TrainersAvailableChanged(null, new TrainersAvailableChangedEventArgs(ms_scanningThread_UnnotifiedTrainers, ms_scanningThread_LostTrainers));
                 }
 
                 // If we have event handlers, then send notifications as necessary and update the lists!
@@ -852,9 +852,11 @@ namespace RacerMateOne  {
 #endif
         }
 
-		//===========================================================================
-		// This will be used by the OnTrainerFoundEvent delegate to add the new-found 
-		// trainer to the list that needs to be init'd
+        //===========================================================================
+        // This will be used by the OnTrainerFoundEvent and OnTrainerLostEvent delegate 
+        // to add the new-found trainer to the list that needs to be init'd.
+        // Even Lost trainers need to be re-init'd so that we update the fact that it
+        // is no longer connected.
 		//===========================================================================
 		private static void trainerFoundEventHandler_addTrainerToInitList(string trainerName)
 		{
@@ -876,31 +878,66 @@ namespace RacerMateOne  {
 
 			ms_Mux.ReleaseMutex();
 		}
+        
+        /**********************************************************************************************************
+        // Enables trainer detection notification for 1 second and then refreshes the hardware list once all the
+        // changed trainers have been reinitialized.
+        **********************************************************************************************************/
+        public static void StartQuickScan()
+        {
+            if (m_bScanning)
+                return;
 
-		//===========================================================================
-		//===========================================================================
-		private static void trainerLostEventHandler_notSureWhatToDoYet(string trainerName)
-		{
-			// I'm not yet sure where to remove these trainers from, or if we should just notify the user somehow?
-			// Anyway.. adding this handler so that we can confirm it's working and start experimenting.
-		}
+            m_bScanning = true;
 
-		/**********************************************************************************************************
+            RM1.OnTrainerLost += RM1.trainerFoundEventHandler_addTrainerToInitList;
+            RM1.OnTrainerFound += RM1.trainerFoundEventHandler_addTrainerToInitList;
+
+            // always include the settings
+            {
+                foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList)
+                {
+                    // NOTE: getting the trainer will also put it in the InitList if it's a new trainer
+                    Trainer t = Trainer.Get(tc.SavedPortName);
+                    t.ShouldBe = tc.DeviceType;
+                    ms_HardwareListVersion = 0; // Redo the hardware list next time it is requested.
+                }
+
+                if (RM1_Settings.General.DemoDevice)
+                {
+                    AddFake();
+                }
+            }
+
+            // Enable the timer to signal the FullScanComplete call after 1 seconds.
+            ms_fullScanTimer = new System.Windows.Forms.Timer();
+            ms_fullScanTimer.Interval = 1 * 1000;
+            ms_fullScanTimer.Tick += FullScanComplete;
+            ms_fullScanTimer.Start();
+        }
+
+        /**********************************************************************************************************
 			called from 'Rescan All Hardware' at beginning of program load
 				and 'Scan For New Devices'
 		**********************************************************************************************************/
-		private static System.Windows.Forms.Timer ms_fullScanTimer;
+        private static bool m_bScanning = false;
+        private static System.Windows.Forms.Timer ms_fullScanTimer;
 		public delegate void ScanCompleteEventHandler();
 		public static event ScanCompleteEventHandler OnScanCompleteEvent;
 		public static void StartFullScan(bool bIncludeSettings, ScanCompleteEventHandler scanCompleteEventHandler)  {
-			Log.WriteLine("Starting full scan...");
+            if (m_bScanning)
+                return;
+
+            m_bScanning = true;
+
+            Log.WriteLine("Starting full scan...");
 
 			if (scanCompleteEventHandler != null)
 			{
 				OnScanCompleteEvent += scanCompleteEventHandler;
 			}
 
-			OnTrainerLost += trainerLostEventHandler_notSureWhatToDoYet;
+			OnTrainerLost += trainerFoundEventHandler_addTrainerToInitList;
 			OnTrainerFound += trainerFoundEventHandler_addTrainerToInitList;
 
             if (bIncludeSettings)
@@ -908,7 +945,7 @@ namespace RacerMateOne  {
                 foreach (TrainerUserConfigurable tc in RM1_Settings.ActiveTrainerList)
                 {
                     // NOTE: getting the trainer will also put it in the InitList if it's a new trainer
-                    Trainer t = RM1.Trainer.Get(tc.SavedPortName);
+                    Trainer t = Trainer.Get(tc.SavedPortName);
                     t.ShouldBe = tc.DeviceType;
                     ms_HardwareListVersion = 0; // Redo the hardware list next time it is requested.
                 }
@@ -935,19 +972,21 @@ namespace RacerMateOne  {
 			if (numTrainersInitializing == 0)
 			{
 				Log.WriteLine("...Completed full scan!");
-				ms_fullScanTimer.Stop();
-				ms_fullScanTimer.Dispose();
+                OnTrainerLost -= trainerFoundEventHandler_addTrainerToInitList;
+                OnTrainerFound -= trainerFoundEventHandler_addTrainerToInitList;
 
-				OnTrainerLost -= trainerLostEventHandler_notSureWhatToDoYet;
-				OnTrainerFound -= trainerFoundEventHandler_addTrainerToInitList;
+                ms_fullScanTimer.Stop();
+                ms_fullScanTimer.Dispose();
 
-				if (RM1.OnScanCompleteEvent != null)
+                if (RM1.OnScanCompleteEvent != null)
 				{
 					RM1.OnScanCompleteEvent();
 					RM1.OnScanCompleteEvent = null;
 				}
-			}
-		}
+
+                m_bScanning = false;
+            }
+        }
 
 
 		/**********************************************************************************************************
