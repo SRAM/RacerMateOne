@@ -1626,7 +1626,12 @@ namespace RacerMateOne
 					thisTrainer.RememberedDeviceType = ele.Attribute("DeviceType").Value;
                     XElement portNameElement;
                     portNameElement = ele.Element("PortName");
-                    if (portNameElement == null) {
+                    if (portNameElement != null)
+                    {
+                        thisTrainer.SavedPortName = portNameElement.Value;
+                    }
+                    else
+                    {
                         // no PortName, so the setting needs to be converted.
                         // look for "Port" or "SerialPort"
                         int savedSerialPortNum = -1;
@@ -1644,10 +1649,11 @@ namespace RacerMateOne
                             savedSerialPortNum = Convert.ToInt32(tmpElement.Value);
                         }
 
-                        thisTrainer.SavedPortName = "COM" + savedSerialPortNum;
-                    }
-                    else {
-                        thisTrainer.SavedPortName = portNameElement.Value;
+                        // only set it if there was a valid Port or SerialPort
+                        if (savedSerialPortNum != -1)
+                        {
+                            thisTrainer.SavedPortName = "COM" + savedSerialPortNum;
+                        }
                     }
 
                     thisTrainer.PreviousRiderKey = (string)ele.Element("PreviousRiderKey").Value;
