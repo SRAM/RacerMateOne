@@ -127,6 +127,9 @@ namespace RacerMateOne
 		//     private int _velotronChainring;      //initialize the default values for Velotron Chainring
 		private int[] _gearingCogset = { 26, 23, 21, 19, 17, 16, 14, 13, 12, 11 }; //initialize the default values for Velotron cogset
 
+        private int _hrSensorId; // ANT+ HR Sensor ID
+        private int _cadenceSensorId; // ANT+ Cadence Sensor ID
+
 		// Not useing
 		private string _birthday; //  as DD/MM/YYYY
 
@@ -158,7 +161,10 @@ namespace RacerMateOne
 		//     private const int def_velotronChainring = 62;      //initialize the default values for Velotron Chainring
 		private int[] def_gearingCogset = { 26, 23, 21, 19, 17, 16, 14, 13, 12, 11 }; //initialize the default values for Velotron cogset
 
-		private bool def_metric = false;
+        private const int def_hrSensorId = 0; // ANT+ HR Sensor ID
+        private const int def_cadenceSensorId = 0; // ANT+ Cadence Sensor ID
+
+        private bool def_metric = false;
 
 		private const float def_height = 1.778f; // 5' 10"
 		// Properties are range checked when set
@@ -706,13 +712,47 @@ namespace RacerMateOne
 			}
 		}
 
-		// Velotron specific properties
+        public int HrSensorId
+        {
+            get { return _hrSensorId; }
+            set
+            {
+                try
+                {
+                    _hrSensorId = Math.Max(0, value);
+                }
+                catch
+                {
+                    _hrSensorId = def_hrSensorId;
+                }
+                OnPropertyChanged("HrSensorId");
+            }
+        }
 
-		/********************************************************************************************************
+        public int CadenceSensorId
+        {
+            get { return _cadenceSensorId; }
+            set
+            {
+                try
+                {
+                    _cadenceSensorId = Math.Max(0, value);
+                }
+                catch
+                {
+                    _cadenceSensorId = def_cadenceSensorId;
+                }
+                OnPropertyChanged("CadenceSensorId");
+            }
+        }
+
+        // Velotron specific properties
+
+        /********************************************************************************************************
 
 		********************************************************************************************************/
 
-		public int[] GearingCrankset {
+        public int[] GearingCrankset {
 				get {
 					return _gearingCrankset;
 				}
@@ -879,27 +919,29 @@ namespace RacerMateOne
 		/// </summary>
 
 		public Rider()  {
-				DatabaseKey = def_DatabaseKey;  //setting the DataBaseKey in a New Rider() call will first adopt default and thencompute a distinct Key
-				LastName = def_lastName;
-				FirstName = def_firstName;
-				NickName = def_nickName;
-				Gender = def_gender;
-				Birthday = def_birthday;
-				HrAnT = def_hrAnT;
-				HrMin = def_hrMin;
-				HrMax = def_hrMax;
-				AlarmMinZone = def_alarmMinZone;
-				AlarmMaxZone = def_alarmMaxZone;
-				PowerAnT = def_powerAnT;
-				PowerFTP = def_powerFTP;
-				Metric = def_metric;
-				WeightRider = def_weightRider;
-				WeightBike = def_weightBike;
-				RiderType = def_riderType;
-				GearingCrankset = def_gearingCrankset;
-				GearingCogset = def_gearingCogset;
-				//VelotronChainring = def_velotronChainring;
-				WheelDiameter = def_wheelDiameter;
+		    DatabaseKey = def_DatabaseKey;  //setting the DataBaseKey in a New Rider() call will first adopt default and thencompute a distinct Key
+		    LastName = def_lastName;
+		    FirstName = def_firstName;
+		    NickName = def_nickName;
+		    Gender = def_gender;
+		    Birthday = def_birthday;
+		    HrAnT = def_hrAnT;
+		    HrMin = def_hrMin;
+		    HrMax = def_hrMax;
+		    AlarmMinZone = def_alarmMinZone;
+		    AlarmMaxZone = def_alarmMaxZone;
+		    PowerAnT = def_powerAnT;
+		    PowerFTP = def_powerFTP;
+		    Metric = def_metric;
+		    WeightRider = def_weightRider;
+		    WeightBike = def_weightBike;
+		    RiderType = def_riderType;
+		    GearingCrankset = def_gearingCrankset;
+		    GearingCogset = def_gearingCogset;
+		    //VelotronChainring = def_velotronChainring;
+		    WheelDiameter = def_wheelDiameter;
+            HrSensorId = def_hrSensorId;
+            CadenceSensorId = def_cadenceSensorId;
 		}
 
 		public override string ToString()  {
@@ -1209,7 +1251,9 @@ namespace RacerMateOne
 				xcrankset,
 				xcogset,
 				// new XElement("VelotronChainring",bbb.VelotronChainring),
-				new XElement("WheelDiameter", bbb.WheelDiameter));
+				new XElement("WheelDiameter", bbb.WheelDiameter),
+                new XElement("HrSensorId", bbb.HrSensorId),
+                new XElement("CadenceSensorId", bbb.CadenceSensorId));
 
 			return arider;
 		}

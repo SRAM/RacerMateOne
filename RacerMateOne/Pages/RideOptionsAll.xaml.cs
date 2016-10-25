@@ -1627,7 +1627,7 @@ namespace RacerMateOne.Pages
 
 		private void AddRider_Click(object sender, RoutedEventArgs e)
 		{
-            //adds a new rider to the list by instantiating teh default rider with "FirstName", "LastName", "NickName" showing in the three textboxes.
+            //adds a new rider to the list by instantiating the default rider with "FirstName", "LastName", "NickName" showing in the three textboxes.
             //generates a unique GUID too.
             Rider AddedRider = new Rider();
 			RacerMateOne.Dialogs.TextLine tline = new RacerMateOne.Dialogs.TextLine();
@@ -1661,7 +1661,32 @@ namespace RacerMateOne.Pages
 
 		*****************************************************************************************************************************/
 
-		private void SetGearTeeth_Click(object sender, RoutedEventArgs e)  {
+        private void ANTSensors_Click(object sender, RoutedEventArgs e) {
+            Rider rider = RiderEditSelect.SelectedItem as Rider;
+
+            RacerMateOne.Dialogs.ANTSensorsDialog dialog = new RacerMateOne.Dialogs.ANTSensorsDialog();
+            dialog.Owner = AppWin.Instance;
+            dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            dialog.HrSensorIdText.Text = rider.HrSensorId.ToString();
+            dialog.CadenceSensorIdText.Text = rider.CadenceSensorId.ToString();
+            dialog.ShowDialog();
+
+            // HeartRate sensor
+            int hrSensorId = rider.HrSensorId;
+            if (dialog.HrSensorId != null && Int32.TryParse(dialog.HrSensorId, out hrSensorId))
+            {
+                rider.HrSensorId = hrSensorId;
+            }
+
+            // Cadence sensor
+            int cadenceSensorId = rider.CadenceSensorId;
+            if (dialog.CadenceSensorId != null && Int32.TryParse(dialog.CadenceSensorId, out cadenceSensorId))
+            {
+                rider.CadenceSensorId = cadenceSensorId;
+            }
+        }
+
+        private void SetGearTeeth_Click(object sender, RoutedEventArgs e)  {
 			Rider rider = RiderEditSelect.SelectedItem as Rider;
 
 			/*

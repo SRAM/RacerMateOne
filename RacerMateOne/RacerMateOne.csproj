@@ -213,6 +213,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\ANTSensorsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\_Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1137,6 +1141,9 @@
     </Compile>
     <Compile Include="Dialogs\AdvancedColorPickerDialog.xaml.cs">
       <DependentUpon>AdvancedColorPickerDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ANTSensorsDialog.xaml.cs">
+      <DependentUpon>ANTSensorsDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Ask.xaml.cs">
       <DependentUpon>Ask.xaml</DependentUpon>
