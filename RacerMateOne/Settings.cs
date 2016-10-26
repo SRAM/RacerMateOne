@@ -1216,8 +1216,8 @@ namespace RacerMateOne
             {
                 // this is the first run, there is no RM1_Settings file at all. Initialize as first time run.
                 CopyGoldenDefaultSettingsFile(realfilename);
-
             }
+
             // Open the settings file.
             // reset the validation settings
             do
@@ -1238,7 +1238,7 @@ namespace RacerMateOne
                 {
                     IsSettingsValid = IsValidSettings(FullDoc);  //test for validity of data and loads the useable classes and properties             
                 }
-                if (IsSettingsValid == false || IsFullDocgoodXML ==false)
+                if (IsSettingsValid == false || IsFullDocgoodXML == false)
                 {
                     // here we have invalid input file for either bad xml or invalid data in good xml.
                     // either way, prompt user to read from a backup file

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -121,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\AntSensorLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\BarSpinScan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -206,6 +210,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CourseEditorDev\SplashWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ANTSensorsList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -909,6 +917,7 @@
     <Compile Include="BrowserClient.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\AntSensorLine.xaml.cs" />
     <Compile Include="Controls\BaseUnit.cs" />
     <Compile Include="CommonDialogWrappers.cs" />
     <Compile Include="Controls\BarSpinScan.xaml.cs">
@@ -1144,6 +1153,9 @@
     </Compile>
     <Compile Include="Dialogs\ANTSensorsDialog.xaml.cs">
       <DependentUpon>ANTSensorsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ANTSensorsList.xaml.cs">
+      <DependentUpon>ANTSensorsList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Ask.xaml.cs">
       <DependentUpon>Ask.xaml</DependentUpon>
