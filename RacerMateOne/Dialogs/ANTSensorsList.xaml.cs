@@ -18,8 +18,10 @@ namespace RacerMateOne.Dialogs
     /// </summary>
     public partial class ANTSensorsList : Window
     {
-        public String HrSensorId = null;
-        public String CadenceSensorId = null;
+		public int numSensors = 0;
+		private Controls.AntSensorLine[] sensorLines;
+		//public List<Rider> RiderList;
+		public System.Collections.ObjectModel.ObservableCollection<Rider> RiderList;
 
         public ANTSensorsList()
         {
@@ -28,48 +30,27 @@ namespace RacerMateOne.Dialogs
 
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            HrSensorIdText.Focus();
+			SensorListPanel.Children.Clear();
+
+			numSensors = 20;
+			sensorLines = new Controls.AntSensorLine[numSensors];
+			for (int i = 0; i < numSensors; i++)
+			{
+				sensorLines[i] = new Controls.AntSensorLine();
+				sensorLines[i].SensorID = i;
+				sensorLines[i].allKnownRiders = RiderList;
+				sensorLines[i].Active = ((i % 5) == 0);
+				SensorListPanel.Children.Add(sensorLines[i]);
+			}
         }
         
         private void OK_Click(object sender, RoutedEventArgs e)
         {
-            // validate the input
-            int hrId = 0;
-            if (int.TryParse(HrSensorIdText.Text, out hrId) == false)
-            {
-                RacerMateOne.Dialogs.JustInfo msg = new RacerMateOne.Dialogs.JustInfo();
-                msg.Owner = AppWin.Instance;
-                msg.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                msg.TopText.Text = "Invalid HR Sensor ID entered - it must be an integer.";
-                msg.ShowDialog();
-                HrSensorIdText.SelectAll();
-                HrSensorIdText.Focus();
-                return;
-            }
-
-            int cadId = 0;
-            if (int.TryParse(CadenceSensorIdText.Text, out cadId) == false)
-            {
-                RacerMateOne.Dialogs.JustInfo msg = new RacerMateOne.Dialogs.JustInfo();
-                msg.Owner = AppWin.Instance;
-                msg.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                msg.TopText.Text = "Invalid Cadence Sensor ID entered - it must be an integer.";
-                msg.ShowDialog();
-                CadenceSensorIdText.SelectAll();
-                CadenceSensorIdText.Focus();
-                return;
-            }
-
-            // All input is valid!
-            HrSensorId = HrSensorIdText.Text;
-            CadenceSensorId = CadenceSensorIdText.Text;
             Close();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            HrSensorId = null;
-            CadenceSensorId = null;
             Close();
         }
     }

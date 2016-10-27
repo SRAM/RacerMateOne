@@ -8,29 +8,33 @@
 	<UserControl.Resources>
 	</UserControl.Resources>
 	<Grid>
-		<StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-			<Label x:Name="Icon" Padding="0,0,0,0" Width="50" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center">Icon</Label>
-            <Label x:Name="SensorType" Padding="0,0,20,0" Width="180" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center">Heart Rate Monitor</Label>
-            <Grid x:Name="IdentifyLED" Margin="8,0,0,0">
-                <Border Width="24" Height="24" BorderThickness="3" CornerRadius="12" BorderBrush="Gray">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
-                            <GradientStop x:Name="LED_c1" Color="#FF000000" Offset="0.0" />
-                            <GradientStop x:Name="LED_c2" Color="#FF777777" Offset="1.0" />
-                        </LinearGradientBrush>
-                    </Border.Background>
-                </Border>
-                <Ellipse Margin="5,4,5,12">
-                    <Ellipse.Fill>
-                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
-                            <GradientStop Color="#00FFFFFF" Offset="0.0" />
-                            <GradientStop Color="#10FFFFFF" Offset="0.1" />
-                            <GradientStop Color="#60FFFFFF" Offset="1.0" />
-                        </LinearGradientBrush>
-                    </Ellipse.Fill>
-                </Ellipse>
-            </Grid>
-            <ComboBox x:Name="AssignedRider" Width="200" FontSize="12" SelectionChanged="AssignedRider_SelectionChanged"></ComboBox>
-		</StackPanel>
+        <Border BorderThickness="1" CornerRadius="0" BorderBrush="#486381">
+            <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+                <Label x:Name="Icon" Padding="0,0,0,0" Width="50" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center">Icon</Label>
+                <Label x:Name="SensorType" Padding="5,0,5,0" Width="180" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center">Heart Rate Monitor</Label>
+                <Label x:Name="IdLabel" Padding="5,0,5,0" HorizontalContentAlignment="Left" FontSize="16" VerticalContentAlignment="Center">ID:</Label>
+                <Label x:Name="SensorId" Padding="5,0,5,0" Width="80" HorizontalContentAlignment="Left" FontSize="16" VerticalContentAlignment="Center">000000</Label>
+                <Grid x:Name="IdentifyLED" Margin="8,0,0,0">
+                    <Border Width="24" Height="24" BorderThickness="3" CornerRadius="12" BorderBrush="Gray">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
+                                <GradientStop x:Name="LED_c1" Color="#FF000000" Offset="0.0" />
+                                <GradientStop x:Name="LED_c2" Color="#FF777777" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <Ellipse Margin="5,4,5,12">
+                        <Ellipse.Fill>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox">
+                                <GradientStop Color="#00FFFFFF" Offset="0.0" />
+                                <GradientStop Color="#10FFFFFF" Offset="0.1" />
+                                <GradientStop Color="#60FFFFFF" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Grid>
+                <ComboBox x:Name="AssignedRider" Margin="5,0,5,0" Width="200" FontSize="12" SelectionChanged="AssignedRider_SelectionChanged"></ComboBox>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

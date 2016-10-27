@@ -151,80 +151,76 @@ namespace RacerMateOne  {
                 }
             }
 
-			bool attemptToDetectAntStick = true;
-			while (attemptToDetectAntStick)
-			{
-				try
-				{
-					status = DLL.start_ant(debug_level);
-				}
-				catch (Exception e)
-				{
-					Log.WriteLine(e.ToString());
-					RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start ANT+ listener.\nRacerMate will not correctly detect ANT+ sensors.\n\n" + e.ToString(), "OK", "Cancel");
-					info.ShowDialog();
-				}
+			//bool attemptToDetectAntStick = true;
+			//while (attemptToDetectAntStick)
+			//{
+			//try
+			//{
+			//	status = DLL.start_ant(debug_level);
+			//}
+			//catch (Exception e)
+			//{
+			//	Log.WriteLine(e.ToString());
+			//	RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start ANT+ listener.\nRacerMate will not correctly detect ANT+ sensors.\n\n" + e.ToString(), "OK", "Cancel");
+			//	info.ShowDialog();
+			//}
 
-				if (status == 1)
-				{
-					// error 
-					RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("ANT+ stick not detected.\nRacerMate will not be able to utilize ANT+ sensors.\nPlease insert an ANT+ stick and press OK to rescan. Cancel will skip ANT+ detection.", "OK", "Cancel");
-					bool? result = info.ShowDialog();
-					attemptToDetectAntStick = (!result.HasValue) ? false : result.Value;
-				}
-				else
-				{
-					attemptToDetectAntStick = false;
-				}
-			}
-
-
-//			//--------------------------------------------------------------------------
-//			// for testing, I block up to 10 seconds until there are some ANT sensors
-//			// this takes 7 to 8 seconds once the ANT stick sees a heartrate sensor,
-//			// sort of like it takes a few seconds for the communication to establish
-//			// for a UDP computrainer.
-//			//--------------------------------------------------------------------------
-//			Thread.Sleep(10 * 1000);
-
-//			DLL.SENSORS sensors;
-//			sensors.sensorCount = 0;
-//			sensors.sensors = null;
-//			string[] sensor_strings;
-//			while (sensors.sensorCount == 0)
-//			{
-//				sensor_strings = DLL.GetANTSensorString();
-//				if (sensor_strings != null)
-//				{
-//					break;
-//				}
-//				//sensors = DLL.get_ant_sensors();
-//				//if (sensors)
-//				//{
-//				//	if (sensors->n > 0)
-//				//	{
-//				//		break;
-//				//	}
-//				//}
-//				Thread.Sleep(50);
-//			}
-
-//			// just some testing/exercises
-
-////			if (sensors && sensors->n > 0)
-//			{
-////				string[] sensor_strings = DLL.GetANTSensorString();
-//				//DLL.associate("UDP-5678", sensors->sensors[0].sn);
-//				//DLL.associate("UDP-5678", sensors->sensors[0].sn);
-
-//				//status = DLL.unassociate("UDP-5678", sensors->sensors[0].sn);
-//				//status = DLL.unassociate("UDP-5678", sensors->sensors[0].sn);
-//				//status = DLL.unassociate("xxx", sensors->sensors[0].sn);
-//			}
+			//	if (status == 1)
+			//	{
+			//		// error 
+			//		RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("ANT+ stick not detected.\nRacerMate will not be able to utilize ANT+ sensors.\nPlease insert an ANT+ stick and press OK to rescan. Cancel will skip ANT+ detection.", "OK", "Cancel");
+			//		bool? result = info.ShowDialog();
+			//		attemptToDetectAntStick = (!result.HasValue) ? false : result.Value;
+			//	}
+			//	else
+			//	{
+			//		attemptToDetectAntStick = false;
+			//	}
+			//}
 
 
+			//			//--------------------------------------------------------------------------
+			//			// for testing, I block up to 10 seconds until there are some ANT sensors
+			//			// this takes 7 to 8 seconds once the ANT stick sees a heartrate sensor,
+			//			// sort of like it takes a few seconds for the communication to establish
+			//			// for a UDP computrainer.
+			//			//--------------------------------------------------------------------------
+			//			Thread.Sleep(10 * 1000);
 
+			//			DLL.SENSORS sensors;
+			//			sensors.sensorCount = 0;
+			//			sensors.sensors = null;
+			//			string[] sensor_strings;
+			//			while (sensors.sensorCount == 0)
+			//			{
+			//				sensor_strings = DLL.GetANTSensorString();
+			//				if (sensor_strings != null)
+			//				{
+			//					break;
+			//				}
+			//				//sensors = DLL.get_ant_sensors();
+			//				//if (sensors)
+			//				//{
+			//				//	if (sensors->n > 0)
+			//				//	{
+			//				//		break;
+			//				//	}
+			//				//}
+			//				Thread.Sleep(50);
+			//			}
 
+			//			// just some testing/exercises
+
+			////			if (sensors && sensors->n > 0)
+			//			{
+			////				string[] sensor_strings = DLL.GetANTSensorString();
+			//				//DLL.associate("UDP-5678", sensors->sensors[0].sn);
+			//				//DLL.associate("UDP-5678", sensors->sensors[0].sn);
+
+			//				//status = DLL.unassociate("UDP-5678", sensors->sensors[0].sn);
+			//				//status = DLL.unassociate("UDP-5678", sensors->sensors[0].sn);
+			//				//status = DLL.unassociate("xxx", sensors->sensors[0].sn);
+			//			}
 
 
 #if DEBUG
