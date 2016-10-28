@@ -19,8 +19,9 @@
                 <TextBlock Name="TopText" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" TextWrapping="Wrap"  VerticalAlignment="Top">
                     Detected ANT+ Sensor Information
                 </TextBlock>
+                <c:Pillbox x:Name="Refresh" Text="Refresh" Width="110" VerticalAlignment="Bottom" Height="31" Margin="0,5,0,5" HorizontalAlignment="Center" Click="Refresh_Click"></c:Pillbox>
                 <ScrollViewer VerticalScrollBarVisibility="auto" MaxHeight="500">
-                    <StackPanel Name="SensorListPanel" Margin="5,10,5,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <StackPanel Name="SensorListPanel" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Top">
                         <TextBlock FontFamily="Arial" FontSize="16" Foreground="White">None Found</TextBlock>
                     </StackPanel>
                 </ScrollViewer>

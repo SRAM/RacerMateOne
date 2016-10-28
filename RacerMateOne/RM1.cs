@@ -154,16 +154,16 @@ namespace RacerMateOne  {
 			//bool attemptToDetectAntStick = true;
 			//while (attemptToDetectAntStick)
 			//{
-			//try
-			//{
-			//	status = DLL.start_ant(debug_level);
-			//}
-			//catch (Exception e)
-			//{
-			//	Log.WriteLine(e.ToString());
-			//	RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start ANT+ listener.\nRacerMate will not correctly detect ANT+ sensors.\n\n" + e.ToString(), "OK", "Cancel");
-			//	info.ShowDialog();
-			//}
+			//	try
+			//	{
+			//		status = DLL.start_ant(debug_level);
+			//	}
+			//	catch (Exception e)
+			//	{
+			//		Log.WriteLine(e.ToString());
+			//		RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start ANT+ listener.\nRacerMate will not correctly detect ANT+ sensors.\n\n" + e.ToString(), "OK", "Cancel");
+			//		info.ShowDialog();
+			//	}
 
 			//	if (status == 1)
 			//	{
@@ -179,37 +179,37 @@ namespace RacerMateOne  {
 			//}
 
 
-			//			//--------------------------------------------------------------------------
-			//			// for testing, I block up to 10 seconds until there are some ANT sensors
-			//			// this takes 7 to 8 seconds once the ANT stick sees a heartrate sensor,
-			//			// sort of like it takes a few seconds for the communication to establish
-			//			// for a UDP computrainer.
-			//			//--------------------------------------------------------------------------
-			//			Thread.Sleep(10 * 1000);
+			////--------------------------------------------------------------------------
+			//// for testing, I block up to 10 seconds until there are some ANT sensors
+			//// this takes 7 to 8 seconds once the ANT stick sees a heartrate sensor,
+			//// sort of like it takes a few seconds for the communication to establish
+			//// for a UDP computrainer.
+			////--------------------------------------------------------------------------
+			//Thread.Sleep(10 * 1000);
 
-			//			DLL.SENSORS sensors;
-			//			sensors.sensorCount = 0;
-			//			sensors.sensors = null;
-			//			string[] sensor_strings;
-			//			while (sensors.sensorCount == 0)
-			//			{
-			//				sensor_strings = DLL.GetANTSensorString();
-			//				if (sensor_strings != null)
-			//				{
-			//					break;
-			//				}
-			//				//sensors = DLL.get_ant_sensors();
-			//				//if (sensors)
-			//				//{
-			//				//	if (sensors->n > 0)
-			//				//	{
-			//				//		break;
-			//				//	}
-			//				//}
-			//				Thread.Sleep(50);
-			//			}
+			//SENSORS sensors;
+			//sensors.sensorCount = 0;
+			//sensors.sensors = null;
+			//string[] sensor_strings;
+			//while (sensors.sensorCount == 0)
+			//{
+			//	sensor_strings = DLL.GetANTSensorString();
+			//	if (sensor_strings != null)
+			//	{
+			//		break;
+			//	}
+			//	//sensors = DLL.get_ant_sensors();
+			//	//if (sensors)
+			//	//{
+			//	//	if (sensors->n > 0)
+			//	//	{
+			//	//		break;
+			//	//	}
+			//	//}
+			//	Thread.Sleep(50);
+			//}
 
-			//			// just some testing/exercises
+			// just some testing/exercises
 
 			////			if (sensors && sensors->n > 0)
 			//			{
@@ -301,6 +301,26 @@ namespace RacerMateOne  {
 			public byte sensorCount;
 			public SENSOR[] sensors;
 		};
+
+		public static List<SENSOR> GetAntSensorList()
+		{
+			List<SENSOR> sensorList = new List<SENSOR>();
+			string[] sensorStrings = DLL.GetANTSensorString();
+			
+			foreach(string sensorString in sensorStrings)
+			{
+				string[] sensorParts = sensorString.Split(' ');
+				if (sensorParts.Length == 2)
+				{
+					SENSOR sensor = new SENSOR();
+					sensor.sensor_number = ushort.Parse(sensorParts[0]);
+					sensor.type = byte.Parse(sensorParts[1]);
+					sensorList.Add(sensor);
+				}
+			}
+
+			return sensorList;
+		}
 
 		public SENSORS antSensors;
 		// end ANT+ Sensor structs
@@ -1353,7 +1373,11 @@ namespace RacerMateOne  {
 			// returns 1 if libusb could not be initialized.
 			[DllImport("racermate.dll")]
 			public static extern int start_ant(int _debug_level);
-			
+
+			// always returns 0
+			[DllImport("racermate.dll")]
+			public static extern int stop_ant();
+
 			// returns a SENSORS structure or NULL if there are no sensors
 			[DllImport("racermate.dll", CharSet = CharSet.Ansi)]
 			public static extern IntPtr get_ant_sensors();
@@ -1373,7 +1397,14 @@ namespace RacerMateOne  {
 				{
 					IntPtr iptr = DLL.get_ant_sensors_string();
 					string s2 = Marshal.PtrToStringAnsi(iptr);
-					sensorString = s2.Split(',');
+					if (s2 == null)
+					{
+						sensorString = null;
+					}
+					else
+					{
+						sensorString = s2.Split(',');
+					}
 				}
 				catch (Exception e)
 				{
@@ -3036,6 +3067,7 @@ namespace RacerMateOne  {
                 ms_BackgroundScanningThread.Join();
                 ms_bShutdown = true;
                 ms_Thread.Join();
+				DLL.stop_ant();
                 DLL.racermate_close();
 			}
 

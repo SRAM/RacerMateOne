@@ -18,8 +18,10 @@ namespace RacerMateOne.Dialogs
     /// </summary>
     public partial class ANTSensorsList : Window
     {
-		public int numSensors = 0;
-		private Controls.AntSensorLine[] sensorLines;
+		private Controls.AntSensorLine[] m_sensorLines;
+
+		private List<RM1.SENSOR> m_detectedSensors = new List<RM1.SENSOR>();
+
 		//public List<Rider> RiderList;
 		public System.Collections.ObjectModel.ObservableCollection<Rider> RiderList;
 
@@ -31,17 +33,6 @@ namespace RacerMateOne.Dialogs
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
 			SensorListPanel.Children.Clear();
-
-			numSensors = 20;
-			sensorLines = new Controls.AntSensorLine[numSensors];
-			for (int i = 0; i < numSensors; i++)
-			{
-				sensorLines[i] = new Controls.AntSensorLine();
-				sensorLines[i].SensorID = i;
-				sensorLines[i].allKnownRiders = RiderList;
-				sensorLines[i].Active = ((i % 5) == 0);
-				SensorListPanel.Children.Add(sensorLines[i]);
-			}
         }
         
         private void OK_Click(object sender, RoutedEventArgs e)
@@ -53,5 +44,28 @@ namespace RacerMateOne.Dialogs
         {
             Close();
         }
-    }
+
+		private void Refresh_Click(object sender, RoutedEventArgs e)
+		{
+			int numSensors = detect_sensors();
+
+			m_sensorLines = new Controls.AntSensorLine[numSensors];
+			for (int i = 0; i < numSensors; i++)
+			{
+				m_sensorLines[i] = new Controls.AntSensorLine();
+				m_sensorLines[i].SensorID = i;
+				m_sensorLines[i].allKnownRiders = RiderList;
+				//m_sensorLines[i].Active = ((i % 5) == 0);
+				SensorListPanel.Children.Add(m_sensorLines[i]);
+			}
+		}
+
+		private int detect_sensors()
+		{
+			m_detectedSensors = RM1.GetAntSensorList();
+			int numSensors = 20;
+
+			return numSensors;
+		}
+	}
 }

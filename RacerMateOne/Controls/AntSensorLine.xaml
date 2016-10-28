@@ -33,7 +33,7 @@
                         </Ellipse.Fill>
                     </Ellipse>
                 </Grid>
-                <ComboBox x:Name="AssignedRider" Margin="5,0,5,0" Width="200" FontSize="12" SelectionChanged="AssignedRider_SelectionChanged"></ComboBox>
+                <ComboBox x:Name="AssignedRiderDropDown" Margin="5,0,5,0" Width="200" FontSize="12" SelectionChanged="AssignedRider_SelectionChanged"></ComboBox>
             </StackPanel>
         </Border>
     </Grid>

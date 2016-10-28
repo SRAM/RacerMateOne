@@ -23,11 +23,13 @@ namespace RacerMateOne.Controls
 		//=========================================================================================================
 		public static DependencyProperty SensorIDProperty = DependencyProperty.Register("SensorID", typeof(int), typeof(AntSensorLine),
 			new FrameworkPropertyMetadata(0, new PropertyChangedCallback(_SensorIDChanged)));
+
 		public int SensorID
 		{
 			get { return (int)this.GetValue(SensorIDProperty); }
 			set { this.SetValue(SensorIDProperty, value); }
 		}
+
 		private static void _SensorIDChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			((AntSensorLine)d).OnSensorIDChanged();
@@ -36,6 +38,7 @@ namespace RacerMateOne.Controls
 		//=========================================================================================================
 		public static DependencyProperty ActiveProperty = DependencyProperty.Register("Active", typeof(bool), typeof(AntSensorLine),
 			new FrameworkPropertyMetadata(false,new PropertyChangedCallback(_ActiveChanged)));
+
 		public bool Active
 		{
 			get { return (bool)this.GetValue(ActiveProperty); }
@@ -55,7 +58,7 @@ namespace RacerMateOne.Controls
 		//	{
 		//		return allKnownRiders;
 		//	}
-
+		//
 		//	set
 		//	{
 		//		allKnownRiders = value;
@@ -65,7 +68,11 @@ namespace RacerMateOne.Controls
 		//		private List<Rider> allKnownRiders = new List<Rider>();
 		public System.Collections.ObjectModel.ObservableCollection<Rider> allKnownRiders;
 
-		private Rider currentAssignedRider = null;
+		public Rider AssignedRider
+		{
+			get; set;
+		}
+
 		private Rider LastAssignedRider { get; set; }
 
 		//=========================================================================================================
@@ -81,54 +88,36 @@ namespace RacerMateOne.Controls
 			add { AddHandler(ChangedEvent, value); }
 			remove { RemoveHandler(ChangedEvent, value); }
 		}
+
 		//=========================================================================================================
-		//		public static readonly RoutedEvent CalibrateClickEvent =
-		//			EventManager.RegisterRoutedEvent(
-		//			"CalibrateClick", RoutingStrategy.Bubble,
-		//			typeof(RoutedEventHandler),
-		//			typeof(AntSensorLine));
-		//		public event RoutedEventHandler CalibrateClick
-		//		{
-		//			add { AddHandler(CalibrateClickEvent, value); }
-		//			remove { RemoveHandler(CalibrateClickEvent, value); }
-		//		}
-		//		//=========================================================================================================
-
-
 
 		public static bool StopChangeEvents = false;
-		//		public RM1.Trainer ChangeTrainer;
-
-
-		//		bool m_Attached = false;
-		//		public TrainerUserConfigurable TrainerConfig { get; protected set; }
 
 		public AntSensorLine()
 		{
 			InitializeComponent();
+			AssignedRider = null;
 		}
 
 		~AntSensorLine()
 		{
-//			Detach();
 		}
 
 		private void btn_Loaded(object sender, RoutedEventArgs e)
 		{
 			Icon.Content = "Heart";
-			//RM1.OnCalibrationChanged += new RM1.TrainerEvent(RM1_OnCalibrationChanged);
 			RedoDropDown();
 		}
 
 		public void RedoDropDown()
 		{
-			AssignedRider.Items.Clear();
+			AssignedRiderDropDown.Items.Clear();
 
 			ComboBoxItem citem;
 			citem = new ComboBoxItem();
 			citem.Content = "Unassigned";
 			citem.Tag = null;
-			AssignedRider.Items.Add(citem);
+			AssignedRiderDropDown.Items.Add(citem);
 			ComboBoxItem selitem = citem;
 
 			if (allKnownRiders == null)
@@ -141,17 +130,17 @@ namespace RacerMateOne.Controls
 				citem.Tag = rider;
 				if (rider.HrSensorId == SensorID)
 				{
-					currentAssignedRider = rider;
+					AssignedRider = rider;
 				}
-				if (rider == currentAssignedRider)
+				if (rider == AssignedRider)
 				{
 					selitem = citem;
 				}
-				AssignedRider.Items.Add(citem);
+				AssignedRiderDropDown.Items.Add(citem);
 			}
 			if (selitem.Tag != null)
-				currentAssignedRider = selitem.Tag as Rider;
-			AssignedRider.SelectedItem = selitem;
+				AssignedRider = selitem.Tag as Rider;
+			AssignedRiderDropDown.SelectedItem = selitem;
 		}
 
 		static Color ms_Off1 = Color.FromArgb(255, 0, 0, 0);
@@ -186,62 +175,32 @@ namespace RacerMateOne.Controls
 			SensorId.Content = SensorID;
 		}
 
-		///// <summary>
-		///// 
-		///// </summary>
-		//protected void Detach()
-		//{
-		//	if (!m_Attached)
-		//		return;
-		//	RM1.OnTrainerInitialized -= new RM1.TrainerInitialized(RM1_OnTrainerInitialized);
-		//}
-
-		///// <summary>
-		/////
-		///// </summary>
-		//protected void Attach()
-		//{
-		//	if (m_Attached)
-		//		return;
-		//	TrainerConfig = RM1_Settings.SavedTrainersList[Number-1];
-		//	RM1.OnTrainerInitialized += new RM1.TrainerInitialized(RM1_OnTrainerInitialized);
-		//	RedoDropDown();
-		//}
-
-		//void RM1_OnCalibrationChanged(RM1.Trainer trainer, object arguments)
-		//{
-		//	RedoDropDown();
-		//}
-
-		//void RM1_OnTrainerInitialized(RM1.Trainer trainer, int left)
-		//{
-		//	if (left == 0)
-		//		RedoDropDown();
-		//}
-
 		private bool m_inchange = false;
 		private void AssignedRider_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			//if (AssignedRider.SelectedItem != null && !m_inchange)
-			//{
-			//	m_inchange = true;
-			//	ComboBoxItem item = AssignedRider.SelectedItem as ComboBoxItem;
-			//	currentAssignedRider = (item != null ? item.Tag as Rider : null);
-			//	currentAssignedRider.HrSensorId = SensorID;
-			//	if (LastAssignedRider != currentAssignedRider && !StopChangeEvents)
-			//	{
-			//		RoutedEventArgs args = new RoutedEventArgs(ChangedEvent);
-			//		RaiseEvent(args);
-			//	}
-			//	m_inchange = false;
-			//}
+			if (AssignedRiderDropDown.SelectedItem != null && !m_inchange)
+			{
+				m_inchange = true;
+				ComboBoxItem item = AssignedRiderDropDown.SelectedItem as ComboBoxItem;
+				AssignedRider = (item != null ? item.Tag as Rider : null);
+				if (AssignedRider != null)
+				{
+					AssignedRider.HrSensorId = SensorID;
+					if (LastAssignedRider != AssignedRider && !StopChangeEvents)
+					{
+						RoutedEventArgs args = new RoutedEventArgs(ChangedEvent);
+						RaiseEvent(args);
+					}
+				}
+				m_inchange = false;
+			}
 		}
 
-		//   private delegate void _change(RM1.Trainer trainer);
-		//void change(RM1.Trainer trainer)
-		//{
-		//	//Trainer = trainer;
-		//}
+		private delegate void _change(Rider rider);
+		void change(Rider rider)
+		{
+			AssignedRider = rider;
+		}
 
 		//private void Identify_Click(object sender, RoutedEventArgs e)
 		//{
@@ -271,11 +230,6 @@ namespace RacerMateOne.Controls
 		//		m_inchange = false;
 		//	}
 		//	 */
-		//}
-
-		//private void Calibrate_Click(object sender, RoutedEventArgs e)
-		//{
-		//	RaiseEvent(new RoutedEventArgs(CalibrateClickEvent));
 		//}
 
 		private void btn_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
