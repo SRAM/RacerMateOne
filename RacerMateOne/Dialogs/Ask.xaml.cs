@@ -48,6 +48,7 @@ namespace RacerMateOne.Dialogs
 		private void OK_Click(object sender, RoutedEventArgs e)
 		{
 			m_IsOK = true;
+			DialogResult = true;
 			Close();
 		}
 

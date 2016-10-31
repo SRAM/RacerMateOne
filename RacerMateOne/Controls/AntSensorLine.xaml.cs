@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.IO;
+using System.Reflection;
 
 namespace RacerMateOne.Controls
 {
@@ -21,23 +23,15 @@ namespace RacerMateOne.Controls
 	public partial class AntSensorLine : UserControl
 	{
 		//=========================================================================================================
-		public static DependencyProperty SensorIDProperty = DependencyProperty.Register("SensorID", typeof(int), typeof(AntSensorLine),
-			new FrameworkPropertyMetadata(0, new PropertyChangedCallback(_SensorIDChanged)));
-
+		private int m_sensorID;
 		public int SensorID
 		{
-			get { return (int)this.GetValue(SensorIDProperty); }
-			set { this.SetValue(SensorIDProperty, value); }
-		}
-
-		private static void _SensorIDChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		{
-			((AntSensorLine)d).OnSensorIDChanged();
+			get { return m_sensorID; }
 		}
 
 		//=========================================================================================================
 		public static DependencyProperty ActiveProperty = DependencyProperty.Register("Active", typeof(bool), typeof(AntSensorLine),
-			new FrameworkPropertyMetadata(false,new PropertyChangedCallback(_ActiveChanged)));
+			new FrameworkPropertyMetadata(false, new PropertyChangedCallback(_ActiveChanged)));
 
 		public bool Active
 		{
@@ -52,21 +46,7 @@ namespace RacerMateOne.Controls
 			((AntSensorLine)d).OnActiveChanged();
 		}
 
-		//public List<Rider> AllKnownRiders
-		//{
-		//	get
-		//	{
-		//		return allKnownRiders;
-		//	}
-		//
-		//	set
-		//	{
-		//		allKnownRiders = value;
-		//	}
-		//}
-
-		//		private List<Rider> allKnownRiders = new List<Rider>();
-		public System.Collections.ObjectModel.ObservableCollection<Rider> allKnownRiders;
+		private List<Rider> m_availableRiders = new List<Rider>();
 
 		public Rider AssignedRider
 		{
@@ -76,26 +56,48 @@ namespace RacerMateOne.Controls
 		private Rider LastAssignedRider { get; set; }
 
 		//=========================================================================================================
-		public static readonly RoutedEvent ChangedEvent =
-			EventManager.RegisterRoutedEvent(
-			"Changed", RoutingStrategy.Bubble,
-			typeof(RoutedEventHandler),
-			typeof(AntSensorLine));
+		//public static readonly RoutedEvent ChangedEvent =
+		//	EventManager.RegisterRoutedEvent(
+		//	"Changed", RoutingStrategy.Bubble,
+		//	typeof(RoutedEventHandler),
+		//	typeof(AntSensorLine));
 
-
-		public event RoutedEventHandler Changed
+		public struct RiderChangedEventArgs
 		{
-			add { AddHandler(ChangedEvent, value); }
-			remove { RemoveHandler(ChangedEvent, value); }
+			public Rider previousRider;
+			public Rider newRider;
+			public int sensorId;
 		}
+
+		public delegate void RiderChangedEventHandler(object sender, RiderChangedEventArgs args);
+
+		public event RiderChangedEventHandler RiderChanged;
+
+		//public event RoutedEventHandler Changed
+		//{
+		//	add { AddHandler(ChangedEvent, value); }
+		//	remove { RemoveHandler(ChangedEvent, value); }
+		//}
 
 		//=========================================================================================================
 
 		public static bool StopChangeEvents = false;
 
-		public AntSensorLine()
+		public readonly ComboBoxItem Unassigned;
+
+		public AntSensorLine(int sensorID, byte sensorType)
 		{
 			InitializeComponent();
+
+			m_sensorID = sensorID;
+			SensorId.Content = m_sensorID;
+
+			// The only sensor type currently supported is 120 (heart rate monitors)
+
+			Unassigned = new ComboBoxItem();
+			Unassigned.Content = "Unassigned";
+			Unassigned.Tag = null;
+
 			AssignedRider = null;
 		}
 
@@ -103,29 +105,27 @@ namespace RacerMateOne.Controls
 		{
 		}
 
-		private void btn_Loaded(object sender, RoutedEventArgs e)
+		private void SensorLine_Loaded(object sender, RoutedEventArgs e)
 		{
-			Icon.Content = "Heart";
+			LastAssignedRider = AssignedRider;
 			RedoDropDown();
+		}
+
+		public void AddRider(Rider rider)
+		{
+			m_availableRiders.Add(rider);
 		}
 
 		public void RedoDropDown()
 		{
 			AssignedRiderDropDown.Items.Clear();
+			AssignedRiderDropDown.Items.Add(Unassigned);
 
-			ComboBoxItem citem;
-			citem = new ComboBoxItem();
-			citem.Content = "Unassigned";
-			citem.Tag = null;
-			AssignedRiderDropDown.Items.Add(citem);
-			ComboBoxItem selitem = citem;
+			ComboBoxItem selitem = Unassigned;
 
-			if (allKnownRiders == null)
-				return;
-
-			foreach (Rider rider in allKnownRiders)
+			foreach (Rider rider in m_availableRiders)
 			{
-				citem = new ComboBoxItem();
+				ComboBoxItem citem = new ComboBoxItem();
 				citem.Content = rider.FirstName + " " + rider.LastName;
 				citem.Tag = rider;
 				if (rider.HrSensorId == SensorID)
@@ -138,9 +138,21 @@ namespace RacerMateOne.Controls
 				}
 				AssignedRiderDropDown.Items.Add(citem);
 			}
-			if (selitem.Tag != null)
-				AssignedRider = selitem.Tag as Rider;
+
+			//// I think this commented out bit are so that a rider can be assigned
+			//// to this sensor elsewhere, and this will make sure the proper item is selected.
+			//// They likely aren't needed for this dialog.
+			//if (selitem.Tag != null)
+			//	AssignedRider = selitem.Tag as Rider;
+
 			AssignedRiderDropDown.SelectedItem = selitem;
+		}
+
+		public void UnassignRider()
+		{
+			m_inchange = true;
+			AssignedRiderDropDown.SelectedItem = Unassigned;
+			m_inchange = false;
 		}
 
 		static Color ms_Off1 = Color.FromArgb(255, 0, 0, 0);
@@ -155,24 +167,14 @@ namespace RacerMateOne.Controls
 		{
 			if (Active)
 			{
-				//Attach();
 				LED_c1.Color = ms_On1;
 				LED_c2.Color = ms_On2;
 			}
 			else
 			{
-				//Detach();
 				LED_c1.Color = ms_Off1;
 				LED_c2.Color = ms_Off2;
 			}
-		}
-
-		/// <summary>
-		/// Updates the UI to show the new value
-		/// </summary>
-		public void OnSensorIDChanged()
-		{
-			SensorId.Content = SensorID;
 		}
 
 		private bool m_inchange = false;
@@ -180,67 +182,34 @@ namespace RacerMateOne.Controls
 		{
 			if (AssignedRiderDropDown.SelectedItem != null && !m_inchange)
 			{
-				m_inchange = true;
+				RiderChangedEventArgs args = new RiderChangedEventArgs();
+				args.previousRider = LastAssignedRider;
 				ComboBoxItem item = AssignedRiderDropDown.SelectedItem as ComboBoxItem;
-				AssignedRider = (item != null ? item.Tag as Rider : null);
-				if (AssignedRider != null)
+				args.newRider = (item != null ? item.Tag as Rider : null);
+				args.sensorId = SensorID;
+
+				if (RiderChanged != null &&
+					args.previousRider != args.newRider)
 				{
-					AssignedRider.HrSensorId = SensorID;
-					if (LastAssignedRider != AssignedRider && !StopChangeEvents)
-					{
-						RoutedEventArgs args = new RoutedEventArgs(ChangedEvent);
-						RaiseEvent(args);
-					}
+					RiderChanged(this, args);
 				}
-				m_inchange = false;
+				LastAssignedRider = args.newRider;
 			}
 		}
 
-		private delegate void _change(Rider rider);
-		void change(Rider rider)
-		{
-			AssignedRider = rider;
-		}
-
-		//private void Identify_Click(object sender, RoutedEventArgs e)
+		//private delegate void _change(Rider rider);
+		//void change(Rider rider)
 		//{
-		//	Dialogs.HardwareLine_Select dlg = new Dialogs.HardwareLine_Select();
-		//	dlg.Owner = AppWin.Instance;
-		//	dlg.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-		//	dlg.ShowDialog(); //shows as modal
-		//	if (dlg.Trainer != null)
-		//		Dispatcher.BeginInvoke(DispatcherPriority.Normal, new _change(change), dlg.Trainer);
-		//	/*
-		//	if (dlg.Trainer != null)
-		//	{
-		//		m_inchange = true;
-		//		Trainer = dlg.Trainer;
-		//		foreach( ComboBoxItem item in Devices.Items)
-		//		{
-		//			if (dlg.Trainer == item.Tag as RM1.Trainer)
-		//			{
-		//				Devices.SelectedItem = item;
-		//			}
-		//		}
-		//		if (!StopChangeEvents)
-		//		{
-		//			RoutedEventArgs args = new RoutedEventArgs(ChangedEvent);
-		//			RaiseEvent(args);
-		//		}
-		//		m_inchange = false;
-		//	}
-		//	 */
+		//	AssignedRider = rider;
 		//}
-
-		private void btn_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		
+		private void SensorLine_Unloaded(object sender, RoutedEventArgs e)
 		{
-			//if (IsVisible)
-			//	RedoDropDown();
 		}
 
-		private void btn_Unloaded(object sender, RoutedEventArgs e)
+		private void SensorLine_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
-//			RM1.OnCalibrationChanged -= new RM1.TrainerEvent(RM1_OnCalibrationChanged);
+
 		}
 	}
 }

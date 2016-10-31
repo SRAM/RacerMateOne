@@ -18,11 +18,13 @@ namespace RacerMateOne.Dialogs
     /// </summary>
     public partial class ANTSensorsList : Window
     {
-		private Controls.AntSensorLine[] m_sensorLines;
+		private Dictionary<int, Controls.AntSensorLine> m_unassignedSensorToLineDict = new Dictionary<int, Controls.AntSensorLine>();
 
 		private List<RM1.SENSOR> m_detectedSensors = new List<RM1.SENSOR>();
+		private List<int> m_detectedHRSensors = new List<int>();
 
-		//public List<Rider> RiderList;
+		private Dictionary<Rider, int> m_tmpRiderSensors = new Dictionary<Rider, int>();
+
 		public System.Collections.ObjectModel.ObservableCollection<Rider> RiderList;
 
         public ANTSensorsList()
@@ -32,7 +34,12 @@ namespace RacerMateOne.Dialogs
 
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
-			SensorListPanel.Children.Clear();
+			foreach (Rider rider in RiderList)
+			{
+				m_tmpRiderSensors.Add(rider, rider.HrSensorId);
+			}
+
+			Refresh_Click(sender, e);
         }
         
         private void OK_Click(object sender, RoutedEventArgs e)
@@ -45,27 +52,150 @@ namespace RacerMateOne.Dialogs
             Close();
         }
 
+		/// <summary>
+		/// Adds a sensor line to the 'New' list of sensors.
+		/// These are sensors that were detected, but ARE NOT assigned to a rider yet.
+		/// These sensors are inherently active, because they were detected nearby.
+		/// </summary>
+		/// <param name="sensorNumber"></param>
+		private Controls.AntSensorLine AddToNewSensorLine(ushort sensorNumber, byte type)
+		{
+			Controls.AntSensorLine sensorLine = new Controls.AntSensorLine(sensorNumber, type);
+			sensorLine.Active = true;
+			sensorLine.RiderChanged += OnRiderChanged;
+			NewSensorListPanel.Children.Add(sensorLine);
+			NewHRCountLabel.Content = NewSensorListPanel.Children.Count;
+			return sensorLine;
+		}
+
+		/// <summary>
+		/// Adds a sensor line to the 'Found' list of sensors.
+		/// These are sensors that were detected, and ARE assigned to a rider.
+		/// These sensors are inherently active, because they were detected nearby.
+		/// </summary>
+		/// <param name="sensorNumber"></param>
+		private Controls.AntSensorLine AddToFoundSensorLine(ushort sensorNumber, byte type)
+		{
+			Controls.AntSensorLine sensorLine = new Controls.AntSensorLine(sensorNumber, type);
+			sensorLine.Active = true;
+			sensorLine.RiderChanged += OnRiderChanged;
+			FoundSensorListPanel.Children.Add(sensorLine);
+			FoundHRCountLabel.Content = FoundSensorListPanel.Children.Count;
+			return sensorLine;
+		}
+
+		/// <summary>
+		/// Adds a sensor line to the 'Saved' list of sensors.
+		/// These are sensors that were NOT detected, but are assigned to a rider.
+		/// These sensors are inherently inactive, because they were not detected.
+		/// </summary>
+		/// <param name="sensorNumber"></param>
+		private Controls.AntSensorLine AddToSavedSensorLine(ushort sensorNumber, byte type)
+		{
+			Controls.AntSensorLine sensorLine = new Controls.AntSensorLine(sensorNumber, type);
+			sensorLine.Active = false;
+			sensorLine.RiderChanged += OnRiderChanged;
+			SavedSensorListPanel.Children.Add(sensorLine);
+			SavedHRCountLabel.Content = SavedSensorListPanel.Children.Count;
+			return sensorLine;
+		}
+		
 		private void Refresh_Click(object sender, RoutedEventArgs e)
 		{
-			int numSensors = detect_sensors();
+			NewSensorListPanel.Children.Clear();
+			NewHRCountLabel.Content = "0";
+			FoundSensorListPanel.Children.Clear();
+			FoundHRCountLabel.Content = "0";
+			SavedSensorListPanel.Children.Clear();
+			SavedHRCountLabel.Content = "0";
 
-			m_sensorLines = new Controls.AntSensorLine[numSensors];
-			for (int i = 0; i < numSensors; i++)
+			m_detectedSensors = detect_sensors();
+
+			// Extract just the HR sensor IDs
+			m_detectedHRSensors.Clear();
+			for (int i = 0; i < m_detectedSensors.Count; i++)
 			{
-				m_sensorLines[i] = new Controls.AntSensorLine();
-				m_sensorLines[i].SensorID = i;
-				m_sensorLines[i].allKnownRiders = RiderList;
-				//m_sensorLines[i].Active = ((i % 5) == 0);
-				SensorListPanel.Children.Add(m_sensorLines[i]);
+				if (m_detectedSensors[i].type == 120)
+				{
+					m_detectedHRSensors.Add(m_detectedSensors[i].sensor_number);
+				}
+			}
+
+			// Add the sensors that have been assigned to riders,
+			// and filter out those that are still unassigned / newly discovered.
+			List<int> unassignedHRSensors = new List<int>(m_detectedHRSensors);
+			foreach (Rider rider in m_tmpRiderSensors.Keys)
+			{
+				if (rider.HrSensorId != 0)
+				{
+					if (m_detectedHRSensors.Contains(rider.HrSensorId))
+					{
+						Controls.AntSensorLine line = AddToFoundSensorLine((ushort)rider.HrSensorId, 120);
+						line.AddRider(rider);
+						unassignedHRSensors.Remove(rider.HrSensorId);
+					}
+					else
+					{
+						Controls.AntSensorLine line = AddToSavedSensorLine((ushort)rider.HrSensorId, 120);
+						line.AddRider(rider);
+					}
+				}
+			}
+
+			// Add the newly discovered sensors
+			foreach (int unassignedSensorID in unassignedHRSensors)
+			{
+				Controls.AntSensorLine line = AddToNewSensorLine((ushort)unassignedSensorID, 120);
+				m_unassignedSensorToLineDict[unassignedSensorID] = line;
+				foreach (Rider rider in m_tmpRiderSensors.Keys)
+				{
+					// only add riders to this line which have not yet had a HR sensor assigned to them.
+					if (rider.HrSensorId == 0)
+					{
+						line.AddRider(rider);
+					}
+				}
 			}
 		}
 
-		private int detect_sensors()
+		private void OnRiderChanged(object sender, Controls.AntSensorLine.RiderChangedEventArgs e)
 		{
-			m_detectedSensors = RM1.GetAntSensorList();
-			int numSensors = 20;
+			// Since riders can only have 1 HR monitor, we can:
+			// 1) clear the sensor ID from the previous rider if they existed
+			// and 2) assign the sensor ID to the new rider if they exist
+			if (e.previousRider != null)
+			{
+				m_tmpRiderSensors[e.previousRider] = 0;
+			}
 
-			return numSensors;
+			if (e.newRider != null)
+			{
+				// Get the previous sensor if the newly assigned rider already had a sensor.
+				int previousSensor = m_tmpRiderSensors[e.newRider];
+				m_tmpRiderSensors[e.newRider] = e.sensorId;
+
+				//if (previousSensor != 0)
+				//{
+				//	foreach (int sensor in m_unassignedSensorToLineDict.Keys)
+				//	{
+				//		if (m_unassignedSensorToLineDict[sensor].AssignedRider == e.newRider)
+				//		{
+				//			m_unassignedSensorToLineDict[sensor].UnassignRider();
+				//		}
+				//	}
+				//}
+
+				if (previousSensor != 0 && m_unassignedSensorToLineDict.ContainsKey(previousSensor))
+				{
+					// in this case, we have to remove this rider from the previous sensor
+					m_unassignedSensorToLineDict[previousSensor].UnassignRider();
+				}
+			}
+		}
+
+		private List<RM1.SENSOR> detect_sensors()
+		{
+			return RM1.GetAntSensorList();
 		}
 	}
 }

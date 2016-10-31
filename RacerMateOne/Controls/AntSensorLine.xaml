@@ -4,15 +4,15 @@
     xmlns:dw="clr-namespace:RacerMateOne"
     xmlns:c="clr-namespace:RacerMateOne.Controls"
 	Background="#8FB7D3"    
-	Name="btn" Loaded="btn_Loaded" IsVisibleChanged="btn_IsVisibleChanged" Unloaded="btn_Unloaded">
+	Name="btn" Loaded="SensorLine_Loaded" IsVisibleChanged="SensorLine_IsVisibleChanged" Unloaded="SensorLine_Unloaded">
 	<UserControl.Resources>
 	</UserControl.Resources>
 	<Grid>
         <Border BorderThickness="1" CornerRadius="0" BorderBrush="#486381">
             <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-                <Label x:Name="Icon" Padding="0,0,0,0" Width="50" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center">Icon</Label>
-                <Label x:Name="SensorType" Padding="5,0,5,0" Width="180" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center">Heart Rate Monitor</Label>
-                <Label x:Name="IdLabel" Padding="5,0,5,0" HorizontalContentAlignment="Left" FontSize="16" VerticalContentAlignment="Center">ID:</Label>
+                <!--<Image x:Name="Icon" Margin="5,0,0,0" Height="23" Source="/RacerMateOne;component/Resources/Heart28x23.png" />
+                <Label x:Name="SensorType" Padding="5,0,5,0" Width="180" HorizontalContentAlignment="Right" FontSize="16" VerticalContentAlignment="Center">Heart Rate Monitor</Label>-->
+                <Label x:Name="IdLabel" Padding="5,0,5,0" HorizontalContentAlignment="Left" FontSize="16" VerticalContentAlignment="Center">Sensor ID:</Label>
                 <Label x:Name="SensorId" Padding="5,0,5,0" Width="80" HorizontalContentAlignment="Left" FontSize="16" VerticalContentAlignment="Center">000000</Label>
                 <Grid x:Name="IdentifyLED" Margin="8,0,0,0">
                     <Border Width="24" Height="24" BorderThickness="3" CornerRadius="12" BorderBrush="Gray">

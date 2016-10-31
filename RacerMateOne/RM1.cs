@@ -151,32 +151,33 @@ namespace RacerMateOne  {
                 }
             }
 
-			//bool attemptToDetectAntStick = true;
-			//while (attemptToDetectAntStick)
-			//{
-			//	try
-			//	{
-			//		status = DLL.start_ant(debug_level);
-			//	}
-			//	catch (Exception e)
-			//	{
-			//		Log.WriteLine(e.ToString());
-			//		RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start ANT+ listener.\nRacerMate will not correctly detect ANT+ sensors.\n\n" + e.ToString(), "OK", "Cancel");
-			//		info.ShowDialog();
-			//	}
+			bool attemptToDetectAntStick = true;
+			while (attemptToDetectAntStick)
+			{
+				try
+				{
+					status = DLL.start_ant(debug_level);
+				}
+				catch (Exception e)
+				{
+					Log.WriteLine(e.ToString());
+					RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start ANT+ listener.\nRacerMate will not correctly detect ANT+ sensors.\n\n" + e.ToString(), "OK", "Cancel");
+					info.ShowDialog();
+				}
 
-			//	if (status == 1)
-			//	{
-			//		// error 
-			//		RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("ANT+ stick not detected.\nRacerMate will not be able to utilize ANT+ sensors.\nPlease insert an ANT+ stick and press OK to rescan. Cancel will skip ANT+ detection.", "OK", "Cancel");
-			//		bool? result = info.ShowDialog();
-			//		attemptToDetectAntStick = (!result.HasValue) ? false : result.Value;
-			//	}
-			//	else
-			//	{
-			//		attemptToDetectAntStick = false;
-			//	}
-			//}
+				if (status == -1)
+				{
+					// error 
+					RacerMateOne.Dialogs.Ask info = new RacerMateOne.Dialogs.Ask("ANT+ stick not detected.\nRacerMate will not be able to utilize ANT+ sensors.\nPlease insert an ANT+ stick.", "Rescan", "Skip");
+					bool? result = info.ShowDialog();
+					attemptToDetectAntStick = (!result.HasValue) ? false : result.Value;
+					status = DLL.stop_ant();
+				}
+				else
+				{
+					attemptToDetectAntStick = false;
+				}
+			}
 
 
 			////--------------------------------------------------------------------------
@@ -185,7 +186,7 @@ namespace RacerMateOne  {
 			//// sort of like it takes a few seconds for the communication to establish
 			//// for a UDP computrainer.
 			////--------------------------------------------------------------------------
-			//Thread.Sleep(10 * 1000);
+			//Thread.Sleep(8 * 1000);
 
 			//SENSORS sensors;
 			//sensors.sensorCount = 0;
@@ -306,16 +307,42 @@ namespace RacerMateOne  {
 		{
 			List<SENSOR> sensorList = new List<SENSOR>();
 			string[] sensorStrings = DLL.GetANTSensorString();
-			
-			foreach(string sensorString in sensorStrings)
+
+#if DEBUG
+			if (sensorStrings == null)
 			{
-				string[] sensorParts = sensorString.Split(' ');
-				if (sensorParts.Length == 2)
+				sensorStrings = new string[8];
+				sensorStrings[0] = "11111 120";
+				sensorStrings[1] = "22222 120";
+				sensorStrings[2] = "22333 120";
+				sensorStrings[3] = "33333 120";
+				sensorStrings[4] = "44444 120";
+				sensorStrings[5] = "55555 120";
+				sensorStrings[6] = "65535 120";
+				sensorStrings[7] = "777 120";
+			}
+#endif // DEBUG
+
+			if (sensorStrings != null)
+			{
+				foreach (string sensorString in sensorStrings)
 				{
-					SENSOR sensor = new SENSOR();
-					sensor.sensor_number = ushort.Parse(sensorParts[0]);
-					sensor.type = byte.Parse(sensorParts[1]);
-					sensorList.Add(sensor);
+					string[] sensorParts = sensorString.Split(' ');
+					if (sensorParts.Length == 2)
+					{
+						SENSOR sensor = new SENSOR();
+						if (ushort.TryParse(sensorParts[0], out sensor.sensor_number))
+						{
+							sensor.type = byte.Parse(sensorParts[1]);
+							sensorList.Add(sensor);
+						}
+						else
+						{
+							sensor.sensor_number = ushort.Parse("10101");
+							sensor.type = 120;
+							sensorList.Add(sensor);
+						}
+					}
 				}
 			}
 

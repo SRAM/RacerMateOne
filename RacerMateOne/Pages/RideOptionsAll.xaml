@@ -439,6 +439,7 @@
                         </Label>
 
                         <c:PlainButton x:Name="HardwareWifiSetup" Margin="50,0,15,0" HorizontalAlignment="Right" Text="Configure Wifi Trainers" Click="HardwareWifiSetup_Click" />
+                        <c:PlainButton x:Name="ANTSensorsButton2" Margin="0,0,5,0" VerticalAlignment="Center" Text="ANT+ Sensors" Click="ANTSensors_Click" />
                     </StackPanel>
                     <StackPanel Margin="5,50,5,0" HorizontalAlignment="Center" VerticalAlignment="Top" >
                         <c:HardwareLine x:Name="bike_1" Number="1" Changed="OnBikeChanged" CalibrateClick="bike_CalibrateClick"></c:HardwareLine>

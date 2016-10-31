@@ -20,9 +20,34 @@
                     Detected ANT+ Sensor Information
                 </TextBlock>
                 <c:Pillbox x:Name="Refresh" Text="Refresh" Width="110" VerticalAlignment="Bottom" Height="31" Margin="0,5,0,5" HorizontalAlignment="Center" Click="Refresh_Click"></c:Pillbox>
-                <ScrollViewer VerticalScrollBarVisibility="auto" MaxHeight="500">
-                    <StackPanel Name="SensorListPanel" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Top">
-                        <TextBlock FontFamily="Arial" FontSize="16" Foreground="White">None Found</TextBlock>
+                <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+                    <Image x:Name="Icon" Margin="5,0,0,0" Height="18" Source="/RacerMateOne;component/Resources/Heart28x23.png" />
+                    <Label x:Name="NewHRLabel" Padding="5,0,5,0" HorizontalContentAlignment="Left" FontSize="18" VerticalContentAlignment="Center">New Heart Rate Monitors:</Label>
+                    <Label x:Name="NewHRCountLabel" Padding="5,0,5,0" HorizontalContentAlignment="Left" FontSize="18" VerticalContentAlignment="Center">0</Label>
+                </StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="auto" MaxHeight="200">
+                    <StackPanel Name="NewSensorListPanel" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <!--<TextBlock FontFamily="Arial" FontSize="14" Foreground="White">None Found</TextBlock>-->
+                    </StackPanel>
+                </ScrollViewer>
+                <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                    <Image x:Name="Icon2" Margin="5,0,0,0" Height="18" Source="/RacerMateOne;component/Resources/Heart28x23.png" />
+                    <Label x:Name="FoundHRLabel" Padding="5,0,5,0" HorizontalContentAlignment="Left" FontSize="18" VerticalContentAlignment="Center">Found Heart Rate Monitors:</Label>
+                    <Label x:Name="FoundHRCountLabel" Padding="5,0,5,0" HorizontalContentAlignment="Left" FontSize="18" VerticalContentAlignment="Center">0</Label>
+                </StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="auto" MaxHeight="200">
+                    <StackPanel Name="FoundSensorListPanel" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <!--<TextBlock FontFamily="Arial" FontSize="14" Foreground="White">None Found</TextBlock>-->
+                    </StackPanel>
+                </ScrollViewer>
+                <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                    <Image x:Name="Icon3" Margin="5,0,0,0" Height="18" Source="/RacerMateOne;component/Resources/Heart28x23.png" />
+                    <Label x:Name="SavedHRLabel" Padding="5,0,5,0" HorizontalContentAlignment="Left" FontSize="18" VerticalContentAlignment="Center">Saved Heart Rate Monitors:</Label>
+                    <Label x:Name="SavedHRCountLabel" Padding="5,0,5,0" HorizontalContentAlignment="Left" FontSize="18" VerticalContentAlignment="Center">0</Label>
+                </StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="auto" MaxHeight="200">
+                    <StackPanel Name="SavedSensorListPanel" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <!--<TextBlock FontFamily="Arial" FontSize="14" Foreground="White">None Found</TextBlock>-->
                     </StackPanel>
                 </ScrollViewer>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,10,19,19">
