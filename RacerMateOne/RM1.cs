@@ -309,18 +309,19 @@ namespace RacerMateOne  {
 			string[] sensorStrings = DLL.GetANTSensorString();
 
 #if DEBUG
-			if (sensorStrings == null)
-			{
-				sensorStrings = new string[8];
-				sensorStrings[0] = "11111 120";
-				sensorStrings[1] = "22222 120";
-				sensorStrings[2] = "22333 120";
-				sensorStrings[3] = "33333 120";
-				sensorStrings[4] = "44444 120";
-				sensorStrings[5] = "55555 120";
-				sensorStrings[6] = "65535 120";
-				sensorStrings[7] = "777 120";
-			}
+			//// For testing HR sensors
+			//if (sensorStrings == null)
+			//{
+			//	sensorStrings = new string[6];
+			//	sensorStrings[0] = "11111 120";
+			//	sensorStrings[1] = "22222 120";
+			//	sensorStrings[2] = "22333 120";
+			//	sensorStrings[3] = "33333 120";
+			//	sensorStrings[4] = "44444 120";
+			//	sensorStrings[5] = "55555 120";
+			//	//sensorStrings[6] = "65535 120"; // this is max value for sensor ID
+			//	//sensorStrings[7] = "777 120";
+			//}
 #endif // DEBUG
 
 			if (sensorStrings != null)
@@ -334,12 +335,6 @@ namespace RacerMateOne  {
 						if (ushort.TryParse(sensorParts[0], out sensor.sensor_number))
 						{
 							sensor.type = byte.Parse(sensorParts[1]);
-							sensorList.Add(sensor);
-						}
-						else
-						{
-							sensor.sensor_number = ushort.Parse("10101");
-							sensor.type = 120;
 							sensorList.Add(sensor);
 						}
 					}
@@ -2303,6 +2298,7 @@ namespace RacerMateOne  {
 
 					if ((uflags & UpdateFlags.ResetAverages) != UpdateFlags.Zero) {
 						DLL.ResetAverages(PortName, Ver);
+						DLL.associate(PortName, (ushort)m_Rider.HrSensorId);
 						DLL.start_trainer(PortName, true);
 						uflags |= UpdateFlags.Grade | UpdateFlags.Watts | UpdateFlags.Drag | UpdateFlags.Pause | UpdateFlags.FTP | UpdateFlags.Pause;
 					}

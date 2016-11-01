@@ -56,12 +56,6 @@ namespace RacerMateOne.Controls
 		private Rider LastAssignedRider { get; set; }
 
 		//=========================================================================================================
-		//public static readonly RoutedEvent ChangedEvent =
-		//	EventManager.RegisterRoutedEvent(
-		//	"Changed", RoutingStrategy.Bubble,
-		//	typeof(RoutedEventHandler),
-		//	typeof(AntSensorLine));
-
 		public struct RiderChangedEventArgs
 		{
 			public Rider previousRider;
@@ -72,12 +66,6 @@ namespace RacerMateOne.Controls
 		public delegate void RiderChangedEventHandler(object sender, RiderChangedEventArgs args);
 
 		public event RiderChangedEventHandler RiderChanged;
-
-		//public event RoutedEventHandler Changed
-		//{
-		//	add { AddHandler(ChangedEvent, value); }
-		//	remove { RemoveHandler(ChangedEvent, value); }
-		//}
 
 		//=========================================================================================================
 
@@ -139,20 +127,12 @@ namespace RacerMateOne.Controls
 				AssignedRiderDropDown.Items.Add(citem);
 			}
 
-			//// I think this commented out bit are so that a rider can be assigned
-			//// to this sensor elsewhere, and this will make sure the proper item is selected.
-			//// They likely aren't needed for this dialog.
-			//if (selitem.Tag != null)
-			//	AssignedRider = selitem.Tag as Rider;
-
 			AssignedRiderDropDown.SelectedItem = selitem;
 		}
 
 		public void UnassignRider()
 		{
-			m_inchange = true;
 			AssignedRiderDropDown.SelectedItem = Unassigned;
-			m_inchange = false;
 		}
 
 		static Color ms_Off1 = Color.FromArgb(255, 0, 0, 0);
@@ -182,6 +162,7 @@ namespace RacerMateOne.Controls
 		{
 			if (AssignedRiderDropDown.SelectedItem != null && !m_inchange)
 			{
+				m_inchange = true;
 				RiderChangedEventArgs args = new RiderChangedEventArgs();
 				args.previousRider = LastAssignedRider;
 				ComboBoxItem item = AssignedRiderDropDown.SelectedItem as ComboBoxItem;
@@ -194,14 +175,9 @@ namespace RacerMateOne.Controls
 					RiderChanged(this, args);
 				}
 				LastAssignedRider = args.newRider;
+				m_inchange = false;
 			}
 		}
-
-		//private delegate void _change(Rider rider);
-		//void change(Rider rider)
-		//{
-		//	AssignedRider = rider;
-		//}
 		
 		private void SensorLine_Unloaded(object sender, RoutedEventArgs e)
 		{

@@ -18,20 +18,48 @@ namespace RacerMateOne.Dialogs
     /// </summary>
     public partial class ANTSensorsList : Window
     {
+		/// <summary>
+		/// This maps an unassigned sensor ID to the UI line so that we can reset the assigned rider if the rider is
+		/// moved to a different sensor.
+		/// </summary>
 		private Dictionary<int, Controls.AntSensorLine> m_unassignedSensorToLineDict = new Dictionary<int, Controls.AntSensorLine>();
 
+		/// <summary>
+		/// This is the list of detected sensors with all available information.
+		/// </summary>
 		private List<RM1.SENSOR> m_detectedSensors = new List<RM1.SENSOR>();
+
+		/// <summary>
+		/// This is a list of the HR sensor IDs have been detected.
+		/// </summary>
 		private List<int> m_detectedHRSensors = new List<int>();
 
+		/// <summary>
+		/// This stores the temporary assignments that have been made so that the user can either
+		/// Cancel the changes if they've made a mistake,
+		/// or Save the changes when they are done.
+		/// </summary>
 		private Dictionary<Rider, int> m_tmpRiderSensors = new Dictionary<Rider, int>();
 
+		/// <summary>
+		///  This is the list of all known riders.
+		/// </summary>
 		public System.Collections.ObjectModel.ObservableCollection<Rider> RiderList;
 
+		/// <summary>
+		/// Constuctor
+		/// </summary>
         public ANTSensorsList()
         {
             InitializeComponent();
         }
 
+		/// <summary>
+		/// When the window is loaded, extract the known HR sensors from the list of all riders.
+		/// Then refresh the UI.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
 			foreach (Rider rider in RiderList)
@@ -42,11 +70,28 @@ namespace RacerMateOne.Dialogs
 			Refresh_Click(sender, e);
         }
         
+		/// <summary>
+		/// Save the changes to the rider settings file.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         private void OK_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+			foreach (Rider rider in m_tmpRiderSensors.Keys)
+			{
+				rider.HrSensorId = m_tmpRiderSensors[rider];
+			}
+
+			RM1_Settings.SaveToFile();
+
+			Close();
         }
 
+		/// <summary>
+		/// Cancel any changes that were made, do not save them, close the dialog.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -100,6 +145,11 @@ namespace RacerMateOne.Dialogs
 			return sensorLine;
 		}
 		
+		/// <summary>
+		/// Refreshes the list of detected sensors and resets the UI to the most recently saved state.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void Refresh_Click(object sender, RoutedEventArgs e)
 		{
 			NewSensorListPanel.Children.Clear();
@@ -109,7 +159,7 @@ namespace RacerMateOne.Dialogs
 			SavedSensorListPanel.Children.Clear();
 			SavedHRCountLabel.Content = "0";
 
-			m_detectedSensors = detect_sensors();
+			m_detectedSensors = RM1.GetAntSensorList();
 
 			// Extract just the HR sensor IDs
 			m_detectedHRSensors.Clear();
@@ -158,44 +208,36 @@ namespace RacerMateOne.Dialogs
 			}
 		}
 
+		/// <summary>
+		/// Called when the user changes the rider assigned to a sensor.
+		/// Updates other sensor lines to reflect the newly assigned rider & sensor.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void OnRiderChanged(object sender, Controls.AntSensorLine.RiderChangedEventArgs e)
 		{
 			// Since riders can only have 1 HR monitor, we can:
-			// 1) clear the sensor ID from the previous rider if they existed
-			// and 2) assign the sensor ID to the new rider if they exist
-			if (e.previousRider != null)
-			{
-				m_tmpRiderSensors[e.previousRider] = 0;
-			}
-
+			// 1) If the new rider was previously assigned to a different sensor, remove it.
+			// 2) Assign the rider to the new sensor.
+			// 3) If there was a previous rider on this sensor, clear that persons sensor.
+			// Note: Order matters in the above, so that we don't accidentally clear the rider that was just moved.
 			if (e.newRider != null)
 			{
 				// Get the previous sensor if the newly assigned rider already had a sensor.
 				int previousSensor = m_tmpRiderSensors[e.newRider];
-				m_tmpRiderSensors[e.newRider] = e.sensorId;
-
-				//if (previousSensor != 0)
-				//{
-				//	foreach (int sensor in m_unassignedSensorToLineDict.Keys)
-				//	{
-				//		if (m_unassignedSensorToLineDict[sensor].AssignedRider == e.newRider)
-				//		{
-				//			m_unassignedSensorToLineDict[sensor].UnassignRider();
-				//		}
-				//	}
-				//}
-
 				if (previousSensor != 0 && m_unassignedSensorToLineDict.ContainsKey(previousSensor))
 				{
 					// in this case, we have to remove this rider from the previous sensor
 					m_unassignedSensorToLineDict[previousSensor].UnassignRider();
 				}
-			}
-		}
 
-		private List<RM1.SENSOR> detect_sensors()
-		{
-			return RM1.GetAntSensorList();
+				m_tmpRiderSensors[e.newRider] = e.sensorId;
+			}
+
+			if (e.previousRider != null)
+			{
+				m_tmpRiderSensors[e.previousRider] = 0;
+			}
 		}
 	}
 }
