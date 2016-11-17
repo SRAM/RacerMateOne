@@ -72,16 +72,16 @@ namespace RacerMateOne.Dialogs
 			Send.IsEnabled = hasWifiSupport;
 			OK.IsEnabled = hasWifiSupport;
 
-            if (CurrentIPAddressBox.Items.Count == 0)
-            {
-                CurrentIPAddressBox.Items.Add("<None found>");
-                CurrentIPAddressBox.SelectedIndex = 0;
-                CurrentIPAddressBox.IsEnabled = false;
-            }
-            else
-            {
-                CurrentIPAddressBox.IsEnabled = true;
-            }
+            //if (CurrentIPAddressBox.Items.Count == 0)
+            //{
+            //    CurrentIPAddressBox.Items.Add("<None found>");
+            //    CurrentIPAddressBox.SelectedIndex = 0;
+            //    CurrentIPAddressBox.IsEnabled = false;
+            //}
+            //else
+            //{
+            //    CurrentIPAddressBox.IsEnabled = true;
+            //}
 
             if (HomeNetworkNameDropDrop.Items.Count == 0)
 			{
@@ -134,10 +134,10 @@ namespace RacerMateOne.Dialogs
             m_connectedNetwork = new Wlan.WlanAvailableNetwork();
 
             m_detectedIPAddresses.Clear();
-			CurrentIPAddressBox.Items.Clear();
+//			CurrentIPAddressBox.Items.Clear();
 			if (RM1_Settings.General.WifiOverrideIPAddress != string.Empty)
 			{
-				CurrentIPAddressBox.Items.Add(RM1_Settings.General.WifiOverrideIPAddress + " (WifiOverrideIPAddress)");
+//				CurrentIPAddressBox.Items.Add(RM1_Settings.General.WifiOverrideIPAddress + " (WifiOverrideIPAddress)");
 				m_detectedIPAddresses.Add(RM1_Settings.General.WifiOverrideIPAddress);
 			}
 
@@ -159,16 +159,16 @@ namespace RacerMateOne.Dialogs
                         if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
                         {
                             m_detectedIPAddresses.Add(ip.Address.ToString());
-                            CurrentIPAddressBox.Items.Add(ip.Address.ToString() + " (" + ni.Description + ")");
+//                            CurrentIPAddressBox.Items.Add(ip.Address.ToString() + " (" + ni.Description + ")");
                         }
                     }
                 }
             }
 
-            if (CurrentIPAddressBox.HasItems)
-            {
-                CurrentIPAddressBox.SelectedIndex = 0;
-            }
+            //if (CurrentIPAddressBox.HasItems)
+            //{
+            //    CurrentIPAddressBox.SelectedIndex = 0;
+            //}
 
             // Sort the available wireless networks into "home" networks and "RacerMate" networks.
             foreach (WlanClient.WlanInterface wlanIface in m_client.Interfaces)
@@ -256,15 +256,15 @@ namespace RacerMateOne.Dialogs
         private void SendConfiguration_Click(object sender, RoutedEventArgs e)
         {
             // validate state:
-            if (m_detectedIPAddresses.Count == 0 ||
-                CurrentIPAddressBox.HasItems == false ||
-                CurrentIPAddressBox.SelectedItem.ToString().Contains("Not found") ||
-                CurrentIPAddressBox.IsEnabled == false)
-            {
-                StatusText.Foreground = Brushes.Red;
-                StatusText.Text = "Missing IP Address";
-                return;
-            }
+            //if (m_detectedIPAddresses.Count == 0 ||
+            //    CurrentIPAddressBox.HasItems == false ||
+            //    CurrentIPAddressBox.SelectedItem.ToString().Contains("Not found") ||
+            //    CurrentIPAddressBox.IsEnabled == false)
+            //{
+            //    StatusText.Foreground = Brushes.Red;
+            //    StatusText.Text = "Missing IP Address";
+            //    return;
+            //}
 
             if (HomeNetworkNameDropDrop.HasItems == false ||
 				HomeNetworkNameDropDrop.SelectedItem.ToString().Contains("Not found") || 
@@ -334,7 +334,8 @@ namespace RacerMateOne.Dialogs
                 {
 					string SSID = HomeNetworkNameDropDrop.SelectedItem.ToString();
 					string password = (ShowPasswordCheckBox.IsChecked == true) ? PasswordTextPlain.Text : PasswordText.Password;
-					string ipAddress = (m_detectedIPAddresses.Count == 0) ? "10.10.100.150" : m_detectedIPAddresses[CurrentIPAddressBox.SelectedIndex];
+//					string ipAddress = (m_detectedIPAddresses.Count == 0) ? "10.10.100.150" : m_detectedIPAddresses[CurrentIPAddressBox.SelectedIndex];
+					string ipAddress = "10.10.100.150";
 
 					Log.WriteLine("Launching: console.exe \"" + SSID + "\" \"<password>\" false \"" + RM1_Settings.General.WifiListenPort + "\" \"" + ipAddress + "\"");
 
