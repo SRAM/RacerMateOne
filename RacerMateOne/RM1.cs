@@ -50,6 +50,7 @@ namespace RacerMateOne  {
 			Marshal.FreeBSTR(pfullpath);
 			DLL.Enablelogs(true, true, true, true, true, true);
 
+			StartedANT = false;
 			antSensors.sensorCount = 0;
 			antSensors.sensors = new SENSOR[MAXSENSORS];
 
@@ -151,31 +152,16 @@ namespace RacerMateOne  {
                 }
             }
 
-			bool attemptToDetectAntStick = true;
-			while (attemptToDetectAntStick)
+			int numAttempts = 0;
+			const int maxAttempts = 10;
+			while (!StartedANT && numAttempts < maxAttempts)
 			{
-				try
+				++numAttempts;
+				if (StartANT(debug_level) == false)
 				{
-					status = DLL.start_ant(debug_level);
-				}
-				catch (Exception e)
-				{
-					Log.WriteLine(e.ToString());
-					RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start ANT+ listener.\nRacerMate will not correctly detect ANT+ sensors.\n\n" + e.ToString(), "OK", "Cancel");
-					info.ShowDialog();
-				}
-
-				if (status == -1)
-				{
-					// error 
-					RacerMateOne.Dialogs.Ask info = new RacerMateOne.Dialogs.Ask("ANT+ stick not detected.\nRacerMate will not be able to utilize ANT+ sensors.\nPlease insert an ANT+ stick.", "Rescan", "Skip");
-					bool? result = info.ShowDialog();
-					attemptToDetectAntStick = (!result.HasValue) ? false : result.Value;
-					status = DLL.stop_ant();
-				}
-				else
-				{
-					attemptToDetectAntStick = false;
+					DLL.stop_ant();
+					//RacerMateOne.Dialogs.JustInfo info = new RacerMateOne.Dialogs.JustInfo("Failed to start ANT+ listener.\nRacerMate will not correctly detect ANT+ sensors.", "OK", "Cancel");
+					//info.ShowDialog();
 				}
 			}
 
@@ -282,6 +268,32 @@ namespace RacerMateOne  {
 			public float HR;
 			public float Power;
 		};
+
+		public static bool StartedANT
+		{
+			get; private set;
+		}
+
+		/// <summary>
+		/// Attempts to call start_ant from the racermate DLL; handles exceptions.
+		/// Sets StartedANT property if ant is started successfully; returns same value.
+		/// </summary>
+		/// <param name="debug_level"></param>
+		/// <returns></returns>
+		public static bool StartANT(int debug_level)
+		{
+			try
+			{
+				int status = DLL.start_ant(debug_level);
+				StartedANT = (status == 0);
+			}
+			catch (Exception e)
+			{
+				Log.WriteLine(e.ToString());
+				StartedANT = false;
+			}
+			return StartedANT;
+		}
 
 		//---------------------------------------------------------------------
 		// These ANT+ Sensor related structs are defined by the racermate DLL.

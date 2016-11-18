@@ -55,8 +55,9 @@ namespace RacerMateOne.Dialogs
 			bool wifiSupported = (client.Interfaces.Length > 0);
             if (!wifiSupported)
             {
-                Ask dialog = new Ask("Your computer MUST have wireless network access to use this setup wizard.", "OK", "Cancel");
-                dialog.ShowDialog();
+				//Ask dialog = new Ask("Your computer MUST have wireless network access to use this setup wizard.", "OK", "Cancel");
+				Ask dialog = new Ask("You MUST have a WiFi-enabled computer to use this setup wizard.", "OK", "Cancel");
+				dialog.ShowDialog();
             }
 			return wifiSupported;
 		}

@@ -67,6 +67,21 @@ namespace RacerMateOne.Dialogs
 				m_tmpRiderSensors.Add(rider, rider.HrSensorId);
 			}
 
+			while (RM1.StartedANT == false)
+			{
+				RacerMateOne.Dialogs.Ask info = new RacerMateOne.Dialogs.Ask("ANT+ stick not detected.\nRacerMate will not be able to utilize ANT+ sensors.\nPlease insert an ANT+ stick.", "Rescan", "Skip");
+				bool? result = info.ShowDialog();
+
+				bool attemptToDetectAntStick = (!result.HasValue) ? false : result.Value;
+
+				if (attemptToDetectAntStick == false)
+				{
+					break;
+				}
+
+				RM1.StartANT(0);
+			}
+
 			Refresh_Click(sender, e);
         }
         

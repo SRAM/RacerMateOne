@@ -694,7 +694,7 @@ namespace NativeWifi
 							break;
 						case Wlan.WlanNotificationCodeAcm.ScanFail:
 							{
-								int expectedSize = Marshal.SizeOf(typeof (Wlan.WlanReasonCode));
+								int expectedSize = 0;// Marshal.SizeOf(typeof (Wlan.WlanReasonCode));
 								if (notifyData.dataSize >= expectedSize)
 								{
 									Wlan.WlanReasonCode reasonCode = (Wlan.WlanReasonCode) Marshal.ReadInt32(notifyData.dataPtr);
