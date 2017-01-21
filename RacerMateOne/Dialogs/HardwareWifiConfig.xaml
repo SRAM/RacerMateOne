@@ -22,17 +22,11 @@
                     </Label>
                     <c:Pillbox x:Name="RefreshButton" Text="Refresh" Width="110" VerticalAlignment="Bottom" Height="31" Margin="0,0,0,0" HorizontalAlignment="Left" Click="Refresh_Click"></c:Pillbox>
                 </StackPanel>
-                <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18" Foreground="White" TextWrapping="Wrap" Margin="0,5,0,0" VerticalAlignment="Center" Text="Step 1: Make sure the WiFi Radio is ON"/>
+                <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18" Foreground="White" TextWrapping="Wrap" Margin="0,5,0,0" VerticalAlignment="Center" Text="Step 1: Verify the Controller Radio State:"/>
                 <TextBlock FontFamily="Arial" FontSize="18" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="10,0,0,0" VerticalAlignment="Top">
-                    1) Hold down "+/-" buttons for 3 seconds.<LineBreak/>
-                    2) Display indicates the state of WiFi Radio.<LineBreak/>
-                    3) If 'OFF', then:
-                </TextBlock>
-                <TextBlock FontFamily="Arial" FontSize="18" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="32,0,0,0" VerticalAlignment="Top">
-                    Hold "F3", press "+", Release "F3".
-                </TextBlock>
-                <TextBlock FontFamily="Arial" FontSize="18" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="10,0,0,0" VerticalAlignment="Top">
-                    4) Press "RESET" to return to main display.
+                    1) Controller WiFi Radio is ON.<LineBreak/>
+                    2) Set Controller to AP mode.<LineBreak/>
+                    3) No cable is plugged into EXT PC.
                 </TextBlock>
 <!--                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,10,0,0">
                     <TextBlock Name="CurrentSSIDLabel" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" Margin="0,2,0,0">
@@ -53,7 +47,7 @@
                 </StackPanel>
 -->
                 <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
-                    Step 2: Select the SSID of your home wireless network and enter its password.
+                    Step 2: Determine the SSID of your home wireless network and enter its password.
                 </TextBlock>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="10,5,0,0">
                     <TextBlock Name="SSIDLabel" FontFamily="Arial" FontSize="18" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,0,8,0" VerticalAlignment="Top">
@@ -70,13 +64,13 @@
                 </StackPanel>
                 <CheckBox Name="ShowPasswordCheckBox" Margin="240,0,0,0" Click="ShowPasswordCheckBox_Click">Show Password</CheckBox>
                 <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
-                    Step 3: Select CompuTrainer Access Point:
+                    Step 3: Select an AP mode Controller:
                 </TextBlock>
                 <ComboBox Name="RacerMateAccessPointsDropDown" Margin="10,5,10,0" SelectionChanged="RMAccessPoint_SelectionChanged"></ComboBox>
                 <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
-                    Step 4: Send Configuration to Controller.
+                    Step 4: Write the above settings into the selected Controller.
                 </TextBlock>
-                <c:Pillbox x:Name="Send" Text="Send Configuration" Width="220" VerticalAlignment="Bottom" Height="31" Margin="0,5,0,0" HorizontalAlignment="Center" Click="SendConfiguration_Click"></c:Pillbox>
+                <c:Pillbox x:Name="Send" Text="Send Configuration" Width="220" VerticalAlignment="Bottom" Height="31" Margin="0,10,0,0" HorizontalAlignment="Center" Click="SendConfiguration_Click"></c:Pillbox>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0">
                     <TextBlock Name="StatusLabel" FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
                         Status?
@@ -85,6 +79,15 @@
                         Not Connected
                     </TextBlock>
                 </StackPanel>
+                <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
+                    Step 5: Controller should now be configured and displaying "Lan".
+                </TextBlock>
+                <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
+                    Step 6: Press and Hold Controller F1 key and press the [+] key. Controllers will display 'Find', then 'Got'.
+                </TextBlock>
+                <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
+                    Step 7: If configuring more Controllers, press Refresh above and repeat steps 3-6. Otherwise, Press 'OK'.
+                </TextBlock>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,20,19,19">
                     <c:Pillbox x:Name="OK" Text="OK" Width="110" VerticalAlignment="Bottom" Height="31" Margin="0,0,0,0" HorizontalAlignment="Right" Click="OK_Click"></c:Pillbox>
                     <c:Pillbox x:Name="Cancel" Text="Cancel" Width="110" VerticalAlignment="Bottom" Height="31" Margin="19,0,0,0" HorizontalAlignment="Right" Click="Cancel_Click"></c:Pillbox>
