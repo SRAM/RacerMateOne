@@ -549,14 +549,9 @@ namespace RacerMateOne.Dialogs
 			}
 		}
 
-		private void WifiHelp_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-
-		}
-
 		private void Help_Click(object sender, RoutedEventArgs e)
 		{
-			AppWin.Help("Wifi_Configuration.htm");
+			AppWin.Help("WiFisetup.htm");
 		}
 	}
 }

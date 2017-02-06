@@ -11,7 +11,7 @@
     <Window.Resources>
     </Window.Resources>
     <Grid>
-        <Border Margin="0,0,7,7" VerticalAlignment="Top" HorizontalAlignment="Left" Width="450" Style="{DynamicResource PopupBox}" x:Name="CannotFind" Opacity="1">
+        <Border Margin="0,0,7,7" VerticalAlignment="Top" HorizontalAlignment="Left" Width="760" Style="{DynamicResource PopupBox}" x:Name="CannotFind" Opacity="1">
             <Border.Effect>
                 <DropShadowEffect Color="Black" Direction="315" Opacity=".45"/>
             </Border.Effect>
@@ -20,15 +20,17 @@
                     <Label Name="TopText" Style="{StaticResource HeaderLabel}" FontFamily="Arial" FontWeight="Bold" FontSize="22" Foreground="White" MinHeight="20" Width="280" HorizontalContentAlignment="Center" VerticalAlignment="Center">
                         Configure Wifi Trainers
                     </Label>
-                    <c:Pillbox x:Name="RefreshButton" Text="Refresh" Width="110" VerticalAlignment="Bottom" Height="31" Margin="0,0,0,0" HorizontalAlignment="Left" Click="Refresh_Click"></c:Pillbox>
                 </StackPanel>
                 <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18" Foreground="White" TextWrapping="Wrap" Margin="0,5,0,0" VerticalAlignment="Center" Text="Step 1: Verify the Controller Radio State:"/>
-                <TextBlock FontFamily="Arial" FontSize="18" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="10,0,0,0" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal">
+                <TextBlock FontFamily="Arial" FontSize="18" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="60,0,0,0" VerticalAlignment="Top">
                     1) Controller WiFi Radio is ON.<LineBreak/>
                     2) Set Controller to AP mode.<LineBreak/>
                     3) No cable is plugged into EXT PC.
                 </TextBlock>
-<!--                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,10,0,0">
+                <c:Pillbox x:Name="RefreshButton" Text="Refresh" Width="110" VerticalAlignment="Center" Height="31" Margin="240,0,0,0" Click="Refresh_Click"></c:Pillbox>
+                </StackPanel>
+                <!--                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,10,0,0">
                     <TextBlock Name="CurrentSSIDLabel" FontFamily="Arial" FontSize="20" Foreground="White" MinHeight="20" Margin="0,2,0,0">
                         Current SSID:
                     </TextBlock>
@@ -49,43 +51,45 @@
                 <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
                     Step 2: Determine the SSID of your home wireless network and enter its password.
                 </TextBlock>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="10,5,0,0">
-                    <TextBlock Name="SSIDLabel" FontFamily="Arial" FontSize="18" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,0,8,0" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="60,5,0,0">
+                    <TextBlock Name="SSIDLabel" FontFamily="Arial" FontSize="18" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,0,8,0" VerticalAlignment="Bottom">
                     Home SSID:
                     </TextBlock>
-                    <ComboBox Name="HomeNetworkNameDropDrop" Width="270" Margin="0,0,0,0"></ComboBox>
+                    <ComboBox Name="HomeNetworkNameDropDrop" Width="370" Margin="0,0,0,0"></ComboBox>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="10,5,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="60,5,0,0">
                     <TextBlock Name="PasswordLabel" FontSize="18" Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,0,8,0" VerticalAlignment="Top">
                     Password:
                     </TextBlock>
-                    <PasswordBox Name="PasswordText" Width="270" Margin="17,0,0,0"></PasswordBox>
-                    <TextBox Name="PasswordTextPlain" Width="270" Margin="17,0,0,0" Visibility="Collapsed"></TextBox>
+                    <PasswordBox Name="PasswordText" Width="370" Margin="17,0,0,0"></PasswordBox>
+                    <TextBox Name="PasswordTextPlain" Width="370" Margin="17,0,0,0" Visibility="Collapsed"></TextBox>
+                    <CheckBox Name="ShowPasswordCheckBox" Margin="10,0,0,0" Click="ShowPasswordCheckBox_Click">Show Password</CheckBox>
                 </StackPanel>
-                <CheckBox Name="ShowPasswordCheckBox" Margin="240,0,0,0" Click="ShowPasswordCheckBox_Click">Show Password</CheckBox>
-                <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0,5,0,0">
+                    <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
                     Step 3: Select an AP mode Controller:
-                </TextBlock>
-                <ComboBox Name="RacerMateAccessPointsDropDown" Margin="10,5,10,0" SelectionChanged="RMAccessPoint_SelectionChanged"></ComboBox>
+                    </TextBlock>
+                    <ComboBox Name="RacerMateAccessPointsDropDown" Margin="10,5,10,0" Width="380" Height="25" MinHeight="20" VerticalAlignment="Bottom" SelectionChanged="RMAccessPoint_SelectionChanged"></ComboBox>
+                </StackPanel>
                 <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
                     Step 4: Write the above settings into the selected Controller.
                 </TextBlock>
                 <c:Pillbox x:Name="Send" Text="Send Configuration" Width="220" VerticalAlignment="Bottom" Height="31" Margin="0,10,0,0" HorizontalAlignment="Center" Click="SendConfiguration_Click"></c:Pillbox>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0">
-                    <TextBlock Name="StatusLabel" FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,0">
+                    <TextBlock Name="StatusLabel" FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,5,0,0" VerticalAlignment="Top">
                         Status?
                     </TextBlock>
-                    <TextBlock Name="StatusText" FontFamily="Arial" FontSize="18" Foreground="Red" MinHeight="20" TextWrapping="Wrap" Margin="10,20,0,0" VerticalAlignment="Top">
+                    <TextBlock Name="StatusText" FontFamily="Arial" FontSize="18" Foreground="Red" MinHeight="20" TextWrapping="Wrap" Margin="10,5,0,0" VerticalAlignment="Top">
                         Not Connected
                     </TextBlock>
                 </StackPanel>
-                <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
+                <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,10,0,0" VerticalAlignment="Top">
                     Step 5: Controller should now be configured and displaying "Lan".
                 </TextBlock>
-                <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
+                <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,15,0,0" VerticalAlignment="Top">
                     Step 6: Press and Hold Controller F1 key and press the [+] key. Controllers will display 'Find', then 'Got'.
                 </TextBlock>
-                <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,20,0,0" VerticalAlignment="Top">
+                <TextBlock FontFamily="Arial" FontWeight="Bold" FontSize="18"  Foreground="White" MinHeight="20" TextWrapping="Wrap" Margin="0,15,0,0" VerticalAlignment="Top">
                     Step 7: If configuring more Controllers, press Refresh above and repeat steps 3-6. Otherwise, Press 'OK'.
                 </TextBlock>
                 <Grid Margin="0,0,0,0" VerticalAlignment="Bottom">
