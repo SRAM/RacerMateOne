@@ -1386,6 +1386,9 @@
     <Resource Include="CourseEditorDev\Images\S8.png" />
     <Resource Include="CourseEditorDev\Images\S9.png" />
     <Resource Include="CourseEditorDev\Images\S1.png" />
+    <Content Include="Help\Wifi_Configuration.htm" >
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Media\courses\c.3dc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
