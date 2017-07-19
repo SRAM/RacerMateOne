@@ -287,7 +287,7 @@ namespace RacerMateOne
 						{
 							if (u.m_Rider == value)
 							{
-								// Swap the two riders.... Make sure to clear out this rider so we don't go into an in
+								// Swap the two riders.... Make sure to clear out this rider so we don't go into an infinite loop
 								Rider savedrider = m_Rider;
 								m_Rider = null;
 								u.Rider = savedrider;

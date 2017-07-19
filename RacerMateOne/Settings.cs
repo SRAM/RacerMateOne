@@ -51,7 +51,6 @@ namespace RacerMateOne
 					if (trainer.Type == RM1.DeviceType.VELOTRON)  {
 						if (trainer.VelotronData != null)  {
 							trainer.VelotronData.ActualChainring = t.VelotronChainring;
-							//trainer.SetVelotronParameters();
 							trainer.SetVelotron_trnr_Parameters();
 						}
 					}

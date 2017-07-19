@@ -369,7 +369,7 @@ namespace RacerMateOne.Controls
                 Log.WriteLine("Selecting Checkbox Unit_Active_" + calledby.Name.Substring(lastletterindex) + " failed");
                 calledby.IsChecked = false;
             }
- 	
+
         }
 
         private void Unit_OneActive_0_Click(object sender, RoutedEventArgs e)

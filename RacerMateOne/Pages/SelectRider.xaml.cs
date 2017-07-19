@@ -59,10 +59,14 @@ namespace RacerMateOne.Pages  {
 				if (m_Bot != Unit.Bot)
 				{
 					if (m_Bot != null)
+					{
 						m_Bot.KeyChanged -= new Bot.KeyChangedEvent(cb_BotKeyChanged);
+					}
 					m_Bot = Unit.Bot;
 					if (m_Bot != null)
+					{
 						m_Bot.KeyChanged += new Bot.KeyChangedEvent(cb_BotKeyChanged);
+					}
 				}
 				if (Unit.Bot != null)
 				{
@@ -88,11 +92,15 @@ namespace RacerMateOne.Pages  {
 					}
 
 					Type.Content = t;
-					Type.Foreground = b; 
+					Type.Foreground = b;
 				}
 			}
 		}
-		Node[] m_Nodes = new Node[8];
+
+		/// <summary>
+		/// Each node is a 'slot' that a rider could be assigned to.
+		/// </summary>
+		private Node[] m_Nodes = new Node[8];
 		public bool VideoMode;
 
 		private RiderGroup m_RestoreGroup = new RiderGroup();
@@ -171,6 +179,11 @@ namespace RacerMateOne.Pages  {
 			NavigationService.GoBack();
 		}
 
+		/// <summary>
+		/// This is called when the user clicks the "save" button on the select rider screen
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void Start_Click(object sender, RoutedEventArgs e)
 		{
 			// Make sure a smart pacer isn't before any live riders
@@ -199,14 +212,12 @@ namespace RacerMateOne.Pages  {
 				RM1_Settings.General.ActiveUnits[Mode] = Unit.ActiveUnits;
 			}
 
-			// tlm2014
 			System.Type t = sender.GetType();							// RacerMateOne.Controlls.Pillbox
 			if (t.FullName == "RacerMateOne.Controls.Pillbox") {
 				RacerMateOne.Controls.Pillbox pb = (RacerMateOne.Controls.Pillbox)sender;
 				String s = pb.Text;
 				if (s == "Save") {
 					RM1_Settings.SaveToFile();
-					//Riders.SaveToFile();									// any need to do this?
 				}
 			}
 
@@ -273,7 +284,7 @@ namespace RacerMateOne.Pages  {
 				if (m_CurTab == t_Rider)  {
 					d_CoursePicker.Visibility = Visibility.Hidden;
 					RList.Visibility = Visibility.Visible;
-				   RList.Items.Clear();
+					RList.Items.Clear();
 					d_CoursePicker.SelectedCourse = null;
 
 					foreach (Rider r in Riders.RidersList)  {
@@ -320,12 +331,12 @@ namespace RacerMateOne.Pages  {
 						Courses.LoadPerformances();
 					}
 					UpdateFilter();
-            }
+				}
 
 				else if (m_CurTab == t_Pacer)  {
 					d_CoursePicker.Visibility = Visibility.Hidden;
-               d_CoursePicker.SelectedCourse = null;
-               RList.Visibility = Visibility.Visible;
+					d_CoursePicker.SelectedCourse = null;
+					RList.Visibility = Visibility.Visible;
 					RList.Items.Clear();
 
 					foreach (IBotInfo binfo in Bot.Bots)  {

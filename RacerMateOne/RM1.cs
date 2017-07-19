@@ -70,18 +70,18 @@ namespace RacerMateOne  {
 		} // RM1() constructor
 
 		public static void Exit()
-        {
-            ms_bShutdownScanningThread = true;
-            ms_BackgroundScanningThread.Join();
+		{
+			ms_bShutdownScanningThread = true;
+			ms_BackgroundScanningThread.Join();
 
-            RM1.Trainer.Exit();
-        }
+			RM1.Trainer.Exit();
+		}
 
 
-        /************************************************************************
+		/************************************************************************
 
 		************************************************************************/
-        public static bool Initialize_Server()
+		public static bool Initialize_Server()
 		{
 			Log.WriteLine("Initializing Racermate Server.");
 #if DEBUG
@@ -1535,7 +1535,7 @@ namespace RacerMateOne  {
 					return m_VelotronData;
 				}
 				set {
-					if (VelotronData.IsEqual(m_VelotronData, value)) {
+					if (!VelotronData.IsEqual(m_VelotronData, value)) {
 						m_VelotronData = value;
 					}
 					SetVelotron_trnr_Parameters();
@@ -1591,6 +1591,8 @@ namespace RacerMateOne  {
 					return m_SetRider;
 				}
 				set {
+					bool isNewRider = (m_Rider != value);
+
 					m_SetRider = value;
 					m_Rider = value != null ? value : Riders.DefaultRider;
 					FTP = m_Rider != null ? (float)m_Rider.PowerFTP : 1.0f;
@@ -1598,24 +1600,39 @@ namespace RacerMateOne  {
 					if (Type == DeviceType.VELOTRON && m_Rider != null) {
 						VelotronData vd = (VelotronData)m_VelotronData.Clone();
 						vd.Cogset = m_Rider.GearingCogset;
-						vd.Chainrings = m_Rider.GearingCrankset;											// copies int[1] to int[5] with 4 zero elements
+						vd.Chainrings = m_Rider.GearingCrankset;
 						vd.FrontGear = m_FrontGearNumber;
 						vd.RearGear = m_RearGearNumber;
 						vd.Bike_Kg = m_Rider.WeightBikeKGS;
 
 
-						// ok here 6, vd.Chainrings
-						//PacersDisp copyofme = (PacersDisp)this.MemberwiseClone(); // new PacersDisp();
-						//VelotronData = (VelotronData)vd.Clone();
-
-						//VelotronData = vd;									// <<<<<<<<<<<<<<<<<<<<<<<<<<<<< error!!!!
+						//VelotronData = vd;						// <<<<<< for some reason that does not work correctly.
 						VelotronData.Cogset = m_Rider.GearingCogset;
-						VelotronData.Chainrings = m_Rider.GearingCrankset;											// copies int[1] to int[5] with 4 zero elements
+						VelotronData.Chainrings = m_Rider.GearingCrankset;
 						VelotronData.FrontGear = m_FrontGearNumber;
 						VelotronData.RearGear = m_RearGearNumber;
 						VelotronData.Bike_Kg = m_Rider.WeightBikeKGS;
 
-						// ok here 7, vd.Chainrings
+						if (isNewRider)
+						{
+							// update the ms_ip_chainrings and ms_ip_cogset
+							SetVelotron_trnr_Parameters();
+
+							// Tell the Velotron about these new values
+							DLLError derr = (DLLError)DLL.SetVelotronParameters(PortName, Ver,
+											m_VelotronData.ChainringsCount,
+											m_VelotronData.CogsetCount,
+											ms_ip_chainrings,
+											ms_ip_cogset,
+											m_VelotronData.WheelDiameter_mm,
+											m_VelotronData.ActualChainring,
+											m_VelotronData.ActualCog,
+											m_VelotronData.Bike_Kg,
+											m_VelotronData.FrontGear,
+											m_VelotronData.RearGear
+											);
+						}
+
 						SetVelotronGears();
 					}
 					SetUpdateFlags(UpdateFlags.Drag);
@@ -1756,35 +1773,53 @@ namespace RacerMateOne  {
 
 
 
-			public int m_FrontGearNumber;
+			/// <summary>
+			///  The index of the current front gear (chainring).
+			/// </summary>
+			private int m_FrontGearNumber;
 
+			/// <summary>
+			/// Gets / Sets the index of the current front gear (chainring).
+			/// </summary>
 			public int FrontGearNumber {
 				get {
 					return m_FrontGearNumber;
 				}
 				set {
-					m_FrontGearNumber = value < 0 ? 0 : value >= m_VelotronData.ChainringsCount ? m_VelotronData.ChainringsCount - 1 : value;
-					SetVelotronGears();
+					int tmp = value < 0 ? 0 : value >= m_VelotronData.ChainringsCount ? m_VelotronData.ChainringsCount - 1 : value;
+					if (tmp != m_FrontGearNumber)
+					{
+						m_FrontGearNumber = tmp;
+						SetVelotronGears();
+					}
 				}
 			}
 
-			public int m_RearGearNumber;
+			/// <summary>
+			/// The index of the current rear gear (cog).
+			/// </summary>
+			private int m_RearGearNumber;
 
+			/// <summary>
+			/// Gets / Sets the index of the current rear gear (cog).
+			/// </summary>
 			public int RearGearNumber {
 				get {
 					return m_RearGearNumber;
 				}
 				set {
-					m_RearGearNumber = value < 0 ? 0 : value >= m_VelotronData.CogsetCount ? m_VelotronData.CogsetCount - 1 : value;
-					SetVelotronGears();
+					int tmp = value < 0 ? 0 : value >= m_VelotronData.CogsetCount ? m_VelotronData.CogsetCount - 1 : value;
+					if (tmp != m_RearGearNumber)
+					{
+						m_RearGearNumber = tmp;
+						SetVelotronGears();
+					}
 				}
 			}
 
 
-
-
 			/// <summary>
-			/// 
+			/// Initializes all information related to a trainer.
 			/// </summary>
 			Trainer(string portName) {
 				InitKeys();
@@ -1979,6 +2014,10 @@ namespace RacerMateOne  {
 
 			 ******************************************************************************************************************/
 
+			/// <summary>
+			/// Copies Chainring and Cog arrays and adds the trainers to the start list (list of trainers that need to be started).
+			/// </summary>
+			/// <returns></returns>
 			public DLLError SetVelotron_trnr_Parameters() {
 		#if DEBUG
 				Log.WriteLine("SetVelotron_trnr_Parameters()");
@@ -1987,17 +2026,13 @@ namespace RacerMateOne  {
 					return DLLError.WRONG_DEVICE;
 				}
 
-				if (m_CurVelotron == m_VelotronData) {
-					return DLLError.ALL_OK;	// Don't need to do anything.
-				}
-
 				ms_Mux.WaitOne();
 
 				try {
 					Marshal.Copy(
 							m_VelotronData.Chainrings,			// source
-							0,											// start index
-							ms_ip_chainrings,						// destination
+							0,									// start index
+							ms_ip_chainrings,					// destination
 							MAX_FRONT_GEARS						// length
 							);
 
@@ -3330,6 +3365,9 @@ namespace RacerMateOne  {
 				}
 			}											// public int[] Chainrings
 
+			/// <summary>
+			/// The number of teeth on each cog in the rear cassette (ie, cog set); 0 indicates cog does not exist.
+			/// </summary>
 			private int[] m_Cogset = new int[] { 23, 21, 19, 17, 16, 15, 14, 13, 12, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 			public int CogsetCount { get; protected set; }
 
@@ -3346,7 +3384,7 @@ namespace RacerMateOne  {
 					}
 					CogsetCount = i;
 
-					for (; i < MAX_FRONT_GEARS_SPACE; i++) {
+					for (; i < MAX_REAR_GEARS_SPACE; i++) {
 						m_Cogset[i] = 0;
 					}
 				}

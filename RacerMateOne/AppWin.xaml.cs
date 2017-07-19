@@ -969,7 +969,7 @@ namespace RacerMateOne  {
             //return true;
 
 			#if DEBUG
-				// The "#if DEBUG" is to protect it, just in case someone forgets to uncomment it, but should be commented out unless absollutly nessary.
+				// The "#if DEBUG" is to protect it, just in case someone forgets to uncomment it, but should be commented out unless absolutely necessary.
 				return true;
 			#else
 				string hardwareid = App.GetHardwareID();

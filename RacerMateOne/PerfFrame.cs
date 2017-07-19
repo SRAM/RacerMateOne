@@ -5248,9 +5248,9 @@ namespace RacerMateOne
 				}
 
 				if (memstream != null)  {
-                byte[] val = StructToByteArray(ref obj);
-                AddRawBytes(ref val, val.Length, bFlush);
-            }
+				byte[] val = StructToByteArray(ref obj);
+				AddRawBytes(ref val, val.Length, bFlush);
+			}
 			}							// AddRawField()
 
 
@@ -5262,31 +5262,30 @@ namespace RacerMateOne
 				if (memstream == null)  {
 					// never gets here
 					memstream = new MemoryStream();
-        }
+				}
 
 				if (memstream != null)  {
 					if (val.Length < len)  {
 						// never gets here for perf files because len = val.Length
 						memstream.Write(val, 0, val.Length);
-                    // pad with zeros
-                    byte[] temp = new byte[len - val.Length];
+						// pad with zeros
+						byte[] temp = new byte[len - val.Length];
 						for (int i = val.Length; i < len; i++) {
-                        temp[i] = 0;
-                }
+							temp[i] = 0;
+						}
 						memstream.Write(temp, 0, temp.Length);				// write perf to memory
-                }
+					}
 					else  {
 						memstream.Write(val, 0, len);								// write perf to memory
 					}
 
-                // buffer it until 4k, then write it
-
+					// buffer it until 4k, then write it
 
 					//if (memstream.Length > (1024 * 4)) {
 					if (memstream.Position > (1024 * 4)) {
 					//if (bw.Length > (1024 * 32)) {
 						bFlush = true;
-            }
+					}
 
 					if (bFlush && outfile != null)  {
 						if (doalloc) {
@@ -5320,7 +5319,7 @@ namespace RacerMateOne
 						}						// doalloc
 						//GC.Collect();		// didn't help
 					}								// if (bFlush && outfile != null)  {
-        }
+				}
 				return;
 			}								// AddRawBytes()
 
