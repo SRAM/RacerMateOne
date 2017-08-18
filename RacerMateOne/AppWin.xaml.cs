@@ -966,19 +966,19 @@ namespace RacerMateOne  {
 		/// </summary>
 		/// <returns></returns>
 		public static bool IsRegistered()  {
-            //return true;
+            return true;
 
-			#if DEBUG
-				// The "#if DEBUG" is to protect it, just in case someone forgets to uncomment it, but should be commented out unless absolutely necessary.
-				return true;
-			#else
-				string hardwareid = App.GetHardwareID();
-            IntPtr p_hardwareid = Marshal.StringToHGlobalAnsi(hardwareid);
-            RegisterType registered = CheckRegisteredType(p_hardwareid);
-            Marshal.FreeHGlobal(p_hardwareid);
-            return (registered == RegisterType.DELUXE);
-			#endif
-		}
+//#if DEBUG
+//            	// The "#if DEBUG" is to protect it, just in case someone forgets to uncomment it, but should be commented out unless absolutely necessary.
+//            	return true;
+//#else
+//            string hardwareid = App.GetHardwareID();
+//            IntPtr p_hardwareid = Marshal.StringToHGlobalAnsi(hardwareid);
+//            RegisterType registered = CheckRegisteredType(p_hardwareid);
+//            Marshal.FreeHGlobal(p_hardwareid);
+//            return (registered == RegisterType.DELUXE);
+//#endif
+        }
 
         /// <summary>
         /// Should return true if everything is registered and false if is not.
