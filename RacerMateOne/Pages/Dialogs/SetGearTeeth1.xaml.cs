@@ -96,7 +96,7 @@ namespace RacerMateOne.Pages.Dialogs {
 
 		void RedoTeeth() {
 
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 			dump("SetGearTeeth1.xaml.cs, RedoTeeth");
 #endif
 			
@@ -196,7 +196,7 @@ namespace RacerMateOne.Pages.Dialogs {
 		private void Chainring_Minus_Click(object sender, RoutedEventArgs e) {
 			if (m_numChainrings > 1) {
                 m_numChainrings--;				// eliminate the lowest gear
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 				String s = "SetGearTeeth1.xaml.cs, making invisible: Chainring_" + m_numChainrings;
 				Debug.WriteLine(s);
 #endif
@@ -252,7 +252,7 @@ namespace RacerMateOne.Pages.Dialogs {
 
         private void RiderOptions_Unloaded(object sender, RoutedEventArgs e)
         {
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 			Debug.WriteLine("SetGearTeeth1.xaml.cs, RiderOptions_Unloaded()");
 #endif
 			return;

@@ -1,5 +1,5 @@
-﻿// Uncomment the line below to enable Logging
-//#define LOG_ENABLED
+﻿// Uncomment the line below to enable Logging, or comment it out to disable logging
+#define LOG_ENABLED
 
 using System;
 using System.Collections.Generic;
@@ -83,8 +83,7 @@ namespace RacerMateOne
         static int ms_Num = 0;
         static Log()  {
 #if LOG_ENABLED
-#if DEBUG
-            //System.Diagnostics.Debug.WriteLine("Log.cs constructor, Created Log");
+#if DEBUG_LOG_ENABLED
             Log.WriteLine("Log.cs constructor, Created Log");
 #endif
 

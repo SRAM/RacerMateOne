@@ -36,9 +36,6 @@ namespace RacerMateOne.Controls
 			remove { RemoveHandler(CourseSelectedEvent, value); }
 		}
 
-#if DEBUG
-		int bp = 0;			// tlm
-#endif
 		//====================================================================
 		public CoursePicker()
 		{

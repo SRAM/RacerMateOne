@@ -59,7 +59,7 @@ namespace RacerMateOne.Controls
 		****************************************************************************************************************/
 
 		public StatsBox()  {
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 			Log.WriteLine("StatsBox.xaml.cs, StatsBox() constructor");
 #endif
 			InitializeComponent();
@@ -160,17 +160,11 @@ namespace RacerMateOne.Controls
 				Wind.Content = s.Wind_String;
 
 			if ((changed & StatFlags.GearInches) != StatFlags.Zero)  {
-				// tlm20150410
 				Gear.Content = s.Gear_String;
 			}
 
 			if ((changed & StatFlags.Gearing) != StatFlags.Zero)  {
-				// tlm20150410
 				Gearing.Content = s.Gearing_String;
-#if DEBUG
-				//int bp = 1;
-				//bp = 2;
-#endif
 			}
 		}								// OnUnitFlagsChanged()
 

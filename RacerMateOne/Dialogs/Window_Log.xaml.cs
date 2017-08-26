@@ -27,23 +27,23 @@ namespace RacerMateOne  {
     /// </summary>
 
     public partial class Window_Log : Window  {
-		List<StackPanel> preList = new List<StackPanel>();
-		string preMain = "";
+        List<StackPanel> preList = new List<StackPanel>();
+        string preMain = "";
 
         XDocument ms_XLog;
         string ms_XLogPath;
-			bool bLoaded = false;
+            bool bLoaded = false;
         ListBox ms_LogBox;
         protected delegate void _log( string text, bool flowchart );
-		protected delegate void _logE(Log.Entry e, bool flowchart);
+        protected delegate void _logE(Log.Entry e, bool flowchart);
 
-		//=================================================
+        //=================================================
 
-		static Window_Log instance;
+        static Window_Log instance;
         public static Window_Log Instance  {
             get  {
-				if (instance == null)
-					instance = new Window_Log();
+                if (instance == null)
+                    instance = new Window_Log();
                 return instance;
             }
         }
@@ -57,22 +57,22 @@ namespace RacerMateOne  {
 
             InitializeComponent();
 
-				#if DEBUG
-					BatchConvert.Visibility = Visibility.Visible;
-				#endif
+#if DEBUG
+                BatchConvert.Visibility = Visibility.Visible;
+#endif
 
-				Log.WriteLine("Window_Log constructor");
-		}
+                Log.WriteLine("Window_Log constructor");
+        }
 
-		void SentLog(Log.Entry e)  {
-			if ((e.Flags & Log.Flags.Debug) != Log.Flags.Zero)
-				return;
-			LogA(e, (e.Flags & RacerMateOne.Log.Flags.FlowChart) != RacerMateOne.Log.Flags.Zero);
-		}
+        void SentLog(Log.Entry e)  {
+            if ((e.Flags & Log.Flags.Debug) != Log.Flags.Zero)
+                return;
+            LogA(e, (e.Flags & RacerMateOne.Log.Flags.FlowChart) != RacerMateOne.Log.Flags.Zero);
+        }
        
 
         public void Window_Loaded(object sender, EventArgs e)  {
-			bLoaded = true;
+            bLoaded = true;
          
             // Write the version to the bottom part of the log window.
             System.Diagnostics.FileVersionInfo ver = FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -98,21 +98,21 @@ namespace RacerMateOne  {
                 );
             ms_XLog.Save(ms_XLogPath);
 
-			int n = 0;
-			foreach(StackPanel sp in preList)
-				n = ms_LogBox.Items.Add(sp);
-			if (n > 0)
-				ms_LogBox.ScrollIntoView(ms_LogBox.Items.GetItemAt(n));
+            int n = 0;
+            foreach(StackPanel sp in preList)
+                n = ms_LogBox.Items.Add(sp);
+            if (n > 0)
+                ms_LogBox.ScrollIntoView(ms_LogBox.Items.GetItemAt(n));
 
-			Current.Content = preMain;
+            Current.Content = preMain;
 
-			// Show the list up to this point.
-			List<Log.Entry> list = Log.GetList(false);
-			foreach( Log.Entry entry in list )
-			{
-				SentLog(entry);
-			}
-			RacerMateOne.Log.LogEvent += new Log.LogHandler(SentLog);
+            // Show the list up to this point.
+            List<Log.Entry> list = Log.GetList(false);
+            foreach( Log.Entry entry in list )
+            {
+                SentLog(entry);
+            }
+            RacerMateOne.Log.LogEvent += new Log.LogHandler(SentLog);
         }
 
         protected XDocument LoadOrCreate(string filepath, string strname)
@@ -133,52 +133,52 @@ namespace RacerMateOne  {
             return xd;
         }
 
-		/**
-		 * Thread safe
-		 */
-		void LogA(Log.Entry e, bool flowchart)
-		{
-			if (CheckAccess())
-			{
-				//DateTime.Now.ToLongTimeString()
-				StackPanel sp = new StackPanel();
-				sp.Orientation = Orientation.Horizontal;
+        /**
+         * Thread safe
+         */
+        void LogA(Log.Entry e, bool flowchart)
+        {
+            if (CheckAccess())
+            {
+                //DateTime.Now.ToLongTimeString()
+                StackPanel sp = new StackPanel();
+                sp.Orientation = Orientation.Horizontal;
 
-				TextBlock t = new TextBlock();
-				t.Text = e.TimeStamp.ToString("hh:mm:ss.fff");
-				t.Width = 88;
-				sp.Children.Add(t);
-				t = new TextBlock();
-				String text = e.Message;
-				t.Text = (flowchart ? "* " + text + " *" : text);
-				sp.Children.Add(t);
+                TextBlock t = new TextBlock();
+                t.Text = e.TimeStamp.ToString("hh:mm:ss.fff");
+                t.Width = 88;
+                sp.Children.Add(t);
+                t = new TextBlock();
+                String text = e.Message;
+                t.Text = (flowchart ? "* " + text + " *" : text);
+                sp.Children.Add(t);
 
 
-				if (bLoaded)
-				{
+                if (bLoaded)
+                {
 
-					int n = ms_LogBox.Items.Add(sp);
-					ms_LogBox.ScrollIntoView(ms_LogBox.Items.GetItemAt(n));
+                    int n = ms_LogBox.Items.Add(sp);
+                    ms_LogBox.ScrollIntoView(ms_LogBox.Items.GetItemAt(n));
 
-					if (flowchart)
-					{
-						//Label c = FindName("Current") as Label;
+                    if (flowchart)
+                    {
+                        //Label c = FindName("Current") as Label;
                         Current.Content = text;
-					}
-				}
-				else
-				{
-					preList.Add(sp);
-					if (flowchart)
-						preMain = text;
-				}
-			}
-			else
-			{
-				Dispatcher.BeginInvoke(DispatcherPriority.Normal, new _logE(LogA), e, flowchart);
-			}
+                    }
+                }
+                else
+                {
+                    preList.Add(sp);
+                    if (flowchart)
+                        preMain = text;
+                }
+            }
+            else
+            {
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new _logE(LogA), e, flowchart);
+            }
 
-		}
+        }
 
         /**
          * Thread safe
@@ -199,24 +199,24 @@ namespace RacerMateOne  {
                 t.Text = (flowchart ? "* " + text + " *" : text);
                 sp.Children.Add(t);
 
-				if (bLoaded)
-				{
+                if (bLoaded)
+                {
 
-					int n = ms_LogBox.Items.Add(sp);
-					ms_LogBox.ScrollIntoView(ms_LogBox.Items.GetItemAt(n));
+                    int n = ms_LogBox.Items.Add(sp);
+                    ms_LogBox.ScrollIntoView(ms_LogBox.Items.GetItemAt(n));
 
-					if (flowchart)
-					{
-						//Label c = FindName("Current") as Label;
+                    if (flowchart)
+                    {
+                        //Label c = FindName("Current") as Label;
                         Current.Content = text;
-					}
-				}
-				else
-				{
-					preList.Add(sp);
-					if (flowchart)
-						preMain = text;
-				}
+                    }
+                }
+                else
+                {
+                    preList.Add(sp);
+                    if (flowchart)
+                        preMain = text;
+                }
             }
             else
             {
@@ -227,16 +227,16 @@ namespace RacerMateOne  {
 
         public void LogA(string text) { LogA(text, false); }
 
-		private void ClearSettings_Click(object sender, RoutedEventArgs e)
-		{
-			MessageBoxResult result = MessageBox.Show("Are you sure you wish to clear the settings?  This will also exit the program." + Environment.NewLine + "Upon restart, the default courses will be copied into the local Courses folder.", "", MessageBoxButton.YesNo);
-			if (result == MessageBoxResult.Yes)
-			{
-				RM1_Settings.DeleteSettingsFile();
-				//Riders.DeleteRidersFile();
-				AppWin.Exit();
-			}
-		}
+        private void ClearSettings_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you wish to clear the settings?  This will also exit the program." + Environment.NewLine + "Upon restart, the default courses will be copied into the local Courses folder.", "", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                RM1_Settings.DeleteSettingsFile();
+                //Riders.DeleteRidersFile();
+                AppWin.Exit();
+            }
+        }
         private void ClearRiders_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you wish to clear the settings & riders?  This will also exit the program.", "", MessageBoxButton.YesNo);
@@ -248,39 +248,39 @@ namespace RacerMateOne  {
             }
         }
 
-		private void button1_Click(object sender, RoutedEventArgs e)
-		{
-			String[] arr = null;
-			try
-			{
-				throw new Exception("No Error!");
-			}
-			catch (Exception ex)
-			{
-				arr = App.Logger.LogError(ex);
-			}
-			if (arr != null)
-			{
-				try
-				{
-					String LogFile = arr[0];
-					String LogName = arr[1];
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            String[] arr = null;
+            try
+            {
+                throw new Exception("No Error!");
+            }
+            catch (Exception ex)
+            {
+                arr = App.Logger.LogError(ex);
+            }
+            if (arr != null)
+            {
+                try
+                {
+                    String LogFile = arr[0];
+                    String LogName = arr[1];
 
 
-					MessageBox.Show(
-						"A report has been written to \n\t\"" + LogFile + "\"\n"
-						,
-						"Report written",
-						MessageBoxButton.OK);
+                    MessageBox.Show(
+                        "A report has been written to \n\t\"" + LogFile + "\"\n"
+                        ,
+                        "Report written",
+                        MessageBoxButton.OK);
 
-				}
-				catch {}
-			}
-		}
+                }
+                catch {}
+            }
+        }
 
         private void BatchConvert_Click(object sender, RoutedEventArgs e)
         {
-			if (PerfFile.BatchConvertFolder(RacerMatePaths.CommonCoursesFullPath))
+            if (PerfFile.BatchConvertFolder(RacerMatePaths.CommonCoursesFullPath))
                 return;
         }
 

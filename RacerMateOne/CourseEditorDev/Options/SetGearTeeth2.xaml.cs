@@ -25,10 +25,6 @@ namespace RacerMateOne.CourseEditorDev.Options {
 	public partial class SetGearTeeth2 : Page  {
 		public RiderExtended2 CurRider;
 
-#if DEBUG
-		private int bp = 0;
-#endif
-
 		/*****************************************************************************************************************************
 			constructor
 		*****************************************************************************************************************************/
@@ -195,14 +191,6 @@ namespace RacerMateOne.CourseEditorDev.Options {
 			string stylesheetDeclaration = rdoc.FirstNode.ToString();
 			XNode Root = rdoc.Root;
 
-#if DEBUG
-			//CurRider._CrankGear
-			//CurRider.CrankGear
-			//CurRider.Crankset
-			//CurRider.GearingCrankset
-			int nn = CurRider.nCranks;										// 2
-#endif
-
 			List<BicycleRider> BicycleRiderList = new List<BicycleRider>();
 
 			var docriders = from r in rdoc.Descendants("Rider")
@@ -265,10 +253,6 @@ namespace RacerMateOne.CourseEditorDev.Options {
 
 				};
 
-#if DEBUG
-			//xxx
-			int n = docriders.Count();						// 16
-#endif
 			//-----------------------------------------------------------
 			// docriders is a copy of the xml structure in memory
 			//-----------------------------------------------------------
@@ -309,36 +293,9 @@ namespace RacerMateOne.CourseEditorDev.Options {
 				rider.BikeColor1 = br.BikeColor1;
 				rider.BikeColor2 = br.BikeColor2;
 
-#if DEBUG
-				bool result = rider.NickName.Equals("barak", StringComparison.Ordinal);
-				bp = 0;
-				if (result) {
-					bp = 1;
-				}
-				else {
-					bp = 2;
-				}
-#endif
-
 				var GearingCrankset = br.GearingCrankset;
 
-#if DEBUG
-				int m = GearingCrankset.Count();										// 1
-				if (m != 1) {
-					bp = 4;
-				}
-#endif
-
 				foreach (var v in GearingCrankset)  {
-#if DEBUG
-					int ii;
-					if (result) {
-						bp = 5;
-					}
-					ii = int.Parse(v.G1);								// 53
-					ii = int.Parse(v.G2);								// 39
-					ii = int.Parse(v.G3);								// 25, even if changed in memory
-#endif
 					rider.CrankGear.Add(new GearData(int.Parse(v.G1), true));
 					rider.CrankGear.Add(new GearData(int.Parse(v.G2), true));
 					rider.CrankGear.Add(new GearData(int.Parse(v.G3), true));
@@ -364,10 +321,6 @@ namespace RacerMateOne.CourseEditorDev.Options {
 				BicycleRiderList.Add(rider);
 			}													// foreach (var br in BicycleRiders)
 
-#if DEBUG
-			bp = 0;
-			n = BicycleRiderList.Count;							// 16
-#endif
 			for (int i = 0; i < BicycleRiderList.Count; i++)  {
 				if (BicycleRiderList[i].DatabaseKey == CurRider.DatabaseKey)   {
 					BicycleRiderList[i].Created = CurRider.Created.ToString("G");
@@ -381,25 +334,11 @@ namespace RacerMateOne.CourseEditorDev.Options {
 						BicycleRiderList[i].CogGear[j] = CurRider.CogGear[j];
 					}
 
-#if DEBUG
-					bool result = BicycleRiderList[i].NickName.Equals("barak", StringComparison.Ordinal);
-					if (result) {
-						bp = 1;
-					}
-					else {
-						bp = 2;
-					}
-#endif
-
 					break;
 				}
 			}											// foreach (var br in BicycleRiders)  {
 
 			XElement Riders = new XElement("Riders", new XAttribute("VersionMajor", "1"), new XAttribute("VersionMinor", "0"));
-
-#if DEBUG
-			n = BicycleRiderList.Count;								// 16
-#endif
 
 			for (int i=0; i<BicycleRiderList.Count; i++)   {
 				XElement Val = new XElement("Rider", new XAttribute("DatabaseKey", BicycleRiderList[i].DatabaseKey));
@@ -433,16 +372,6 @@ namespace RacerMateOne.CourseEditorDev.Options {
 							new XAttribute("Clothing2", BicycleRiderList[i].Clothing2),
 							new XAttribute("BikeColor1", BicycleRiderList[i].BikeColor1),
 							new XAttribute("BikeColor2", BicycleRiderList[i].BikeColor2)));
-
-#if DEBUG
-				bool result = BicycleRiderList[i].NickName.Equals("barak", StringComparison.Ordinal);
-				if (result) {
-					bp = 1;
-				}
-				else {
-					bp = 2;
-				}
-#endif
 
 				int CrankGear0Teeth = BicycleRiderList[i].CrankGear[0].Show == true ? BicycleRiderList[i].CrankGear[0].Teeth : 0;
 				int CrankGear1Teeth = BicycleRiderList[i].CrankGear[1].Show == true ? BicycleRiderList[i].CrankGear[1].Teeth : 0;

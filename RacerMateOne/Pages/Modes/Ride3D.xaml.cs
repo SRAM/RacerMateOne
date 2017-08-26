@@ -157,7 +157,7 @@ namespace RacerMateOne.Pages.Modes
 		********************************************************************************************************/
 
 		public Ride3D()  {
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 			Log.WriteLine("Ride3D.xaml.cs, Ride3D::Ride3D(), constructor");
 #endif
 
@@ -165,9 +165,6 @@ namespace RacerMateOne.Pages.Modes
 			if (!AppWin.IsInDesignMode)
 				Background = Brushes.Transparent;
 			m_App = AppWin.Instance;
-            
-			//for(int i=0;i<8;i++)
-			//	m_NameNodes[i] = new NameNode();
 		}
 
 
@@ -180,7 +177,7 @@ namespace RacerMateOne.Pages.Modes
 		ReportColumns m_DisplayColumns;
 		StatFlags m_DisplayStatFlags;
 		private void Page_Loaded(object sender, RoutedEventArgs e)  {
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 			Log.WriteLine("Ride3D.xaml.cs, Ride3D::Page_Loaded");
 #endif
 

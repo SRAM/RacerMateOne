@@ -21,7 +21,7 @@
                 </TextBlock>
                 <c:Pillbox x:Name="Refresh" Text="Refresh" Width="110" VerticalAlignment="Bottom" Height="31" Margin="0,5,0,5" HorizontalAlignment="Center" Click="Refresh_Click"></c:Pillbox>
                 <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-                    <Image x:Name="Icon" Margin="5,0,0,0" Height="18" Source="/RacerMateOne;component/Resources/Heart28x23.png" />
+                    <Image x:Name="HRIcon" Margin="5,0,0,0" Height="18" Source="/RacerMateOne;component/Resources/Heart28x23.png" />
                     <Label x:Name="NewHRLabel" Padding="5,0,5,0" HorizontalContentAlignment="Left" FontSize="18" VerticalContentAlignment="Center">New Heart Rate Monitors:</Label>
                     <Label x:Name="NewHRCountLabel" Padding="5,0,5,0" HorizontalContentAlignment="Left" FontSize="18" VerticalContentAlignment="Center">0</Label>
                 </StackPanel>

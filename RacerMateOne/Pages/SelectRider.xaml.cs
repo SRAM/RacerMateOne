@@ -402,9 +402,6 @@ namespace RacerMateOne.Pages  {
 		//=============================================================
 
 		Controls.RTab m_CurTab;
-#if DEBUG
-		int bp = 0;
-#endif
 
 		Controls.RTab CurTab   {
 			get {
@@ -416,25 +413,6 @@ namespace RacerMateOne.Pages  {
 					return;
 				}
 
-#if DEBUG										// tlm
-				if (m_CurTab == null) {
-					bp = 1;
-				}
-				else if (m_CurTab == t_Rider) {
-					bp = 1;
-				}
-				else if (m_CurTab == t_Performance) {
-					bp = 1;
-				}
-				else if (m_CurTab == t_Pacer) {
-					bp = 1;
-				}
-				else  {
-					bp = 2;
-				}
-#else
-				//bp = 3;
-#endif
 				m_CurTab = value;
 				t_Rider.Selected = t_Performance.Selected = t_Pacer.Selected = false;
 				m_CurTab.Selected = true;
@@ -452,35 +430,11 @@ namespace RacerMateOne.Pages  {
 		private void btn_Click(object sender, RoutedEventArgs e)  {
 			Controls.RTab rtab = (Controls.RTab)sender;
 
-#if DEBUG										// tlm
-			if (rtab == null) {
-				bp = 1;
-			}
-			else if (rtab == t_Rider) {
-				bp = 1;
-			}
-			else if (rtab == t_Performance) {
-				bp = 1;
-			}
-			else if (rtab == t_Pacer) {
-				bp = 1;
-			}
-			else {
-				bp = 2;
-			}
-#else
-				//bp = 3;
-#endif
-
 			if (rtab == t_Pacer && VideoMode) {
 				return;
 			}
 
 			CurTab = rtab;						// invokes CurTab.set(), which sets SelectRider.m_CurTab
-
-#if DEBUG
-			bp = 4;
-#endif
 		}
 
 		private void GroupSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -697,16 +651,7 @@ namespace RacerMateOne.Pages  {
 					throw new Exception("error 123");
 				}
 			}
-			else if (m_CurTab == t_Pacer) {
-#if DEBUG
-				bp = 1;
-#endif
-			}
-			else {
-#if DEBUG
-				bp = 3;
-#endif
-			}
+
 			}
 			catch (Exception e) {
 				// tlm20160218
@@ -715,8 +660,6 @@ namespace RacerMateOne.Pages  {
 				//#endif
 				Log.WriteLine(e.ToString());
 			}
-
-
 		}							// UpdateFilter()
 
 		/****************************************************************************************************************

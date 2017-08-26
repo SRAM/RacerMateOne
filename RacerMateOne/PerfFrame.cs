@@ -1,4 +1,5 @@
-﻿
+﻿#define DO_ALLOC
+
 using System;
 using System.Globalization;
 using System.Collections.Generic;
@@ -2254,12 +2255,9 @@ namespace RacerMateOne
         static public StatFlags AllGroups = Group1 | Group2 | Group3 | Group4 | Group5 | Group6 | Group7 | Group8 | Group9 | Group10 | Group11 | Group12;
     }
 
-		public class Perf   {
-
-			private int tick = 0;
-//#if DEBUG
-			private int cnt2 = 0;
-//#endif
+	public class Perf
+	{
+		private int tick = 0;
 
 		// Keeping track of loaded performances for debug testing.
 		public static List<String> LoadedSets = new List<String>();
@@ -5002,7 +5000,7 @@ namespace RacerMateOne
             return sb.ToString();
         }
 
-			public void CloseHashOut()  {
+        public void CloseHashOut()  {
             FlushBufferOut();
             //if (bw != null)
             //    bw = null;
@@ -5123,7 +5121,7 @@ namespace RacerMateOne
 
 
 
-		public class RawStream  {
+    public class RawStream  {
         FileStream outfile = null;
         FileStream infile = null;
         //private BinaryWriter bw = null;
@@ -5132,38 +5130,34 @@ namespace RacerMateOne
         private object _obj = null;
         private System.Type _type = null;
 
-#if DEBUG
-			int bp = 0;
-#endif
-			const bool doalloc = true;
-			MemoryStream memstream = null;
-			byte[] ba = null;
+        MemoryStream memstream = null;
 
         IAsyncResult asyncResult = null;
 
         // Maintain state information to be passed to 
         // EndWriteCallback and EndReadCallback.
 
-			class RawState  {
+        class RawState  {
             // fStream is used to read and write to the file.
             FileStream fStream;
-				public RawState(FileStream fStream)  {
+            public RawState(FileStream fStream)  {
                 this.fStream = fStream;
             }
-				public FileStream FStream  {
-					get {
-						return fStream;
-					}
+
+            public FileStream FStream  {
+                get {
+                    return fStream;
+                }
+            }
         }
-			}					// class RawState
 
-			/******************************************************************************************
-				When BeginWrite is finished writing data to the file, the
-				EndWriteCallback method is called to end the asynchronous
-				write operation
-			******************************************************************************************/
+        /******************************************************************************************
+        When BeginWrite is finished writing data to the file, the
+        EndWriteCallback method is called to end the asynchronous
+        write operation
+        ******************************************************************************************/
 
-			static void EndWriteCallback(IAsyncResult asyncResult)  {
+        static void EndWriteCallback(IAsyncResult asyncResult)  {
             //Debug.WriteLine("done a write");
             RawState tempState = (RawState)asyncResult.AsyncState;
             FileStream fStream = tempState.FStream;
@@ -5238,13 +5232,13 @@ namespace RacerMateOne
 			*******************************************************************************/
 
 			void AddRawField(ref string tag, ref object obj, bool bFlush) {
-				if (memstream == null) {
-					if (doalloc) {
-						memstream = new MemoryStream();
-					}
-					else {
-						memstream = new MemoryStream(4 * 1024);
-					}
+				if (memstream == null)
+                {
+#if DO_ALLOC
+					memstream = new MemoryStream();
+#else
+                    memstream = new MemoryStream(4 * 1024);
+#endif
 				}
 
 				if (memstream != null)  {
@@ -5287,50 +5281,50 @@ namespace RacerMateOne
 						bFlush = true;
 					}
 
-					if (bFlush && outfile != null)  {
-						if (doalloc) {
-							asyncResult = outfile.BeginWrite(
-													memstream.GetBuffer(),
-													0,
-													(int)memstream.Length,
-													new AsyncCallback(EndWriteCallback),
-													new RawState(outfile)
-												);
-							memstream.Dispose();
-							memstream.Close();
-							memstream = null;
-						}
-						else  {
-							ba = memstream.GetBuffer();
-							int datalen;
-							datalen = ba.Length;							// 8192
+        if (bFlush && outfile != null)
+        {
+#if DO_ALLOC
+            asyncResult = outfile.BeginWrite(
+                                    memstream.GetBuffer(),
+                                    0,
+                                    (int)memstream.Length,
+                                    new AsyncCallback(EndWriteCallback),
+                                    new RawState(outfile)
+                                );
+            memstream.Dispose();
+            memstream.Close();
+            memstream = null;
+#else
+						ba = memstream.GetBuffer();
+						int datalen;
+						datalen = ba.Length;							// 8192
 
-							datalen = (int)memstream.Length;			// 4097
-							asyncResult = outfile.BeginWrite(
-													ba,
-													0,
-													datalen,
-													new AsyncCallback(EndWriteCallback),
-													new RawState(outfile)
-								);
+						datalen = (int)memstream.Length;			// 4097
+						asyncResult = outfile.BeginWrite(
+												ba,
+												0,
+												datalen,
+												new AsyncCallback(EndWriteCallback),
+												new RawState(outfile)
+							);
 	
 
-							memstream.Position = 0;
-						}						// doalloc
-						//GC.Collect();		// didn't help
-					}								// if (bFlush && outfile != null)  {
-				}
-				return;
-			}								// AddRawBytes()
+						memstream.Position = 0;
+#endif
+            //GC.Collect();		// didn't help
+        }								// if (bFlush && outfile != null)  {
+		}
+		return;
+	}								// AddRawBytes()
 
 
         // flush the memory buffer to outfile
-			public bool FlushBufferOut()  {
-				if (memstream != null && outfile != null)  {
-					asyncResult = outfile.BeginWrite(memstream.GetBuffer(), 0, (int)memstream.Length, null, new RawState(outfile));
-					memstream.Dispose();
-					memstream.Close();
-					memstream = null;
+        public bool FlushBufferOut()  {
+            if (memstream != null && outfile != null)  {
+                asyncResult = outfile.BeginWrite(memstream.GetBuffer(), 0, (int)memstream.Length, null, new RawState(outfile));
+                memstream.Dispose();
+                memstream.Close();
+                memstream = null;
                 outfile.EndWrite(asyncResult);
             }
             return true;
@@ -6279,7 +6273,7 @@ Date/Time: {1}</font></p>
     }
 #endif
 
-    class StreamConverter
+class StreamConverter
     {
         public StreamConverter()
         {

@@ -705,7 +705,7 @@ namespace RacerMateOne  {
 				//Log.WriteLine(s2);
 				//System.Console.WriteLine("'{0}'\n", s2);
 #else
-				//Log.WriteLine(e.ToString());
+				Log.WriteLine(e.ToString());
 #endif
 			}
 			return s;
@@ -1014,7 +1014,7 @@ namespace RacerMateOne  {
 				// other threads are safe to affect the lists now
 				ms_scanningThread_ListMutex.ReleaseMutex();
 			}
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 			Log.WriteLine("ScanningThread: exited");
 #endif
         }
@@ -1445,11 +1445,10 @@ namespace RacerMateOne  {
 					sensorString = null;
 #if DEBUG
 					string s2 = e.ToString();
-					s2 += e.ToString();
 					Log.WriteLine(s2);
 					System.Console.WriteLine("'{0}'\n", s2);
 #else
-				Log.WriteLine(e.ToString());
+					Log.WriteLine(e.ToString());
 #endif
 				}
 				return sensorString;
@@ -1664,11 +1663,6 @@ namespace RacerMateOne  {
 			public void SetPaused(bool paused, bool force) {
 				if (force || paused != m_Paused) {
 					m_Paused = paused;
-#if DEBUG
-					if (m_Paused) {
-						bp = 3;
-					}
-#endif
 					SetUpdateFlags(UpdateFlags.Pause);
 				}
 			}
@@ -1914,9 +1908,9 @@ namespace RacerMateOne  {
 
 
 			protected bool Start() {
-		#if DEBUG
+#if DEBUG_LOG_ENABLED
 				Log.WriteLine("RM1.cs, Start()");
-		#endif
+#endif
 
 				if (Type != DeviceType.VELOTRON && Type != DeviceType.COMPUTRAINER) {
 					return false;
@@ -1981,7 +1975,7 @@ namespace RacerMateOne  {
 			/// </summary>
 
 			protected void Stop() {
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 				Debug.WriteLine("RM1.cs   Stop()");
 #endif
 				if (IsStarted) {
@@ -2019,9 +2013,9 @@ namespace RacerMateOne  {
 			/// </summary>
 			/// <returns></returns>
 			public DLLError SetVelotron_trnr_Parameters() {
-		#if DEBUG
+#if DEBUG_LOG_ENABLED
 				Log.WriteLine("SetVelotron_trnr_Parameters()");
-		#endif
+#endif
 				if (Type != DeviceType.VELOTRON) {
 					return DLLError.WRONG_DEVICE;
 				}
@@ -2089,10 +2083,6 @@ namespace RacerMateOne  {
 			protected float m_IF;
 			protected float m_TSS;
 
-		#if DEBUG					// tlm2014
-			protected int bp = 0;
-		#endif
-
 			//==========================================================
 			// IStats interface
 			public bool Metric { get { return true; } }
@@ -2114,16 +2104,7 @@ namespace RacerMateOne  {
 
 			public float HeartRate {
 				get {
-		#if DEBUG
-					float f;
-					f = (float)Math.Round(m_TrainerData.HR);
-					if (f > 0.0f) {
-						bp = 3;
-					}
-					return f;
-		#else
 					return (float)Math.Round(m_TrainerData.HR);
-		#endif
 				}
 			}
 
@@ -2146,11 +2127,6 @@ namespace RacerMateOne  {
 
 			public int FrontGear {
 				get {
-		#if DEBUG
-					if (m_GearPair.Front == 56) {
-						bp = 9;
-					}
-		#endif
 					return m_GearPair.Front;
 				}
 			}	// Velotron only -1 if not valid
@@ -2317,10 +2293,6 @@ namespace RacerMateOne  {
 					return;
 				}
 
-#if DEBUG
-				
-#endif
-
 				m_IntervalCount++;
 				bool paused;
 				UpdateFlags uflags = ClearUpdateFlags(out paused);
@@ -2330,15 +2302,6 @@ namespace RacerMateOne  {
 
 				if (uflags != UpdateFlags.Zero) {
 					if ((uflags & UpdateFlags.Pause) != UpdateFlags.Zero && !paused) {
-#if DEBUG
-						if ( (uflags & UpdateFlags.Pause) != UpdateFlags.Zero) {
-							bp = 3;
-						}
-
-						if (paused) {
-							bp = 1;
-						}
-		#endif
 						DLL.setPause(PortName, paused);
 						m_CurPaused = paused;
 					}
@@ -2354,11 +2317,6 @@ namespace RacerMateOne  {
 						DLL.set_ftp(PortName, Ver, m_FTP);
 					}
 					if ((uflags & UpdateFlags.Pause) != UpdateFlags.Zero && paused) {
-#if DEBUG
-						if (paused) {
-							bp = 9;
-						}
-		#endif
 						int status = DLL.setPause(PortName, paused);
 						m_CurPaused = paused;
 					}
@@ -2416,21 +2374,20 @@ namespace RacerMateOne  {
 				}										// if (uflags != UpdateFlags.Zero)  {
 
 
-				int raw=0;
+				int raw = 0;
 
 
-					#if DEBUG
-						try {
-					#endif
-							//xxx
-							raw = (bFake ? FakeKeys : DLL.GetHandleBarButtons(PortName, VersionNum));
-					#if DEBUG
-						}
-						catch (Exception ex) {
-							MutexException(ex);
-							bp = 3;
-						}
-					#endif
+#if DEBUG
+				try {
+#endif
+					//xxx
+					raw = (bFake ? FakeKeys : DLL.GetHandleBarButtons(PortName, VersionNum));
+#if DEBUG
+				}
+				catch (Exception ex) {
+					MutexException(ex);
+				}
+#endif
 
 				if (AppWin.PreviewMode)
 					raw &= 0x7fffff80;
@@ -2600,62 +2557,47 @@ namespace RacerMateOne  {
 								m_TrainerData = DLL.GetTrainerData(PortName, Ver);
 								// speed is in kph = m_TrainerData.Speed
 
-		#if DEBUG
-								if (m_TrainerData.HR > 0.0f) {
-									bp = 1;
-								}
-		#endif
 								// Sanity checks on the trainer data.
-
 								if (m_TrainerData.Cadence >= c_WeirdCadence && m_TrainerData.Speed < c_WeirdCadenceSpeed) {
-		#if DEBUG
+#if DEBUG
 									m_TrainerData.Cadence = 77;
-		#else
+#else
 									m_TrainerData.Cadence = 0;
-		#endif
+#endif
 								}
 
 
 
 								m_SpinScanData = DLL.get_ss_data(PortName, Ver);
-								#if DEBUG
+#if DEBUG
 									try {
-								#endif
+#endif
 										//xxx
 										ip = DLL.get_bars(PortName, Ver);
 										if (ip != IntPtr.Zero) {
 											Marshal.Copy(ip, m_Bars, 0, 24);
 										}
-								#if DEBUG
+#if DEBUG
 									}
 									catch (Exception ex)  {
 										MutexException(ex);
 										bp = 3;
 									}
-								#endif
+#endif
 
-								#if DEBUG
+#if DEBUG
 								try {
-								#endif
-
+#endif
 								ip = DLL.get_average_bars(PortName, Ver);
 								if (ip != IntPtr.Zero) {
 									Marshal.Copy(ip, m_AverageBars, 0, 24);
 								}
 								else {
-#if DEBUG
-									bp = 4;
-#endif
 								}
-
-
 #if DEBUG
 								}
 								catch (Exception ex) {
 									MutexException(ex);
-#if DEBUG
-									bp = 3;
-#endif
 								}
 #endif
 
@@ -2674,12 +2616,6 @@ namespace RacerMateOne  {
 
 								if (Type == DeviceType.VELOTRON) {
 									m_GearPair = DLL.GetCurrentVTGear(PortName, Ver);
-		#if DEBUG
-									if (m_GearPair.Front == 56) {
-										bp = 5;
-									}
-		#endif
-
 								}
 							}												//	if (!m_CurCalibrationMode)   {
 							else {										// if (AppWin.PreviewMode)
@@ -2834,13 +2770,13 @@ namespace RacerMateOne  {
 				}
 				else {
 					t = GetRacerMateDeviceID(PortName);
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 					Log.WriteLine("RM1.cs, back from GetRacerMateDeviceID");
 					Debug.WriteLine("RM1.cs, back from GetRacerMateDeviceID");			// outputdebugstring
 #endif
 
 					if (t == DeviceType.COMPUTRAINER || t == DeviceType.VELOTRON) {
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 						Log.WriteLine("RM1.cs, found computrainer");
 						Debug.WriteLine("RM1.cs, found computrainer");
 #endif
@@ -2849,7 +2785,7 @@ namespace RacerMateOne  {
 					}
 					//Feb 5 2012 Paul Smeulders add
 					else {
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 						Log.WriteLine("RM1.cs, no trainer found");
 						Debug.WriteLine("RM1.cs, no trainer found");
 #endif
@@ -2939,27 +2875,27 @@ namespace RacerMateOne  {
 			 **********************************************************************************************************/
 
 			private static void ThreadLoop() {
-#if DEBUG
-				Log.WriteLine("RM1.cs, ThreadLoop() beginning");
+//#if DEBUG
+//				Log.WriteLine("RM1.cs, ThreadLoop() beginning");
 
-				Process proc = Process.GetCurrentProcess();
-				int pid = proc.Id;
-				Debug.WriteLine("RM1.cs   ThreadLoop pid = " + pid.ToString());
+//				Process proc = Process.GetCurrentProcess();
+//				int pid = proc.Id;
+//				Debug.WriteLine("RM1.cs   ThreadLoop pid = " + pid.ToString());
 
-				//long mem1 = GC.GetTotalMemory(true);
-				long startmem = proc.PrivateMemorySize64;
-				long mem;
-				mem = startmem;
+//				//long mem1 = GC.GetTotalMemory(true);
+//				long startmem = proc.PrivateMemorySize64;
+//				long mem;
+//				mem = startmem;
 
-				//Debug.WriteLine("RM1.cs   mem1 = " + mem1.ToString());
-				Debug.WriteLine("RM1.cs   mem = " + mem.ToString());
-#endif
+//				//Debug.WriteLine("RM1.cs   mem1 = " + mem1.ToString());
+//				Debug.WriteLine("RM1.cs   mem = " + mem.ToString());
+//#endif
 
-#if DEBUG
-					 //long cnt = -1;
-					 //long cnt2 = 0;
-					 long lastticks2 = DateTime.Now.Ticks;
-#endif
+//#if DEBUG
+//					 //long cnt = -1;
+//					 //long cnt2 = 0;
+//					 long lastticks2 = DateTime.Now.Ticks;
+//#endif
 
 				/*
 						long cnt2 = 0;
@@ -3092,24 +3028,13 @@ namespace RacerMateOne  {
 					catch (Exception ex)  {
 						MutexException(ex);
 						string s = ex.ToString();
-						#if DEBUG
-							//bp = 1;
-						#endif
 					}
 					ms_Mux.ReleaseMutex();
-
-					#if DEBUG
-						mem = proc.PrivateMemorySize64;
-						long diff = mem - startmem;
-						if (diff > 0) {
-							//bp = 2;
-						}
-					#endif
 				}																// for (; !ms_WaitEvent.WaitOne(new TimeSpan(wait)) && !ms_bShutdown; )  {
 
-		#if DEBUG
+#if DEBUG_LOG_ENABLED
 				Log.WriteLine("RM1.cs, ThreadLoop() ending");
-		#endif
+#endif
 
 				ms_Mux.WaitOne();
 
@@ -3122,9 +3047,9 @@ namespace RacerMateOne  {
 					MutexException(ex);
 				}
 				ms_Mux.ReleaseMutex();
-		#if DEBUG
+#if DEBUG_LOG_ENABLED
 				Log.WriteLine("RM1.cs, ThreadLoop() exit");
-		#endif
+#endif
 
 			}														// ThreadLoop()
 
@@ -3175,9 +3100,9 @@ namespace RacerMateOne  {
 			}
 
 			static Trainer() {
-		#if DEBUG
+#if DEBUG_LOG_ENABLED
 				Log.WriteLine("RM1.cs, Trainer(), starting ThreadLoop");
-		#endif
+#endif
 				TargetFPS = 30;
 				ms_Mux.WaitOne();
 				ms_Thread = new Thread(new ThreadStart(ThreadLoop));
@@ -3359,9 +3284,6 @@ namespace RacerMateOne  {
 					for (; i < MAX_FRONT_GEARS_SPACE; i++) {
 						m_Chainrings[i] = 0;
 					}
-#if DEBUG
-					bp = 7;
-#endif
 				}
 			}											// public int[] Chainrings
 
@@ -3428,7 +3350,7 @@ namespace RacerMateOne  {
 			}										// public object Clone()
 
 			public VelotronData() {
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 				Log.WriteLine("RM1.cs, VelotronData() constructor");
 #endif
 				ChainringsCount = 3;

@@ -187,12 +187,6 @@ namespace WPFMediaKit.Threading {
 
 			/* Execute all the delegates in the queue */
 
-#if DEBUG
-			int bp = 0;
-			int cnt1 = 0;
-			int cnt2 = 0;
-#endif
-
 			while(methods.Count > 0) {
 				//cnt1 = methods.Count;
 				var method = methods.Dequeue();				// decrements methods.Count
@@ -201,14 +195,10 @@ namespace WPFMediaKit.Threading {
 				try {
 					if (method != null) {
 						method.DynamicInvoke(null);
-						//bp = 2;
 					}
 				}
 				catch(Exception ex) {
-#if DEBUG
-					bp = 1;
-#endif
-					throw;
+					throw ex;
 				}
 			}
 		}

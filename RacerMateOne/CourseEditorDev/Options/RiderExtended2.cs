@@ -20,9 +20,6 @@ namespace RacerMateOne.CourseEditorDev.Options  {
 
 		private BitmapImage crank_bitmap_image = new BitmapImage(new Uri("../Images/L3.png", UriKind.Relative));
 		private BitmapImage cog_bitmap_image = new BitmapImage(new Uri("../Images/S10.png", UriKind.Relative));
-#if DEBUG
-		private int bp = 0;
-#endif
 
 		public ObservableCollection<GearData> _CogGear;
 		public ObservableCollection<GearData> _CrankGear;
@@ -55,11 +52,8 @@ namespace RacerMateOne.CourseEditorDev.Options  {
 			set {
 				ncogs = value;
 				OnPropertyChanged("CurrentCogset");
-#if DEBUG
-				String s = string.Format("../Images/S{0}.png", ncogs);				// 
-				bp = 1;
-#endif
-				CogGearSet = new BitmapImage(new Uri(string.Format("../Images/S{0}.png", ncogs), UriKind.Relative));
+
+                CogGearSet = new BitmapImage(new Uri(string.Format("../Images/S{0}.png", ncogs), UriKind.Relative));
 			}
 		}
 
@@ -76,10 +70,6 @@ namespace RacerMateOne.CourseEditorDev.Options  {
 				ncranks = value;
 				//OnPropertyChanged("CurrentCrank");
 				OnPropertyChanged("nCranks");
-#if DEBUG
-				String s = string.Format("../Images/L{0}.png", ncranks);				// ../Images/L2.png, etc
-				bp = 1;
-#endif
 				Crankset = new BitmapImage(new Uri(string.Format("../Images/L{0}.png", ncranks), UriKind.Relative));
 			}
 		}
@@ -133,15 +123,8 @@ namespace RacerMateOne.CourseEditorDev.Options  {
 
 			_CrankGear = new ObservableCollection<GearData>();
 
-#if DEBUG
-			int n = rider.GearingCrankset.Length;									// 3
-			bp = 1;
-#endif
-			for (int i=0; i<rider.GearingCrankset.Length; i++)  {
-#if DEBUG
-				n = GearingCrankset[i];													// 53, 39, 25
-				bp = 1;
-#endif
+			for (int i = 0; i < rider.GearingCrankset.Length; i++)
+			{
 				_CrankGear.Add(new GearData(GearingCrankset[i], true));
 			}
 
@@ -149,16 +132,8 @@ namespace RacerMateOne.CourseEditorDev.Options  {
 
 			_CogGear = new ObservableCollection<GearData>();
 
-#if DEBUG
-			n = rider.GearingCogset.Length;									// 10
-			bp = 3;
-#endif
-
-			for (int i = 0; i < rider.GearingCogset.Length; i++)   {
-#if DEBUG
-				n = GearingCogset[i];													// 26, ...
-				bp = i;
-#endif
+			for (int i = 0; i < rider.GearingCogset.Length; i++)
+			{
 				_CogGear.Add(new GearData(GearingCogset[i], true));
 			}
 
@@ -179,9 +154,6 @@ namespace RacerMateOne.CourseEditorDev.Options  {
 		private int selectedCrankset = 1;
 		private bool show;
 		private int teeth;
-#if DEBUG
-		private int bp = 0;
-#endif
 
 #region INotifyPropertyChanged Members
 		public event PropertyChangedEventHandler PropertyChanged;

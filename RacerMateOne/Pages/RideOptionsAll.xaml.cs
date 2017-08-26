@@ -210,10 +210,10 @@ namespace RacerMateOne.Pages
             Commit();
         }
 
-		public void Commit()  {
+        public void Commit()  {
 
-#if DEBUG
-			Debug.WriteLine("\nRideOptionsAll::Commit()");
+#if DEBUG_LOG_ENABLED
+            Debug.WriteLine("\nRideOptionsAll::Commit()");
 #endif
 
             t_dummy.Focus();
@@ -254,7 +254,7 @@ namespace RacerMateOne.Pages
 		public RideOptionsAll()
 		{
 
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 			Debug.WriteLine("RideOptionsAll.xaml.cs, RideOptionsAll() constructor");
 #endif
 			InitializeComponent();
@@ -1693,18 +1693,18 @@ namespace RacerMateOne.Pages
 				if (old) {
 					//RacerMateOne.CourseEditorDev.Options.SetGearTeeth1 p = new RacerMateOne.CourseEditorDev.Options.SetGearTeeth1(rider);
 					//RacerMateOne.Pages.Dialogs.SetGearTeeth1 p = new RacerMateOne.Pages.Dialogs.SetGearTeeth1(rider);
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 					Debug.WriteLine("RideOptionsAll.xaml.cs, creating SetGearTeeth1 dialog");
 #endif
 
 					RacerMateOne.Pages.Dialogs.SetGearTeeth1 p = new RacerMateOne.Pages.Dialogs.SetGearTeeth1(rider);
 
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 					Debug.WriteLine("RideOptionsAll.xaml.cs, back from creating SetGearTeeth1 dialog");
 					Debug.WriteLine("RideOptionsAll.xaml.cs, before Navigate()");
 #endif
 					AppWin.Instance.MainFrame.Navigate(p);
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 					Debug.WriteLine("RideOptionsAll.xaml.cs, after Navigate()");
 #endif
 				}

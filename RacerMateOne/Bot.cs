@@ -2332,7 +2332,9 @@ namespace RacerMateOne
 			UpdateNames();
 		}
 
+#if SAVE_IN_RAM
 		StatFlags m_neededFlags = StatFlags.Speed | StatFlags.Cadence | StatFlags.Grade | StatFlags.Watts_Load;
+#endif
 		Performance m_workPerformance = new Performance();
 		double m_Time = 0.0;
 		const double c_MinRange = ConvertConst.MPHToMetersPerSecond * -1;

@@ -1406,12 +1406,7 @@ namespace RacerMateOne
 				if (m_FrontGear != istats.FrontGear)  { 
 					chgear = true;  
 					m_FrontGear = istats.FrontGear;
-#if DEBUG
-					if (m_FrontGear == 56) {
-						//int bp = 88;
-						//bp = 0;
-					}
-#endif
+
 					f |= StatFlags.FrontGear;
 					OnPropertyChanged("FrontGear"); 
 				}

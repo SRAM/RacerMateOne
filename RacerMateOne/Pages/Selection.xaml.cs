@@ -227,7 +227,7 @@ namespace RacerMateOne.Pages
 		//=============================================================
 		private void Options_Click(object sender, RoutedEventArgs e)
 		{
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 			Debug.WriteLine("Selection.xaml.cs, Options_Click()");
 #endif
 

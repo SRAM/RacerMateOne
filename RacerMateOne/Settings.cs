@@ -29,12 +29,12 @@ namespace RacerMateOne
 
     public static class RM1_Settings  {
 		static RM1_Settings()  {
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 			Log.WriteLine("Settings.cs, RM1_Settings() constructor");
 #endif
 
 			RM1.OnTrainerInitialized += new RM1.TrainerInitialized( OnTrainerInitialized );
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 			Log.WriteLine("Settings.cs, RM1_Settings() constructor done");
 #endif
 		 }

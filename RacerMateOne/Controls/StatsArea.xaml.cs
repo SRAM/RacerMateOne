@@ -64,7 +64,7 @@ namespace RacerMateOne.Controls
 
 		public StatsArea() {
 
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 			Log.WriteLine("StatsArea.xaml.cs, StatsArea::StatsArea()");
 #endif
 

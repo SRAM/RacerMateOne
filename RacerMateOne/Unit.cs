@@ -1526,7 +1526,7 @@ namespace RacerMateOne
 		public static void UpdateTrainerData(bool clearserial)  {
 			foreach (Unit unit in Units)  {
 				if (unit.Trainer != null)  {
-#if DEBUG
+#if DEBUG_LOG_ENABLED
 					Log.WriteLine("Unit.cs, UpdateTrainerData()");
 #endif
 					unit.TC.RememberedDeviceType = unit.Trainer.TypeString == "Unknown" ?
