@@ -1985,9 +1985,9 @@ namespace RacerMateOne  {
 						Log.WriteLine(TypeString + " " + Version + " - Stopped");
 						IsStarted = false;
 						if (!bFake)
-							#if DEBUG
-								RM1.DLL.stopTrainer(PortName);
-							#endif
+						{
+							RM1.DLL.stopTrainer(PortName);
+						}
 						ms_StartedList.Remove(this);
 					}
 					catch (Exception ex) {
