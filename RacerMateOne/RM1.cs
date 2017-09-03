@@ -1,4 +1,6 @@
-﻿using System;
+#define NO_SERVER
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -71,10 +73,9 @@ namespace RacerMateOne  {
 
 		public static void Exit()
 		{
-			ms_bShutdownScanningThread = true;
+            ms_bShutdownScanningThread = true;
 			ms_BackgroundScanningThread.Join();
-
-			RM1.Trainer.Exit();
+            RM1.Trainer.Exit();
 		}
 
 
@@ -106,12 +107,17 @@ namespace RacerMateOne  {
 			int status = 0;
 			int debug_level = 2;
 
-			try { 
-			status = DLL.start_server(
-							RM1_Settings.General.WifiListenPort,        // int listen_port
-							RM1_Settings.General.WifiBroadcastPort,     // int broadcast_port
-							RM1_Settings.General.WifiOverrideIPAddress, // override ip adress
-							debug_level);
+			try {
+#if NO_SERVER
+				status = 100;						// don't start net server, return "disabled"
+#else
+
+            status = DLL.start_server(
+               RM1_Settings.General.WifiListenPort,        // int listen_port
+               RM1_Settings.General.WifiBroadcastPort,     // int broadcast_port
+               RM1_Settings.General.WifiOverrideIPAddress, // override ip adress
+               debug_level);
+#endif
 			}
 			catch (Exception e) {
 				Log.WriteLine(e.ToString());
@@ -134,6 +140,9 @@ namespace RacerMateOne  {
 				case 2:
 					// can't compute broadcast address
 					Log.WriteLine("Server started, but an error occurred while computing the broadcast address, so wireless controllers will not work.");
+					break;
+				case 100:
+					Log.WriteLine("Server is disabled in source.");
 					break;
 				default:
                     // unknown error
@@ -662,7 +671,7 @@ namespace RacerMateOne  {
 			}
 			catch (Exception e) {
 				s = null;
-		#if DEBUG
+#if DEBUG
 				string s2 = e.ToString();
 				s2 += "\n\ncwd = ";
 				s2 += Directory.GetCurrentDirectory();
@@ -670,9 +679,9 @@ namespace RacerMateOne  {
 				s2 += e.ToString();
 				Log.WriteLine(s2);
 				System.Console.WriteLine("'{0}'\n", s2);
-		#else
+#else
 				Log.WriteLine(e.ToString());
-		#endif
+#endif
 			}
 			return s;
 		}                       // GetPortNames()
@@ -1997,7 +2006,7 @@ namespace RacerMateOne  {
 				}
 			}										// Stop()
 
-		#pragma warning disable 649
+#pragma warning disable 649
 			static int temp_int = 0;
 			static IntPtr ms_ip_chainrings = Marshal.AllocHGlobal(Marshal.SizeOf(temp_int) * 32);
 			static IntPtr ms_ip_cogset = Marshal.AllocHGlobal(Marshal.SizeOf(temp_int) * 32);
@@ -2900,8 +2909,8 @@ namespace RacerMateOne  {
 				/*
 						long cnt2 = 0;
 						long tot = 0L;
-					#endif
-				*/
+#endif
+            */
 
 				App.SetDefaultCulture();
 

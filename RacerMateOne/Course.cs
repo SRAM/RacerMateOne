@@ -613,6 +613,11 @@ namespace RacerMateOne
 		public String RegisteredError;
 		public bool Registered(Course course)
 		{
+			//nca+++ 3Sep17
+			// cracked version, RCVs don't need to be registered
+			return true;
+			//nca---
+
 			// Find the INI file
 			bool reg = false;
 			RegisteredError = null;

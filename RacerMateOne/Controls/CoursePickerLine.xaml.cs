@@ -73,6 +73,13 @@ namespace RacerMateOne.Controls
 			Course oc = m_Course.OriginalCourse == null ? m_Course : m_Course.OriginalCourse;
 			Unregistered.Visibility = ((oc.Type & CourseType.Video) != CourseType.Zero) && !oc.Registered && UseRegistration ? Visibility.Visible:Visibility.Collapsed;			
 
+
+			//nca+++ 3Sep17: never show RCV needs registration msg
+			//Unregistered.Visibility = ((oc.Type & CourseType.Video) != CourseType.Zero) && !oc.Registered && UseRegistration ? Visibility.Visible:Visibility.Collapsed;
+			Unregistered.Visibility = Visibility.Collapsed;
+			//nca---
+
+
 			Laps.Text = m_Course.StringLaps;
 			//Length.Text = m_Course.StringLength;
             Length.Text = m_Course.DisplayedLengthText();

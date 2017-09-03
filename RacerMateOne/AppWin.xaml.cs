@@ -967,6 +967,8 @@ namespace RacerMateOne  {
         /// </summary>
         /// <returns></returns>
         public static bool IsRegistered()  {
+
+			  //nca: Peter Lohrmann near 2Sep17: cracked version, don't require RM1 registration
             return true;
 
 //#if DEBUG
