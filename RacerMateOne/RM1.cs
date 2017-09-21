@@ -1,4 +1,4 @@
-#define NO_SERVER
+﻿#define NO_SERVER
 
 using System;
 using System.Collections.Generic;
@@ -1639,11 +1639,13 @@ namespace RacerMateOne  {
 											m_VelotronData.FrontGear,
 											m_VelotronData.RearGear
 											);
-						}
 
-						SetVelotronGears();
-					}
-					SetUpdateFlags(UpdateFlags.Drag);
+				    		SetVelotronGears();         //nca: moved inside isNewRider to fix reset on starting gun?
+
+                        }
+
+                    }
+                    SetUpdateFlags(UpdateFlags.Drag);
 				}
 			}													// public Rider Rider
 
@@ -2574,7 +2576,6 @@ namespace RacerMateOne  {
 									m_TrainerData.Cadence = 0;
 #endif
 								}
-
 
 
 								m_SpinScanData = DLL.get_ss_data(PortName, Ver);
