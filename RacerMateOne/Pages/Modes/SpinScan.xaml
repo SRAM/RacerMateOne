@@ -36,12 +36,12 @@
 				<StackPanel Name="d_BarMaxForceBox" Orientation="Horizontal" Margin="40,304,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
 					<Label Style="{DynamicResource GraphLabel}"  Margin="0,0,5,0" FontSize="16" >Max Force</Label>
 					<Label Name="d_BarMaxForce" Style="{DynamicResource GraphLabel}"  Margin="0,0,5,0" FontSize="16" >--</Label>
-					<Label Name="l_BarMaxForce" Style="{DynamicResource GraphLabel}"  FontSize="16" >ft/lbs</Label>
+					<Label Name="l_BarMaxForce" Style="{DynamicResource GraphLabel}"  FontSize="16" >lbs</Label>
 				</StackPanel>
 				<StackPanel Name="d_MaxForceBox" Orientation="Horizontal" Margin="40,356,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
 					<Label Style="{DynamicResource GraphLabel}"  Margin="0,0,5,0" FontSize="16" >Max Force</Label>
 					<Label Name="d_MaxForce" Style="{DynamicResource GraphLabel}"  Margin="0,0,5,0" FontSize="16" >--</Label>
-					<Label Name="l_MaxForce" Style="{DynamicResource GraphLabel}"  FontSize="16" >ft/lbs</Label>
+					<Label Name="l_MaxForce" Style="{DynamicResource GraphLabel}"  FontSize="16" >lbs</Label>
 				</StackPanel>
 
 				<c:PolarSpinScan x:Name="d_SpinScan" Margin="80,30,0,0" HorizontalAlignment="Left" Width="352" Height="352" VerticalAlignment="Top" />
