@@ -59,5 +59,5 @@ using System.Windows;
 //nca+++ changed to add patch level.
 //[assembly: AssemblyVersion("4.1.0")]
 //[assembly: AssemblyFileVersion("4.1.0")]
-[assembly: AssemblyVersion("4.1.0.2")]
-[assembly: AssemblyFileVersion("4.1.0.2")]
+[assembly: AssemblyVersion("4.1.0.3")]
+[assembly: AssemblyFileVersion("4.1.0.3")]
