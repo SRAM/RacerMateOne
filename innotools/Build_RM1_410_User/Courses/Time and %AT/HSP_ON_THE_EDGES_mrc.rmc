@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:06 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from HSP_ON_THE_EDGES.mrc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="HSP_ON_THE_EDGES_mrc" Description="HSP ON THE EDGES MRC" FileName="HSP_ON_THE_EDGES_mrc.rmc" Type="Watts" Looped="False" Length="95.0" Laps="1" StartAt="0" EndAt="5700" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="PercentAT" OriginalHash="D1180C9AEDB4602444BA502DAE238576" CourseHash="1A48CEE9FB134AA70E00B88FD24B9A14" HeaderHash="D1180C9AEDB4602444BA502DAE238576"/>
+		<Segments Count="11">
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>15</Minutes>
+				<StartAt>85</StartAt>
+				<EndAt>85</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>15</Minutes>
+				<StartAt>85</StartAt>
+				<EndAt>85</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>95</StartAt>
+				<EndAt>95</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>85</StartAt>
+				<EndAt>85</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>95</StartAt>
+				<EndAt>95</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>65</StartAt>
+				<EndAt>65</EndAt>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

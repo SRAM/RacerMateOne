@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:09 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from Full_Ramp_100_20.erg</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="Full_Ramp_100_20_erg" Description="FULL RAMP TEST" FileName="Full_Ramp_100_20_erg.rmc" Type="Watts" Looped="False" Length="30.0" Laps="1" StartAt="0" EndAt="1800" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="Watts" OriginalHash="D6079548BA9F6CC1C2234CEAEC1399D1" CourseHash="3A7ABE29BC742E3C0ACFDEE9C15D81B7" HeaderHash="D6079548BA9F6CC1C2234CEAEC1399D1"/>
+		<Segments Count="1">
+			<Val>
+				<Minutes>30</Minutes>
+				<StartWatts>100</StartWatts>
+				<EndWatts>700</EndWatts>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

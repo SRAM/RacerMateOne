@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet type='text/xsl' href='..\ReportTemplates\RM1_Settings.xsl'?>
+<!--RacerMate One Settings-->
+<Settings VersionMajor="1" VersionMinor="0">
+  <FirstRun>0</FirstRun>
+  <Trainers>
+    <Trainer Index="1" PreviouslyDiscovered="0" DeviceType="Unknown" Active="false">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey>
+    </Trainer>
+    <Trainer Index="2" PreviouslyDiscovered="0" DeviceType="Unknown" Active="false">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey>
+    </Trainer>
+    <Trainer Index="3" PreviouslyDiscovered="0" DeviceType="Unknown" Active="false">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey>
+    </Trainer>
+    <Trainer Index="4" PreviouslyDiscovered="0" DeviceType="Unknown" Active="false">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey>
+    </Trainer>
+    <Trainer Index="5" PreviouslyDiscovered="0" DeviceType="Unknown" Active="false">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey>
+    </Trainer>
+    <Trainer Index="6" PreviouslyDiscovered="0" DeviceType="Unknown" Active="false">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey>
+    </Trainer>
+    <Trainer Index="7" PreviouslyDiscovered="0" DeviceType="Unknown" Active="false">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey>
+    </Trainer>
+    <Trainer Index="8" PreviouslyDiscovered="0" DeviceType="Unknown" Active="false">
+      <VelotronChainring>62</VelotronChainring>
+      <PreviousRiderKey>00000000-0000-0000-0000-000000000000</PreviousRiderKey>
+    </Trainer>
+  </Trainers>
+  <System>
+    <ModeRCV DisplayString="Real Course Video Ride" />
+    <ModeErgVideo DisplayString="ErgVideo Ride" />
+    <ModeGroupRacing DisplayString="Group Racing" />
+    <ModeWattTesting DisplayString="Watt Testing" />
+    <ModeSpinScanTraining DisplayString="SpinScan Training" />
+    <ModePreviousPerformance DisplayString="Previous Performance" />
+  </System>
+  <ReportColumns>
+    <Selected Key="Display3D" GUID="334D280F-1114-4050-AC0D-47CC3513A654" />
+    <Selected Key="DisplayRCV" GUID="5B1FC59E-E9EC-425d-8FBF-456500D5FB17" />
+    <Selected Key="DisplaySpinScan" GUID="B1411A60-2C80-4ed6-B4D8-9BBED9A4A3E1" />
+  </ReportColumns>
+  <RiderGroups Current="Default">
+    <Group Name="Default" GUID="Default" />
+  </RiderGroups>
+  <Commercial>false</Commercial>
+  <Metric>false</Metric>
+  <Paths>
+    <RCV>C:\Real Course Video</RCV>
+  </Paths>
+  <Ask Calibration="true" />
+  <ManualControl SpinScan="false" PowerTraining="false" />
+  <WattsStep Initial="100">50</WattsStep>
+  <PercentATStep Initial="50">1</PercentATStep>
+  <GradeStep SpinScan="1" SpinScanInitial="0" PowerTraining="1" PowerTrainingInitial="0" />
+  <Idle Grade="0" Watts="100" PercentAT="50" />
+  <SelectWatts>false</SelectWatts>
+  <DemoDevice>false</DemoDevice>
+  <SelectedRiderKey>47b5ef7c-7fa2-485b-b1a1-2114d24b1834</SelectedRiderKey>
+  <AllowDrafting>true</AllowDrafting>
+  <ShowKeypadPresses>false</ShowKeypadPresses>
+  <TrainingRider>1</TrainingRider>
+  <Scenery>atlanta.zip</Scenery>
+  <Graph>
+    <Speed Min="0" Max="40" />
+    <Power Min="0" Max="500" />
+    <RPM Min="0" Max="200" />
+    <RPMTarget>90</RPMTarget>
+    <HR Min="0" Max="220" />
+    <PulsePower Min="0" Max="2000" />
+    <SpinScanPercent Min="0" Max="100" />
+    <PowerSplit Min="0" Max="1000" />
+    <ATA Min="0" Max="180" />
+  </Graph>
+  <PerformanceSavePrompt>false</PerformanceSavePrompt>
+  <Export Launch="false" LaunchPrompt="false" Save="false" Prompt="true" Delimiter="," Rate="1"></Export>
+  <PWXExport Save="false" Prompt="true" DefaultLocation="true"></PWXExport>
+  <Reports Save="true" Prompt="true" />
+  <SelectedCourse>
+    <CourseInfo Key="@3D" FileName="C:\Users\testers\Documents\RacerMate\Courses\Distance and Grade\Ironmans Longest Day_3dc.rmc" Type="ThreeD" StartAt="0" EndAt="361868.5625" Mirror="false" Reverse="false" Laps="10" CourseHash="8595EE7315CF2E8EF29D616AF4FD525C" HeaderHash="182B2A393C1112F7B1492E3D1C7036D7" />
+    <CourseInfo Key="@SpinScan" FileName="C:\Users\testers\Documents\RacerMate\Courses\Distance and Grade\10M TT_3dc.rmc" Type="ThreeD" StartAt="0" EndAt="16101.71875" Mirror="false" Reverse="false" Laps="1" CourseHash="AA1E139D09C5FCD0FE08B35AF2CFE846" HeaderHash="F30CD6ECE9B03DBD4702BFD159C84AD3" />
+  </SelectedCourse>
+  <CourseFilters>
+    <Filter Key="@3D" Selected="dist.grade" />
+    <Filter Key="@SpinScan" Selected="dist.grade" />
+  </CourseFilters>
+  <ActiveUnits>
+    <Mode Key="@3D" Units="Unit1" />
+    <Mode Key="@SpinScan" Units="Unit1" />
+  </ActiveUnits>
+  <VideoHashes>
+    <File Name="C:\Real Course Video\CDAmini\CDAmini.avi" CourseHash="10A1BA5F4D12EEBB236C7A827C2402EF" HeaderHash="2A306911414AD9F30B27235D101D9FAE" FileSize="14723072" FileDate="2012-01-26T11:00:32-08:00" AVISize="14723072" AVIDate="2012-01-26T11:00:32-08:00" />
+  </VideoHashes>
+  <Favorites />
+</Settings>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>6/28/2011 6:26:44 PM</Date>
+		<Version>1.02</Version>
+		<Copyright>(c) 2011, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from Long Climbs.crs</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="Long Climbs_crs" Description="Long Climbs" FileName="Long Climbs_crs.rmc" Type="Distance" Looped="False" Length="3.1" Laps="1" StartAt="0" EndAt="4988.9664" Mirror="False" Reverse="False" Modified="False" XUnits="Distance" YUnits="Grade" OriginalHash="DBA9BDBA696A700E2BCA49AFD5895BD4" CourseHash="C3F982943595594EE3DD6CB15C6593C8" HeaderHash="DBA9BDBA696A700E2BCA49AFD5895BD4"/>
+		<DistanceType Count="2">
+			<Val>
+				<Length>160.9344</Length>
+				<Grade>0</Grade>
+				<Wind>0</Wind>
+			</Val>
+			<Val>
+				<Length>4828.032</Length>
+				<Grade>0.06</Grade>
+				<Wind>0</Wind>
+			</Val>
+		</DistanceType>
+	</Course>
+</RMX>

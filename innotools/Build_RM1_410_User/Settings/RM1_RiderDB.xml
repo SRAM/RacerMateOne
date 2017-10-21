@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet type='text/xsl' href='..\RacerMate\ReportTemplates\RM1_RiderDB.xsl'?>
+<!--RaceMate One Rider Database-->
+<Riders VersionMajor="1" VersionMinor="0">
+  <Rider DatabaseKey="11111111-1111-1111-1111-111111111111">
+    <Created>4/12/2016 8:24:26 AM</Created>
+    <Modified>4/12/2016 8:24:26 AM</Modified>
+    <FirstName>Sam</FirstName>
+    <LastName>Adams</LastName>
+    <NickName>BarleyHops</NickName>
+    <Gender>M</Gender>
+    <Age>0</Age>
+    <HRAeT>160</HRAeT>
+    <HRMax>170</HRMax>
+    <HRMin>60</HRMin>
+    <AlarmMinZone>Off</AlarmMinZone>
+    <AlarmMaxZone>Off</AlarmMaxZone>
+    <PowerAeT>200</PowerAeT>
+    <PowerFTP>210</PowerFTP>
+    <Metric>False</Metric>
+    <WeightBike>20</WeightBike>
+    <WeightRider>160</WeightRider>
+    <Height>1.778</Height>
+    <DragFactor>100</DragFactor>
+    <RiderType>Road</RiderType>
+    <Colors Skin="#FFFFBD83" Hair="#FF996600" Helmet="#FF000000" Shoes="#FFCCCCCC" Clothing1="#FFFF0000" Clothing2="#FF010147" BikeColor1="#FFFFFFFF" BikeColor2="#FF343A52" />
+    <GearingCrankset>
+      <G1>53</G1>
+      <G2>39</G2>
+    </GearingCrankset>
+    <GearingCogset>
+      <G1>26</G1>
+      <G2>23</G2>
+      <G3>21</G3>
+      <G4>19</G4>
+      <G5>17</G5>
+      <G6>16</G6>
+      <G7>14</G7>
+      <G8>13</G8>
+      <G9>12</G9>
+      <G10>11</G10>
+    </GearingCogset>
+    <WheelDiameter>27</WheelDiameter>
+  </Rider>
+</Riders>

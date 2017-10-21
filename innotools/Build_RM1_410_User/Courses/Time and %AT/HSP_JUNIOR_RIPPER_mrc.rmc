@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:06 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from HSP_JUNIOR_RIPPER.mrc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="HSP_JUNIOR_RIPPER_mrc" Description="HSP JUNIOR RIPPER MRC" FileName="HSP_JUNIOR_RIPPER_mrc.rmc" Type="Watts" Looped="False" Length="45.0" Laps="1" StartAt="0" EndAt="2700" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="PercentAT" OriginalHash="50DC7A1C6E4AEE99BD4A5D344324E3C9" CourseHash="7205C4579CC3434B7CE43FD848C16434" HeaderHash="50DC7A1C6E4AEE99BD4A5D344324E3C9"/>
+		<Segments Count="6">
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>73</StartAt>
+				<EndAt>73</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>85</StartAt>
+				<EndAt>85</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>73</StartAt>
+				<EndAt>73</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>100</StartAt>
+				<EndAt>100</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>85</StartAt>
+				<EndAt>85</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

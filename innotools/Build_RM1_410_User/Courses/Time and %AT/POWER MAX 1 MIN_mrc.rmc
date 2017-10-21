@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:07 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from POWER MAX 1 MIN.mrc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="POWER MAX 1 MIN_mrc" Description="POWER MAX 1 MIN MRC" FileName="POWER MAX 1 MIN_mrc.rmc" Type="Watts" Looped="False" Length="5.0" Laps="1" StartAt="0" EndAt="300" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="PercentAT" OriginalHash="4A68ACD8482C1AF0BA6A073A75666358" CourseHash="EAD6315E577AC0203A18831A9AF64878" HeaderHash="4A68ACD8482C1AF0BA6A073A75666358"/>
+		<Segments Count="2">
+			<Val>
+				<Minutes>1</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>200</EndAt>
+			</Val>
+			<Val>
+				<Minutes>4</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

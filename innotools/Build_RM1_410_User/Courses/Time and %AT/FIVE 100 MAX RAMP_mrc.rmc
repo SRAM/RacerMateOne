@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:05 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from FIVE 100 MAX RAMP.mrc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="FIVE 100 MAX RAMP_mrc" Description="FIVE 100 MAX RAMP MRC" FileName="FIVE 100 MAX RAMP_mrc.rmc" Type="Watts" Looped="False" Length="45.0" Laps="1" StartAt="0" EndAt="2700" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="PercentAT" OriginalHash="E2B6643F821BA93FD87E76872A0E77F9" CourseHash="E760B72AED8CDEC95CAF940BBC9752FA" HeaderHash="E2B6643F821BA93FD87E76872A0E77F9"/>
+		<Segments Count="15">
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>60</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>100</StartAt>
+				<EndAt>100</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>60</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>100</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>100</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>100</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>100</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>100</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>100</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>100</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>100</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>100</EndAt>
+			</Val>
+			<Val>
+				<Minutes>2</Minutes>
+				<StartAt>100</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>6</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>60</EndAt>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

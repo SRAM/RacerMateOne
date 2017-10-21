@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>6/28/2011 6:26:55 PM</Date>
+		<Version>1.02</Version>
+		<Copyright>(c) 2011, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from Power Repeats.crs</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="Power Repeats_crs" Description="Power Repeats" FileName="Power Repeats_crs.rmc" Type="Distance" Looped="False" Length="3.0" Laps="1" StartAt="0" EndAt="4828.032" Mirror="False" Reverse="False" Modified="False" XUnits="Distance" YUnits="Grade" OriginalHash="807B88428DB51910C0D080668DDD64C5" CourseHash="20F2A307A28F4BDE764B73C6866410D9" HeaderHash="807B88428DB51910C0D080668DDD64C5"/>
+		<DistanceType Count="12">
+			<Val>
+				<Length>643.7376</Length>
+				<Grade>-0.05</Grade>
+				<Wind>0</Wind>
+			</Val>
+			<Val>
+				<Length>160.9344</Length>
+				<Grade>0.02</Grade>
+				<Wind>0</Wind>
+			</Val>
+			<Val>
+				<Length>643.7376</Length>
+				<Grade>-0.05</Grade>
+				<Wind>0</Wind>
+			</Val>
+			<Val>
+				<Length>160.9344</Length>
+				<Grade>0.02</Grade>
+				<Wind>0</Wind>
+			</Val>
+			<Val>
+				<Length>643.7376</Length>
+				<Grade>-0.05</Grade>
+				<Wind>0</Wind>
+			</Val>
+			<Val>
+				<Length>160.9344</Length>
+				<Grade>0.02</Grade>
+				<Wind>0</Wind>
+			</Val>
+			<Val>
+				<Length>643.7376</Length>
+				<Grade>-0.05</Grade>
+				<Wind>0</Wind>
+			</Val>
+			<Val>
+				<Length>160.9344</Length>
+				<Grade>0.02</Grade>
+				<Wind>0</Wind>
+			</Val>
+			<Val>
+				<Length>643.7376</Length>
+				<Grade>-0.05</Grade>
+				<Wind>0</Wind>
+			</Val>
+			<Val>
+				<Length>160.9344</Length>
+				<Grade>0.02</Grade>
+				<Wind>0</Wind>
+			</Val>
+			<Val>
+				<Length>643.7376</Length>
+				<Grade>-0.05</Grade>
+				<Wind>0</Wind>
+			</Val>
+			<Val>
+				<Length>160.9344</Length>
+				<Grade>0.02</Grade>
+				<Wind>0</Wind>
+			</Val>
+		</DistanceType>
+	</Course>
+</RMX>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:05 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from 5MinuteTestCourse.mrc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="5MinuteTestCourse_mrc" Description="Test Course" FileName="5MinuteTestCourse_mrc.rmc" Type="Watts" Looped="False" Length="5.0" Laps="1" StartAt="0" EndAt="300" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="PercentAT" OriginalHash="62800CF5497F643F88998654B54F38DA" CourseHash="5170D7840AF7FBBDE939B76F72F137C9" HeaderHash="62800CF5497F643F88998654B54F38DA"/>
+		<Segments Count="5">
+			<Val>
+				<Minutes>1</Minutes>
+				<StartAt>50</StartAt>
+				<EndAt>50</EndAt>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartAt>90</StartAt>
+				<EndAt>90</EndAt>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartAt>50</StartAt>
+				<EndAt>50</EndAt>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>6/28/2011 6:26:49 PM</Date>
+		<Version>1.02</Version>
+		<Copyright>(c) 2011, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from Motorpaced Tempo.crs</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="Motorpaced Tempo_crs" Description="Motorpaced Tempo" FileName="Motorpaced Tempo_crs.rmc" Type="Distance" Looped="False" Length="9.0" Laps="1" StartAt="0" EndAt="14484.096" Mirror="False" Reverse="False" Modified="False" XUnits="Distance" YUnits="Grade" OriginalHash="27A9A7427C3CED73DED1CED61F531E16" CourseHash="A1901400F42986036D4DD19F8381E395" HeaderHash="27A9A7427C3CED73DED1CED61F531E16"/>
+		<DistanceType Count="1">
+			<Val>
+				<Length>14484.096</Length>
+				<Grade>0</Grade>
+				<Wind>0</Wind>
+			</Val>
+		</DistanceType>
+	</Course>
+</RMX>

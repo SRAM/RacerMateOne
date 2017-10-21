@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:11 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from Seven_Minute_Step_Ramp.erg</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="Seven_Minute_Step_Ramp_erg" Description="7 MINUTE STEP RAMP" FileName="Seven_Minute_Step_Ramp_erg.rmc" Type="Watts" Looped="False" Length="7.0" Laps="1" StartAt="0" EndAt="420" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="Watts" OriginalHash="D63F55F02C23F993244D0E24467BC902" CourseHash="5BC42D12EF6AC773031A94CE9AB2A1E1" HeaderHash="D63F55F02C23F993244D0E24467BC902"/>
+		<Segments Count="4">
+			<Val>
+				<Minutes>1</Minutes>
+				<StartWatts>300</StartWatts>
+				<EndWatts>300</EndWatts>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartWatts>400</StartWatts>
+				<EndWatts>400</EndWatts>
+			</Val>
+			<Val>
+				<Minutes>1</Minutes>
+				<StartWatts>500</StartWatts>
+				<EndWatts>500</EndWatts>
+			</Val>
+			<Val>
+				<Minutes>4</Minutes>
+				<StartWatts>400</StartWatts>
+				<EndWatts>0</EndWatts>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>6/28/2011 6:26:49 PM</Date>
+		<Version>1.02</Version>
+		<Copyright>(c) 2011, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from Motorpaced Sprints.crs</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="Motorpaced Sprints_crs" Description="Motorpaced Sprints" FileName="Motorpaced Sprints_crs.rmc" Type="Distance" Looped="False" Length="3.0" Laps="1" StartAt="0" EndAt="4828.032" Mirror="False" Reverse="False" Modified="False" XUnits="Distance" YUnits="Grade" OriginalHash="08E9FBAB13FBC76C293CB8D80A87DE32" CourseHash="2029E22D9C68CA1744912D7ED2822F66" HeaderHash="08E9FBAB13FBC76C293CB8D80A87DE32"/>
+		<DistanceType Count="1">
+			<Val>
+				<Length>4828.032</Length>
+				<Grade>0</Grade>
+				<Wind>0</Wind>
+			</Val>
+		</DistanceType>
+	</Course>
+</RMX>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:08 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from TH_SPECIAL.mrc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="TH_SPECIAL_mrc" Description="TH SPECIAL MRC" FileName="TH_SPECIAL_mrc.rmc" Type="Watts" Looped="False" Length="78.0" Laps="1" StartAt="0" EndAt="4680" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="PercentAT" OriginalHash="2BE9D89655FF011BD28DA496A57B1F8E" CourseHash="1E60E48E3D6E3CDACCF9233ADBEAB8DF" HeaderHash="2BE9D89655FF011BD28DA496A57B1F8E"/>
+		<Segments Count="8">
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+			<Val>
+				<Minutes>12</Minutes>
+				<StartAt>95</StartAt>
+				<EndAt>95</EndAt>
+			</Val>
+			<Val>
+				<Minutes>6</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+			<Val>
+				<Minutes>12</Minutes>
+				<StartAt>100</StartAt>
+				<EndAt>100</EndAt>
+			</Val>
+			<Val>
+				<Minutes>6</Minutes>
+				<StartAt>0</StartAt>
+				<EndAt>0</EndAt>
+			</Val>
+			<Val>
+				<Minutes>12</Minutes>
+				<StartAt>105</StartAt>
+				<EndAt>105</EndAt>
+			</Val>
+			<Val>
+				<Minutes>15</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>65</StartAt>
+				<EndAt>65</EndAt>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

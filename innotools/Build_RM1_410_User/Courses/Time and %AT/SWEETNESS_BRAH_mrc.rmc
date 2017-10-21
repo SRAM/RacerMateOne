@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:08 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from SWEETNESS_BRAH.mrc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="SWEETNESS_BRAH_mrc" Description="SWEETNESS BRAH MRC" FileName="SWEETNESS_BRAH_mrc.rmc" Type="Watts" Looped="False" Length="65.0" Laps="1" StartAt="0" EndAt="3900" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="PercentAT" OriginalHash="E8A481245B51DF0A2CC27093E6705652" CourseHash="DA838B06FE634A4C4F922B95D345ABBE" HeaderHash="E8A481245B51DF0A2CC27093E6705652"/>
+		<Segments Count="11">
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>80</StartAt>
+				<EndAt>80</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>85</StartAt>
+				<EndAt>85</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>90</StartAt>
+				<EndAt>90</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>85</StartAt>
+				<EndAt>85</EndAt>
+			</Val>
+			<Val>
+				<Minutes>7</Minutes>
+				<StartAt>90</StartAt>
+				<EndAt>90</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>110</StartAt>
+				<EndAt>110</EndAt>
+			</Val>
+			<Val>
+				<Minutes>7</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>

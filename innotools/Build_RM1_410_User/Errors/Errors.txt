@@ -1,0 +1,1 @@
+Errors files are sent here if the system crashes.

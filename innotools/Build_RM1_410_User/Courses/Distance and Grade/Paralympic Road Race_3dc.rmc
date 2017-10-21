@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>6/28/2011 6:26:55 PM</Date>
+		<Version>1.02</Version>
+		<Copyright>(c) 2011, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from Paralympic Road Race.3dc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="Paralympic Road Race_3dc" Description="" FileName="Paralympic Road Race_3dc.rmc" Type="ThreeD" Looped="False" Length="5.0" Laps="1" StartAt="0" EndAt="8050.70010375977" Mirror="False" Reverse="False" Modified="False" XUnits="Distance" YUnits="Grade" OriginalHash="7E698927B9C2890EC4212C02DE7F5AF4" CourseHash="191164F00441781B0C6895F18627E6BD" HeaderHash="7E698927B9C2890EC4212C02DE7F5AF4"/>
+		<ThreeDType Count="17">
+			<Val Smooth="true">
+				<Divisions>48</Divisions>
+				<Length>482.802001953125</Length>
+				<Grade>-0.033</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.528882</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>48</Divisions>
+				<Length>482.802001953125</Length>
+				<Grade>0.023</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.268089</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>48</Divisions>
+				<Length>482.802001953125</Length>
+				<Grade>-0.015</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.695046</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>80</Divisions>
+				<Length>804.669982910156</Length>
+				<Grade>0.017</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.094489</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>32</Divisions>
+				<Length>321.868011474609</Length>
+				<Grade>-0.01</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2932187</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>48</Divisions>
+				<Length>482.802001953125</Length>
+				<Grade>0</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3236086</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>32</Divisions>
+				<Length>321.868011474609</Length>
+				<Grade>-0.038</Grade>
+				<Wind>0</Wind>
+				<Rotation>-0.2126746</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>32</Divisions>
+				<Length>321.868011474609</Length>
+				<Grade>0.112</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.7366197</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>32</Divisions>
+				<Length>321.868011474609</Length>
+				<Grade>-0.01</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.04126</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>54</Divisions>
+				<Length>321.868011474609</Length>
+				<Grade>0.06</Grade>
+				<Wind>0</Wind>
+				<Rotation>1.956425</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>48</Divisions>
+				<Length>482.802001953125</Length>
+				<Grade>0</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.006218307</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>96</Divisions>
+				<Length>965.60400390625</Length>
+				<Grade>-0.016</Grade>
+				<Wind>0</Wind>
+				<Rotation>0.3063003</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>66</Divisions>
+				<Length>482.802001953125</Length>
+				<Grade>-0.031</Grade>
+				<Wind>0</Wind>
+				<Rotation>-2.382984</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>60</Divisions>
+				<Length>482.802001953125</Length>
+				<Grade>0.044</Grade>
+				<Wind>0</Wind>
+				<Rotation>2.152847</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>64</Divisions>
+				<Length>643.736022949219</Length>
+				<Grade>-0.058</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.127301</Rotation>
+			</Val>
+			<Val Smooth="true">
+				<Divisions>64</Divisions>
+				<Length>643.736022949219</Length>
+				<Grade>0</Grade>
+				<Wind>0</Wind>
+				<Rotation>-1.529873</Rotation>
+			</Val>
+			<Val>
+				<Length>4</Length>
+				<Grade>0</Grade>
+				<Wind>0</Wind>
+				<Rotation>0</Rotation>
+			</Val>
+		</ThreeDType>
+	</Course>
+</RMX>

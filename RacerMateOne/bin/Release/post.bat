@@ -6,7 +6,7 @@
 @copy ..\..\racermate.dll
 ::nca---
 
-@copy ..\..\console.exe
+::@copy ..\..\console.exe
 
 
 ::@copy RacerMateOne.exe "C:\Program Files (x86)\RacerMate Inc\RacerMateOne"

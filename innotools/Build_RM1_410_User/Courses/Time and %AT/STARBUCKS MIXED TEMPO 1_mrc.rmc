@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RMX>
+	<Header>
+		<CreatorExe>RacerMateOne</CreatorExe>
+		<Date>4/7/2011 12:55:07 PM</Date>
+		<Version>1.01</Version>
+		<Copyright>(c) 2010, RacerMateOne, Inc.</Copyright>
+		<Comment>Converted from STARBUCKS MIXED TEMPO 1.mrc</Comment>
+		<CompressType>0</CompressType>
+	</Header>
+	<Course>
+		<Info Name="STARBUCKS MIXED TEMPO 1_mrc" Description="STARBUCKS MIXED TEMPO 1 MRC" FileName="STARBUCKS MIXED TEMPO 1_mrc.rmc" Type="Watts" Looped="False" Length="65.0" Laps="1" StartAt="0" EndAt="3900" Mirror="False" Reverse="False" Modified="False" XUnits="Time" YUnits="PercentAT" OriginalHash="7AF91032F123C580CB38E90CC6BE610F" CourseHash="DAD0F043C8F700FC8A223D44D91E61B8" HeaderHash="7AF91032F123C580CB38E90CC6BE610F"/>
+		<Segments Count="8">
+			<Val>
+				<Minutes>7</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>95</StartAt>
+				<EndAt>95</EndAt>
+			</Val>
+			<Val>
+				<Minutes>3</Minutes>
+				<StartAt>75</StartAt>
+				<EndAt>75</EndAt>
+			</Val>
+			<Val>
+				<Minutes>15</Minutes>
+				<StartAt>85</StartAt>
+				<EndAt>85</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+			<Val>
+				<Minutes>15</Minutes>
+				<StartAt>85</StartAt>
+				<EndAt>85</EndAt>
+			</Val>
+			<Val>
+				<Minutes>5</Minutes>
+				<StartAt>90</StartAt>
+				<EndAt>90</EndAt>
+			</Val>
+			<Val>
+				<Minutes>10</Minutes>
+				<StartAt>70</StartAt>
+				<EndAt>70</EndAt>
+			</Val>
+		</Segments>
+	</Course>
+</RMX>
