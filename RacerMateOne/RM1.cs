@@ -1066,8 +1066,12 @@ namespace RacerMateOne  {
 
             m_bScanning = true;
 
+            // protect OnTrainerFound (using same mutex as where we actually call that event
+			ms_scanningThread_ListMutex.WaitOne();
             RM1.OnTrainerLost += RM1.trainerFoundEventHandler_addTrainerToInitList;
             RM1.OnTrainerFound += RM1.trainerFoundEventHandler_addTrainerToInitList;
+			ms_scanningThread_ListMutex.ReleaseMutex();
+
 
             // always include the settings
             {
@@ -1113,8 +1117,10 @@ namespace RacerMateOne  {
 				OnScanCompleteEvent += scanCompleteEventHandler;
 			}
 
+			ms_scanningThread_ListMutex.WaitOne();
 			OnTrainerLost += trainerFoundEventHandler_addTrainerToInitList;
 			OnTrainerFound += trainerFoundEventHandler_addTrainerToInitList;
+			ms_scanningThread_ListMutex.ReleaseMutex();
 
             if (bIncludeSettings)
             {
@@ -1148,8 +1154,10 @@ namespace RacerMateOne  {
 			if (numTrainersInitializing == 0)
 			{
 				Log.WriteLine("...Completed full scan!");
+			    ms_scanningThread_ListMutex.WaitOne();
                 OnTrainerLost -= trainerFoundEventHandler_addTrainerToInitList;
                 OnTrainerFound -= trainerFoundEventHandler_addTrainerToInitList;
+			    ms_scanningThread_ListMutex.ReleaseMutex();
 
                 ms_fullScanTimer.Stop();
                 ms_fullScanTimer.Dispose();
@@ -1594,54 +1602,83 @@ namespace RacerMateOne  {
 			Rider m_SetRider;
 			protected Rider m_Rider;
 
-			public Rider Rider {
-				get {
-					return m_SetRider;
-				}
-				set {
-					bool isNewRider = (m_Rider != value);
+            public Rider Rider {
+                get {
+                    return m_SetRider;
+                }
+                set {
+                    bool isNewRider = (m_Rider != value);
 
-					m_SetRider = value;
-					m_Rider = value != null ? value : Riders.DefaultRider;
-					FTP = m_Rider != null ? (float)m_Rider.PowerFTP : 1.0f;
+                    m_SetRider = value;
+                    m_Rider = value != null ? value : Riders.DefaultRider;
+                    FTP = m_Rider != null ? (float)m_Rider.PowerFTP : 1.0f;
 
-					if (Type == DeviceType.VELOTRON && m_Rider != null) {
-						VelotronData vd = (VelotronData)m_VelotronData.Clone();
-						vd.Cogset = m_Rider.GearingCogset;
-						vd.Chainrings = m_Rider.GearingCrankset;
-						vd.FrontGear = m_FrontGearNumber;
-						vd.RearGear = m_RearGearNumber;
-						vd.Bike_Kg = m_Rider.WeightBikeKGS;
+                    if (Type == DeviceType.VELOTRON && m_Rider != null) {
 
+                        bool needsNewGears = false;
 
-						//VelotronData = vd;						// <<<<<< for some reason that does not work correctly.
-						VelotronData.Cogset = m_Rider.GearingCogset;
-						VelotronData.Chainrings = m_Rider.GearingCrankset;
-						VelotronData.FrontGear = m_FrontGearNumber;
-						VelotronData.RearGear = m_RearGearNumber;
-						VelotronData.Bike_Kg = m_Rider.WeightBikeKGS;
+                        if (VelotronData.FrontGear != m_FrontGearNumber ||
+                            VelotronData.RearGear != m_RearGearNumber ||
+                            VelotronData.Bike_Kg != m_Rider.WeightBikeKGS ||
+                            m_Rider.GearingCogset.Count() != VelotronData.CogsetCount ||
+                            m_Rider.GearingCrankset.Count() != VelotronData.ChainringsCount)
+                        {
+                            needsNewGears = true;
+                        }
+                        else
+                        {
+                            // check actual Chainring teeth
+                            int numGears = m_Rider.GearingCrankset.Count();
+                            for (int i = 0; i < numGears; ++i)
+                            {
+                                if (m_Rider.GearingCrankset[i] != VelotronData.Chainrings[i])
+                                {
+                                    needsNewGears = true;
+                                    break;
+                                }
+                            }
 
-						if (isNewRider)
-						{
-							// update the ms_ip_chainrings and ms_ip_cogset
-							SetVelotron_trnr_Parameters();
+                            // check actual cogset teeth (if still not sure if we need new gears)
+                            if (!needsNewGears)
+                            {
+                                numGears = m_Rider.GearingCogset.Count();
+                                for (int i = 0; i < numGears; ++i)
+                                {
+                                    if (m_Rider.GearingCogset[i] != VelotronData.Cogset[i])
+                                    {
+                                        needsNewGears = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
 
-							// Tell the Velotron about these new values
-							DLLError derr = (DLLError)DLL.SetVelotronParameters(PortName, Ver,
-											m_VelotronData.ChainringsCount,
-											m_VelotronData.CogsetCount,
-											ms_ip_chainrings,
-											ms_ip_cogset,
-											m_VelotronData.WheelDiameter_mm,
-											m_VelotronData.ActualChainring,
-											m_VelotronData.ActualCog,
-											m_VelotronData.Bike_Kg,
-											m_VelotronData.FrontGear,
-											m_VelotronData.RearGear
-											);
+                        if (isNewRider || needsNewGears)
+                        {
+                            VelotronData.Cogset = m_Rider.GearingCogset;
+                            VelotronData.Chainrings = m_Rider.GearingCrankset;
+                            VelotronData.FrontGear = m_FrontGearNumber;
+                            VelotronData.RearGear = m_RearGearNumber;
+                            VelotronData.Bike_Kg = m_Rider.WeightBikeKGS;
 
-				    		SetVelotronGears();         //nca: moved inside isNewRider to fix reset on starting gun?
+                            // update the ms_ip_chainrings and ms_ip_cogset
+                            SetVelotron_trnr_Parameters();
 
+                            // Tell the Velotron about these new values
+                            DLLError derr = (DLLError)DLL.SetVelotronParameters(PortName, Ver,
+                                            m_VelotronData.ChainringsCount,
+                                            m_VelotronData.CogsetCount,
+                                            ms_ip_chainrings,
+                                            ms_ip_cogset,
+                                            m_VelotronData.WheelDiameter_mm,
+                                            m_VelotronData.ActualChainring,
+                                            m_VelotronData.ActualCog,
+                                            m_VelotronData.Bike_Kg,
+                                            m_VelotronData.FrontGear,
+                                            m_VelotronData.RearGear
+                                            );
+
+                            SetVelotronGears();
                         }
 
                     }
