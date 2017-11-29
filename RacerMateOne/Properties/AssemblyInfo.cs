@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RacerMate Inc")]
 [assembly: AssemblyProduct("RacerMateOne")]
-[assembly: AssemblyCopyright("Copyright ©  2011")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -52,12 +52,5 @@ using System.Windows;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-// tlm2014, upped the version number:
-//[assembly: AssemblyVersion("4.0.6")]
-//[assembly: AssemblyFileVersion("4.0.6")]
-
-//nca+++ changed to add patch level.
-//[assembly: AssemblyVersion("4.1.0")]
-//[assembly: AssemblyFileVersion("4.1.0")]
-[assembly: AssemblyVersion("4.1.0.3")]
-[assembly: AssemblyFileVersion("4.1.0.3")]
+[assembly: AssemblyVersion("4.1.0.4")]
+[assembly: AssemblyFileVersion("4.1.0.4")]
