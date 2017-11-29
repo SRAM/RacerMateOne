@@ -618,39 +618,39 @@ namespace RacerMateOne
 			return true;
 			//nca---
 
-			// Find the INI file
-			bool reg = false;
-			RegisteredError = null;
-			try
-			{
-				String inipath = System.IO.Path.Combine( RM1_Settings.General.Path_BaseRCV, "vid.ini");
-				if (!File.Exists(inipath))
-				{
-					inipath = System.IO.Path.Combine( RM1_Settings.General.Path_RCV, "vid.ini");
-					if (!File.Exists(inipath))
-					{
-						inipath = System.IO.Path.GetDirectoryName( course.FileName );
-						inipath = System.IO.Path.GetDirectoryName( inipath );
-						inipath = System.IO.Path.Combine(RM1_Settings.General.Path_RCV, "vid.ini");
-						if(!File.Exists(inipath))
-						{
-							RegisteredError = "Couldn't find vid.ini file";
-							return false;
-						}
-					}
-				}
-				IntPtr p_name = Marshal.StringToHGlobalAnsi(course.Name);
-				IntPtr p_inipath = Marshal.StringToHGlobalAnsi(inipath);
-				reg = IsRCVRegistered(p_name, p_inipath) != 0;
-				Marshal.FreeHGlobal(p_inipath);
-				Marshal.FreeHGlobal(p_name);
+			//// Find the INI file
+			//bool reg = false;
+			//RegisteredError = null;
+			//try
+			//{
+			//	String inipath = System.IO.Path.Combine( RM1_Settings.General.Path_BaseRCV, "vid.ini");
+			//	if (!File.Exists(inipath))
+			//	{
+			//		inipath = System.IO.Path.Combine( RM1_Settings.General.Path_RCV, "vid.ini");
+			//		if (!File.Exists(inipath))
+			//		{
+			//			inipath = System.IO.Path.GetDirectoryName( course.FileName );
+			//			inipath = System.IO.Path.GetDirectoryName( inipath );
+			//			inipath = System.IO.Path.Combine(RM1_Settings.General.Path_RCV, "vid.ini");
+			//			if(!File.Exists(inipath))
+			//			{
+			//				RegisteredError = "Couldn't find vid.ini file";
+			//				return false;
+			//			}
+			//		}
+			//	}
+			//	IntPtr p_name = Marshal.StringToHGlobalAnsi(course.Name);
+			//	IntPtr p_inipath = Marshal.StringToHGlobalAnsi(inipath);
+			//	reg = IsRCVRegistered(p_name, p_inipath) != 0;
+			//	Marshal.FreeHGlobal(p_inipath);
+			//	Marshal.FreeHGlobal(p_name);
 
-			}
-			catch (Exception ex)
-			{
-				RegisteredError = ex.ToString();
-			}
-			return reg;
+			//}
+			//catch (Exception ex)
+			//{
+			//	RegisteredError = ex.ToString();
+			//}
+			//return reg;
 		}
 
 	}
