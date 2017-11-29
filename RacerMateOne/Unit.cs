@@ -907,21 +907,19 @@ namespace RacerMateOne
 
 			if (ms_State == Statistics.State.Stopped)  {
 				RM1.Trainer.LockStats();
-				try  {
-					Reset();
-
+				try {
 					Log.WriteLine("Unit.cs, Start() continuing...");
 
 					ms_State = Statistics.State.Running;
 
-					foreach (Unit unit in Active)  {
+					foreach (Unit unit in Active) {
 						unit.m_Statistics.Start();
-						if (unit.Trainer != null)  {
+						if (unit.Trainer != null)
+						{
 							unit.Trainer.Reset_trnr_Averages();
 							unit.Trainer.Paused = false;
 						}
 					}
-					ReloadRiders();
 				}
 				catch (Exception ex)  {
 					RM1.MutexException(ex);
