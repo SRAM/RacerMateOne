@@ -25,51 +25,52 @@ using System.Xml.Linq;
 using System.Threading;
 using System.Windows.Threading;
 
-namespace RacerMateOne
-{
-    public static class Log
-    {
+namespace RacerMateOne {
+    public static class Log {
         [Flags]
-        public enum Flags
-        {
+        public enum Flags {
             Zero = 0,
             FlowChart = (1 << 0),
             Debug = (1 << 1),
+				Red = (1 << 2),
+				Blue = (1 << 3),
+				Green = (1 << 4),
+				HILITE = (1 << 5),
 
-            Mask = ((1 << 2) - 1)
+				Mask = ((1 << 6) - 1)
         }
-        public class Entry
-        {
+
+
+        public class Entry {
             public int Num;
             public String Message;
             public DateTime TimeStamp;
             public Flags Flags;
             public String ThreadName;
-            public Entry(String str, Flags flags)
-            {
+				//public Brush brush;
+
+            public Entry(String str, Flags flags) {
                 Num = ms_Num++;
                 Message = str;
                 TimeStamp = DateTime.Now;
                 Flags = flags;
                 ThreadName = Thread.CurrentThread.Name;
             }
-        };
-        class ThreadObject : DispatcherObject
-        {
+        };						// class Entry
+
+
+
+        class ThreadObject : DispatcherObject {
             delegate void _Notify();
             DispatcherOperation m_DO;
-            public void Notify()
-            {
-                lock (this)
-                {
+            public void Notify() {
+                lock (this) {
                     if (m_DO == null)
                         m_DO = Dispatcher.BeginInvoke(DispatcherPriority.Render, new _Notify(NotifyS));
                 }
             }
-            void NotifyS()
-            {
-                lock (this)
-                {
+            void NotifyS() {
+                lock (this) {
                     m_DO = null;
                     updateMain();
                 }
@@ -81,40 +82,49 @@ namespace RacerMateOne
         static int ms_MaxListSize = 100;
         static LinkedList<Entry> ms_List = new LinkedList<Entry>();
         static int ms_Num = 0;
+
+
+		  //----------------------------------------------------------------------
+		  // constructor
+		  //----------------------------------------------------------------------
+
         static Log()  {
 #if LOG_ENABLED
-#if DEBUG_LOG_ENABLED
-            Log.WriteLine("Log.cs constructor, Created Log");
+	#if DEBUG
+				int f1, f2, f3, fred, fblue, fmask;
+				f1 = (int)Flags.Zero;			// 0
+				f2 = (int)Flags.FlowChart;		// 1
+				f3 = (int)Flags.Debug;        // 2
+				fred = (int)Flags.Red;        // 4
+				fblue = (int)Flags.Blue;      // 8
+				fmask = (int)Flags.Mask;	   // 0x0f
+	#endif
+				WriteLine("Log.cs constructor, Created Log");
 #endif
-
-            WriteLine("Created");
-#endif //LOG_ENABLED
         }
 
         static List<Entry> ms_TempList = new List<Entry>();
-        static void updateMain()
-        {
+
+		//----------------------------------------------------------------------
+		//
+		//----------------------------------------------------------------------
+
+		static void updateMain() {
 #if LOG_ENABLED
-            lock (ms_Lock)
-            {
-                if (LogEvent != null)
-                {
-                    if (ms_LastSent == null)
-                    {
+            lock (ms_Lock) {
+                if (LogEvent != null) {
+                    if (ms_LastSent == null) {
                         ms_LastSent = ms_List.First;
                         ms_TempList.Add( ms_LastSent.Value );
                     }
-                    if (ms_LastSent != null && ms_LastSent.Next != null)
-                    {
-                        do
-                        {
+                    if (ms_LastSent != null && ms_LastSent.Next != null) {
+                        do {
                             ms_LastSent = ms_LastSent.Next;
                             ms_TempList.Add( ms_LastSent.Value );
                         } while( ms_LastSent.Next != null );
                     }
                 }
-                while (ms_List.Count > ms_MaxListSize)
-                {
+                while (ms_List.Count > ms_MaxListSize) {
                     if (ms_List.First == ms_LastSent)
                         ms_LastSent = null;
                     ms_List.RemoveFirst();
@@ -128,26 +138,63 @@ namespace RacerMateOne
                 }
                 ms_TempList.Clear();
             }
-#endif //LOG_ENABLED
+#endif 
         }
 
         public delegate void LogHandler(Entry e);
         public static event LogHandler LogEvent;
 
-        public static void WriteLine(String str)
-        {
+		  //----------------------------------------------------------------------
+		  //
+		  //----------------------------------------------------------------------
+
+        public static void WriteLine(String str) {
+
 #if LOG_ENABLED
             WriteLine(str, Flags.Zero);
-#endif //LOG_ENABLED
+#endif 
         }
-        public static void WriteLine(String str, bool flowchart)
-        {
+
+
+		//----------------------------------------------------------------------
+		//
+		//----------------------------------------------------------------------
+/*
+		public static void WriteLine(String str, Flags flags) {
+
+#if LOG_ENABLED
+			WriteLine(str, Flags.Zero);
+#endif
+		}
+*/
+
+
+
+
+
+
+		//----------------------------------------------------------------------
+		//
+		//----------------------------------------------------------------------
+
+		public static void WriteLine(String str, bool flowchart) {
+
 #if LOG_ENABLED
             WriteLine(str, flowchart ? Flags.FlowChart : Flags.Zero);
-#endif //LOG_ENABLED
+#endif 
         }
-        public static void WriteLine(String str, Flags flags)
-        {
+
+
+
+
+
+
+		  //----------------------------------------------------------------------
+		  //
+		  //----------------------------------------------------------------------
+
+        public static void WriteLine(String str, Flags flags) {
+
 #if LOG_ENABLED
             Entry entry = new Entry(str, flags);
             lock (ms_Lock)
@@ -155,18 +202,31 @@ namespace RacerMateOne
                 ms_List.AddLast(entry);
             }
             ms_Lock.Notify();
-#endif //LOG_ENABLED
-        }
-        public static void Debug(String str)
-        {
-#if LOG_ENABLED
-            WriteLine(str, Flags.Debug);
-#endif //LOG_ENABLED
+#endif 
         }
 
+
+
+
+
+
+
+		  //----------------------------------------------------------------------
+		  //
+		  //----------------------------------------------------------------------
+
+        public static void Debug(String str) {
+#if LOG_ENABLED
+            WriteLine(str, Flags.Debug);
+#endif 
+        }
+
+		  //----------------------------------------------------------------------
+		  //
+		  //----------------------------------------------------------------------
+
         // Return any entry that has been sent..
-        public static List<Entry> GetList(bool all)
-        {
+        public static List<Entry> GetList(bool all) {
             List<Entry> list = new List<Entry>();
 #if LOG_ENABLED
             lock (ms_Lock)
@@ -181,7 +241,7 @@ namespace RacerMateOne
                     }
                 }
             }
-#endif //LOG_ENABLED
+#endif 
             return list;
         }
 

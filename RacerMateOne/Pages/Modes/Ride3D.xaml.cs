@@ -23,6 +23,11 @@ namespace RacerMateOne.Pages.Modes
 	/// </summary>
 	public partial class Ride3D : RideBase
 	{
+#if DEBUG
+		static int calls = 0;
+		static int bp = 0;
+#endif
+
 		static Controls.StatsArea.Modes[] ms_ModeCycle = new RacerMateOne.Controls.StatsArea.Modes[] {
 			Controls.StatsArea.Modes.Simple,
 			Controls.StatsArea.Modes.Polar,
@@ -37,6 +42,7 @@ namespace RacerMateOne.Pages.Modes
 			Controls.StatsArea.Modes.Time,
 			};
 		#pragma warning disable 649
+
 		class Node
 		{
 			public Unit m_Unit;
@@ -136,13 +142,22 @@ namespace RacerMateOne.Pages.Modes
 		Node[] m_Nodes = new Node[8];
 
 		/********************************************************************************************************
-
+			called from RenderUpdate()
 		********************************************************************************************************/
 
-		void UpdateNodes()
-		{
-			foreach (Unit u in Unit.RiderUnits)
+		void UpdateNodes() {
+#if DEBUG
+			bp = 1;
+			//int i = 0;
+			//foreach (Unit u in Unit.RiderUnits) { 
+			//	Log.WriteLine("Ride3D::UpdateNodes(), name = " + Unit.RiderUnits[i++].Rider.FullName);
+			//}
+#endif
+
+			foreach (Unit u in Unit.RiderUnits) {
 				m_Nodes[u.Number].Update(this);
+			}
+
 		}
 
 
@@ -157,8 +172,8 @@ namespace RacerMateOne.Pages.Modes
 		********************************************************************************************************/
 
 		public Ride3D()  {
-#if DEBUG_LOG_ENABLED
-			Log.WriteLine("Ride3D.xaml.cs, Ride3D::Ride3D(), constructor");
+#if DEBUG
+			Log.WriteLine("Ride3D::Ride3D(), constructor");
 #endif
 
 			InitializeComponent();
@@ -176,14 +191,16 @@ namespace RacerMateOne.Pages.Modes
 
 		ReportColumns m_DisplayColumns;
 		StatFlags m_DisplayStatFlags;
+
 		private void Page_Loaded(object sender, RoutedEventArgs e)  {
-#if DEBUG_LOG_ENABLED
-			Log.WriteLine("Ride3D.xaml.cs, Ride3D::Page_Loaded");
+#if DEBUG
+			Log.WriteLine("Ride3D::Page_Loaded()");
 #endif
 
             // Init3D
             m_App.MainRender3D.Init();
            // Debug.WriteLine("3d has been initialized, should be visible");
+
             if (m_LoaderScreen)
             {
                 NavigationService.RemoveBackEntry();
@@ -393,8 +410,20 @@ namespace RacerMateOne.Pages.Modes
 
 		private void RedoNodes()
 		{
+
+
 			// How many live riders are there?
 			m_RiderCount = Unit.RiderUnits.Count;
+
+#if DEBUG
+			if (m_RiderCount == 1) {
+				bp = 2;
+			}
+			else {
+				bp = 1;
+			}
+#endif
+
 			m_BotCount = Unit.BotUnits.Count;
 			m_TotalCount = Unit.RaceUnit.Count;
 			if (m_RiderUnit != null && !Unit.RiderUnits.Contains(m_RiderUnit))

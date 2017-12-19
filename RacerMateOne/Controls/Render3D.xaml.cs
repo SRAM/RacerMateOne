@@ -102,7 +102,7 @@ namespace RacerMateOne.Controls  {
 				img = (Image)grid.Children[0];
 				d3dimg = (D3DImage)img.Source;
                 // We hook into this event to handle when a D3D device is lost 
-                Log.WriteLine("The properties of d3dimg: width = " + d3dimg.Width + " height = " + d3dimg.Height); 
+                //Log.WriteLine("The properties of d3dimg: width = " + d3dimg.Width + " height = " + d3dimg.Height); 
   
                 d3dimg.IsFrontBufferAvailableChanged += IsFrontBufferAvailableChanged;
                 debugGrid = (Grid)grid.Children[2];

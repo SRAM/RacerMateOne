@@ -51,11 +51,30 @@ namespace RacerMateOne
         public static ErrorLog Logger = new ErrorLog();
         public static Mutex mutex;
         public static bool AllowPerfSave = true;
-        public App()
-        {
 #if DEBUG
-            Log.WriteLine("\n\nApp.xaml.cs, constructor");
-            Debug.WriteLine("\n\nApp.xaml.cs, constructor");
+        //private static string mypath = "..\\..\\x.log";
+#endif
+
+
+        public App()  {
+#if DEBUG
+			Window_Log.Instance.Show();
+			Window_Log.Instance.FontWeight = FontWeights.Bold;
+			//Window_Log.Instance.FontStyle = FontStyles.Italic;
+			//Window_Log.Instance.Foreground = Brushes.Red;				// does nothing
+			//Window_Log.Instance.Background = Brushes.Purple;			// does nothing
+			Window_Log.Instance.Background = Brushes.Green;
+			//Window_Log.Instance.BorderBrush = Brushes.Red;
+
+			//Log.WriteLine("");
+			Log.WriteLine("App.xaml.cs, constructor");
+//            Debug.WriteLine("\n\nApp.xaml.cs\n\tApp()");
+
+//            using (StreamWriter sw = File.CreateText(mypath))  {
+//                sw.Write("starting x.log\n");
+//            }
+
+//            Debug.Write("App.xaml.cs\n\tApp()\n");
 #else
             DispatcherUnhandledException += new System.Windows.Threading.DispatcherUnhandledExceptionEventHandler(Application_DispatcherUnhandledException);
 #endif
@@ -72,7 +91,9 @@ namespace RacerMateOne
             }
 
             string[] args = Environment.GetCommandLineArgs();
-            Log.WriteLine("RacerMate1 Starting "+args, true);
+            int i = args.Length;
+
+            Log.WriteLine("RacerMate1 Starting " + args, true);
 
             foreach (string arg in args)
             {
@@ -84,10 +105,33 @@ namespace RacerMateOne
 
             // Call to initialize current directory used by 3D first
             InitBasePath();
+#if DEBUG
+            //Window_Log.Instance.Show();
+            Log.WriteLine("App() x");
+#endif
         }
+
+#if DEBUG
+		  /*************************************************************************
+		  
+		  *************************************************************************/
+
+//        public static void logg(string s) {
+//            using (StreamWriter sw = File.AppendText(mypath))  {
+//                sw.Write(s);
+//            }
+//				return;
+//        }	// logg
+#endif
+
 
         [DllImport("RM1_Ext.dll")]
         private static extern int SetBasePath(IntPtr basepath);
+
+        //------------------------------------------------------------------------------------------
+        //
+        //------------------------------------------------------------------------------------------
+
         public static void InitBasePath()
         {
             String basepath = Directory.GetCurrentDirectory(); //System.IO.Path.GetDirectoryName(Assembly.GetAssembly(typeof(App)).CodeBase); 
@@ -98,11 +142,22 @@ namespace RacerMateOne
             Debug.WriteLine("App.xaml.cs, SetBasePath(), basepath = " + basepath);
 #endif
 
+#if DEBUG
+            Log.WriteLine("App.xaml.cs: InitBasePath(), basepath = " + basepath);
+#endif
+
         }
+
+
+
         [DllImport("RM1_Ext.dll")]
         private static extern IntPtr CalcShrink(IntPtr PlainString);
-        public static string CalcShrink(string PlainString)
-        {
+
+		  /*************************************************************************
+		  
+		  *************************************************************************/
+
+        public static string CalcShrink(string PlainString)  {
             string ShrinkedString;
             IntPtr p_PlainString = Marshal.StringToHGlobalAnsi(PlainString);
             ShrinkedString = Marshal.PtrToStringAnsi(CalcShrink(p_PlainString));
@@ -113,6 +168,11 @@ namespace RacerMateOne
         // Set default culture to fix crashes string conversion problems when user is in a different region settings
         // Called at start of each thread
         // If culture in thread is changed, make sure to revert back to previous
+
+		  /*************************************************************************
+		  
+		  *************************************************************************/
+
         public static void SetDefaultCulture()
         {
             System.Globalization.CultureInfo cultureInfo =
@@ -136,6 +196,10 @@ namespace RacerMateOne
         }
 
         private static string _HardwareID = "";
+		  /*************************************************************************
+		  
+		  *************************************************************************/
+
         public static string GetHardwareID()
         {
             if (_HardwareID.Length <= 0)
@@ -199,6 +263,10 @@ namespace RacerMateOne
             return _HardwareID;
         }
 
+		  /*************************************************************************
+		  
+		  *************************************************************************/
+
         public static UIElement CloneElement(UIElement orig)
         {
             if (orig == null)
@@ -212,6 +280,10 @@ namespace RacerMateOne
 
 
         static bool ms_Exception = false;
+		  /*************************************************************************
+		  
+		  *************************************************************************/
+
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             if (ms_Exception)
@@ -257,25 +329,39 @@ namespace RacerMateOne
                 AppWin.Exit();
 
         }
-    }
+    }				// class App()
 
-    public class ExternalProgram
-    {
+	/*************************************************************************
+		  
+	*************************************************************************/
+
+    public class ExternalProgram {
         public readonly String Name;
         public readonly String Exe;
         public readonly String Folder;
         public readonly String Path;
 
-        public ExternalProgram(String name, String exe, params object[] folders)
-        {
+
+		/*************************************************************************
+		  
+		*************************************************************************/
+
+      public ExternalProgram(String name, String exe, params object[] folders) {
             Name = name;
             Path = null;
             Exe = exe;
-            foreach (object args in folders)
-            {
+
+#if DEBUG
+            Log.WriteLine("ExternalProgram()");
+#endif
+
+            foreach (object args in folders) {
                 String p = ((String)args) + @"\" + exe;
-                if (File.Exists(p))
-                {
+#if DEBUG
+                Log.WriteLine("	p = " + p);
+#endif
+
+                if (File.Exists(p)) {
                     Folder = (String)args;
                     Path = p;
                     break;
@@ -283,15 +369,22 @@ namespace RacerMateOne
             }
         }
 
-        public String ExeProgram()
-        {
+		  /*************************************************************************
+		  
+		  *************************************************************************/
+
+        public String ExeProgram() {
             if (Path == null)
                 return "Couldn't find \"" + Exe + "\"";
             ;
             String ans;
             String d = Directory.GetCurrentDirectory();
-            try
-            {
+#if DEBUG
+            Log.WriteLine("ExeProgram()");
+#endif
+
+				
+            try {
                 Directory.SetCurrentDirectory(Folder);
                 Process executable = new Process();
                 executable.StartInfo.FileName = Exe;
@@ -302,38 +395,45 @@ namespace RacerMateOne
             }
             catch { ans = "Couldn't execute \"" + Exe + "\""; }
             Directory.SetCurrentDirectory(d);
+#if DEBUG
+            Log.WriteLine("ans = " + ans);
+#endif
             return ans;
         }
-    }
+    }					// public class ExternalProgram {
 
 
-    public sealed class ErrorLog
-    {
-        #region Properties
+	 /*************************************************************************
+		  
+	 *************************************************************************/
+
+    public sealed class ErrorLog {
+#region Properties
 
         private string _LogPath;
-        public string LogPath
-        {
-            get
-            {
+        public string LogPath {
+            get {
                 return _LogPath;
             }
         }
 
-        #endregion
+#endregion
 
-        #region Constructors
+#region Constructors
 
-        public ErrorLog()
-        {
-            _LogPath = RacerMatePaths.ErrorsFullPath;							// C:\Users\name\Documents\RacerMate\Errors
-                /*
-                System.IO.Path.Combine(
-                System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), System.Windows.Forms.Application.ProductName), 
-                "Errors");
-                 */
+        public ErrorLog() {
+            _LogPath = RacerMatePaths.ErrorsFullPath;                           // C:\Users\name\Documents\RacerMate\Errors
+                                                                                /*
+                                                                                System.IO.Path.Combine(
+                                                                                System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), System.Windows.Forms.Application.ProductName), 
+                                                                                "Errors");
+                                                                                 */
 #if DEBUG_LOG_ENABLED
               Log.WriteLine("App.xaml.cs, ErrorLog constructor, path = " + _LogPath);
+#endif
+
+#if DEBUG
+            Log.WriteLine("App.xaml.cs, ErrorLog constructor, path = " + _LogPath);
 #endif
 
             if (!Directory.Exists(_LogPath))
@@ -347,9 +447,9 @@ namespace RacerMateOne
                 Directory.CreateDirectory(_LogPath);
         }
 
-        #endregion
+#endregion
 
-        #region Public Methods
+#region Public Methods
 
         /// <summary>
         /// Logs exception information to the assigned log file.
@@ -367,7 +467,7 @@ namespace RacerMateOne
             string FullPath = System.IO.Path.Combine(_LogPath, LogFile);
             using (StreamWriter sw = new StreamWriter(FullPath))
             {
-                sw.WriteLine("==============================================================================");
+                sw.WriteLine("App::LogError() ==============================================================================");
                 sw.WriteLine(caller.FullName);
                 sw.WriteLine("------------------------------------------------------------------------------");
                 sw.WriteLine("Application Information");
@@ -532,17 +632,17 @@ namespace RacerMateOne
                 {
                     sw.WriteLine("Failed to get settings!");
                 }
-                sw.WriteLine("==============================================================================");
+                sw.WriteLine("App::LogError()2 ===========================================================================");
             }
             String[] ss = new String[2];
             ss[0] = FullPath;
             ss[1] = LogFile;
             return ss;
-        }
+        }                   // LogError()
 
-        #endregion
+#endregion
 
-        #region Private Methods
+#region Private Methods
 
         private string GetExceptionStack(Exception e)
         {
@@ -558,7 +658,9 @@ namespace RacerMateOne
             return message.ToString();
         }
 
-        #endregion
-    }
+#endregion
+    }						// class ErrorLog
 
 }
+
+

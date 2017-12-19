@@ -14,50 +14,83 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using System.IO;
 
-namespace RacerMateOne.Pages
-{
-	/// <summary>
-	/// Interaction logic for Page_Selection.xaml
-	/// </summary>
-	public partial class Selection : Page
-	{
+namespace RacerMateOne.Pages {
+/// <summary>
+/// Interaction logic for Page_Selection.xaml
+/// </summary>
+public partial class Selection : Page {
 		/*
-		ExternalProgram p3D = new ExternalProgram("3D", @"Bike.exe", @"C:\CompuTrainer 3D V3", @"C:\program files\computrainer 3D V3");
-		//ExternalProgram pRCV = null;
-		ExternalProgram pChart = new ExternalProgram("3D", @"cchart.exe", @"C:\compcs",@"C:\program files\compcs" );
-		ExternalProgram pTopo = new ExternalProgram("3D", @"TopoGPS.exe", @"C:\Topo GPS CC", @"C:\program files\Topo GPS CC");
+			ExternalProgram p3D = new ExternalProgram("3D", @"Bike.exe", @"C:\CompuTrainer 3D V3", @"C:\program files\computrainer 3D V3");
+			//ExternalProgram pRCV = null;
+			ExternalProgram pChart = new ExternalProgram("3D", @"cchart.exe", @"C:\compcs",@"C:\program files\compcs" );
+			ExternalProgram pTopo = new ExternalProgram("3D", @"TopoGPS.exe", @"C:\Topo GPS CC", @"C:\program files\Topo GPS CC");
 
-		ExternalProgram pMulti = new ExternalProgram("3D", @"rmulti.exe", @"C:\MultiRider 2009", @"C:\program files\MultiRider 2009");
-		*/
+			ExternalProgram pMulti = new ExternalProgram("3D", @"rmulti.exe", @"C:\MultiRider 2009", @"C:\program files\MultiRider 2009");
+		 */
 
+#if DEBUG
+		static int calls = 0;
+		static int bp = 0;
+#endif
 
-		public Selection()
-		{
+		public Selection() {
 			InitializeComponent();
 			//ErgVideo.NotAvailable = true;
 
-            Log.Debug(string.Format("{0} - Selection", DateTime.Now));
-        }
+			Log.Debug(string.Format("{0} - Selection", DateTime.Now));
 
-		public void Set(int num, String text, String img, bool visible,bool reg, String tooltip )
-		{
-			Control_Selection cs = (Control_Selection)this.FindName("V" + num);
-			if (cs != null)
-			{
-				cs.ToolTip = tooltip;
-				cs.Title = text;
-				cs.Image = img;
-				if (reg == true)
-					cs.AddReg();
-				cs.Visibility = (visible ? Visibility.Visible:Visibility.Hidden);
-			}
+#if DEBUG
+			//AppWin.Instance.Title = "Selection.xaml.cs";
+#endif
+
 		}
-		static bool ms_bFirst;
 
-		private void pageSelection_Loaded(object sender, RoutedEventArgs e)
-		{
-			if (!ms_bFirst && RM1_Settings.General.Commercial)
-			{
+
+
+		public void Set(int num, String text, String img, bool visible, bool reg, String tooltip ) {
+		Control_Selection cs = (Control_Selection) this.FindName("V" + num);
+
+		if (cs != null) {
+			cs.ToolTip = tooltip;
+			cs.Title = text;
+			cs.Image = img;
+			if (reg == true) {
+				cs.AddReg();
+			}
+			cs.Visibility = (visible ? Visibility.Visible : Visibility.Hidden);
+		}
+	}
+
+
+	static bool ms_bFirst;
+
+		/*****************************************************************************************
+			if trainer is connected on startup
+				active = 1
+				started = 1
+				init = 0
+				start = 0
+
+			if no trainer connected on startup
+				active = 0
+				started = 0
+				init = 0
+				start = 0
+
+		*****************************************************************************************/
+
+		private void pageSelection_Loaded(object sender, RoutedEventArgs e) {
+
+#if DEBUG
+			calls++;
+			if (calls==2) {
+				bp = 1;
+			}
+			//AppWin.Instance.Title = "Selection.xaml.cs";
+#endif
+
+
+			if (!ms_bFirst && RM1_Settings.General.Commercial) {
 				Pages.RideOptions options = new Pages.RideOptions();
 				Pages.RideOptions.ms_SelectedTab = "Hardware setup";
 				NavigationService.Navigate(options);
@@ -65,19 +98,17 @@ namespace RacerMateOne.Pages
 
 			ms_bFirst = true;
 
-			if (RM1_Settings.gFirstRun)
-			{
+			if (RM1_Settings.gFirstRun) {
 				RM1_Settings.gFirstRun = false;
 				RM1_Settings.SaveToFile();
 			}
-            Log.Debug(string.Format("{0} - pageSelection_Loaded", DateTime.Now));
-        }
+			Log.Debug(string.Format("{0} - pageSelection_Loaded", DateTime.Now));
+		}
 
-		public void ExeProgram(String path, String file )
-		{
+		public void ExeProgram(String path, String file ) {
 			String d = Directory.GetCurrentDirectory();
-			try
-			{
+
+			try {
 				Directory.SetCurrentDirectory(path);
 				Process executable = new Process();
 				executable.StartInfo.FileName = file;
@@ -85,8 +116,7 @@ namespace RacerMateOne.Pages
 				executable.Start();
 				AppWin.Exit();
 			}
-			catch
-			{
+			catch {
 				MessageBox.Show("Couldn't execute \"path\"");
 			}
 			Directory.SetCurrentDirectory(d);
@@ -95,152 +125,128 @@ namespace RacerMateOne.Pages
 
 
 
-		private void r3D_Click(object sender, RoutedEventArgs e)
-		{
+		private void r3D_Click(object sender, RoutedEventArgs e) {
 			NavigationService.Navigate(new Pages.Modes.Staging(Pages.Modes.Staging.Staging_Ride3D));
 			//NavigationService.Navigate(new Pages.Modes.Ride3D_Setup());
 		}
 
-		private void rRCV_Click(object sender, RoutedEventArgs e)
-		{
+		private void rRCV_Click(object sender, RoutedEventArgs e) {
 			NavigationService.Navigate(new Pages.Modes.Staging(Pages.Modes.Staging.Staging_RCV));
 			//NavigationService.Navigate(new Pages.Modes.RCV_Setup());
 		}
 
-		private void rWattTesting_Click(object sender, RoutedEventArgs e)
-		{
+		private void rWattTesting_Click(object sender, RoutedEventArgs e) {
 			NavigationService.Navigate(new Pages.Modes.Staging( Pages.Modes.Staging.Staging_PowerTraining ) );
 			//NavigationService.Navigate(new Pages.Modes.PowerTraining_Setup());
 		}
 
-		private void rSpinScan_Click(object sender, RoutedEventArgs e)
-		{
+		private void rSpinScan_Click(object sender, RoutedEventArgs e) {
 			NavigationService.Navigate(new Pages.Modes.Staging(Pages.Modes.Staging.Staging_SpinScan));
 			//NavigationService.Navigate(new Pages.Modes.SpinScan_Setup());
 		}
 
-		private void rCourseCreation_Click(object sender, RoutedEventArgs e)
-		{
+		private void rCourseCreation_Click(object sender, RoutedEventArgs e) {
 			/*
-			String ans = pTopo.ExeProgram();
-			if (ans != null)
+				String ans = pTopo.ExeProgram();
+				if (ans != null)
 				MessageBox.Show(ans);
 			 */
+	}
+
+	private void rErgVideo_Click(object sender, RoutedEventArgs e) {
+
+		AppWin.OpenURL("http://www.ergvideo.com/ErgVideoRM1Info.aspx");
+	}
+
+
+	//=========================================================================
+	private void r_MouseLeave(object sender, MouseEventArgs e) {
+		TopLine.Content = "Welcome, let's ride!";
+		SubLine.Text = "";
+	}
+
+	private void r3D_MouseEnter(object sender, MouseEventArgs e) {
+		Controls.ModeDisplay md = sender as Controls.ModeDisplay;
+		if (!md.NotAvailable) {
+			TopLine.Content = md.Title;
+			SubLine.Text = md.Sub;
 		}
+	}
 
-        private void rErgVideo_Click(object sender, RoutedEventArgs e)
-        {
-
-            AppWin.OpenURL("http://www.ergvideo.com/ErgVideoRM1Info.aspx");
-        }
-
-
-		//=========================================================================
-		private void r_MouseLeave(object sender, MouseEventArgs e)
-		{
-			TopLine.Content = "Welcome, let's ride!";
-			SubLine.Text = "";
+	private void rRCV_MouseEnter(object sender, MouseEventArgs e) {
+		Controls.ModeDisplay md = sender as Controls.ModeDisplay;
+		if (!md.NotAvailable) {
+			TopLine.Content = md.Title;
+			SubLine.Text = md.Sub;
 		}
+	}
 
-		private void r3D_MouseEnter(object sender, MouseEventArgs e)
-		{
-			Controls.ModeDisplay md = sender as Controls.ModeDisplay;
-			if (!md.NotAvailable)
-			{
-				TopLine.Content = md.Title;
-				SubLine.Text = md.Sub;
-			}
+	private void rWattTesting_MouseEnter(object sender, MouseEventArgs e) {
+		Controls.ModeDisplay md = sender as Controls.ModeDisplay;
+		if (!md.NotAvailable) {
+			TopLine.Content = md.Title;
+			SubLine.Text = md.Sub;
 		}
+	}
 
-		private void rRCV_MouseEnter(object sender, MouseEventArgs e)
-		{
-			Controls.ModeDisplay md = sender as Controls.ModeDisplay;
-			if (!md.NotAvailable)
-			{
-				TopLine.Content = md.Title;
-				SubLine.Text = md.Sub;
-			}
+	private void rSpinScan_MouseEnter(object sender, MouseEventArgs e) {
+		Controls.ModeDisplay md = sender as Controls.ModeDisplay;
+		if (!md.NotAvailable) {
+			TopLine.Content = md.Title;
+			SubLine.Text = md.Sub;
 		}
+	}
 
-		private void rWattTesting_MouseEnter(object sender, MouseEventArgs e)
-		{
-			Controls.ModeDisplay md = sender as Controls.ModeDisplay;
-			if (!md.NotAvailable)
-			{
-				TopLine.Content = md.Title;
-				SubLine.Text = md.Sub;
-			}
+	private void rMultiRider_MouseEnter(object sender, MouseEventArgs e) {
+		Controls.ModeDisplay md = sender as Controls.ModeDisplay;
+		if (!md.NotAvailable) {
+			TopLine.Content = md.Title;
+			SubLine.Text = md.Sub;
 		}
+	}
 
-		private void rSpinScan_MouseEnter(object sender, MouseEventArgs e)
-		{
-			Controls.ModeDisplay md = sender as Controls.ModeDisplay;
-			if (!md.NotAvailable)
-			{
-				TopLine.Content = md.Title;
-				SubLine.Text = md.Sub;
-			}
+	private void rErgVideo_MouseEnter(object sender, MouseEventArgs e) {
+		Controls.ModeDisplayPartners md = sender as Controls.ModeDisplayPartners;
+		if (!md.NotAvailable) {
+			TopLine.Content = md.Title;
+			SubLine.Text = md.Sub;
 		}
+	}
 
-		private void rMultiRider_MouseEnter(object sender, MouseEventArgs e)
-		{
-			Controls.ModeDisplay md = sender as Controls.ModeDisplay;
-			if (!md.NotAvailable)
-			{
-				TopLine.Content = md.Title;
-				SubLine.Text = md.Sub;
-			}
-		}
+	private void rMultiRider_Click(object sender, RoutedEventArgs e) {
+		NavigationService.Navigate(new Pages.Modes.ClassicMultiRider());
+		//NavigationService.Navigate(new Pages.Modes.MultiRider_Setup());
+	}
 
-		private void rErgVideo_MouseEnter(object sender, MouseEventArgs e)
-		{
-			Controls.ModeDisplayPartners md = sender as Controls.ModeDisplayPartners;
-			if (!md.NotAvailable)
-			{
-				TopLine.Content = md.Title;
-				SubLine.Text = md.Sub;
-			}
-		}
+	private void Branding_Drop(object sender, DragEventArgs e) {
+		Log.WriteLine(sender.ToString());
+		Log.WriteLine(e.ToString());
+	}
 
-		private void rMultiRider_Click(object sender, RoutedEventArgs e)
-		{
-			NavigationService.Navigate(new Pages.Modes.ClassicMultiRider());
-			//NavigationService.Navigate(new Pages.Modes.MultiRider_Setup());
-		}
+	private void GroupBox_MouseEnter(object sender, MouseEventArgs e) {
+		TopLine.Content = "Partners";
+		SubLine.Text = "Learn more about ErgVideo™";
+	}
 
-		private void Branding_Drop(object sender, DragEventArgs e)
-		{
-			Log.WriteLine(sender.ToString());
-			Log.WriteLine(e.ToString());
-		}
-
-		private void GroupBox_MouseEnter(object sender, MouseEventArgs e)
-		{
-			TopLine.Content = "Partners";
-            SubLine.Text = "Learn more about ErgVideo™";
-		}
-
-        //private void btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    AppWin.OpenURL( "http://www.ergvideo.com/ErgVideoRM1Info.aspx" );
-        //}
-		//=============================================================
-		private void Options_Click(object sender, RoutedEventArgs e)
-		{
-#if DEBUG_LOG_ENABLED
-			Debug.WriteLine("Selection.xaml.cs, Options_Click()");
+	//private void btn_Click(object sender, RoutedEventArgs e)
+	//{
+	//    AppWin.OpenURL( "http://www.ergvideo.com/ErgVideoRM1Info.aspx" );
+	//}
+	//=============================================================
+	private void Options_Click(object sender, RoutedEventArgs e) {
+#if DEBUG
+		Log.WriteLine("\n");
+		Log.WriteLine("Selection.xaml.cs, Options_Click()");
 #endif
 
-			NavigationService.Navigate(new Pages.RideOptions());
-		}
-		private void Exit_Click(object sender, RoutedEventArgs e)
-		{
-			AppWin.Exit();
-		}
-		private void Help_Click(object sender, RoutedEventArgs e)
-		{
-			AppWin.Help();
-		}
-
+		NavigationService.Navigate(new Pages.RideOptions());
 	}
+	private void Exit_Click(object sender, RoutedEventArgs e) {
+		AppWin.Exit();
+	}
+	private void Help_Click(object sender, RoutedEventArgs e) {
+		AppWin.Help();
+	}
+
+}
 }

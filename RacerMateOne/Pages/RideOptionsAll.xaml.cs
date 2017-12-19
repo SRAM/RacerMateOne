@@ -162,6 +162,11 @@ namespace RacerMateOne.Pages
 
 		private void riderOptionsAll_Loaded(object sender, RoutedEventArgs e)  {
 			m_bLoaded = true;
+
+#if DEBUG
+			AppWin.Instance.Title = "RideOptionsAll.xaml.cs";
+#endif
+
 			if (m_bLoaded) { };
 
 #if !DEBUG
@@ -174,9 +179,13 @@ namespace RacerMateOne.Pages
             //UpdateKeyControls();
 		}
 
-        private void OnTrainersAvailableChanged(object sender, RM1.TrainersAvailableChangedEventArgs e)
-        {
-            HardwareAvailableLabel.Dispatcher.Invoke((ThreadStart)delegate () {
+        private void OnTrainersAvailableChanged(object sender, RM1.TrainersAvailableChangedEventArgs e)  {
+
+#if DEBUG
+			Log.WriteLine("RideOptionsAll::OnTrainersAvailableChanged()", RacerMateOne.Log.Flags.Blue);
+#endif
+
+			HardwareAvailableLabel.Dispatcher.Invoke((ThreadStart)delegate () {
                 if (e.FoundTrainers.Count == 0 && e.LostTrainers.Count == 0)
                 {
                     HardwareAvailableLabel.Content = String.Empty;
@@ -202,9 +211,9 @@ namespace RacerMateOne.Pages
                 {
                     RM1.StartQuickScan();
                 });
-        }
+		}                          // OnTrainersAvailableChanged()
 
-        private void riderOptionsAll_Unloaded(object sender, RoutedEventArgs e)  {
+		private void riderOptionsAll_Unloaded(object sender, RoutedEventArgs e)  {
             //KeyControls = null;
             m_bLoaded = false;
             Commit();
@@ -1055,12 +1064,17 @@ namespace RacerMateOne.Pages
 
 		//===========================================================================================
 		bool m_bHardwareInit;
-		void RedoHardwareLines()
-		{
-			foreach (Controls.HardwareLine h in m_HardwareLines)
-			{
+
+		void RedoHardwareLines()  {
+
+#if DEBUG
+			Log.WriteLine("RideOptionsAll::RedoHardwareLines()");
+#endif
+
+			foreach (Controls.HardwareLine h in m_HardwareLines)  {
 				Unit unit = Unit.Units[h.Number - 1];
 				RM1.Trainer trainer = unit.Trainer;
+
 				if (trainer == null)
 					trainer = unit.TC.CurrentTrainer;
 
@@ -1069,8 +1083,10 @@ namespace RacerMateOne.Pages
 		}
 
 
-		private void C_Hardware_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-		{
+		private void C_Hardware_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)  {
+#if DEBUG
+			Log.WriteLine("RideOptionsAll::C_Hardware_IsVisibleChanged()");
+#endif
 			Grid g = sender as Grid;
 			bool active = g.Visibility == Visibility.Visible;
 			foreach(Controls.HardwareLine h in m_HardwareLines)
