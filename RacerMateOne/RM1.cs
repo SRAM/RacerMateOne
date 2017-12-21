@@ -73,8 +73,11 @@ namespace RacerMateOne  {
 
 		public static void Exit()
 		{
-            ms_bShutdownScanningThread = true;
-			ms_BackgroundScanningThread.Join();
+			ms_bShutdownScanningThread = true;
+			//nca: larry added null check
+			if (ms_BackgroundScanningThread != null) {
+				ms_BackgroundScanningThread.Join();
+			}
             RM1.Trainer.Exit();
 		}
 
@@ -941,17 +944,19 @@ namespace RacerMateOne  {
             while(!ms_ScanningThreadWaitEvent.WaitOne(1 * 1000) && !ms_bShutdownScanningThread)
             {
 #if DEBUG
-                Log.WriteLine("ScanningThread: GetPortNames()");
+              //nca: stop spamming the log window  Log.WriteLine("ScanningThread: GetPortNames()");
 #endif
                 string[] foundTrainers = GetPortNames();
-                if (foundTrainers == null)
-                {
-                    // nothing to add, so just continue to the next loop iteration
-                    continue;
-                }
+					 //nca: larry added more checks
+					if (foundTrainers == null || ( foundTrainers.Length == 1 && foundTrainers[0] == "") ) {
+					#if DEBUG
+				//Log.WriteLine("RM1::ScanningThreadFunc(), nothing found");					// causes thread.join to hang if log window is open
+					#endif
+				continue;            // nothing to add, so just continue to the next loop iteration
+			}
 
 #if DEBUG
-                Log.WriteLine("ScanningThread: Found: " + foundTrainers.ToString());
+              //nca: stop spamming the log window  Log.WriteLine("ScanningThread: Found: " + foundTrainers.ToString());
 #endif
 
                 // protect the lists
@@ -3106,11 +3111,20 @@ namespace RacerMateOne  {
 			public static void Exit() {
 				Log.WriteLine("rm1.cs, RM1::Exit()");
                 ms_bShutdownScanningThread = true;
-                ms_BackgroundScanningThread.Join();
-                ms_bShutdown = true;
-                ms_Thread.Join();
+					 //nca: larry added null check and logging
+					if (ms_BackgroundScanningThread != null) {
+#if DEBUG
+						Debug.WriteLine("Trainer::Exit(), calling ms_BackgroundScanningThread.Join()");
+#endif
+						ms_BackgroundScanningThread.Join();
+#if DEBUG
+						Debug.WriteLine("Trainer::Exit(), calling ms_BackgroundScanningThread.Join() OK");
+#endif
+					}
+               ms_bShutdown = true;
+               ms_Thread.Join();
 				DLL.stop_ant();
-                DLL.racermate_close();
+				 DLL.racermate_close();
 			}
 
 			/******************************************************************************************************************
@@ -3290,6 +3304,8 @@ namespace RacerMateOne  {
 			}
 
 			static DateTime ms_WaitScan = new DateTime(0);
+
+/* nca: unused, larry removed it
 			public static void WaitToScan(int seconds) {
 				ms_Mux.WaitOne();
 				try {
@@ -3299,6 +3315,7 @@ namespace RacerMateOne  {
 				ms_Mux.ReleaseMutex();
 
 			}
+*/
 		}												// public class Trainer : DispatcherObject, INotifyPropertyChanged, IStats
 
 		/******************************************************************************************************************
