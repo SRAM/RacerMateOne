@@ -7,7 +7,7 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{1104FCE4-A326-47D5-8611-1E2CC7461104}
 AppName=RacerMate One
-AppVersion=4.1.0.3
+AppVersion=4.1.0.4
 ;AppVerName=RacerMate One 410
 AppPublisher=RacerMate Inc
 AppPublisherURL=http://www.racermateinc.com/
@@ -19,7 +19,7 @@ DisableProgramGroupPage=yes
 ;LicenseFile=.\Build_RM1_410\License.txt
 InfoAfterFile=.\Build_RM1_410\ReadMe.txt
 OutputDir=.\Inno Setup Data\Output
-OutputBaseFilename=RM1_4103a_setup
+OutputBaseFilename=RM1_4104_setup
 SetupIconFile=.\Build_RM1_410\RM1.ico
 ;Compression=lzma
 Compression=zip/9
