@@ -273,18 +273,26 @@ namespace RacerMateOne {
 				IEnumerable<XElement> ridernodes = rootNode.Elements("Rider");
 				RidersList.Clear();
 
-				//---just read in the riders list
+                //---just read in the riders list
 
 
-				foreach(XElement ele in ridernodes) {
+				foreach (XElement ele in ridernodes) {
 					// the above will all be present for a computrainer, Velotron has further properties
 
 					XElement GearingCrankNode = ele.Element("GearingCrankset");
 					IEnumerable<XElement> bigringnodes = GearingCrankNode.Elements();
-					//int[] Crankset = { 53, 39, 25,0,0,0 };
-					int[] Crankset = { 0, 0, 0 };
-					//int[] Cogset = { 26, 23, 21, 19, 17, 16, 14, 13, 12, 11,0,0,0,0,0,0,0,0,0,0,0,0 };
-					int[] Cogset = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+					int[] Crankset = new int[RM1.MAX_FRONT_GEARS];
+					for (int crankIndex = 0; crankIndex < RM1.MAX_FRONT_GEARS; ++crankIndex)
+					{
+						Crankset[crankIndex] = 0;
+					}
+
+					int[] Cogset = new int[RM1.MAX_REAR_GEARS];
+					for (int cogIndex = 0; cogIndex < RM1.MAX_REAR_GEARS; ++cogIndex)
+					{
+						Cogset[cogIndex] = 0;
+					}
 
 					int gearcount = 0;
 
@@ -293,12 +301,6 @@ namespace RacerMateOne {
 						gearcount += 1;
 					}
 
-					if(gearcount == 2) {
-						//fix = true;
-#if DEBUG
-						//int bp = 2;
-#endif
-					}
 					XElement GearingCogNode = ele.Element("GearingCogset");
 					IEnumerable<XElement> cognodes = GearingCogNode.Elements();
 					gearcount = 0;
@@ -317,7 +319,6 @@ namespace RacerMateOne {
                     XElement xPowerAeT = ele.Element("PowerAeT");
                     int powerAnT = (xPowerAnT != null) ? Convert.ToInt32(xPowerAnT.Value) : (xPowerAeT != null) ? Convert.ToInt32(xPowerAeT.Value) : 0;
 
-                    // int VelotronChainring = Convert.ToInt32(ele.Element("VelotronChainring").Value);
 					float WheelDiameter = Convert.ToSingle(ele.Element("WheelDiameter").Value);
 					Rider thisrider = new Rider(
 						ele.Attribute("DatabaseKey").Value,
@@ -326,7 +327,7 @@ namespace RacerMateOne {
 						ele.Element("NickName").Value,
 						ele.Element("Gender").Value,
 						ele.Element("Age").Value,
-                        hrAnT,
+						hrAnT,
 						Convert.ToInt32(ele.Element("HRMax").Value),
 						0,
 						0,

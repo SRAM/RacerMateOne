@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RacerMate Inc")]
 [assembly: AssemblyProduct("RacerMateOne")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -52,5 +52,5 @@ using System.Windows;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("4.1.0.5")]
-[assembly: AssemblyFileVersion("4.1.0.5")]
+[assembly: AssemblyVersion("4.1.0.6")]
+[assembly: AssemblyFileVersion("4.1.0.6")]

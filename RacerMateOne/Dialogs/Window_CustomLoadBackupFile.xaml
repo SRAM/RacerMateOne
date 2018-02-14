@@ -5,12 +5,12 @@
     Width="281" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Icon="/RacerMateOne;component/Resources/ZRes_Icon.ico" SizeToContent="Height">
 
     <!-- Key bindings -->
-    <Window.Resources>
+<!--    <Window.Resources>
         <dw:Cmd_ToggleLog x:Key="ToggleLog"/>
     </Window.Resources>
     <Window.InputBindings>
         <KeyBinding Command="{DynamicResource ToggleLog}" Key="F12"/>
-    </Window.InputBindings>
+    </Window.InputBindings> -->
 
     <Grid>
         <StackPanel Name="stackPanel1">
