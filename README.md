@@ -1,11 +1,14 @@
 # RacerMateOne
-This is RacerMate Inc's latest software to support CompuTrainer and Velotron users.
+RacerMateOne is the software originally developed by RacerMate Inc for the CompuTrainer and Velotron cycling products. SRAM, LLC aquired RacerMate Inc, and has determined to release the RacerMateOne source code for the benefit of the community.  The RacerMateOne software has been released under the MIT License.
+
+SRAM is seeking interested parties to help steer the project and contribute to its continued sucess.  Contact Aaron Sachau <development@sram.com> if you'd like to contribute, or if you have any other questions.
+
 
 Getting the Source
 ------------------
 1. Install Git from here: http://git-scm.com/download/win
   * Follow all default install options.
-2. Make sure you can log into GitHub and have access to this repository: https://github.com/RacerMateInc/RacerMateOne
+2. Make sure you can log into GitHub and have access to this repository: https://github.com/SRAM/RacerMateOne
 3. Using the 'git bash' console window that was installed with git, enter the following commands:
   * Note that by default, git-bash should start in your user directory (ie: C:\Users\<username>)
 
@@ -36,7 +39,7 @@ In order to identify a branch as being a temporary or personal branch, it should
 First, git-bash should tell you which branch you are currently on, if you are in a repository directory. Notice `(master)` below:
 * If you're on a different branch, run `git checkout master`
 ```
-MACHINE-NAME+user@machine-name MINGW64 ~/GitHub/RacerMateInc/RacerMateOne (master)
+MACHINE-NAME+user@machine-name MINGW64 ~/GitHub/SRAM/RacerMateOne (master)
 $
 ```
 
@@ -50,16 +53,16 @@ $
    $ git pull
    ```
 
-2. Create a new branch for the wifi development, and checkout the new branch.
+2. Create a new branch for your development, and checkout the new branch.
 
    ```
-   $ git branch larry-add-wifi-support
-   $ git checkout larry-add-wifi-support
+   $ git branch my-descriptive-branch-name
+   $ git checkout my-descriptive-branch-name
    ```
 3. See the status of the new branch:
    ```
    $ git status
-   On branch larry-add-wifi-support
+   On branch my-descriptive-branch-name
    nothing to commit, working directory clean
    ```
    * This confirms that there are no changes in our working tree (we didn't expect any since this is a new branch).
@@ -70,7 +73,7 @@ $
 
    ```
    $ git status
-   On branch larry-add-wifi-support
+   On branch my-descriptive-branch-name
    Changes not staged for commit:
    (use "git add/rm <file>..." to update what will be committed)
    (use "git checkout -- <file>..." to discard changes in working directory)
@@ -92,7 +95,7 @@ $
    ```
    $ git checkout -- ReadMe_fromSmeulders.txt
    $ git status
-   On branch larry-add-wifi-support
+   On branch my-descriptive-branch-name
    Changes not staged for commit:
      (use "git add <file>..." to update what will be committed)
      (use "git checkout -- <file>..." to discard changes in working directory)
@@ -138,7 +141,7 @@ $
 
    ```
 $ git status
-On branch larry-add-wifi-support
+On branch my-descriptive-branch-name
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
    
@@ -161,7 +164,7 @@ Changes to be committed:
    
    ```
    $ git status
-   On branch larry-add-wifi-support
+   On branch my-descriptive-branch-name
    Changes to be committed:
      (use "git reset HEAD <file>..." to unstage)
    
@@ -205,7 +208,7 @@ Changes to be committed:
    ```
    $ git commit -m "Updated documentation to show that we're adding wifi support."
    
-   [larry-add-wifi-support 8f91233] Updated documentation to show that we're adding wifi support.
+   [my-descriptive-branch-name 8f91233] Updated documentation to show that we're adding wifi support.
    warning: LF will be replaced by CRLF in new-wifi-support.txt.
    The file will have its original line endings in your working directory.
     2 files changed, 2 insertions(+), 1 deletion(-)
@@ -225,7 +228,7 @@ $ git checkout master
 Now you can go ahead and do whatever testing you need to (or even make a new branch and additional code changes!). In order to switch back to your wifi branch:
 
 ```
-$ git checkout larry-add-wifi-support
+$ git checkout my-descriptive-branch-name
 ```
 
 Viola! Back to editing the wifi code!
@@ -236,17 +239,15 @@ Perhaps you want to have someone else test your changes, move them to another co
 * Since this accesses the remote repository, you will be prompted for your GitHub username and password.
 
 ```
-$ git push -u origin larry-add-wifi-support
+$ git push -u origin 
 Counting objects: 4, done.
 Delta compression using up to 6 threads.
 Compressing objects: 100% (3/3), done.
 Writing objects: 100% (4/4), 429 bytes | 0 bytes/s, done.
 Total 4 (delta 2), reused 0 (delta 0)
 To https://github.com/RacerMateInc/RacerMateOne.git
- * [new branch]      larry-add-wifi-support -> larry-add-wifi-support
-Branch larry-add-wifi-support set up to track remote branch larry-add-wifi-support from origin.
+ * [new branch]      my-descriptive-branch-name -> my-descriptive-branch-name
+Branch my-descriptive-branch-name set up to track remote branch my-descriptive-branch-name from origin.
 ```
 
 Congrats! You've now gotten access to the RacerMateOne source code from GitHub, created a new branch, made changes, and pushed those changes back up to the server so that other people can see the changes, and help with testing!
-
-Contact Peter Lohrmann plohrmann@gmail.com if you have additional questions or run into problems with the steps above.
